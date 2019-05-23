@@ -9,42 +9,44 @@ namespace SSSRegen.Source.Player
     public class Score : Microsoft.Xna.Framework.DrawableGameComponent
     {
 
-        protected SpriteBatch spriteBatch = null; //SpriteBatch
-        protected Vector2 position = new Vector2(); //Score position
+        private SpriteBatch _spriteBatch = null; //SpriteBatch
+        private Vector2 __position = new Vector2(); //Score _position
 
         //Values
-        protected int score; //Score points
-        protected int health; //Health points
+        private int _score; //Score points
+        private int _health; //Health points
 
-        protected readonly SpriteFont font;
-        protected readonly Color fontColour;
+        private readonly SpriteFont _font;
+        private readonly Color _fontColour;
 
 
         public Score(Game game, SpriteFont font, Color fontColour)
             : base(game)
         {
             // TODO: Construct any child components here
-            this.font = font;
-            this.fontColour = fontColour;
-            spriteBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch)); //Get current sprite batch
+            _font = font;
+            _fontColour = fontColour;
+            _spriteBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch)); //Get current sprite batch
         }
 
-        public int ScorePoints //Score points
+        //Score points
+        public int ScorePoints 
         {
-            get { return score; }
-            set { this.score = value; }
+            get => _score;
+            set => _score = value;
         }
 
-        public int HealthPoints //Health points
+        //Health points
+        public int HealthPoints 
         {
-            get { return health; }
-            set { health = value; }
+            get => _health;
+            set => _health = value;
         }
 
-        public Vector2 Position
+        public Vector2 _position
         {
-            get { return position; }
-            set { position = value; }
+            get => __position;
+            set => __position = value;
         }
 
         /// <summary>
@@ -71,19 +73,19 @@ namespace SSSRegen.Source.Player
 
         public override void Draw(GameTime gameTime)
         {
-            string TextToDraw = string.Format("Score: {0}", score); //Set the text for score
+            string textToDraw = $"Score: {_score}"; //Set the text for score
 
             //Draw a shadow for the score text
-            spriteBatch.DrawString(font, TextToDraw, new Vector2(position.X + 1, position.Y + 1), Color.Black);
+            _spriteBatch.DrawString(_font, textToDraw, new Vector2(__position.X + 1, __position.Y + 1), Color.Black);
             //Draw the score text
-            spriteBatch.DrawString(font, TextToDraw, new Vector2(position.X, position.Y), fontColour);
+            _spriteBatch.DrawString(_font, textToDraw, new Vector2(__position.X, __position.Y), _fontColour);
 
-            float height = font.MeasureString(TextToDraw).Y; //Set a gap so that score and health are drawn on different lines
-            TextToDraw = string.Format("Health: {0}", health); //Set the text for health
+            float height = _font.MeasureString(textToDraw).Y; //Set a gap so that score and health are drawn on different lines
+            textToDraw = $"Health: {_health}"; //Set the text for health
             //Draw a shadow for the health text
-            spriteBatch.DrawString(font, TextToDraw, new Vector2(position.X + 1, position.Y + 1 + height), Color.Black);
+            _spriteBatch.DrawString(_font, textToDraw, new Vector2(__position.X + 1, __position.Y + 1 + height), Color.Black);
             //Draw the health text
-            spriteBatch.DrawString(font, TextToDraw, new Vector2(position.X + 1, position.Y + 1 + height), fontColour);
+            _spriteBatch.DrawString(_font, textToDraw, new Vector2(__position.X + 1, __position.Y + 1 + height), _fontColour);
 
             base.Draw(gameTime);
         }

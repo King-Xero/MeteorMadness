@@ -12,10 +12,10 @@ namespace SSSRegen.Source.Meteors
     public class MediumMeteor : Sprite
     {
 
-        protected int Yspeed; //Vertical velocity
-        protected int Xspeed; //Horizontal velocity
-        protected Random random; //Random number generator
-        private int index; //ID for this meteor
+        private int _ySpeed; //Vertical velocity
+        private int _xSpeed; //Horizontal velocity
+        private Random _random; //Random number generator
+        private int _index; //ID for this meteor
 
 
         public MediumMeteor(Game game, ref Texture2D spriteSheet)
@@ -52,17 +52,17 @@ namespace SSSRegen.Source.Meteors
             frame.Y = 455;
             Frames.Add(frame);
 
-            random = new Random(GetHashCode()); //Initialize the random number generator
-            PutinStartPosition(); //Put meteor in start position
+            _random = new Random(GetHashCode()); //Initialize the random number generator
+            PutinStart_position(); //Put meteor in start _position
         }
 
-        public void PutinStartPosition()
+        public void PutinStart_position()
         {
-            //Set the meteor to a random position along the top of the screen, with random vertical and horizontal speed
-            position.X = random.Next(Game.Window.ClientBounds.Width - currentFrame.Width);
-            position.Y = 0;
-            YSpeed = 1 + random.Next(4);
-            XSpeed = random.Next(3) - 1;
+            //Set the meteor to a random _position along the top of the screen, with random vertical and horizontal speed
+            _position.X = _random.Next(Game.Window.ClientBounds.Width - _currentFrame.Width);
+            _position.Y = 0;
+            YSpeed = 1 + _random.Next(4);
+            XSpeed = _random.Next(3) - 1;
         }
 
 
@@ -85,15 +85,15 @@ namespace SSSRegen.Source.Meteors
         {
             // TODO: Add your update code here
             //Check if meteor is still visible
-            if ((position.Y >= Game.Window.ClientBounds.Height) ||
-                (position.X >= Game.Window.ClientBounds.Width) ||
-                (position.X <= 0))
+            if ((_position.Y >= Game.Window.ClientBounds.Height) ||
+                (_position.X >= Game.Window.ClientBounds.Width) ||
+                (_position.X <= 0))
             {
-                PutinStartPosition();
+                PutinStart_position();
             }
             //Move Meteor
-            position.Y += Yspeed;
-            position.X += Xspeed;
+            _position.Y += _ySpeed;
+            _position.X += _xSpeed;
 
             base.Update(gameTime);
         }
@@ -101,32 +101,32 @@ namespace SSSRegen.Source.Meteors
         //Vertical velocity
         public int YSpeed
         {
-            get { return Yspeed; }
+            get => _ySpeed;
             set
             {
-                Yspeed = value;
-                frameDelay = 200 - (Yspeed * 5); //Animation speed depends how fast the meteor is "falling"
+                _ySpeed = value;
+                _frameDelay = 200 - (_ySpeed * 5); //Animation speed depends how fast the meteor is "falling"
             }
         }
 
         //Horizontal velocity
         public int XSpeed
         {
-            get { return Xspeed; }
-            set { Xspeed = value; }
+            get => _xSpeed;
+            set => _xSpeed = value;
         }
 
         public int Index //ID for this meteor
         {
-            get { return index; }
-            set { index = value; }
+            get => _index;
+            set => _index = value;
         }
 
 
         //Check if the meteor intersects with the specified rectangle, returns true if a collision occurs
         public bool CheckCollision(Rectangle rect)
         {
-            Rectangle spriteRect = new Rectangle((int)position.X, (int)position.Y, currentFrame.Width, currentFrame.Height);
+            Rectangle spriteRect = new Rectangle((int)_position.X, (int)_position.Y, _currentFrame.Width, _currentFrame.Height);
             return spriteRect.Intersects(rect);
         }
     }

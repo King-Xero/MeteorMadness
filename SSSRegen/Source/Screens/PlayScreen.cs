@@ -15,31 +15,31 @@ namespace SSSRegen.Source.Screens
     public class PlayScreen : GameScreen
     {
         //Basics
-        protected Texture2D playTexture; //Texture for all the elements of the game
-        protected SpriteBatch spriteBatch = null;
+        private readonly Texture2D playTexture; //Texture for all the elements of the game
+        private readonly SpriteBatch spriteBatch = null;
 
         //Game elements
-        protected Player.Player player1; //Player 1
-        protected Player.Player player2; //Player 2
-        protected MeteorManager meteors; //Meteor Manager
-        protected EnemyManager enemies; //Enemy Manager
-        protected HealthPack healthPack; //Health pack
-        protected RumblePad rumblePad; //Rumble for Xbox controller
-        protected ImageComponent background; //Game background
-        protected Score scorePlayer1; //Score for player 1
-        protected Score scorePlayer2; //Score for player 2
+        private Player.Player _player1; //Player 1
+        private Player.Player _player2; //Player 2
+        private MeteorManager _meteors; //Meteor Manager
+        private EnemyManager _enemies; //Enemy Manager
+        private HealthPack _healthPack; //Health pack
+        private RumblePad _rumblePad; //Rumble for Xbox controller
+        private ImageComponent _background; //Game background
+        private Score _scorePlayer1; //Score for player 1
+        private Score _scorePlayer2; //Score for player 2
 
         //GUI
-        protected Vector2 pausePosition; //Position of pause prompt
-        protected Vector2 gameoverPosition; //Position of game over prompt
-        protected Rectangle pauseRect = new Rectangle(170, 225, 144, 41); //Rectangle for pause prompt
-        protected Rectangle gameoverRect = new Rectangle(173, 272, 266, 41); //Rectangle for game over prompt
+        private Vector2 _pause_position; //_position of pause prompt
+        private Vector2 _gameover_position; //_position of game over prompt
+        private Rectangle _pauseRect = new Rectangle(170, 225, 144, 41); //Rectangle for pause prompt
+        private Rectangle _gameoverRect = new Rectangle(173, 272, 266, 41); //Rectangle for game over prompt
 
         //GameState elements
-        protected bool paused; //Is the game paused?
-        protected bool gameOver; //Is it Game over?
-        protected TimeSpan elapsedTime = TimeSpan.Zero;
-        protected bool twoPlayers; //Is there 2 players?
+        private bool _paused; //Is the game paused?
+        private bool _isGameOver; //Is it Game over?
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+        private bool _isTwoPlayer; //Are there 2 players?
 
 
         public PlayScreen(Game game, Texture2D spriteSheet, Texture2D backgroundTexture, SpriteFont font)
@@ -48,89 +48,87 @@ namespace SSSRegen.Source.Screens
             // TODO: Construct any child components here
 
             //Add the game background image
-            background = new ImageComponent(game, backgroundTexture, ImageComponent.DrawMode.Stretch);
-            Components.Add(background);
+            _background = new ImageComponent(game, backgroundTexture, ImageComponent.DrawMode.Stretch);
+            Components.Add(_background);
 
             playTexture = spriteSheet;
 
             //Add the meteors
             spriteBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
-            meteors = new MeteorManager(Game, ref playTexture);
-            Components.Add(meteors);
+            _meteors = new MeteorManager(Game, ref playTexture);
+            Components.Add(_meteors);
 
             //Add the enemies
-            enemies = new EnemyManager(Game, ref playTexture);
-            Components.Add(enemies);
+            _enemies = new EnemyManager(Game, ref playTexture);
+            Components.Add(_enemies);
 
             //Add player 1
-            player1 = new Player.Player(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
-            player1.Initialize();
-            Components.Add(player1);
+            _player1 = new Player.Player(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
+            _player1.Initialize();
+            Components.Add(_player1);
 
             //Add player 2
-            player2 = new Player.Player(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
-            player2.Initialize();
-            Components.Add(player2);
+            _player2 = new Player.Player(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
+            _player2.Initialize();
+            Components.Add(_player2);
 
             //Add the score for player 1
-            scorePlayer1 = new Score(game, font, Color.Blue);
-            scorePlayer1.Position = new Vector2(10, 10);
-            Components.Add(scorePlayer1);
+            _scorePlayer1 = new Score(game, font, Color.Blue);
+            _scorePlayer1._position = new Vector2(10, 10);
+            Components.Add(_scorePlayer1);
             //Add the score for player 2
-            scorePlayer2 = new Score(game, font, Color.Green);
-            scorePlayer2.Position = new Vector2(Game.Window.ClientBounds.Width - 200, 10);
-            Components.Add(scorePlayer2);
+            _scorePlayer2 = new Score(game, font, Color.Green);
+            _scorePlayer2._position = new Vector2(Game.Window.ClientBounds.Width - 200, 10);
+            Components.Add(_scorePlayer2);
 
             //Add the rumble for Xbox controller
-            rumblePad = new RumblePad(game);
-            Components.Add(rumblePad);
+            _rumblePad = new RumblePad(game);
+            Components.Add(_rumblePad);
 
             //Add the health packs
-            healthPack = new HealthPack(game, ref playTexture);
-            healthPack.Initialize();
-            Components.Add(healthPack);
+            _healthPack = new HealthPack(game, ref playTexture);
+            _healthPack.Initialize();
+            Components.Add(_healthPack);
         }
 
-        public bool TwoPlayers //Indicate whether or not 2 player mode
+        public bool IsTwoPlayer //Indicate whether or not 2 player mode
         {
-            get { return twoPlayers; }
-            set { twoPlayers = value; }
+            get => _isTwoPlayer;
+            set => _isTwoPlayer = value;
         }
 
-        public bool GameOver //True, if the game is in gameOver state
-        {
-            get { return gameOver; }
-        }
+        //True, if the game is in game over state
+        public bool IsGameOver => _isGameOver;
 
-        public bool Paused //Paused mode
+        public bool IsPaused //Paused mode
         {
-            get { return paused; }
-            set { paused = value; }
+            get => _paused;
+            set => _paused = value;
         }
 
         public override void Show() //Show the play screen
         {
-            meteors.Initialize();
-            enemies.Initialize();
-            healthPack.PutInStartPosition();
-            player1.Reset();
-            player2.Reset();
+            _meteors.Initialize();
+            _enemies.Initialize();
+            _healthPack.PutInStart_position();
+            _player1.Reset();
+            _player2.Reset();
 
-            paused = false; //Game is NOT paused when started
-            //Paused prompt position
-            pausePosition.X = (Game.Window.ClientBounds.Width - pauseRect.Width) / 2;
-            pausePosition.Y = (Game.Window.ClientBounds.Height - pauseRect.Height) / 2;
+            _paused = false; //Game is NOT paused when started
+            //Paused prompt _position
+            _pause_position.X = (Game.Window.ClientBounds.Width - _pauseRect.Width) / 2;
+            _pause_position.Y = (Game.Window.ClientBounds.Height - _pauseRect.Height) / 2;
 
-            gameOver = false; //Game over is NOT true when game is started
-            //Game over prompt position
-            gameoverPosition.X = (Game.Window.ClientBounds.Width - gameoverRect.Width) / 2;
-            gameoverPosition.Y = (Game.Window.ClientBounds.Height - gameoverRect.Height) / 2;
+            _isGameOver = false; //Game over is NOT true when game is started
+            //Game over prompt _position
+            _gameover_position.X = (Game.Window.ClientBounds.Width - _gameoverRect.Width) / 2;
+            _gameover_position.Y = (Game.Window.ClientBounds.Height - _gameoverRect.Height) / 2;
 
             //Player 2 elements are visible and enabled depending on the status of "twoPlayers"
-            player2.Visible = twoPlayers;
-            player2.Enabled = twoPlayers;
-            scorePlayer2.Visible = twoPlayers;
-            scorePlayer2.Enabled = twoPlayers;
+            _player2.Visible = _isTwoPlayer;
+            _player2.Enabled = _isTwoPlayer;
+            _scorePlayer2.Visible = _isTwoPlayer;
+            _scorePlayer2.Enabled = _isTwoPlayer;
 
             base.Show();
         }
@@ -138,8 +136,8 @@ namespace SSSRegen.Source.Screens
         public override void Hide() //Hide the play screen
         {
             //Stop the controller rumble
-            rumblePad.Stop(PlayerIndex.One);
-            rumblePad.Stop(PlayerIndex.Two);
+            _rumblePad.Stop(PlayerIndex.One);
+            _rumblePad.Stop(PlayerIndex.Two);
 
             base.Hide();
         }
@@ -162,156 +160,156 @@ namespace SSSRegen.Source.Screens
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            if ((!paused) && (!gameOver))
+            if ((!_paused) && (!_isGameOver))
             {
                 HandleDamages(); //Check meteor collisions
                 HandleHealthPack(gameTime); //Check if player has collected health pack
                 //Update player's score and health
-                scorePlayer1.ScorePoints = player1.Score;
-                scorePlayer1.HealthPoints = player1.Health;
+                _scorePlayer1.ScorePoints = _player1.Score;
+                _scorePlayer1.HealthPoints = _player1.Health;
                 //if its a two player game, update player 2's score and health
-                if (twoPlayers)
+                if (_isTwoPlayer)
                 {
-                    scorePlayer2.ScorePoints = player2.Score;
-                    scorePlayer2.HealthPoints = player2.Health;
+                    _scorePlayer2.ScorePoints = _player2.Score;
+                    _scorePlayer2.HealthPoints = _player2.Health;
                 }
                 //Check if the player is dead
-                gameOver = ((player1.Health <= 0) || (player2.Health <= 0));
-                if (gameOver)
+                _isGameOver = ((_player1.Health <= 0) || (_player2.Health <= 0));
+                if (_isGameOver)
                 {
-                    player1.Visible = (player1.Health > 0);
-                    player2.Visible = (player2.Health > 0) && twoPlayers;
+                    _player1.Visible = (_player1.Health > 0);
+                    _player2.Visible = (_player2.Health > 0) && _isTwoPlayer;
                     //Stop the rumble
-                    rumblePad.Stop(PlayerIndex.One);
-                    rumblePad.Stop(PlayerIndex.Two);
+                    _rumblePad.Stop(PlayerIndex.One);
+                    _rumblePad.Stop(PlayerIndex.Two);
                 }
                 base.Update(gameTime);
             }
-            if (gameOver) //Meteors, enemies and health packs keep their animation when its game over
+            if (_isGameOver) //Meteors, enemies and health packs keep their animation when its game over
             {
-                meteors.Update(gameTime);
-                enemies.Update(gameTime);
-                healthPack.Update(gameTime);
+                _meteors.Update(gameTime);
+                _enemies.Update(gameTime);
+                _healthPack.Update(gameTime);
             }
         }
 
         private void HandleDamages() //Check collisions
         {
             //Check small meteor collisions for player 1
-            if (meteors.SmallMeteorCollision(player1.GetBounds()))
+            if (_meteors.SmallMeteorCollision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 5; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 5; //Player damage
             }
 
             //Check medium meteor collisions for player 1
-            if (meteors.MediumMeteorCollision(player1.GetBounds()))
+            if (_meteors.MediumMeteorCollision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 10; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 10; //Player damage
             }
 
             //Check small meteor collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (meteors.SmallMeteorCollision(player2.GetBounds()))
+                if (_meteors.SmallMeteorCollision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 5; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 5; //Player damage
                 }
             }
 
             //Check medium meteor collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (meteors.MediumMeteorCollision(player2.GetBounds()))
+                if (_meteors.MediumMeteorCollision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 10; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 10; //Player damage
                 }
             }
 
             //Check enemy1 collisions for player 1
-            if (enemies.Enemy1Collision(player1.GetBounds()))
+            if (_enemies.Enemy1Collision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 20; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 20; //Player damage
             }
 
             //Check enemy2 collisions for player 1
-            if (enemies.Enemy2Collision(player1.GetBounds()))
+            if (_enemies.Enemy2Collision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 30; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 30; //Player damage
             }
 
             //Check enemy3 collisions for player 1
-            if (enemies.Enemy3Collision(player1.GetBounds()))
+            if (_enemies.Enemy3Collision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 40; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 40; //Player damage
             }
 
             //Check boss collisions for player 1
-            if (enemies.BossCollision(player1.GetBounds()))
+            if (_enemies.BossCollision(_player1.GetBounds()))
             {
-                rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                player1.Health -= 50; //Player damage
+                _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                _player1.Health -= 50; //Player damage
             }
 
             //Check enemy1 collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (enemies.Enemy1Collision(player2.GetBounds()))
+                if (_enemies.Enemy1Collision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 20; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 20; //Player damage
                 }
             }
 
             //Check enemy2 collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (enemies.Enemy2Collision(player2.GetBounds()))
+                if (_enemies.Enemy2Collision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 30; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 30; //Player damage
                 }
             }
 
             //Check enemy3 collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (enemies.Enemy3Collision(player2.GetBounds()))
+                if (_enemies.Enemy3Collision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 40; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 40; //Player damage
                 }
             }
 
             //Check enemy collisions for player 2
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (enemies.BossCollision(player2.GetBounds()))
+                if (_enemies.BossCollision(_player2.GetBounds()))
                 {
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 50; //Player damage
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 50; //Player damage
                 }
             }
 
             //Check if the players collide with each other
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (player1.GetBounds().Intersects(player2.GetBounds()))
+                if (_player1.GetBounds().Intersects(_player2.GetBounds()))
                 {
                     //Player 1
-                    rumblePad.GamepadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
-                    player1.Health -= 10; //Player damage
-                    player1.Score -= 10; //Score penalty
+                    _rumblePad.GamePadRumble(PlayerIndex.One, 500, 1.0f, 1.0f); //Activate rumble
+                    _player1.Health -= 10; //Player damage
+                    _player1.Score -= 10; //Score penalty
                     //Player 2
-                    rumblePad.GamepadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
-                    player2.Health -= 10; //Player damage
-                    player2.Score -= 10; //Score penalty
+                    _rumblePad.GamePadRumble(PlayerIndex.Two, 500, 1.0f, 1.0f); //Activate rumble
+                    _player2.Health -= 10; //Player damage
+                    _player2.Score -= 10; //Score penalty
                 }
             }
         }
@@ -319,30 +317,30 @@ namespace SSSRegen.Source.Screens
         private void HandleHealthPack(GameTime gameTime)
         {
             //Check if player 1 collects a health pack
-            if (healthPack.CheckCollision(player1.GetBounds()))
+            if (_healthPack.CheckCollision(_player1.GetBounds()))
             {
-                elapsedTime = TimeSpan.Zero;
-                healthPack.PutInStartPosition(); //Reset health pack
-                player1.Health += 50; //Health boost
+                _elapsedTime = TimeSpan.Zero;
+                _healthPack.PutInStart_position(); //Reset health pack
+                _player1.Health += 50; //Health boost
             }
 
             //Check if player 2 collects a health pack
-            if (twoPlayers)
+            if (_isTwoPlayer)
             {
-                if (healthPack.CheckCollision(player2.GetBounds()))
+                if (_healthPack.CheckCollision(_player2.GetBounds()))
                 {
-                    elapsedTime = TimeSpan.Zero;
-                    healthPack.PutInStartPosition(); //Reset health pack
-                    player2.Health += 50; //Health boost
+                    _elapsedTime = TimeSpan.Zero;
+                    _healthPack.PutInStart_position(); //Reset health pack
+                    _player2.Health += 50; //Health boost
                 }
             }
 
             //Check if its time to send a health pack
-            elapsedTime += gameTime.ElapsedGameTime;
-            if (elapsedTime > TimeSpan.FromSeconds(20))
+            _elapsedTime += gameTime.ElapsedGameTime;
+            if (_elapsedTime > TimeSpan.FromSeconds(20))
             {
-                elapsedTime -= TimeSpan.FromSeconds(20);
-                healthPack.Enabled = true;
+                _elapsedTime -= TimeSpan.FromSeconds(20);
+                _healthPack.Enabled = true;
             }
         }
 
@@ -350,14 +348,14 @@ namespace SSSRegen.Source.Screens
         {
             base.Draw(gameTime); //Draw all Game Components
 
-            if (paused)
+            if (_paused)
             {
-                spriteBatch.Draw(playTexture, pausePosition, pauseRect, Color.White); //Draw the paused prompt
+                spriteBatch.Draw(playTexture, _pause_position, _pauseRect, Color.White); //Draw the paused prompt
             }
 
-            if (gameOver)
+            if (_isGameOver)
             {
-                spriteBatch.Draw(playTexture, gameoverPosition, gameoverRect, Color.White); //Draw the paused prompt
+                spriteBatch.Draw(playTexture, _gameover_position, _gameoverRect, Color.White); //Draw the paused prompt
             }
         }
     }

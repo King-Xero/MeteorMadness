@@ -9,20 +9,16 @@ namespace SSSRegen.Source.Core
     public class GameScreen : DrawableGameComponent
     {
         //List of child GameComponents
-        private readonly List<GameComponent> components;
+        private readonly List<GameComponent> _components;
 
         //Components of Game Screen
-        public List<GameComponent>
-            Components //Used to expose the Components list, to be be able to add to new actors to the scene from the derived classes
-        {
-            get { return components; }
-        }
+        //Used to expose the Components list, to be be able to add to new actors to the scene from the derived classes
+        public List<GameComponent> Components => _components;
 
-        public GameScreen(Game game)
-            : base(game)
+        public GameScreen(Game game) : base(game)
         {
             // TODO: Construct any child components here
-            components = new List<GameComponent>();
+            _components = new List<GameComponent>();
             Visible = false; //Will not be visible initially
             Enabled = false; //Will not have its status updated initially
         }
@@ -57,12 +53,14 @@ namespace SSSRegen.Source.Core
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            for (int i = 0; i < components.Count; i++) //Loops through all of the child GameComponents
+            
+            //Loops through all of the child GameComponents
+            foreach (var t in _components)
             {
-                //Updated the component if it is enabled
-                if (components[i].Enabled)
+                //Update the component if it is enabled
+                if (t.Enabled)
                 {
-                    components[i].Update(gameTime);
+                    t.Update(gameTime);
                 }
             }
 
@@ -72,12 +70,11 @@ namespace SSSRegen.Source.Core
         public override void Draw(GameTime gameTime)
         {
             //Draw the child GameComponents (if drawable)
-            for (int i = 0; i < components.Count; i++)
+            foreach (var gc in _components)
             {
-                GameComponent gc = components[i];
-                if ((gc is DrawableGameComponent) && ((DrawableGameComponent) gc).Visible)
+                if (gc is DrawableGameComponent component && component.Visible)
                 {
-                    ((DrawableGameComponent) gc).Draw(gameTime);
+                    component.Draw(gameTime);
                 }
             }
 

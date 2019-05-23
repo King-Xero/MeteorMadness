@@ -7,28 +7,29 @@ namespace SSSRegen.Source.Core
 {
     public class Sprite : DrawableGameComponent
     {
-        private int activeFrame; //Active frame from the sprite sheet animation
-        private readonly Texture2D texture; //Will hold the sprite sheet texture
-        private List<Rectangle> frames; //List of sprite frames from the texture
+        private int _activeFrame; //Active frame from the sprite sheet animation
+        private readonly Texture2D _texture; //Will hold the sprite sheet texture
+        private List<Rectangle> _frames; //List of sprite frames from the texture
 
-        protected Vector2 position;
-        protected TimeSpan elapsedTime = TimeSpan.Zero;
-        protected Rectangle currentFrame; //Rectangle of the current sprite frame
-        protected long frameDelay;
-        protected SpriteBatch spBatch;
+        protected Vector2 _position;
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+        protected Rectangle _currentFrame; //Rectangle of the current sprite frame
+        protected long _frameDelay;
+        private SpriteBatch _spBatch;
 
         public Sprite(Game game, ref Texture2D spriteSheet) : base(game)
         {
             // ToDo: Construct any child components here
 
-            texture = spriteSheet;
-            activeFrame = 0;
+            _texture = spriteSheet;
+            _activeFrame = 0;
         }
 
-        public List<Rectangle> Frames //List with frames of the animated sprite
+        ///List with frames of the animated sprite
+        public List<Rectangle> Frames 
         {
-            get { return frames; }
-            set { frames = value; }
+            get => _frames;
+            set => _frames = value;
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace SSSRegen.Source.Core
         public override void Initialize()
         {
             // TODO: Add your initialization code here
-            spBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
+            _spBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
 
             base.Initialize();
         }
@@ -50,25 +51,24 @@ namespace SSSRegen.Source.Core
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            elapsedTime += gameTime.ElapsedGameTime;
+            _elapsedTime += gameTime.ElapsedGameTime;
             //Check if next frame should be displayed, and if so, change it each n milliseconds
-            if (elapsedTime > TimeSpan.FromMilliseconds(frameDelay))
+            if (_elapsedTime > TimeSpan.FromMilliseconds(_frameDelay))
             {
-                elapsedTime -= TimeSpan.FromMilliseconds(frameDelay);
-                activeFrame++;
-                if (activeFrame == frames.Count)
+                _elapsedTime -= TimeSpan.FromMilliseconds(_frameDelay);
+                _activeFrame++;
+                if (_activeFrame == _frames.Count)
                 {
-                    activeFrame = 0;
+                    _activeFrame = 0;
                 }
-                currentFrame = frames[activeFrame]; //Get the current frame
+                _currentFrame = _frames[_activeFrame]; //Get the current frame
             }
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-
-            spBatch.Draw(texture, position, currentFrame, Color.White); //Draw the current frame in the current position on the screen
+            _spBatch.Draw(_texture, _position, _currentFrame, Color.White); //Draw the current frame in the current _position on the screen
 
             base.Draw(gameTime);
         }

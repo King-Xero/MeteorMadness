@@ -8,29 +8,29 @@ namespace SSSRegen.Source.Meteors
     /// <summary>
     /// This is a game component that manages all of the meteors in the game
     /// </summary>
-    public class MeteorManager : Microsoft.Xna.Framework.DrawableGameComponent
+    public class MeteorManager : DrawableGameComponent
     {
-        protected List<SmallMeteor> sMeteors; //List of active small meteors
-        protected List<MediumMeteor> mMeteors; //List of active medium meteors
-        private const int STARTMETEORCOUNT = 2; //Constant for initial meteor count
-        private const int ADDSMALLMETEORTIME = 150; //Time for a new small meteor
-        private const int ADDMEDIUMMETEORTIME = 300; //Time for a new medium meteor
+        private List<SmallMeteor> _sMeteors; //List of active small meteors
+        private List<MediumMeteor> _mMeteors; //List of active medium meteors
+        private const int START_METEOR_COUNT = 2; //Constant for initial meteor count
+        private const int ADD_SMALL_METEOR_TIME = 150; //Time for a new small meteor
+        private const int ADD_MEDIUM_METEOR_TIME = 300; //Time for a new medium meteor
 
-        protected Texture2D sMeteorTexture; //Texture for small meteor
-        protected Texture2D mMeteorTexture; //Texture for medium meteor
-        protected TimeSpan elapsedTime = TimeSpan.Zero;
+        private Texture2D _sMeteorTexture; //Texture for small meteor
+        private Texture2D _mMeteorTexture; //Texture for medium meteor
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
 
-        private Random random = new Random();
+        private Random _random = new Random();
 
 
         public MeteorManager(Game game, ref Texture2D spriteSheet)
             : base(game)
         {
             // TODO: Construct any child components here
-            sMeteorTexture = spriteSheet;
-            sMeteors = new List<SmallMeteor>(); //Create list for small meteors
-            mMeteorTexture = spriteSheet;
-            mMeteors = new List<MediumMeteor>(); //Create list for medium meteors
+            _sMeteorTexture = spriteSheet;
+            _sMeteors = new List<SmallMeteor>(); //Create list for small meteors
+            _mMeteorTexture = spriteSheet;
+            _mMeteors = new List<MediumMeteor>(); //Create list for medium meteors
         }
 
         /// <summary>
@@ -40,18 +40,18 @@ namespace SSSRegen.Source.Meteors
         public override void Initialize()
         {
             // TODO: Add your initialization code here
-            sMeteors.Clear(); //Clears the list of small meteors
-            mMeteors.Clear(); //Clears the list of medium meteors
+            _sMeteors.Clear(); //Clears the list of small meteors
+            _mMeteors.Clear(); //Clears the list of medium meteors
 
             Start(); //Initialize all meteors in the lists
-            for (int i = 0; i < sMeteors.Count; i++)
+            foreach (var sMeteor in _sMeteors)
             {
-                sMeteors[i].Initialize();
+                sMeteor.Initialize();
             }
 
-            for (int i = 0; i < mMeteors.Count; i++)
+            foreach (var mMeteor in _mMeteors)
             {
-                mMeteors[i].Initialize();
+                mMeteor.Initialize();
             }
 
             base.Initialize();
@@ -59,62 +59,58 @@ namespace SSSRegen.Source.Meteors
 
         public void Start() //Start the meteors
         {
-            elapsedTime = TimeSpan.Zero; //Initialize a counter
-            for (int i = 0; i < STARTMETEORCOUNT; i++)
+            _elapsedTime = TimeSpan.Zero; //Initialize a counter
+            for (var i = 0; i < START_METEOR_COUNT; i++)
             {
                 AddNewSmallMeteor();
                 AddNewMediumMeteor();
             }
         }
 
-        public List<SmallMeteor> AllSmallMeteors //List of all small meteors in the game
-        {
-            get { return sMeteors; }
-        }
+        //List of all small meteors in the game
+        public List<SmallMeteor> AllSmallMeteors => _sMeteors;
 
-        public List<MediumMeteor> AllMediumMeteors //List of all medium meteors in the game
-        {
-            get { return mMeteors; }
-        }
+        //List of all medium meteors in the game
+        public List<MediumMeteor> AllMediumMeteors => _mMeteors;
 
         private void CheckForNewSmallMeteor(GameTime gameTime) //Check if its time for a new small meteor
         {
-            //Add a new small meteor each ADDSMALLMETEORTIME
-            elapsedTime += gameTime.ElapsedGameTime;
+            //Add a new small meteor each ADD_SMALL_METEOR_TIME
+            _elapsedTime += gameTime.ElapsedGameTime;
 
-            if (elapsedTime > TimeSpan.FromSeconds(ADDSMALLMETEORTIME))
+            if (_elapsedTime > TimeSpan.FromSeconds(ADD_SMALL_METEOR_TIME))
             {
-                elapsedTime -= TimeSpan.FromSeconds(ADDSMALLMETEORTIME);
+                _elapsedTime -= TimeSpan.FromSeconds(ADD_SMALL_METEOR_TIME);
                 AddNewSmallMeteor();
             }
         }
 
         private void CheckForNewMediumMeteor(GameTime gameTime) //Check if its time for a new medium meteor
         {
-            //Add a new medium meteor each ADDMEDIUMMETEORTIME
-            elapsedTime += gameTime.ElapsedGameTime;
+            //Add a new medium meteor each ADD_MEDIUM_METEOR_TIME
+            _elapsedTime += gameTime.ElapsedGameTime;
 
-            if (elapsedTime > TimeSpan.FromSeconds(ADDMEDIUMMETEORTIME))
+            if (_elapsedTime > TimeSpan.FromSeconds(ADD_MEDIUM_METEOR_TIME))
             {
-                elapsedTime -= TimeSpan.FromSeconds(ADDMEDIUMMETEORTIME);
+                _elapsedTime -= TimeSpan.FromSeconds(ADD_MEDIUM_METEOR_TIME);
                 AddNewMediumMeteor();
             }
         }
 
         private void AddNewSmallMeteor() //Add a new small meteor to the game
         {
-            SmallMeteor newSmallMeteor = new SmallMeteor(Game, ref sMeteorTexture); //Create new small meteor
+            SmallMeteor newSmallMeteor = new SmallMeteor(Game, ref _sMeteorTexture); //Create new small meteor
             newSmallMeteor.Initialize(); //Initialize the new small meteor
-            sMeteors.Add(newSmallMeteor); //Add the new small meteor to the list of small meteors in the game
-            newSmallMeteor.Index = sMeteors.Count - 1; //Sets the identifier
+            _sMeteors.Add(newSmallMeteor); //Add the new small meteor to the list of small meteors in the game
+            newSmallMeteor.Index = _sMeteors.Count - 1; //Sets the identifier
         }
 
         private void AddNewMediumMeteor() //Add a new medium meteor to the game
         {
-            MediumMeteor newMediumMeteor = new MediumMeteor(Game, ref mMeteorTexture); //Create new medium meteor
+            MediumMeteor newMediumMeteor = new MediumMeteor(Game, ref _mMeteorTexture); //Create new medium meteor
             newMediumMeteor.Initialize(); //Initialize the new medium meteor
-            mMeteors.Add(newMediumMeteor); //Add the new medium meteor to the list of medium meteors in the game
-            newMediumMeteor.Index = mMeteors.Count - 1; //Sets the identifier
+            _mMeteors.Add(newMediumMeteor); //Add the new medium meteor to the list of medium meteors in the game
+            newMediumMeteor.Index = _mMeteors.Count - 1; //Sets the identifier
         }
 
         /// <summary>
@@ -128,15 +124,15 @@ namespace SSSRegen.Source.Meteors
             CheckForNewMediumMeteor(gameTime);
 
             //Update small meteors
-            for (int i = 0; i < sMeteors.Count; i++)
+            foreach (var sMeteor in _sMeteors)
             {
-                sMeteors[i].Update(gameTime);
+                sMeteor.Update(gameTime);
             }
 
             //Update medium meteors
-            for (int i = 0; i < mMeteors.Count; i++)
+            foreach (var mMeteor in _mMeteors)
             {
-                mMeteors[i].Update(gameTime);
+                mMeteor.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -145,42 +141,44 @@ namespace SSSRegen.Source.Meteors
         //Check if the ship collided with a meteor, returns true if a collision occurs
         public bool SmallMeteorCollision(Rectangle rect)
         {
-            for (int i = 0; i < sMeteors.Count; i++)
+            foreach (var sMeteor in _sMeteors)
             {
-                if (sMeteors[i].CheckCollision(rect))
+                if (sMeteor.CheckCollision(rect))
                 {
-                    sMeteors[i].PutinStartPosition(); //Reset the meteor
+                    sMeteor.PutinStart_position(); //Reset the meteor
                     return true;
                 }
             }
+
             return false;
         }
 
         public bool MediumMeteorCollision(Rectangle rect)
         {
-            for (int i = 0; i < mMeteors.Count; i++)
+            foreach (var mMeteor in _mMeteors)
             {
-                if (mMeteors[i].CheckCollision(rect))
+                if (mMeteor.CheckCollision(rect))
                 {
-                    mMeteors[i].PutinStartPosition(); //Reset the meteor
+                    mMeteor.PutinStart_position(); //Reset the meteor
                     return true;
                 }
             }
+
             return false;
         }
 
         public override void Draw(GameTime gameTime)
         {
             //Draw the small meteors
-            for (int i = 0; i < sMeteors.Count; i++)
+            foreach (var sMeteor in _sMeteors)
             {
-                sMeteors[i].Draw(gameTime);
+                sMeteor.Draw(gameTime);
             }
 
             //Draw the medium meteors
-            for (int i = 0; i < mMeteors.Count; i++)
+            foreach (var mMeteor in _mMeteors)
             {
-                mMeteors[i].Draw(gameTime);
+                mMeteor.Draw(gameTime);
             }
 
             base.Draw(gameTime);

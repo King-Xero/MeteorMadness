@@ -9,8 +9,8 @@ namespace SSSRegen.Source.Core
     public class RumblePad : Microsoft.Xna.Framework.GameComponent
     {
 
-        private int time; //Vibration time
-        private int lastTickCount;
+        private int _time; //Vibration time
+        private int _lastTickCount;
 
         public RumblePad(Game game)
             : base(game)
@@ -36,12 +36,12 @@ namespace SSSRegen.Source.Core
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            if (time > 0)
+            if (_time > 0)
             {
-                int elapsed = System.Environment.TickCount - lastTickCount;
-                if (elapsed >= time)
+                int elapsed = System.Environment.TickCount - _lastTickCount;
+                if (elapsed >= _time)
                 {
-                    time = 0;
+                    _time = 0;
                     GamePad.SetVibration(PlayerIndex.One, 0, 0);
                     GamePad.SetVibration(PlayerIndex.Two, 0, 0);
                 }
@@ -59,10 +59,10 @@ namespace SSSRegen.Source.Core
         }
 
         //Set the vibration
-        public void GamepadRumble(PlayerIndex playerIndex, int Time, float LeftMotor, float RightMotor)
+        public void GamePadRumble(PlayerIndex playerIndex, int Time, float LeftMotor, float RightMotor)
         {
-            lastTickCount = System.Environment.TickCount;
-            time = Time;
+            _lastTickCount = System.Environment.TickCount;
+            _time = Time;
             GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
         }
 

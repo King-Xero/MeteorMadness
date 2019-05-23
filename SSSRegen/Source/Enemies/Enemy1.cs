@@ -12,10 +12,10 @@ namespace SSSRegen.Source.Enemies
     public class Enemy1 : Sprite
     {
 
-        protected int Yspeed; //Vertical velocity
-        protected int Xspeed; //Horizontal velocity
-        protected Random random; //Random number generator
-        private int index; //Unique ID for this enemy
+        private int _ySpeed; //Vertical velocity
+        private int _xSpeed; //Horizontal velocity
+        private Random _random; //Random number generator
+        private int _index; //Unique ID for this enemy
 
 
         public Enemy1(Game game, ref Texture2D spriteSheet)
@@ -30,17 +30,17 @@ namespace SSSRegen.Source.Enemies
             frame.Height = 50; //frame height
             Frames.Add(frame); //Add frame to list of frames
 
-            random = new Random(GetHashCode()); //Initialize the random number generator
-            PutinStartPosition(); //Put enemy in start position
+            _random = new Random(GetHashCode()); //Initialize the random number generator
+            PutinStart_position(); //Put enemy in start _position
         }
 
-        public void PutinStartPosition()
+        public void PutinStart_position()
         {
-            //Set the enemy to a random position along the top of the screen, with random vertical and horizontal speed
-            position.X = random.Next(Game.Window.ClientBounds.Width - currentFrame.Width);
-            position.Y = 0;
-            YSpeed = 1 + random.Next(4);
-            XSpeed = random.Next(3) - 1;
+            //Set the enemy to a random _position along the top of the screen, with random vertical and horizontal speed
+            _position.X = _random.Next(Game.Window.ClientBounds.Width - _currentFrame.Width);
+            _position.Y = 0;
+            YSpeed = 1 + _random.Next(4);
+            XSpeed = _random.Next(3) - 1;
         }
 
 
@@ -63,15 +63,15 @@ namespace SSSRegen.Source.Enemies
         {
             // TODO: Add your update code here
             //Check if enemy is still visible
-            if ((position.Y >= Game.Window.ClientBounds.Height) ||
-                (position.X >= Game.Window.ClientBounds.Width) ||
-                (position.X <= 0))
+            if ((_position.Y >= Game.Window.ClientBounds.Height) ||
+                (_position.X >= Game.Window.ClientBounds.Width) ||
+                (_position.X <= 0))
             {
-                PutinStartPosition();
+                PutinStart_position();
             }
             //Move the enemy
-            position.Y += Yspeed;
-            position.X += Xspeed;
+            _position.Y += _ySpeed;
+            _position.X += _xSpeed;
 
             base.Update(gameTime);
         }
@@ -79,32 +79,32 @@ namespace SSSRegen.Source.Enemies
         //Vertical velocity
         public int YSpeed
         {
-            get { return Yspeed; }
+            get => _ySpeed;
             set
             {
-                Yspeed = value;
-                //frameDelay = 200 - (Yspeed * 5);
+                _ySpeed = value;
+                //_frameDelay = 200 - (Yspeed * 5);
             }
         }
 
         //Horizontal velocity
         public int XSpeed
         {
-            get { return Xspeed; }
-            set { Xspeed = value; }
+            get => _xSpeed;
+            set => _xSpeed = value;
         }
 
         //Meteor identifier
         public int Index
         {
-            get { return index; }
-            set { index = value; }
+            get => _index;
+            set => _index = value;
         }
 
         //Check if the enemy intersects with the specified rectangle, returns true if a collision occurs
         public bool CheckCollision(Rectangle rect)
         {
-            Rectangle spriteRect = new Rectangle((int)position.X, (int)position.Y, currentFrame.Width, currentFrame.Height);
+            Rectangle spriteRect = new Rectangle((int)_position.X, (int)_position.Y, _currentFrame.Width, _currentFrame.Height);
             return spriteRect.Intersects(rect);
         }
     }

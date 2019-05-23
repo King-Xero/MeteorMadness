@@ -11,14 +11,13 @@ namespace SSSRegen.Source.Bonuses
     /// </summary>
     public class HealthPack : Sprite
     {
-        protected Texture2D texture; //Texture for the health pack
-        protected Random random; //Random number genterator
+        private Texture2D _texture; //Texture for the health pack
+        private readonly Random _random; //Random number generator
 
-        public HealthPack(Game game, ref Texture2D spriteSheet)
-            : base(game, ref spriteSheet)
+        public HealthPack(Game game, ref Texture2D spriteSheet) : base(game, ref spriteSheet)
         {
             // TODO: Construct any child components here
-            texture = spriteSheet;
+            _texture = spriteSheet;
 
             Frames = new List<Rectangle>(); //List of frames in the animation
             Rectangle frame = new Rectangle(); //Rectangle for a frame of the animation
@@ -71,19 +70,19 @@ namespace SSSRegen.Source.Bonuses
             frame.Y = 210;
             Frames.Add(frame);
 
-            frameDelay = 200;
+            _frameDelay = 200;
 
-            random = new Random(GetHashCode()); //Initialize the random number generator
-            PutInStartPosition(); //Put the health pack in the start position
+            _random = new Random(GetHashCode()); //Initialize the random number generator
+            PutInStart_position(); //Put the health pack in the start _position
 
         }
 
-        public void PutInStartPosition()
+        public void PutInStart_position()
         {
-            //Set the health pack to a random position along the top of the screen
-            position.X = random.Next(Game.Window.ClientBounds.Width - currentFrame.Width);
-            position.Y = -15;
-            Enabled = false; //Disabled when put in start position
+            //Set the health pack to a random _position along the top of the screen
+            _position.X = _random.Next(Game.Window.ClientBounds.Width - _currentFrame.Width);
+            _position.Y = -15;
+            Enabled = false; //Disabled when put in start _position
         }
 
         /// <summary>
@@ -104,13 +103,13 @@ namespace SSSRegen.Source.Bonuses
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update code here
-            if (position.Y >= Game.Window.ClientBounds.Height) //Check if the health pack is still visible
+            if (_position.Y >= Game.Window.ClientBounds.Height) //Check if the health pack is still visible
             {
-                position.Y = -15;
+                _position.Y = -15;
                 Enabled = false;
             }
 
-            position.Y += 2; //Move
+            _position.Y += 2; //Move
 
             base.Update(gameTime);
         }
@@ -118,7 +117,7 @@ namespace SSSRegen.Source.Bonuses
         //Check if the meteor intersects with the specified rectangle, returns true if a collision occurs
         public bool CheckCollision(Rectangle rect)
         {
-            Rectangle spriteRect = new Rectangle((int)position.X, (int)position.Y, currentFrame.Width, currentFrame.Height);
+            Rectangle spriteRect = new Rectangle((int)_position.X, (int)_position.Y, _currentFrame.Width, _currentFrame.Height);
             return spriteRect.Intersects(rect);
         }
     }

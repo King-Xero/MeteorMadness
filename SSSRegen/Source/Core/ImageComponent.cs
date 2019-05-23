@@ -14,31 +14,31 @@ namespace SSSRegen.Source.Core
             Stretch,
         };
 
-        protected readonly Texture2D texture; //Texture to draw
-        protected readonly DrawMode drawMode; //Draw mode
-        protected SpriteBatch spriteBatch = null; //SpriteBatch
-        protected Rectangle imageRectangle; //Image rectangle
+        private readonly Texture2D _texture; //Texture to draw
+        private readonly DrawMode _drawMode; //Draw mode
+        private SpriteBatch _spriteBatch = null; //SpriteBatch
+        private Rectangle _imageRectangle; //Image rectangle
 
 
         public ImageComponent(Game game, Texture2D texture, DrawMode drawMode)
             : base(game)
         {
             // TODO: Construct any child components here
-            this.texture = texture;
-            this.drawMode = drawMode;
+            this._texture = texture;
+            this._drawMode = drawMode;
             //get the current spriteBatch
-            spriteBatch = (SpriteBatch)
+            _spriteBatch = (SpriteBatch)
                 Game.Services.GetService(typeof(SpriteBatch));
 
-            //Create a rectangle with the size and position of the image
+            //Create a rectangle with the size and _position of the image
             switch (drawMode)
             {
                 case DrawMode.Center: //(Calculation for centered image)
-                    imageRectangle = new Rectangle((Game.Window.ClientBounds.Width - texture.Width) / 2,
+                    _imageRectangle = new Rectangle((Game.Window.ClientBounds.Width - texture.Width) / 2,
                         (Game.Window.ClientBounds.Height - texture.Height) / 2, texture.Width, texture.Height);
                     break;
                 case DrawMode.Stretch: //(Calculation for stretched image)
-                    imageRectangle = new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
+                    _imageRectangle = new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
                     break;
             }
         }
@@ -68,7 +68,7 @@ namespace SSSRegen.Source.Core
         //Allows the GameComponent to draw itself
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Draw(texture, imageRectangle, Color.White);
+            _spriteBatch.Draw(_texture, _imageRectangle, Color.White);
             base.Draw(gameTime);
         }
     }
