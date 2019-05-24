@@ -143,9 +143,9 @@ namespace SSSRegen.Source.Enemies
             //Add a new boss each ADD_ENEMYB_TIME
             _elapsedTime += gameTime.ElapsedGameTime;
 
-            if (_elapsedTime > TimeSpan.FromMinutes(ADD_ENEMYB_TIME))
+            if (_elapsedTime > TimeSpan.FromMinutes(ADD_ENEMY_BOSS_TIME))
             {
-                _elapsedTime -= TimeSpan.FromMinutes(ADD_ENEMYB_TIME);
+                _elapsedTime -= TimeSpan.FromMinutes(ADD_ENEMY_BOSS_TIME);
                 AddNewEnemyB();
             }
         }
@@ -228,7 +228,7 @@ namespace SSSRegen.Source.Enemies
             {
                 if (enemy1.CheckCollision(rect))
                 {
-                    enemy1.PutinStart_position(); //Reset the enemy
+                    enemy1.PutinStartPosition(); //Reset the enemy
                     return true;
                 }
             }

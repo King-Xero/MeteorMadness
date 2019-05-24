@@ -31,10 +31,10 @@ namespace SSSRegen.Source.Enemies
             Frames.Add(frame); //Add frame to list of frames
 
             _random = new Random(GetHashCode()); //Initialize the random number generator
-            PutinStart_position(); //Put enemy in start _position
+            PutinStartPosition(); //Put enemy in start _position
         }
 
-        public void PutinStart_position()
+        public void PutinStartPosition()
         {
             //Set the enemy to a random _position along the top of the screen, with random vertical and horizontal speed
             _position.X = _random.Next(Game.Window.ClientBounds.Width - _currentFrame.Width);
@@ -67,7 +67,7 @@ namespace SSSRegen.Source.Enemies
                 (_position.X >= Game.Window.ClientBounds.Width) ||
                 (_position.X <= 0))
             {
-                PutinStart_position();
+                PutinStartPosition();
             }
             //Move the enemy
             _position.Y += _ySpeed;
@@ -94,7 +94,7 @@ namespace SSSRegen.Source.Enemies
             set => _xSpeed = value;
         }
 
-        //Meteor identifier
+        //Enemy identifier
         public int Index
         {
             get => _index;

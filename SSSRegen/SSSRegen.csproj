@@ -54,6 +54,7 @@
     <Compile Include="Source\Enemies\Enemy1.cs" />
     <Compile Include="Source\Enemies\Enemy2.cs" />
     <Compile Include="Source\Enemies\Enemy3.cs" />
+    <Compile Include="Source\Enemies\Enemy.cs" />
     <Compile Include="Source\Enemies\EnemyBoss.cs" />
     <Compile Include="Source\Enemies\EnemyManager.cs" />
     <Compile Include="Source\Meteors\MediumMeteor.cs" />
