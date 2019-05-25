@@ -64,8 +64,12 @@
     <Compile Include="Source\Enemies\EnemyManager.cs" />
     <Compile Include="Source\Enemies\IEnemyFactory.cs" />
     <Compile Include="Source\GameData\GameConstants.cs" />
+    <Compile Include="Source\Meteors\IMeteorFactory.cs" />
     <Compile Include="Source\Meteors\MediumMeteor.cs" />
+    <Compile Include="Source\Meteors\Meteor.cs" />
+    <Compile Include="Source\Meteors\MeteorFactory.cs" />
     <Compile Include="Source\Meteors\MeteorManager.cs" />
+    <Compile Include="Source\Meteors\MeteorsManager.cs" />
     <Compile Include="Source\Meteors\SmallMeteor.cs" />
     <Compile Include="Source\Core\Interfaces\IPlayerGameObject.cs" />
     <Compile Include="Source\Player\Player.cs" />

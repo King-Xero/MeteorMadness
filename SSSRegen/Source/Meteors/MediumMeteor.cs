@@ -58,7 +58,7 @@ namespace SSSRegen.Source.Meteors
 
         public void PutinStart_position()
         {
-            //Set the meteor to a random _position along the top of the screen, with random vertical and horizontal speed
+            //Set the meteor to a random position along the top of the screen, with random vertical and horizontal speed
             _position.X = _random.Next(Game.Window.ClientBounds.Width - _currentFrame.Width);
             _position.Y = 0;
             YSpeed = 1 + _random.Next(4);

@@ -34,7 +34,7 @@ namespace SSSRegen.Source.Enemies
                 {GameConstants.Enemies.EnemyBoss.Name, new List<Enemy>()}
             };
 
-            for (var i = 0; i < GameConstants.Enemies.Enemy1.InitialEnemyCount; i++)
+            for (var i = 0; i < GameConstants.Enemies.Enemy1.InitialCount; i++)
             {
                 _enemies[GameConstants.Enemies.Enemy1.Name].Add(_enemyFactory.CreateEnemy1());
             }
@@ -42,11 +42,11 @@ namespace SSSRegen.Source.Enemies
             {
                 _enemies[GameConstants.Enemies.Enemy2.Name].Add(_enemyFactory.CreateEnemy2());
             }
-            for (var i = 0; i < GameConstants.Enemies.Enemy3.InitialEnemyCount; i++)
+            for (var i = 0; i < GameConstants.Enemies.Enemy3.InitialCount; i++)
             {
                 _enemies[GameConstants.Enemies.Enemy3.Name].Add(_enemyFactory.CreateEnemy3());
             }
-            for (var i = 0; i < GameConstants.Enemies.EnemyBoss.InitialEnemyCount; i++)
+            for (var i = 0; i < GameConstants.Enemies.EnemyBoss.InitialCount; i++)
             {
                 _enemies[GameConstants.Enemies.EnemyBoss.Name].Add(_enemyFactory.CreateEnemyBoss());
             }
