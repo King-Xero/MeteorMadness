@@ -238,11 +238,11 @@ namespace SSSRegen.Source.Enemies
 
         public bool Enemy2Collision(Rectangle rect)
         {
-            foreach (var enemy1 in _enemy2S)
+            foreach (var enemy2 in _enemy2S)
             {
-                if (enemy1.CheckCollision(rect))
+                if (enemy2.CheckCollision(rect))
                 {
-                    enemy1.PutinStart_position(); //Reset the enemy
+                    enemy2.PutinStart_position(); //Reset the enemy
                     return true;
                 }
             }
