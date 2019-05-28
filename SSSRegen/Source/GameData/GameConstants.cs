@@ -84,5 +84,32 @@ namespace SSSRegen.Source.GameData
                 public const int InitialCount = 2;
             }
         }
+
+        public static class Bonuses
+        {
+            public static class HealthPack
+            {
+                public const string Name = "healthPack";
+                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                {
+                    new Rectangle {X = 169, Y = 0, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 15, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 30, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 45, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 60, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 75, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 90, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 105, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 120, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 135, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 150, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 165, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 180, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 195, Width = 15, Height = 15},
+                    new Rectangle {X = 169, Y = 210, Width = 15, Height = 15},
+                };
+                public const int FrameDelay = 200;
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace SSSRegen.Source.Screens
         private Player.Player _player2; //Player 2
         private MeteorManager _meteors; //Meteor Manager
         private EnemyManager _enemies; //Enemy Manager
-        private HealthPack _healthPack; //Health pack
+        private OldHealthPack _oldHealthPack; //Health pack
         private RumblePad _rumblePad; //Rumble for Xbox controller
         private ImageComponent _background; //Game background
         private Score _scorePlayer1; //Score for player 1
@@ -86,9 +86,9 @@ namespace SSSRegen.Source.Screens
             Components.Add(_rumblePad);
 
             //Add the health packs
-            _healthPack = new HealthPack(game, ref playTexture);
-            _healthPack.Initialize();
-            Components.Add(_healthPack);
+            _oldHealthPack = new OldHealthPack(game, ref playTexture);
+            _oldHealthPack.Initialize();
+            Components.Add(_oldHealthPack);
         }
 
         public bool IsTwoPlayer //Indicate whether or not 2 player mode
@@ -110,7 +110,7 @@ namespace SSSRegen.Source.Screens
         {
             _meteors.Initialize();
             _enemies.Initialize();
-            _healthPack.PutInStart_position();
+            _oldHealthPack.PutInStart_position();
             _player1.Reset();
             _player2.Reset();
 
@@ -189,7 +189,7 @@ namespace SSSRegen.Source.Screens
             {
                 _meteors.Update(gameTime);
                 _enemies.Update(gameTime);
-                _healthPack.Update(gameTime);
+                _oldHealthPack.Update(gameTime);
             }
         }
 
@@ -317,20 +317,20 @@ namespace SSSRegen.Source.Screens
         private void HandleHealthPack(GameTime gameTime)
         {
             //Check if player 1 collects a health pack
-            if (_healthPack.CheckCollision(_player1.GetBounds()))
+            if (_oldHealthPack.CheckCollision(_player1.GetBounds()))
             {
                 _elapsedTime = TimeSpan.Zero;
-                _healthPack.PutInStart_position(); //Reset health pack
+                _oldHealthPack.PutInStart_position(); //Reset health pack
                 _player1.Health += 50; //Health boost
             }
 
             //Check if player 2 collects a health pack
             if (_isTwoPlayer)
             {
-                if (_healthPack.CheckCollision(_player2.GetBounds()))
+                if (_oldHealthPack.CheckCollision(_player2.GetBounds()))
                 {
                     _elapsedTime = TimeSpan.Zero;
-                    _healthPack.PutInStart_position(); //Reset health pack
+                    _oldHealthPack.PutInStart_position(); //Reset health pack
                     _player2.Health += 50; //Health boost
                 }
             }
@@ -340,7 +340,7 @@ namespace SSSRegen.Source.Screens
             if (_elapsedTime > TimeSpan.FromSeconds(20))
             {
                 _elapsedTime -= TimeSpan.FromSeconds(20);
-                _healthPack.Enabled = true;
+                _oldHealthPack.Enabled = true;
             }
         }
 

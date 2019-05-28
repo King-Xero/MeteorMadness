@@ -19,10 +19,10 @@ namespace SSSRegen.Source.Enemies
             _players = players ?? throw new ArgumentException(nameof(players));
             _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
 
-            Enabled = true;
+            IsEnabled = true;
         }
 
-        public bool Enabled { get; set; }
+        public bool IsEnabled { get; set; }
 
         public void Initialize()
         {
@@ -64,11 +64,11 @@ namespace SSSRegen.Source.Enemies
         {
             foreach (var enemyType in _enemies)
             {
-                foreach (var enemy in enemyType.Value.Where(e => e.Enabled))
+                foreach (var enemy in enemyType.Value.Where(e => e.IsEnabled))
                 {
                     enemy.Update(gameTime);
                     //ToDo Can enemies collide with things other than the player?
-                    foreach (var player in _players.Where(e => e.Enabled))
+                    foreach (var player in _players.Where(e => e.IsEnabled))
                     {
                         if (enemy.CheckCollision(player))
                         {
@@ -84,7 +84,7 @@ namespace SSSRegen.Source.Enemies
         {
             foreach (var enemyType in _enemies)
             {
-                foreach (var enemy in enemyType.Value.Where(e => e.Enabled))
+                foreach (var enemy in enemyType.Value.Where(e => e.IsEnabled))
                 {
                     enemy.Draw(gameTime);
                 }

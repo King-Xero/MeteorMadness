@@ -9,7 +9,7 @@ namespace SSSRegen.Source.Enemies
     /// <summary>
     /// This is a game component that implements Enemy1
     /// </summary>
-    public class Enemy1 : Sprite
+    public class Enemy1 : OldSprite
     {
 
         private int _ySpeed; //Vertical velocity

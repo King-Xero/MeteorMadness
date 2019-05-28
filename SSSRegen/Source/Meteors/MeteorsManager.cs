@@ -18,10 +18,10 @@ namespace SSSRegen.Source.Meteors
             _players = players ?? throw new ArgumentException(nameof(players));
             _meteorFactory = meteorFactory ?? throw new ArgumentNullException(nameof(meteorFactory));
 
-            Enabled = true;
+            IsEnabled = true;
         }
 
-        public bool Enabled { get; set; }
+        public bool IsEnabled { get; set; }
 
         public void Initialize()
         {
@@ -53,11 +53,11 @@ namespace SSSRegen.Source.Meteors
         {
             foreach (var meteorType in _Meteors)
             {
-                foreach (var meteor in meteorType.Value.Where(e => e.Enabled))
+                foreach (var meteor in meteorType.Value.Where(e => e.IsEnabled))
                 {
                     meteor.Update(gameTime);
                     //ToDo Can Meteors collide with things other than the player?
-                    foreach (var player in _players.Where(e => e.Enabled))
+                    foreach (var player in _players.Where(e => e.IsEnabled))
                     {
                         if (meteor.CheckCollision(player))
                         {
@@ -73,7 +73,7 @@ namespace SSSRegen.Source.Meteors
         {
             foreach (var meteorType in _Meteors)
             {
-                foreach (var meteor in meteorType.Value.Where(e => e.Enabled))
+                foreach (var meteor in meteorType.Value.Where(e => e.IsEnabled))
                 {
                     meteor.Draw(gameTime);
                 }

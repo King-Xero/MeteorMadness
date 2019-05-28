@@ -2,75 +2,62 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Core
 {
-    public class Sprite : DrawableGameComponent
+    public class Sprite : ISprite
     {
-        private int _activeFrame; //Active frame from the sprite sheet animation
-        private readonly Texture2D _texture; //Will hold the sprite sheet texture
-        private List<Rectangle> _frames; //List of sprite frames from the texture
+        private readonly ISpriteBatch _spriteBatch;
+        private readonly Texture2D _texture;
+        private readonly List<Rectangle> _spriteFrames;
+        private readonly long _frameDelay;
 
-        protected Vector2 _position;
-        private TimeSpan _elapsedTime = TimeSpan.Zero;
-        protected Rectangle _currentFrame; //Rectangle of the current sprite frame
-        protected long _frameDelay;
-        private SpriteBatch _spBatch;
+        private int _frameIterator;
+        private TimeSpan _elapsedTime;
+        private Rectangle _currentFrame;
 
-        public Sprite(Game game, ref Texture2D spriteSheet) : base(game)
+        public Sprite(ISpriteBatch spriteBatch, ref Texture2D texture, List<Rectangle> spriteFrames, long frameDelay)
         {
-            // ToDo: Construct any child components here
+            _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
+            _texture = texture ?? throw new ArgumentNullException(nameof(texture));
+            _spriteFrames = spriteFrames ?? throw new ArgumentNullException(nameof(spriteFrames));
+            _frameDelay = frameDelay;
 
-            _texture = spriteSheet;
-            _activeFrame = 0;
+            _frameIterator = 0;
+            _elapsedTime = TimeSpan.Zero;
+            Position = Vector2.Zero;
+            SpriteColor = Color.White;
         }
 
-        ///List with frames of the animated sprite
-        public List<Rectangle> Frames 
-        {
-            get => _frames;
-            set => _frames = value;
-        }
+        public bool IsVisible { get; set; }
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
-        {
-            // TODO: Add your initialization code here
-            _spBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
+        public Vector2 Position { get; set; }
 
-            base.Initialize();
-        }
+        public Color SpriteColor { get; set; }
+        public Rectangle Bounds => _currentFrame;
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
             _elapsedTime += gameTime.ElapsedGameTime;
-            //Check if next frame should be displayed, and if so, change it each n milliseconds
-            if (_elapsedTime > TimeSpan.FromMilliseconds(_frameDelay))
+
+            if (_elapsedTime <= TimeSpan.FromMilliseconds(_frameDelay)) return;
+
+            _elapsedTime -= TimeSpan.FromMilliseconds(_frameDelay);
+            _frameIterator++;
+            if (_frameIterator == _spriteFrames.Count)
             {
-                _elapsedTime -= TimeSpan.FromMilliseconds(_frameDelay);
-                _activeFrame++;
-                if (_activeFrame == _frames.Count)
-                {
-                    _activeFrame = 0;
-                }
-                _currentFrame = _frames[_activeFrame]; //Get the current frame
+                _frameIterator = 0;
             }
-            base.Update(gameTime);
+
+            _currentFrame = _spriteFrames[_frameIterator];
         }
 
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
-            _spBatch.Draw(_texture, _position, _currentFrame, Color.White); //Draw the current frame in the current _position on the screen
-
-            base.Draw(gameTime);
+            _spriteBatch.Draw(_texture, Position, _currentFrame, SpriteColor);
         }
+
+
     }
 }

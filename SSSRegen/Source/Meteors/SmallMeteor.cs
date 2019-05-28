@@ -9,7 +9,7 @@ namespace SSSRegen.Source.Meteors
     /// <summary>
     /// This is a game component that implements a small animated meteor
     /// </summary>
-    public class SmallMeteor : Sprite
+    public class SmallMeteor : OldSprite
     {
 
         private int _ySpeed; //Vertical velocity

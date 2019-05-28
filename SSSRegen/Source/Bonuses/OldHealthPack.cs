@@ -9,12 +9,12 @@ namespace SSSRegen.Source.Bonuses
     /// <summary>
     /// This is a game component that implements the health pack
     /// </summary>
-    public class HealthPack : Sprite
+    public class OldHealthPack : OldSprite
     {
         private Texture2D _texture; //Texture for the health pack
         private readonly Random _random; //Random number generator
 
-        public HealthPack(Game game, ref Texture2D spriteSheet) : base(game, ref spriteSheet)
+        public OldHealthPack(Game game, ref Texture2D spriteSheet) : base(game, ref spriteSheet)
         {
             // TODO: Construct any child components here
             _texture = spriteSheet;
