@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Screens;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SSSRegen
 {

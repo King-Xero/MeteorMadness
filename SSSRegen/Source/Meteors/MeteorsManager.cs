@@ -49,13 +49,13 @@ namespace SSSRegen.Source.Meteors
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             foreach (var meteorType in _Meteors)
             {
                 foreach (var meteor in meteorType.Value.Where(e => e.IsEnabled))
                 {
-                    meteor.Update(gameTime);
+                    meteor.Update();
                     //ToDo Can Meteors collide with things other than the player?
                     foreach (var player in _players.Where(e => e.IsEnabled))
                     {

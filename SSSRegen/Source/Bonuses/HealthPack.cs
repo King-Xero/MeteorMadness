@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Bonuses
 {
     public class HealthPack : IDrawableGameObject, ICollidable
     {
-        private readonly Game _game;
+        private readonly Microsoft.Xna.Framework.Game _game;
         private readonly Random _random;
         private readonly ISprite _sprite;
 
@@ -14,7 +14,7 @@ namespace SSSRegen.Source.Bonuses
         private float _ySpeed;
         private Vector2 _position;
 
-        public HealthPack(Game game, Random random, ISprite sprite)
+        public HealthPack(Microsoft.Xna.Framework.Game game, Random random, ISprite sprite)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             _random = random ?? throw new ArgumentNullException(nameof(random));
@@ -44,7 +44,7 @@ namespace SSSRegen.Source.Bonuses
             Reset();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (_position.Y >= _game.Window.ClientBounds.Height) //Check if the health pack is still visible
             {

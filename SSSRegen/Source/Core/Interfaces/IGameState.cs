@@ -9,7 +9,7 @@ namespace SSSRegen.Source.Core.Interfaces
 
         void Initialize();
         void HandleInput();
-        void Update(GameTime gameTime);
+        void Update();
         void Draw(GameTime gameTime);
         void Pause();
         void Resume();

@@ -13,7 +13,7 @@ namespace SSSRegen.Source.Core
             throw new System.NotImplementedException();
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update()
         {
             throw new System.NotImplementedException();
         }

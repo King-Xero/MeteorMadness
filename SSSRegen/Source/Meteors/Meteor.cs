@@ -9,7 +9,7 @@ namespace SSSRegen.Source.Meteors
 {
     public class Meteor : IDrawableGameObject, IDamageable, ICollidable
     {
-        private readonly Game _game;
+        private readonly Microsoft.Xna.Framework.Game _game;
         private readonly Random _random;
         private readonly ISprite _sprite;
 
@@ -17,7 +17,7 @@ namespace SSSRegen.Source.Meteors
         private float _ySpeed;
         private Vector2 _position;
 
-        public Meteor(Game game, Random random, ISprite sprite)
+        public Meteor(Microsoft.Xna.Framework.Game game, Random random, ISprite sprite)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             _random = random ?? throw new ArgumentNullException(nameof(random));
@@ -45,7 +45,7 @@ namespace SSSRegen.Source.Meteors
             Reset();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             //If the enemy is off screen reset it
             if (Position.Y >= _game.Window.ClientBounds.Height ||

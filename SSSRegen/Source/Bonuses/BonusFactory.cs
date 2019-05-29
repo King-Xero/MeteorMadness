@@ -9,12 +9,12 @@ namespace SSSRegen.Source.Bonuses
 {
     public class BonusFactory : IBonusFactory
     {
-        private readonly Game _game;
+        private readonly Microsoft.Xna.Framework.Game _game;
         private readonly Random _random;
         private readonly ISpriteBatch _spriteBatch;
         private Texture2D _spriteSheet;
 
-        public BonusFactory(Game game, Random random, ISpriteBatch spriteBatch, ref Texture2D spriteSheet)
+        public BonusFactory(Microsoft.Xna.Framework.Game game, Random random, ISpriteBatch spriteBatch, ref Texture2D spriteSheet)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             _random = random ?? throw new ArgumentNullException(nameof(random));

@@ -37,7 +37,7 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (!_isPaused)
             {
@@ -45,7 +45,7 @@ namespace SSSRegen.Source.Core
                 {
                     if (gameObject.IsEnabled)
                     {
-                        gameObject.Update(gameTime);
+                        gameObject.Update();
                     }
                 }
             }

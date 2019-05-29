@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SSSRegen.Source.Screens
 {

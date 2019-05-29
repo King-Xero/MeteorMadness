@@ -6,6 +6,7 @@ using SSSRegen.Source.Core;
 using SSSRegen.Source.Enemies;
 using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Player;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SSSRegen.Source.Screens
 {

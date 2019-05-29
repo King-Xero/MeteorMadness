@@ -60,13 +60,13 @@ namespace SSSRegen.Source.Enemies
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             foreach (var enemyType in _enemies)
             {
                 foreach (var enemy in enemyType.Value.Where(e => e.IsEnabled))
                 {
-                    enemy.Update(gameTime);
+                    enemy.Update();
                     //ToDo Can enemies collide with things other than the player?
                     foreach (var player in _players.Where(e => e.IsEnabled))
                     {

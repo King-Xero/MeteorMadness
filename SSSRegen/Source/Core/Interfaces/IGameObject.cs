@@ -6,6 +6,6 @@ namespace SSSRegen.Source.Core.Interfaces
     {
         bool IsEnabled { get; set; }
         void Initialize();
-        void Update(GameTime gameTime);
+        void Update();
     }
 }
