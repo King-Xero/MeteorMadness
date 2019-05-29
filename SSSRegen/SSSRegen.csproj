@@ -51,11 +51,14 @@
     <Compile Include="Source\Bonuses\OldHealthPack.cs" />
     <Compile Include="Source\Core\GameObject.cs" />
     <Compile Include="Source\Core\GameScreen.cs" />
+    <Compile Include="Source\Core\GameState.cs" />
     <Compile Include="Source\Core\Interfaces\ICollidable.cs" />
     <Compile Include="Source\Core\ImageComponent.cs" />
     <Compile Include="Source\Core\Interfaces\IDamageable.cs" />
     <Compile Include="Source\Core\Interfaces\IDrawableGameObject.cs" />
     <Compile Include="Source\Core\Interfaces\IGameObject.cs" />
+    <Compile Include="Source\Core\Interfaces\IGameState.cs" />
+    <Compile Include="Source\Core\Interfaces\IHandleInput.cs" />
     <Compile Include="Source\Core\Interfaces\ISprite.cs" />
     <Compile Include="Source\Core\Interfaces\ISpriteBatch.cs" />
     <Compile Include="Source\Core\RumblePad.cs" />
