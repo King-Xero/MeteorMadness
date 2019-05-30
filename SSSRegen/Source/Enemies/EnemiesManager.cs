@@ -1,28 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
-using SSSRegen.Source.Player;
 
 namespace SSSRegen.Source.Enemies
 {
-    public class EnemiesManager : IGameObject
+    public class EnemiesManager : IGameObjectManager
     {
-        private readonly IPlayerGameObject[] _players;
         private readonly IEnemyFactory _enemyFactory;
         private Dictionary<string, List<Enemy>> _enemies;
 
-        public EnemiesManager(IPlayerGameObject[] players, IEnemyFactory enemyFactory)
+        public EnemiesManager(IEnemyFactory enemyFactory)
         {
-            _players = players ?? throw new ArgumentException(nameof(players));
             _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
-
-            IsEnabled = true;
         }
-
-        public bool IsEnabled { get; set; }
 
         public void Initialize()
         {
@@ -64,18 +56,9 @@ namespace SSSRegen.Source.Enemies
         {
             foreach (var enemyType in _enemies)
             {
-                foreach (var enemy in enemyType.Value.Where(e => e.IsEnabled))
+                foreach (var enemy in enemyType.Value)
                 {
                     enemy.Update();
-                    //ToDo Can enemies collide with things other than the player?
-                    foreach (var player in _players.Where(e => e.IsEnabled))
-                    {
-                        if (enemy.CheckCollision(player))
-                        {
-                            player.OnCollision(enemy);
-                            enemy.OnCollision(player);
-                        }
-                    }
                 }
             }
         }
@@ -84,7 +67,7 @@ namespace SSSRegen.Source.Enemies
         {
             foreach (var enemyType in _enemies)
             {
-                foreach (var enemy in enemyType.Value.Where(e => e.IsEnabled))
+                foreach (var enemy in enemyType.Value)
                 {
                     enemy.Draw(gameTime);
                 }

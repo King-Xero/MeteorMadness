@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 
@@ -8,8 +7,7 @@ namespace SSSRegen.Source.Core
     public class GameState : IGameState
     {
         private bool _isPaused;
-        private List<IDrawableGameObject> _drawableGameObjects;
-
+        
         public GameState()
         {
             GameObjects = new List<IGameObject>();
@@ -26,27 +24,13 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public void HandleInput()
-        {
-            foreach (var gameObject in GameObjects)
-            {
-                if (gameObject is IHandleInput inputGameObject)
-                {
-                    inputGameObject.HandleInput();
-                }
-            }
-        }
-
         public void Update()
         {
             if (!_isPaused)
             {
                 foreach (var gameObject in GameObjects)
                 {
-                    if (gameObject.IsEnabled)
-                    {
-                        gameObject.Update();
-                    }
+                    gameObject.Update();
                 }
             }
         }
@@ -55,10 +39,7 @@ namespace SSSRegen.Source.Core
         {
             foreach (var gameObject in GameObjects)
             {
-                if (gameObject is IDrawableGameObject drawable && drawable.IsVisible)
-                {
-                    drawable.Draw(gameTime);
-                }
+                gameObject.Draw(gameTime);
             }
         }
 

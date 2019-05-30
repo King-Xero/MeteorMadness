@@ -1,37 +1,37 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
+using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
-using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.GameComponents.Graphics;
+using SSSRegen.Source.GameComponents.Input;
+using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Meteors
 {
     public class MeteorFactory : IMeteorFactory
     {
-        private readonly Microsoft.Xna.Framework.Game _game;
+        private readonly GameContext _gameContext;
         private readonly Random _random;
-        private readonly ISpriteBatch _spriteBatch;
         private Texture2D _spriteSheet;
 
-        public MeteorFactory(Microsoft.Xna.Framework.Game game, Random random, ISpriteBatch spriteBatch, ref Texture2D spriteSheet)
+        public MeteorFactory(GameContext gameContext, Random random,ref Texture2D spriteSheet)
         {
-            _game = game ?? throw new ArgumentNullException(nameof(game));
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = random ?? throw new ArgumentNullException(nameof(random));
-            _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
             _spriteSheet = spriteSheet ?? throw new ArgumentNullException(nameof(spriteSheet));
         }
 
         public Meteor CreateSmallMeteor()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Meteors.SmallMeteor.SpriteFrames, 0);
-            return new Meteor(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Meteors.SmallMeteor.SpriteFrames.FirstOrDefault());
+            return new Meteor(new NullInputComponent(), new MeteorPhysics(_gameContext, _random), new MeteorGraphics());
         }
 
         public Meteor CreateMediumMeteor()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Meteors.MediumMeteor.SpriteFrames, 0);
-            return new Meteor(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Meteors.MediumMeteor.SpriteFrames.FirstOrDefault());
+            return new Meteor(new NullInputComponent(), new MeteorPhysics(_gameContext, _random), new MeteorGraphics());
         }
     }
 }

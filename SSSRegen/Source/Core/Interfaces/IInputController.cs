@@ -1,6 +1,6 @@
 ﻿namespace SSSRegen.Source.Core.Interfaces
 {
-    public interface IInputManager
+    public interface IInputController
     {
         bool IsLeftButtonPressed();
         bool IsRightButtonPressed();

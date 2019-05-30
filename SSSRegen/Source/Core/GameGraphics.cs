@@ -5,18 +5,18 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Core
 {
-    public class SpriteBatchFacade : ISpriteBatch
+    public class GameGraphics : IGameGraphics
     {
         private readonly SpriteBatch _spriteBatch;
 
-        public SpriteBatchFacade(SpriteBatch spriteBatch)
+        public GameGraphics(SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
         }
 
-        public void Draw(Texture2D texture, Vector2 position, Rectangle sourceRectangle, Color color)
+        public void Draw(Sprite sprite, Rectangle destinationRect, Color color)
         {
-            _spriteBatch.Draw(texture, position, sourceRectangle, color);
+            _spriteBatch.Draw(sprite.Texture, destinationRect, sprite.SourceRectangle, color);
         }
     }
 }

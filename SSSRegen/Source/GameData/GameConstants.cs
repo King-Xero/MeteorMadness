@@ -111,5 +111,10 @@ namespace SSSRegen.Source.GameData
                 public const int FrameDelay = 200;
             }
         }
+
+        public static class Player
+        {
+            public const float MovementVelocity = 6.0f;
+        }
     }
 }

@@ -1,49 +1,49 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
+using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
-using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.GameComponents.Graphics;
+using SSSRegen.Source.GameComponents.Input;
+using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Enemies
 {
     public class EnemyFactory : IEnemyFactory
     {
-        private readonly Microsoft.Xna.Framework.Game _game;
+        private readonly GameContext _gameContext;
         private readonly Random _random;
-        private readonly ISpriteBatch _spriteBatch;
         private Texture2D _spriteSheet;
 
-        public EnemyFactory(Microsoft.Xna.Framework.Game game, Random random, ISpriteBatch spriteBatch, ref Texture2D spriteSheet)
+        public EnemyFactory(GameContext gameContext, Random random, ref Texture2D spriteSheet)
         {
-            _game = game ?? throw new ArgumentNullException(nameof(game));
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = random ?? throw new ArgumentNullException(nameof(random));
-            _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
             _spriteSheet = spriteSheet ?? throw new ArgumentNullException(nameof(spriteSheet));
         }
 
         public Enemy CreateEnemy1()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Enemies.Enemy1.SpriteFrames, 0);
-            return new Enemy(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Enemies.Enemy1.SpriteFrames.FirstOrDefault());
+            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), new EnemyGraphics());
         }
 
         public Enemy CreateEnemy2()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Enemies.Enemy2.SpriteFrames, 0);
-            return new Enemy(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Enemies.Enemy2.SpriteFrames.FirstOrDefault());
+            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), new EnemyGraphics());
         }
 
         public Enemy CreateEnemy3()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Enemies.Enemy3.SpriteFrames, 0);
-            return new Enemy(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Enemies.Enemy3.SpriteFrames.FirstOrDefault());
+            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), new EnemyGraphics());
         }
 
         public Enemy CreateEnemyBoss()
         {
-            var sprite = new Sprite(_spriteBatch, ref _spriteSheet, GameConstants.Enemies.EnemyBoss.SpriteFrames, 0);
-            return new Enemy(_game, _random, sprite);
+            var sprite = new Sprite(ref _spriteSheet, GameConstants.Enemies.EnemyBoss.SpriteFrames.FirstOrDefault());
+            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), new EnemyGraphics());
         }
     }
 }

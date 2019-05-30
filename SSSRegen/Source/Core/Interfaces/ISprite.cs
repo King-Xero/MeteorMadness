@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SSSRegen.Source.Core.Interfaces
 {
     public interface ISprite
     {
-        bool IsVisible { get; set; }
-        Rectangle Bounds { get; }
-        Vector2 Position { get; set; }
-        void Draw(GameTime gameTime);
+        Texture2D Texture { get; }
+        Rectangle? SourceRectangle { get; }
     }
 }

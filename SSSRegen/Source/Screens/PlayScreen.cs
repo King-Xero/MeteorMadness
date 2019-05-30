@@ -20,8 +20,8 @@ namespace SSSRegen.Source.Screens
         private readonly SpriteBatch spriteBatch = null;
 
         //Game elements
-        private Player.Player _player1; //Player 1
-        private Player.Player _player2; //Player 2
+        private Player.OldPlayer _player1; //Player 1
+        private Player.OldPlayer _player2; //Player 2
         private MeteorManager _meteors; //Meteor Manager
         private EnemyManager _enemies; //Enemy Manager
         private OldHealthPack _oldHealthPack; //Health pack
@@ -64,12 +64,12 @@ namespace SSSRegen.Source.Screens
             Components.Add(_enemies);
 
             //Add player 1
-            _player1 = new Player.Player(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
+            _player1 = new Player.OldPlayer(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
             _player1.Initialize();
             Components.Add(_player1);
 
             //Add player 2
-            _player2 = new Player.Player(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
+            _player2 = new Player.OldPlayer(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
             _player2.Initialize();
             Components.Add(_player2);
 

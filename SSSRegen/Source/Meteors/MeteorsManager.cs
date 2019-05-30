@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Meteors
 {
-    public class MeteorsManager : IGameObject
+    public class MeteorsManager : IGameObjectManager
     {
-        private readonly IPlayerGameObject[] _players;
         private readonly IMeteorFactory _meteorFactory;
         private Dictionary<string, List<Meteor>> _Meteors;
 
-        public MeteorsManager(IPlayerGameObject[] players, IMeteorFactory meteorFactory)
+        public MeteorsManager(IMeteorFactory meteorFactory)
         {
-            _players = players ?? throw new ArgumentException(nameof(players));
             _meteorFactory = meteorFactory ?? throw new ArgumentNullException(nameof(meteorFactory));
-
-            IsEnabled = true;
         }
-
-        public bool IsEnabled { get; set; }
 
         public void Initialize()
         {
@@ -53,18 +46,9 @@ namespace SSSRegen.Source.Meteors
         {
             foreach (var meteorType in _Meteors)
             {
-                foreach (var meteor in meteorType.Value.Where(e => e.IsEnabled))
+                foreach (var meteor in meteorType.Value)
                 {
                     meteor.Update();
-                    //ToDo Can Meteors collide with things other than the player?
-                    foreach (var player in _players.Where(e => e.IsEnabled))
-                    {
-                        if (meteor.CheckCollision(player))
-                        {
-                            player.OnCollision(meteor);
-                            meteor.OnCollision(player);
-                        }
-                    }
                 }
             }
         }
@@ -73,7 +57,7 @@ namespace SSSRegen.Source.Meteors
         {
             foreach (var meteorType in _Meteors)
             {
-                foreach (var meteor in meteorType.Value.Where(e => e.IsEnabled))
+                foreach (var meteor in meteorType.Value)
                 {
                     meteor.Draw(gameTime);
                 }

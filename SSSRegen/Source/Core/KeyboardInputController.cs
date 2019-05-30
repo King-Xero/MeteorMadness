@@ -4,11 +4,11 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Core
 {
-    public class InputManager : IInputManager
+    public class KeyboardInputController : IInputController
     {
         private KeyboardState _keyboardState;
 
-        public InputManager(KeyboardState keyboardState)
+        public KeyboardInputController(KeyboardState keyboardState)
         {
             _keyboardState = keyboardState;
         }

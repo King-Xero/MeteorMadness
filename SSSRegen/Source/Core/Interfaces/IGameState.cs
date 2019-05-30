@@ -8,7 +8,6 @@ namespace SSSRegen.Source.Core.Interfaces
         IEnumerable<IGameObject> GameObjects { get; }
 
         void Initialize();
-        void HandleInput();
         void Update();
         void Draw(GameTime gameTime);
         void Pause();
