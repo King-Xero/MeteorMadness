@@ -15,6 +15,7 @@ namespace SSSRegen.Source.GameData
                     new Rectangle {X = 105, Y = 210, Width = 50, Height = 50}
                 };
                 public const int InitialCount = 4;
+                public const int InitialMaxHealth = 20;
             }
 
             public static class Enemy2
@@ -25,6 +26,7 @@ namespace SSSRegen.Source.GameData
                     new Rectangle {X = 105, Y = 260, Width = 65, Height = 65}
                 };
                 public const int InitialEnemyCount = 2;
+                public const int InitialMaxHealth = 30;
             }
 
             public static class Enemy3
@@ -35,6 +37,7 @@ namespace SSSRegen.Source.GameData
                     new Rectangle {X = 65, Y = 325, Width = 70, Height = 72}
                 };
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 40;
             }
 
             public static class EnemyBoss
@@ -45,6 +48,7 @@ namespace SSSRegen.Source.GameData
                     new Rectangle {X = 65, Y = 397, Width = 96, Height = 96}
                 };
                 public const int InitialCount = 1;
+                public const int InitialMaxHealth = 150;
             }
         }
 
@@ -115,6 +119,7 @@ namespace SSSRegen.Source.GameData
         public static class Player
         {
             public const float MovementVelocity = 6.0f;
+            public const int InitialMaxHealth = 100;
             public const string ScoreFormat = "000000000000";
         }
 
