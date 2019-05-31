@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -83,7 +79,7 @@ namespace SSSRegen.Source.Core
         {
             // TODO: Construct any child components here
             _regularFont = normalFont;
-            this._selectedFont = selectedFont;
+            _selectedFont = selectedFont;
             _menuItems = new List<string>();
 
             //Get the current sprite batch

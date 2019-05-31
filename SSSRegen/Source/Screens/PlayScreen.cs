@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.ToDelete;
 using SSSRegen.Source.Enemies;
 using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Player;
-using Game = Microsoft.Xna.Framework.Game;
 
 namespace SSSRegen.Source.Screens
 {
@@ -20,13 +20,12 @@ namespace SSSRegen.Source.Screens
         private readonly SpriteBatch spriteBatch = null;
 
         //Game elements
-        private Player.OldPlayer _player1; //Player 1
-        private Player.OldPlayer _player2; //Player 2
+        private OldPlayer _player1; //Player 1
+        private OldPlayer _player2; //Player 2
         private MeteorManager _meteors; //Meteor Manager
         private EnemyManager _enemies; //Enemy Manager
         private OldHealthPack _oldHealthPack; //Health pack
         private RumblePad _rumblePad; //Rumble for Xbox controller
-        private ImageComponent _background; //Game background
         private Score _scorePlayer1; //Score for player 1
         private Score _scorePlayer2; //Score for player 2
 
@@ -49,8 +48,8 @@ namespace SSSRegen.Source.Screens
             // TODO: Construct any child components here
 
             //Add the game background image
-            _background = new ImageComponent(game, backgroundTexture, ImageComponent.DrawMode.Stretch);
-            Components.Add(_background);
+            var background = new ImageComponent(game, backgroundTexture, ImageComponent.DrawMode.Stretch);
+            Components.Add(background);
 
             playTexture = spriteSheet;
 
@@ -64,12 +63,12 @@ namespace SSSRegen.Source.Screens
             Components.Add(_enemies);
 
             //Add player 1
-            _player1 = new Player.OldPlayer(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
+            _player1 = new OldPlayer(Game, ref playTexture, PlayerIndex.One, new Rectangle(105, 0, 50, 40));
             _player1.Initialize();
             Components.Add(_player1);
 
             //Add player 2
-            _player2 = new Player.OldPlayer(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
+            _player2 = new OldPlayer(Game, ref playTexture, PlayerIndex.Two, new Rectangle(105, 100, 50, 50));
             _player2.Initialize();
             Components.Add(_player2);
 

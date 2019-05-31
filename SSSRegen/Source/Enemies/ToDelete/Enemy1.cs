@@ -80,11 +80,8 @@ namespace SSSRegen.Source.Enemies
         public int YSpeed
         {
             get => _ySpeed;
-            set
-            {
-                _ySpeed = value;
-                //_frameDelay = 200 - (Yspeed * 5);
-            }
+            //_frameDelay = 200 - (Yspeed * 5);
+            set => _ySpeed = value;
         }
 
         //Horizontal velocity

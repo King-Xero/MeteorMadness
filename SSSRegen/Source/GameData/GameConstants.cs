@@ -116,5 +116,8 @@ namespace SSSRegen.Source.GameData
         {
             public const float MovementVelocity = 6.0f;
         }
+
+        public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
+        public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
     }
 }

@@ -15,7 +15,7 @@ namespace SSSRegen.Source.Core
             Height = Texture.Height;
         }
 
-        public Sprite(ref Texture2D texture, Rectangle? sourceRectangle)
+        public Sprite(Texture2D texture, Rectangle? sourceRectangle)
         {
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             SourceRectangle = sourceRectangle ?? throw new ArgumentNullException(nameof(sourceRectangle));

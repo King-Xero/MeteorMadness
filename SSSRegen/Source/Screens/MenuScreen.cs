@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.ToDelete;
 using Game = Microsoft.Xna.Framework.Game;
 
 namespace SSSRegen.Source.Screens
@@ -34,7 +35,7 @@ namespace SSSRegen.Source.Screens
         {
             // TODO: Construct any child components here
 
-            this._elements = elements;
+            _elements = elements;
             Components.Add(new ImageComponent(game, background, ImageComponent.DrawMode.Stretch)); //Add image component
 
             //Create Menu

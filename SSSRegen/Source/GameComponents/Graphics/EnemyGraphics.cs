@@ -1,22 +1,43 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using System;
+using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
     public class EnemyGraphics : IGraphicsComponent
     {
-        public void Initialize(IGameObject player)
+        private readonly IGameGraphics _gameGraphics;
+        private readonly Sprite _eSprite;
+
+        private Sprite _activeSprite;
+
+        public EnemyGraphics(IGameGraphics gameGraphics, Sprite eSprite)
         {
-            throw new System.NotImplementedException();
+            _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
+            _eSprite = eSprite ?? throw new ArgumentNullException(nameof(eSprite));
         }
 
-        public void Update(IGameObject player)
+        public void Initialize(IGameObject enemy)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _eSprite;
+            enemy.Width = _activeSprite.Width;
+            enemy.Height = _activeSprite.Height;
         }
 
-        public void Draw(IGameObject player)
+        public void Update(IGameObject enemy)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _eSprite;
+
+            //ToDo add sprite "animation" here
+
+            enemy.Width = _activeSprite.Width;
+            enemy.Height = _activeSprite.Height;
+        }
+
+        public void Draw(IGameObject enemy)
+        {
+            _gameGraphics.Draw(_activeSprite, enemy.Bounds, Color.White);
         }
     }
 }

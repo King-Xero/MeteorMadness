@@ -118,7 +118,7 @@ namespace SSSRegen
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+                Exit();
 
             // TODO: Add your update logic here
             HandleInput(); //Handle user input

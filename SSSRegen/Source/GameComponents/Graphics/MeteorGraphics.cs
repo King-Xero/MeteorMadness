@@ -1,22 +1,43 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using System;
+using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
     public class MeteorGraphics : IGraphicsComponent
     {
-        public void Initialize(IGameObject player)
+        private readonly IGameGraphics _gameGraphics;
+        private readonly Sprite _mSprite;
+
+        private Sprite _activeSprite;
+
+        public MeteorGraphics(IGameGraphics gameGraphics, Sprite mSprite)
         {
-            throw new System.NotImplementedException();
+            _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
+            _mSprite = mSprite ?? throw new ArgumentNullException(nameof(mSprite));
         }
 
-        public void Update(IGameObject player)
+        public void Initialize(IGameObject meteor)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _mSprite;
+            meteor.Width = _activeSprite.Width;
+            meteor.Height = _activeSprite.Height;
         }
 
-        public void Draw(IGameObject player)
+        public void Update(IGameObject meteor)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _mSprite;
+
+            //ToDo add sprite "animation" here
+
+            meteor.Width = _activeSprite.Width;
+            meteor.Height = _activeSprite.Height;
+        }
+
+        public void Draw(IGameObject meteor)
+        {
+            _gameGraphics.Draw(_activeSprite, meteor.Bounds, Color.White);
         }
     }
 }

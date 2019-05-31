@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Player
     /// <summary>
     /// This is a game component that implements score and health points
     /// </summary>
-    public class Score : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Score : DrawableGameComponent
     {
 
         private SpriteBatch _spriteBatch = null; //SpriteBatch

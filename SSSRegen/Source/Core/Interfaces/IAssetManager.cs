@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace SSSRegen.Source.Core.Interfaces
 {
-    interface IAssetManager
+    public interface IAssetManager
     {
         void LoadTexture(string name, string fileName);
         Texture2D GetTexture(string name);

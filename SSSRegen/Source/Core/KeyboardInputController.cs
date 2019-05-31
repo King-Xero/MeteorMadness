@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Core

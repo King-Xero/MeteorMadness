@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Core
     /// <summary>
     /// Gamepad rumble
     /// </summary>
-    public class RumblePad : Microsoft.Xna.Framework.GameComponent
+    public class RumblePad : GameComponent
     {
 
         private int _time; //Vibration time

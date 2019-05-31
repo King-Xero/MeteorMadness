@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
@@ -13,13 +14,17 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         private Sprite _activeSprite;
 
-        public PlayerGraphics(IGameGraphics gameGraphics)
+        public PlayerGraphics(IGameGraphics gameGraphics, Sprite idleSprite, Sprite moveLeftSprite, Sprite moveRightSprite)
         {
-            _gameGraphics = gameGraphics;
+            _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
+            _idleSprite = idleSprite ?? throw new ArgumentNullException(nameof(idleSprite));
+            _moveLeftSprite = moveLeftSprite ?? throw new ArgumentNullException(nameof(moveLeftSprite));
+            _moveRightSprite = moveRightSprite ?? throw new ArgumentNullException(nameof(moveRightSprite));
         }
 
         public void Initialize(IGameObject player)
         {
+            _activeSprite = _idleSprite;
             player.Width = _activeSprite.Width;
             player.Height = _activeSprite.Height;
         }

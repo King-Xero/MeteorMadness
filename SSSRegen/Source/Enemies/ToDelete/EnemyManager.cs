@@ -8,7 +8,7 @@ namespace SSSRegen.Source.Enemies
     /// <summary>
     /// This is a game component that manages all of the enemies in the game
     /// </summary>
-    public class EnemyManager : Microsoft.Xna.Framework.DrawableGameComponent
+    public class EnemyManager : DrawableGameComponent
     {
         private List<Enemy1> _enemy1S; //List of active ememy1s
         private List<Enemy2> _enemy2S; //List of active ememy2s

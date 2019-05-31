@@ -8,12 +8,12 @@ namespace SSSRegen.Source.Core
 {
     public class AssetManager : IAssetManager
     {
-        private readonly Microsoft.Xna.Framework.Game _game;
+        private readonly Game _game;
 
         private Dictionary<string, Texture2D> _textures;
         private Dictionary<string, SpriteFont> _fonts;
         
-        public AssetManager(Microsoft.Xna.Framework.Game game)
+        public AssetManager(Game game)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SSSRegen.Source.Core
+namespace SSSRegen.Source.Core.ToDelete
 {
     /// <summary>
     /// This is a game component that implements IUpdateable.
@@ -24,8 +24,8 @@ namespace SSSRegen.Source.Core
             : base(game)
         {
             // TODO: Construct any child components here
-            this._texture = texture;
-            this._drawMode = drawMode;
+            _texture = texture;
+            _drawMode = drawMode;
             //get the current spriteBatch
             _spriteBatch = (SpriteBatch)
                 Game.Services.GetService(typeof(SpriteBatch));

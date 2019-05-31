@@ -1,22 +1,43 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using System;
+using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
     public class HealthPackGraphics : IGraphicsComponent
     {
-        public void Initialize(IGameObject player)
+        private readonly IGameGraphics _gameGraphics;
+        private readonly Sprite _hSprite;
+
+        private Sprite _activeSprite;
+
+        public HealthPackGraphics(IGameGraphics gameGraphics, Sprite hSprite)
         {
-            throw new System.NotImplementedException();
+            _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
+            _hSprite = hSprite ?? throw new ArgumentNullException(nameof(hSprite));
         }
 
-        public void Update(IGameObject player)
+        public void Initialize(IGameObject healthPack)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _hSprite;
+            healthPack.Width = _activeSprite.Width;
+            healthPack.Height = _activeSprite.Height;
         }
 
-        public void Draw(IGameObject player)
+        public void Update(IGameObject healthPack)
         {
-            throw new System.NotImplementedException();
+            _activeSprite = _hSprite;
+
+            //ToDo add sprite "animation" here
+
+            healthPack.Width = _activeSprite.Width;
+            healthPack.Height = _activeSprite.Height;
+        }
+
+        public void Draw(IGameObject healthPack)
+        {
+            _gameGraphics.Draw(_activeSprite, healthPack.Bounds, Color.White);
         }
     }
 }
