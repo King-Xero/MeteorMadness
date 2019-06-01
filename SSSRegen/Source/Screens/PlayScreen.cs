@@ -26,8 +26,8 @@ namespace SSSRegen.Source.Screens
         private EnemyManager _enemies; //Enemy Manager
         private OldHealthPack _oldHealthPack; //Health pack
         private RumblePad _rumblePad; //Rumble for Xbox controller
-        private Score _scorePlayer1; //Score for player 1
-        private Score _scorePlayer2; //Score for player 2
+        private PlayerScore _scorePlayer1; //Score for player 1
+        private PlayerScore _scorePlayer2; //Score for player 2
 
         //GUI
         private Vector2 _pause_position; //_position of pause prompt
@@ -73,11 +73,11 @@ namespace SSSRegen.Source.Screens
             Components.Add(_player2);
 
             //Add the score for player 1
-            _scorePlayer1 = new Score(game, font, Color.Blue);
+            _scorePlayer1 = new PlayerScore(game, font, Color.Blue);
             _scorePlayer1._position = new Vector2(10, 10);
             Components.Add(_scorePlayer1);
             //Add the score for player 2
-            _scorePlayer2 = new Score(game, font, Color.Green);
+            _scorePlayer2 = new PlayerScore(game, font, Color.Green);
             _scorePlayer2._position = new Vector2(Game.Window.ClientBounds.Width - 200, 10);
             Components.Add(_scorePlayer2);
 
