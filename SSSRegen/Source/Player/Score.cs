@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Player
     /// <summary>
     /// This is a game component that implements score and health points
     /// </summary>
-    public class Score : DrawableGameComponent
+    public class PlayerScore : DrawableGameComponent
     {
 
         private SpriteBatch _spriteBatch = null; //SpriteBatch
@@ -20,7 +20,7 @@ namespace SSSRegen.Source.Player
         private readonly Color _fontColour;
 
 
-        public Score(Game game, SpriteFont font, Color fontColour)
+        public PlayerScore(Game game, SpriteFont font, Color fontColour)
             : base(game)
         {
             // TODO: Construct any child components here

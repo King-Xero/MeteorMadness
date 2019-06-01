@@ -115,6 +115,7 @@ namespace SSSRegen.Source.GameData
         public static class Player
         {
             public const float MovementVelocity = 6.0f;
+            public const string ScoreFormat = "000000000000";
         }
 
         public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";

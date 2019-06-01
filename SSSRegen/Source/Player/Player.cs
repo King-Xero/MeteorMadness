@@ -1,20 +1,33 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
+using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.Player
 {
-    public class Player : GameObject
+    public class Player : GameObject, IHandleScore
     {
-        public Player(IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        private readonly IScoreComponent _scoreComponent;
+
+        public Player(IScoreComponent scoreComponent, IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
+            _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
+        }
+
+        public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
+
+        public void UpdateScore(int scoreAmount)
+        {
+            ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
         }
 
         public override void Initialize()
         {
+            _scoreComponent.Initialize(this);
             base.Initialize();
 
             Reset();
@@ -22,11 +35,13 @@ namespace SSSRegen.Source.Player
 
         public override void Update()
         {
+            _scoreComponent.Update(this);
             base.Update();
         }
 
         public override void Draw(GameTime gameTime)
         {
+            _scoreComponent.Draw(this);
             base.Draw(gameTime);
         }
 
