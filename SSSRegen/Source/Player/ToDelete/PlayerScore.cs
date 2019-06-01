@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SSSRegen.Source.Player
+namespace SSSRegen.Source.Player.ToDelete
 {
     /// <summary>
     /// This is a game component that implements score and health points

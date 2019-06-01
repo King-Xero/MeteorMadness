@@ -115,7 +115,7 @@
     <Compile Include="Source\GameComponents\Input\PlayerInput.cs" />
     <Compile Include="Source\GameComponents\Physics\PlayerPhysics.cs" />
     <Compile Include="Source\Player\ToDelete\OldPlayer.cs" />
-    <Compile Include="Source\Player\Score.cs" />
+    <Compile Include="Source\Player\ToDelete\PlayerScore.cs" />
     <Compile Include="Source\Score\IHandleScore.cs" />
     <Compile Include="Source\Score\IScoreComponent.cs" />
     <Compile Include="Source\Score\PlayerScoreComponent.cs" />

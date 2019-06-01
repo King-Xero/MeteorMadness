@@ -7,6 +7,7 @@ using SSSRegen.Source.Core.ToDelete;
 using SSSRegen.Source.Enemies;
 using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Player;
+using SSSRegen.Source.Player.ToDelete;
 
 namespace SSSRegen.Source.Screens
 {

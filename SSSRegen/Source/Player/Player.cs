@@ -24,15 +24,10 @@ namespace SSSRegen.Source.Player
         //MaxHealth set in HealthComponent
         public int MaxHealth { get; set; }
 
-        public event EventHandler<HealEventArgs> Healed;
-        public event EventHandler<DamageEventArgs> Damaged;
-        public event EventHandler<EventArgs> Died;
+        public event EventHandler<HealEventArgs> Healed = delegate { };
+        public event EventHandler<DamageEventArgs> Damaged = delegate { };
+        public event EventHandler<EventArgs> Died = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
-
-        public void UpdateScore(int scoreAmount)
-        {
-            ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
-        }
 
         public override void Initialize()
         {
@@ -73,6 +68,11 @@ namespace SSSRegen.Source.Player
             {
                 Died?.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        public void UpdateScore(int scoreAmount)
+        {
+            ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
         }
 
         private void Reset()
