@@ -90,6 +90,17 @@
     <Compile Include="Source\GameComponents\Physics\NullPhysicsComponent.cs" />
     <Compile Include="Source\GameData\GameConstants.cs" />
     <Compile Include="Source\GameData\GameContext.cs" />
+    <Compile Include="Source\Health\DamageEventArgs.cs" />
+    <Compile Include="Source\Health\EnemyHealthComponent.cs" />
+    <Compile Include="Source\Health\HealEventArgs.cs" />
+    <Compile Include="Source\Health\PlayerHealthContainer.cs" />
+    <Compile Include="Source\Health\IHandleHealth.cs" />
+    <Compile Include="Source\Health\IHealthComponent.cs" />
+    <Compile Include="Source\Health\IHealthContainer.cs" />
+    <Compile Include="Source\Health\IHealthUnit.cs" />
+    <Compile Include="Source\Health\NullHealthContainer.cs" />
+    <Compile Include="Source\Health\PlayerHealthComponent.cs" />
+    <Compile Include="Source\Health\PlayerHealthUnit.cs" />
     <Compile Include="Source\Meteors\IMeteorFactory.cs" />
     <Compile Include="Source\GameComponents\Physics\MeteorPhysics.cs" />
     <Compile Include="Source\Meteors\ToDelete\MediumMeteor.cs" />
@@ -104,7 +115,7 @@
     <Compile Include="Source\GameComponents\Input\PlayerInput.cs" />
     <Compile Include="Source\GameComponents\Physics\PlayerPhysics.cs" />
     <Compile Include="Source\Player\ToDelete\OldPlayer.cs" />
-    <Compile Include="Source\Player\Score.cs" />
+    <Compile Include="Source\Player\ToDelete\PlayerScore.cs" />
     <Compile Include="Source\Score\IHandleScore.cs" />
     <Compile Include="Source\Score\IScoreComponent.cs" />
     <Compile Include="Source\Score\PlayerScoreComponent.cs" />

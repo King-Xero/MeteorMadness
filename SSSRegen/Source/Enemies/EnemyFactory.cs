@@ -5,6 +5,7 @@ using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Health;
 
 namespace SSSRegen.Source.Enemies
 {
@@ -21,30 +22,62 @@ namespace SSSRegen.Source.Enemies
 
         public Enemy CreateEnemy1()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Enemies.Enemy1.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(
+                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                GameConstants.Enemies.Enemy1.SpriteFrames.FirstOrDefault());
+
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
-            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), graphicsComponent);
+
+            return new Enemy(
+                new EnemyHealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
+                new NullInputComponent(),
+                new EnemyPhysics(_gameContext, _random),
+                graphicsComponent);
         }
 
         public Enemy CreateEnemy2()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Enemies.Enemy2.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(
+                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                GameConstants.Enemies.Enemy2.SpriteFrames.FirstOrDefault());
+
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
-            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), graphicsComponent);
+
+            return new Enemy(
+                new EnemyHealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
+                new NullInputComponent(),
+                new EnemyPhysics(_gameContext, _random),
+                graphicsComponent);
         }
 
         public Enemy CreateEnemy3()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Enemies.Enemy3.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(
+                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                GameConstants.Enemies.Enemy3.SpriteFrames.FirstOrDefault());
+
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
-            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), graphicsComponent);
+
+            return new Enemy(
+                new EnemyHealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
+                new NullInputComponent(),
+                new EnemyPhysics(_gameContext, _random),
+                graphicsComponent);
         }
 
         public Enemy CreateEnemyBoss()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Enemies.EnemyBoss.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(
+                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                GameConstants.Enemies.EnemyBoss.SpriteFrames.FirstOrDefault());
+
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
-            return new Enemy(new NullInputComponent(), new EnemyPhysics(_gameContext, _random), graphicsComponent);
+
+            return new Enemy(
+                new EnemyHealthComponent(GameConstants.Enemies.EnemyBoss.InitialMaxHealth, new NullHealthContainer()),
+                new NullInputComponent(),
+                new EnemyPhysics(_gameContext, _random),
+                graphicsComponent);
         }
     }
 }

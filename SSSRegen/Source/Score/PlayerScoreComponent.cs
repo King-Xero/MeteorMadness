@@ -1,4 +1,5 @@
-﻿using SSSRegen.Source.GameData;
+﻿using System;
+using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Score
 {
@@ -21,6 +22,7 @@ namespace SSSRegen.Source.Score
 
         public void Draw(IHandleScore player)
         {
+            throw new NotImplementedException();
             //ToDo draw _scoreText
         }
 

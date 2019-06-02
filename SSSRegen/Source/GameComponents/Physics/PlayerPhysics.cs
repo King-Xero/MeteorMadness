@@ -16,6 +16,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject player)
         {
             player.HorizontalVelocity = 0;
+            ResetPosition(player);
         }
 
         public void Update(IGameObject player)
@@ -40,6 +41,26 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             player.Position = playerPosition;
+        }
+
+        private void ResetPosition(IGameObject player)
+        {
+            var playerPosition = player.Position;
+
+            playerPosition.X = _gameContext.ScreenBounds.Width / 2 - player.Bounds.Width;
+            playerPosition.Y = _gameContext.ScreenBounds.Height - player.Bounds.Height - 10;
+
+            player.Position = playerPosition;
+
+            //ToDo change starting position depending on number of players
+            //if (_playerIndex == PlayerIndex.One)
+            //{
+            //    _position.X = _screenBounds.Width / 3; //Player ones's _position along the bottom of the screen
+            //}
+            //else
+            //{
+            //    _position.X = (int)(_screenBounds.Width / 1.5); //Player two's _position along the bottom of the screen
+            //}
         }
     }
 }
