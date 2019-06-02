@@ -18,17 +18,14 @@ namespace SSSRegen.Source.Enemies
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
         }
 
-        public int CurrentHealth { get; private set; }
-        //MaxHealth set in HealthComponent
-        public int MaxHealth { get; set; }
-
         public event EventHandler<HealEventArgs> Healed;
         public event EventHandler<DamageEventArgs> Damaged;
-        public event EventHandler<EventArgs> Died;
 
         public override void Initialize()
         {
             _healthComponent.Initialize(this);
+            _healthComponent.Died += EnemyOnDied;
+
             base.Initialize();
         }
 
@@ -44,20 +41,18 @@ namespace SSSRegen.Source.Enemies
 
         public void Heal(int healAmount)
         {
-            var newHealth = Math.Min(CurrentHealth + healAmount, MaxHealth);
-            Healed?.Invoke(this, new HealEventArgs(newHealth - CurrentHealth));
-            CurrentHealth = newHealth;
+            Healed?.Invoke(this, new HealEventArgs(healAmount));
         }
 
         public void Damage(int damageAmount)
         {
-            var newHealth = Math.Max(CurrentHealth - damageAmount, 0);
-            Damaged?.Invoke(this, new DamageEventArgs(CurrentHealth - newHealth));
-            CurrentHealth = newHealth;
-            if (CurrentHealth <= 0)
-            {
-                Died?.Invoke(this, EventArgs.Empty);
-            }
+            Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+        }
+
+        private void EnemyOnDied(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+            //Enemy died
         }
     }
 }

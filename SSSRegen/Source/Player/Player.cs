@@ -20,22 +20,18 @@ namespace SSSRegen.Source.Player
             _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
         }
 
-        public int CurrentHealth { get; private set; }
-        //MaxHealth set in HealthComponent
-        public int MaxHealth { get; set; }
-
         public event EventHandler<HealEventArgs> Healed = delegate { };
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
-        public event EventHandler<EventArgs> Died = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public override void Initialize()
         {
             _healthComponent.Initialize(this);
-            _scoreComponent.Initialize(this);
-            base.Initialize();
+            _healthComponent.Died += PlayerOnDied;
 
-            Reset();
+            _scoreComponent.Initialize(this);
+
+            base.Initialize();
         }
 
         public override void Update()
@@ -54,20 +50,12 @@ namespace SSSRegen.Source.Player
 
         public void Heal(int healAmount)
         {
-            var newHealth = Math.Min(CurrentHealth + healAmount, MaxHealth);
-            Healed?.Invoke(this, new HealEventArgs(newHealth - CurrentHealth));
-            CurrentHealth = newHealth;
+            Healed?.Invoke(this, new HealEventArgs(healAmount));
         }
 
         public void Damage(int damageAmount)
         {
-            var newHealth = Math.Max(CurrentHealth - damageAmount, 0);
-            Damaged?.Invoke(this, new DamageEventArgs(CurrentHealth - newHealth));
-            CurrentHealth = newHealth;
-            if (CurrentHealth <= 0)
-            {
-                Died?.Invoke(this, EventArgs.Empty);
-            }
+            Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
         }
 
         public void UpdateScore(int scoreAmount)
@@ -75,28 +63,10 @@ namespace SSSRegen.Source.Player
             ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
         }
 
-        private void Reset()
+        private void PlayerOnDied(object sender, EventArgs e)
         {
-            CurrentHealth = MaxHealth;
-
-            //Put in start position
-            //Initialize health
-            //Initialize score
-
-            //if (_playerIndex == PlayerIndex.One)
-            //{
-            //    _position.X = _screenBounds.Width / 3; //Player ones's _position along the bottom of the screen
-            //}
-            //else
-            //{
-            //    _position.X = (int)(_screenBounds.Width / 1.5); //Player two's _position along the bottom of the screen
-            //}
-
-            //_position.Y = _screenBounds.Height - _sprite.Bounds.Height - 10; //Places the player(s) at the very bottom of the screen
-            //_score = 0; //Resets the score to zero
-            //_health = INITIAL_HEALTH; //Resets the health to intial value
-
-            //IsEnabled = true;
+            throw new NotImplementedException();
+            //Player died
         }
     }
 }

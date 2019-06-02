@@ -8,44 +8,52 @@ namespace SSSRegen.Source.Health
         private readonly int _initialMaxHealth;
         private readonly IHealthContainer _playerHealthContainer;
 
+        private int _currentHealth;
+        private int _maxHealth;
+
         public PlayerHealthComponent(int initialMaxHealth, IHealthContainer playerHealthContainer)
         {
             _initialMaxHealth = initialMaxHealth;
             _playerHealthContainer = playerHealthContainer ?? throw new ArgumentNullException(nameof(playerHealthContainer));
         }
 
+        public event EventHandler<EventArgs> Died = delegate { };
+
         public void Initialize(IHandleHealth player)
         {
-            player.MaxHealth = GameConstants.Player.InitialMaxHealth;
+            _maxHealth = GameConstants.Player.InitialMaxHealth;
+            _currentHealth = _maxHealth;
 
             player.Healed += PlayerOnHealed;
             player.Damaged += PlayerOnDamaged;
-            player.Died += PlayerOnDied;
         }
 
         public void Update(IHandleHealth player)
         {
-            throw new NotImplementedException();
+            _playerHealthContainer.Update();
         }
 
         public void Draw(IHandleHealth player)
         {
-            throw new NotImplementedException();
+            _playerHealthContainer.Draw();
         }
 
         private void PlayerOnHealed(object sender, HealEventArgs e)
         {
-            _playerHealthContainer.Replenish(e.Amount);
+            var newHealth = Math.Min(_currentHealth + e.Amount, _maxHealth);
+            _playerHealthContainer.Replenish(newHealth - _currentHealth);
+            _currentHealth = newHealth;
         }
 
         private void PlayerOnDamaged(object sender, DamageEventArgs e)
         {
-            _playerHealthContainer.Deplete(e.Amount);
-        }
+            var newHealth = Math.Max(_currentHealth - e.Amount, 0);
+            _playerHealthContainer.Deplete(_currentHealth - newHealth);
 
-        private void PlayerOnDied(object sender, EventArgs e)
-        {
-            //Player is dead
+            if (_currentHealth <= 0)
+            {
+                Died?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

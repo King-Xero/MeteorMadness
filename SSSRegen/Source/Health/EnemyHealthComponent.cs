@@ -7,44 +7,52 @@ namespace SSSRegen.Source.Health
         private readonly int _initialMaxHealth;
         private readonly IHealthContainer _enemyHealthContainer;
 
+        private int _currentHealth;
+        private int _maxHealth;
+
         public EnemyHealthComponent(int initialMaxHealth, IHealthContainer enemyHealthContainer)
         {
             _initialMaxHealth = initialMaxHealth;
             _enemyHealthContainer = enemyHealthContainer ?? throw new ArgumentNullException(nameof(enemyHealthContainer));
         }
 
+        public event EventHandler<EventArgs> Died = delegate { };
+
         public void Initialize(IHandleHealth enemy)
         {
-            enemy.MaxHealth = _initialMaxHealth;
+            _maxHealth = _initialMaxHealth;
+            _currentHealth = _maxHealth;
 
             enemy.Healed += EnemyOnHealed;
             enemy.Damaged += EnemyOnDamaged;
-            enemy.Died += EnemyOnDied;
         }
 
         public void Update(IHandleHealth enemy)
         {
-            throw new NotImplementedException();
+            _enemyHealthContainer.Update();
         }
 
         public void Draw(IHandleHealth enemy)
         {
-            throw new NotImplementedException();
+            _enemyHealthContainer.Draw();
         }
 
         private void EnemyOnHealed(object sender, HealEventArgs e)
         {
-            _enemyHealthContainer.Replenish(e.Amount);
+            var newHealth = Math.Min(_currentHealth + e.Amount, _maxHealth);
+            _enemyHealthContainer.Replenish(newHealth - _currentHealth);
+            _currentHealth = newHealth;
         }
 
         private void EnemyOnDamaged(object sender, DamageEventArgs e)
         {
-            _enemyHealthContainer.Deplete(e.Amount);
-        }
+            var newHealth = Math.Max(_currentHealth - e.Amount, 0);
+            _enemyHealthContainer.Deplete(_currentHealth - newHealth);
 
-        private void EnemyOnDied(object sender, EventArgs e)
-        {
-            //Enemy is dead
+            if (_currentHealth <= 0)
+            {
+                Died?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }
