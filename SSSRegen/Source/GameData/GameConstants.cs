@@ -121,9 +121,26 @@ namespace SSSRegen.Source.GameData
             public const float MovementVelocity = 6.0f;
             public const int InitialMaxHealth = 100;
             public const string ScoreFormat = "000000000000";
+            public static List<Rectangle> IdleSpriteFrames = new List<Rectangle>
+            {
+                new Rectangle {X = 105, Y = 0, Width = 50, Height = 40}
+            };
         }
 
-        public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
-        public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
+        public static class GameStates
+        {
+            public static class SplashState
+            {
+                public const string BackgroundTextureName = "splashBackground";
+                public const string BackgroundTextureFileName = @"SplashScreen/tempBackground";
+                public const float SplashStateDisplayTime = 3.0f;
+            }
+
+            public static class PlayState
+            {
+                public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
+                public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
+            }
+        }
     }
 }

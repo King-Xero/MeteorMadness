@@ -110,10 +110,12 @@
     <Compile Include="Source\Meteors\MeteorsManager.cs" />
     <Compile Include="Source\Meteors\ToDelete\SmallMeteor.cs" />
     <Compile Include="Source\Core\Interfaces\IGameGraphics.cs" />
+    <Compile Include="Source\Player\IPlayerFactory.cs" />
     <Compile Include="Source\Player\Player.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayerGraphics.cs" />
     <Compile Include="Source\GameComponents\Input\PlayerInput.cs" />
     <Compile Include="Source\GameComponents\Physics\PlayerPhysics.cs" />
+    <Compile Include="Source\Player\PlayerFactory.cs" />
     <Compile Include="Source\Player\ToDelete\OldPlayer.cs" />
     <Compile Include="Source\Player\ToDelete\PlayerScore.cs" />
     <Compile Include="Source\Score\IHandleScore.cs" />
@@ -123,6 +125,8 @@
     <Compile Include="Source\Screens\HelpScreen.cs" />
     <Compile Include="Source\Screens\MenuScreen.cs" />
     <Compile Include="Source\Screens\PlayScreen.cs" />
+    <Compile Include="Source\States\MenuState.cs" />
+    <Compile Include="Source\States\SplashState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -193,6 +197,7 @@
     <Content Include="Content\MenuImages\MenuElements.png" />
     <Content Include="Content\PlayImages\GameBackground.png" />
     <Content Include="Content\PlayImages\SpriteSheet.png" />
+    <Content Include="Content\SplashScreen\tempBackground.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

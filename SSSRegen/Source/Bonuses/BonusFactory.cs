@@ -21,7 +21,7 @@ namespace SSSRegen.Source.Bonuses
 
         public HealthPack CreateHealthPack()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Bonuses.HealthPack.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName), GameConstants.Bonuses.HealthPack.SpriteFrames.FirstOrDefault());
             var healthPackGraphics = new HealthPackGraphics(_gameContext.GameGraphics, sprite);
             return new HealthPack(new NullInputComponent(), new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
         }
