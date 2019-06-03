@@ -14,7 +14,7 @@ namespace SSSRegen.Source.Core
             _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
         }
 
-        public void Draw(Sprite sprite, Rectangle destinationRect, Color color)
+        public void Draw(ISprite sprite, Rectangle destinationRect, Color color)
         {
             _spriteBatch.Draw(sprite.Texture, destinationRect, sprite.SourceRectangle, color);
         }

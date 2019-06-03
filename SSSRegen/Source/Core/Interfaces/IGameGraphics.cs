@@ -4,6 +4,6 @@ namespace SSSRegen.Source.Core.Interfaces
 {
     public interface IGameGraphics
     {
-        void Draw(Sprite sprite, Rectangle destinationRect, Color color);
+        void Draw(ISprite sprite, Rectangle destinationRect, Color color);
     }
 }

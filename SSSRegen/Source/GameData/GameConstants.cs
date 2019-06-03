@@ -141,6 +141,35 @@ namespace SSSRegen.Source.GameData
                 public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
                 public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
             }
+
+            public static class MenuState
+            {
+                public const string LogoSpriteSheetName = "menuElements";
+                public const string LogoSpriteSheetFileName = @"MenuImages/MenuElements";
+
+                public static class LogoLine1
+                {
+                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    {
+                        new Rectangle(0, 0, 536, 131),
+                    };
+                }
+                public static class LogoLine2
+                {
+                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    {
+                        new Rectangle(120, 165, 517, 130),
+                    };
+                }
+                public static class LogoLine3
+                {
+                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    {
+                        new Rectangle(8, 304, 375, 144),
+                    };
+                }
+
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace SSSRegen.Source.Core
         public Rectangle? SourceRectangle { get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public bool IsVisible { get; set; }
 
         //ToDo Animated Sprite
         //private List<Rectangle> _spriteFrames;
