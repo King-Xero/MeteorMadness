@@ -9,11 +9,11 @@ namespace SSSRegen.Source.Core
 {
     public class GameObject : IGameObject
     {
-        private readonly IInputComponent _inputComponent;
+        private readonly IGameObjectInputComponent _inputComponent;
         private readonly IPhysicsComponent _physicsComponent;
         private readonly IGraphicsComponent _graphicsComponent;
 
-        public GameObject(IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent)
+        public GameObject(IGameObjectInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent)
         {
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));

@@ -56,7 +56,7 @@ namespace SSSRegen.Source.Player
             return new PlayerScoreComponent();
         }
 
-        private IInputComponent CreatePlayerInput()
+        private IGameObjectInputComponent CreatePlayerInput()
         {
             return new PlayerInput(new KeyboardInputController(Keyboard.GetState()));
         }

@@ -8,7 +8,7 @@ namespace SSSRegen.Source.Bonuses
 {
     public class HealthPack : GameObject
     {
-        public HealthPack(IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        public HealthPack(IGameObjectInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
         }

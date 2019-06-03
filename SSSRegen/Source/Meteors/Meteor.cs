@@ -8,7 +8,7 @@ namespace SSSRegen.Source.Meteors
 {
     public class Meteor : GameObject
     {
-        public Meteor(IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        public Meteor(IGameObjectInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
         }

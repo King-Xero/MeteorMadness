@@ -13,7 +13,7 @@ namespace SSSRegen.Source.Player
     {
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
-        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IGameObjectInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));

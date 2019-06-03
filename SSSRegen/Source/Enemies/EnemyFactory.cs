@@ -30,7 +30,7 @@ namespace SSSRegen.Source.Enemies
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -45,7 +45,7 @@ namespace SSSRegen.Source.Enemies
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -60,7 +60,7 @@ namespace SSSRegen.Source.Enemies
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -75,7 +75,7 @@ namespace SSSRegen.Source.Enemies
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.EnemyBoss.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }

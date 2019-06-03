@@ -28,6 +28,7 @@ namespace SSSRegen.Source.States
             if (gameTime.ElapsedGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
                 //Go to main menu scene
+                _gameContext.StateMachine.AddState(new MenuState(_gameContext), true);
             }
 
             base.Update(gameTime);

@@ -12,7 +12,7 @@ namespace SSSRegen.Source.Enemies
     {
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(IHealthComponent healthComponent, IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        public Enemy(IHealthComponent healthComponent, IGameObjectInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));

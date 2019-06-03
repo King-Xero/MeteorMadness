@@ -2,7 +2,7 @@
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public interface IInputComponent
+    public interface IGameObjectInputComponent
     {
         void Initialize(IGameObject player);
         void Update(IGameObject player);

@@ -15,10 +15,12 @@ namespace SSSRegen.Source.GameData
             _game = game ?? throw new ArgumentNullException(nameof(game));
             GameGraphics = new GameGraphics(new SpriteBatch(_game.GraphicsDevice));
             AssetManager = new AssetManager(_game);
+            StateMachine = new GameStateMachine();
         }
 
         public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
         public IGameGraphics GameGraphics { get; }
         public IAssetManager AssetManager { get; }
+        public IGameStateMachine StateMachine { get; }
     }
 }

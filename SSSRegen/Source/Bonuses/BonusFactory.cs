@@ -23,7 +23,7 @@ namespace SSSRegen.Source.Bonuses
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName), GameConstants.Bonuses.HealthPack.SpriteFrames.FirstOrDefault());
             var healthPackGraphics = new HealthPackGraphics(_gameContext.GameGraphics, sprite);
-            return new HealthPack(new NullInputComponent(), new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
+            return new HealthPack(new NullGameObjectInputComponent(), new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
         }
     }
 }
