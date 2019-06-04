@@ -18,5 +18,10 @@ namespace SSSRegen.Source.Core
         {
             _spriteBatch.Draw(sprite.Texture, destinationRect, sprite.SourceRectangle, color);
         }
+
+        public void DrawString(IUIText uiText, Vector2 position, Color color)
+        {
+            _spriteBatch.DrawString(uiText.Font, uiText.Text, position, color);
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
@@ -56,7 +57,7 @@ namespace SSSRegen.Source.Player
             return new PlayerScoreComponent();
         }
 
-        private IGameObjectInputComponent CreatePlayerInput()
+        private IInputComponent<IGameObject> CreatePlayerInput()
         {
             return new PlayerInput(new KeyboardInputController(Keyboard.GetState()));
         }

@@ -146,6 +146,10 @@ namespace SSSRegen.Source.GameData
             {
                 public const string LogoSpriteSheetName = "menuElements";
                 public const string LogoSpriteSheetFileName = @"MenuImages/MenuElements";
+                public const string RegularFontName = "regularFontName";
+                public const string RegularFontFileName = @"MenuFonts/smallFont";
+                public const string SelectedFontName = "selectedFontName";
+                public const string SelectedFontFileName = @"MenuFonts/largeFont";
 
                 public static class LogoLine1
                 {
@@ -169,6 +173,10 @@ namespace SSSRegen.Source.GameData
                     };
                 }
 
+                public const string OnePlayerMenuText = "One Player";
+                public const string TwoPlayerMenuText = "Two Player";
+                public const string HelpMenuText = "Help";
+                public const string QuitMenuText = "Quit";
             }
         }
     }

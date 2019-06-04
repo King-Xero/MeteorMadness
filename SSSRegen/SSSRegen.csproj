@@ -50,7 +50,7 @@
     <Compile Include="Source\Core\Interfaces\ITextMenu.cs" />
     <Compile Include="Source\Core\Interfaces\IUIText.cs" />
     <Compile Include="Source\Core\UIText.cs" />
-    <Compile Include="Source\GameComponents\Input\ITextMenuInputComponent.cs" />
+    <Compile Include="Source\GameComponents\Input\IInputComponent.cs" />
     <Compile Include="Source\Core\TextMenu.cs" />
     <Compile Include="Source\GameComponents\Graphics\EnemyGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\HealthPackGraphics.cs" />
@@ -66,7 +66,6 @@
     <Compile Include="Source\Core\GameObject.cs" />
     <Compile Include="Source\Core\Interfaces\IGameObjectManager.cs" />
     <Compile Include="Source\GameComponents\Graphics\IGraphicsComponent.cs" />
-    <Compile Include="Source\GameComponents\Input\IGameObjectInputComponent.cs" />
     <Compile Include="Source\GameComponents\Physics\IPhysicsComponent.cs" />
     <Compile Include="Source\Core\ToDelete\GameScreen.cs" />
     <Compile Include="Source\Core\GameState.cs" />

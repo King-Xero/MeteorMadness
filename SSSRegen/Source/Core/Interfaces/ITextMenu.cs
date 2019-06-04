@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace SSSRegen.Source.Core.Interfaces
 {
@@ -10,9 +12,10 @@ namespace SSSRegen.Source.Core.Interfaces
         int Width { get; }
         int Height { get; }
         int SelectedIndex { get; set; }
-        void SetMenuItems(string[] items);
+        void SetMenuItems(Dictionary<string, Action> items);
         void Initialize();
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
+        void SelectCurrentItem();
     }
 }

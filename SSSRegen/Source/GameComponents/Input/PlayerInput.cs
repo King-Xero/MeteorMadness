@@ -3,7 +3,7 @@ using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class PlayerInput : IGameObjectInputComponent
+    public class PlayerInput : IInputComponent<IGameObject>
     {
         private readonly IInputController _inputController;
 

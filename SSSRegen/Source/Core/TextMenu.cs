@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core.Interfaces;
@@ -11,23 +12,24 @@ namespace SSSRegen.Source.Core
     public class TextMenu : ITextMenu
     {
         private readonly GameContext _gameContext;
-        private readonly ITextMenuInputComponent _menuInputComponent;
-        private readonly string _normalFontName;
+        private readonly IInputComponent<ITextMenu> _menuInputComponent;
+        private readonly string _regularFontName;
         private readonly string _selectedFontName;
         private SpriteFont _regularTextFont;
         private Color _regularTextColor;
         private SpriteFont _selectedTextFont;
         private Color _selectedTextColor;
 
-        private List<string> _menuItems;
+        private Dictionary<string, Action> _menuItems;
         private int _width;
         private int _height;
         
-        public TextMenu(GameContext gameContext, ITextMenuInputComponent menuInputComponent, string normalFontName, string selectedFontName)
+        //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
+        public TextMenu(GameContext gameContext, IInputComponent<ITextMenu> menuInputComponent, string regularFontName, string selectedFontName)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
-            _normalFontName = normalFontName;
+            _regularFontName = regularFontName;
             _selectedFontName = selectedFontName;
         }
 
@@ -38,18 +40,21 @@ namespace SSSRegen.Source.Core
         public int Height => _height;
         public int SelectedIndex { get; set; }
 
-        public void SetMenuItems(string[] items)
+        public void SetMenuItems(Dictionary<string, Action> items)
         {
             _menuItems.Clear();
-            _menuItems.AddRange(items);
+            foreach (var item in items)
+            {
+                _menuItems.Add(item.Key, item.Value);
+            }
             CalculateBounds();
         }
 
         public void Initialize()
         {
             SelectedIndex = 0;
-            _menuItems = new List<string>();
-            _regularTextFont = _gameContext.AssetManager.GetFont(_normalFontName);
+            _menuItems = new Dictionary<string, Action>();
+            _regularTextFont = _gameContext.AssetManager.GetFont(_regularFontName);
             _selectedTextFont = _gameContext.AssetManager.GetFont(_selectedFontName);
 
             _menuInputComponent.Initialize(this);
@@ -87,11 +92,17 @@ namespace SSSRegen.Source.Core
                 }
 
                 //Draw a shadow for the text
-                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems[i]), new Vector2(Position.X + 1, y + 1), Color.Black);
+                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(Position.X + 1, y + 1), Color.Black);
                 //Draw the text item
-                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems[i]), new Vector2(Position.X, y), drawColour);
+                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(Position.X, y), drawColour);
                 y += drawFont.LineSpacing;
             }
+        }
+
+        public void SelectCurrentItem()
+        {
+            var selectedAction = _menuItems?.Values.ElementAtOrDefault(SelectedIndex);
+            selectedAction?.Invoke();
         }
 
         private void CalculateBounds()
@@ -99,7 +110,7 @@ namespace SSSRegen.Source.Core
             //Sets values to zero so that the values are reset each time this method is called
             _height = 0;
             _width = 0;
-            foreach (string item in _menuItems)
+            foreach (string item in _menuItems.Keys)
             {
                 Vector2 size = _selectedTextFont.MeasureString(item);
                 //Calculates the width of the menu

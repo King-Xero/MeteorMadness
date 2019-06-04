@@ -3,7 +3,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class TextMenuInput : ITextMenuInputComponent
+    public class TextMenuInput : IInputComponent<ITextMenu>
     {
         private readonly IInputController _inputController;
 
@@ -26,6 +26,11 @@ namespace SSSRegen.Source.GameComponents.Input
             if (_inputController.IsUpButtonPressed())
             {
                 textMenu.SelectedIndex--;
+            }
+
+            if (_inputController.IsStartButtonPressed())
+            {
+                textMenu.SelectCurrentItem();
             }
         }
     }
