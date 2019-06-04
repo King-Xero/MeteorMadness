@@ -6,16 +6,14 @@ namespace SSSRegen.Source.Core.Interfaces
 {
     public interface ITextMenu
     {
-        bool IsVisible { get; set; }
-        bool Enabled { get; set; }
-        Vector2 Position { get; set; }
-        int Width { get; }
-        int Height { get; }
         int SelectedIndex { get; set; }
+        //ToDo Create menu item interface
+        //Change SetMenuItems signature to take collection of menu item interface
+        //Create menu base class that SetsMenuItems, Initializes, Updates, and Draws
         void SetMenuItems(Dictionary<string, Action> items);
+        void SelectCurrentItem();
         void Initialize();
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
-        void SelectCurrentItem();
     }
 }

@@ -67,7 +67,7 @@ namespace SSSRegen.Source.Player
             return new PlayerPhysics(_gameContext);
         }
 
-        private IGraphicsComponent CreatePlayerGraphics()
+        private IGraphicsComponent<IGameObject> CreatePlayerGraphics()
         {
             Sprite idleSprite = new Sprite(_spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
             Sprite moveLeftSprite = new Sprite(_spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());

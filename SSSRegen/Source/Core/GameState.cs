@@ -13,6 +13,7 @@ namespace SSSRegen.Source.Core
             GameObjects = new List<IGameObject>();
         }
 
+        //ToDo "Objects" in the scene should be added to collection to call 
         public IEnumerable<IGameObject> GameObjects { get; }
 
         public virtual void Initialize()

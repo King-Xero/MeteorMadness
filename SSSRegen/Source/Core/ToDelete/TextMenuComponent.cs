@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SSSRegen.Source.Core
+namespace SSSRegen.Source.Core.ToDelete
 {
     public class TextMenuComponent : DrawableGameComponent
     {

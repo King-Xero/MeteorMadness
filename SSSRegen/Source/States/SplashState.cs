@@ -1,6 +1,10 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.GameComponents.Graphics;
+using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.States
@@ -8,17 +12,21 @@ namespace SSSRegen.Source.States
     public class SplashState : GameState
     {
         private readonly GameContext _gameContext;
-        private Sprite _backgroundImage;
+        private readonly IGraphicsComponent<IGameState> _splashStateGraphics;
+        
 
-        public SplashState(GameContext gameContext)
+        public SplashState(GameContext gameContext, IGraphicsComponent<IGameState> splashStateGraphics)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _splashStateGraphics = splashStateGraphics ?? throw new ArgumentNullException(nameof(splashStateGraphics));
         }
 
         public override void Initialize()
         {
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.BackgroundTextureName, GameConstants.GameStates.SplashState.BackgroundTextureFileName);
-            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.SplashState.BackgroundTextureName));
+            _splashStateGraphics.Initialize(this);
+
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
 
             base.Initialize();
         }
@@ -27,8 +35,14 @@ namespace SSSRegen.Source.States
         {
             if (gameTime.ElapsedGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
+                var textMenu = new TextMenu(
+                    _gameContext,
+                    new TextMenuInput(new KeyboardInputController(Keyboard.GetState())),
+                    _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName),
+                    _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName));
+
                 //Go to main menu scene
-                _gameContext.StateMachine.AddState(new MenuState(_gameContext), true);
+                _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), textMenu), true);
             }
 
             base.Update(gameTime);
@@ -36,7 +50,7 @@ namespace SSSRegen.Source.States
 
         public override void Draw(GameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
+            _splashStateGraphics.Draw(this);
 
             base.Draw(gameTime);
         }

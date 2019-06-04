@@ -50,6 +50,8 @@
     <Compile Include="Source\Core\Interfaces\ITextMenu.cs" />
     <Compile Include="Source\Core\Interfaces\IUIText.cs" />
     <Compile Include="Source\Core\UIText.cs" />
+    <Compile Include="Source\GameComponents\Graphics\MainMenuStateGraphics.cs" />
+    <Compile Include="Source\GameComponents\Graphics\SplashStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Input\IInputComponent.cs" />
     <Compile Include="Source\Core\TextMenu.cs" />
     <Compile Include="Source\GameComponents\Graphics\EnemyGraphics.cs" />

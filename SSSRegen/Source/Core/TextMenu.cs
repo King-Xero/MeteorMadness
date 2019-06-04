@@ -13,50 +13,47 @@ namespace SSSRegen.Source.Core
     {
         private readonly GameContext _gameContext;
         private readonly IInputComponent<ITextMenu> _menuInputComponent;
-        private readonly string _regularFontName;
-        private readonly string _selectedFontName;
         private SpriteFont _regularTextFont;
         private Color _regularTextColor;
         private SpriteFont _selectedTextFont;
+        //ToDo put color state in menu item class
         private Color _selectedTextColor;
 
         private Dictionary<string, Action> _menuItems;
         private int _width;
         private int _height;
-        
+        private Vector2 _position;
+
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
-        public TextMenu(GameContext gameContext, IInputComponent<ITextMenu> menuInputComponent, string regularFontName, string selectedFontName)
+        public TextMenu(GameContext gameContext, IInputComponent<ITextMenu> menuInputComponent, SpriteFont regularTextFont, SpriteFont selectedTextFont)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
-            _regularFontName = regularFontName;
-            _selectedFontName = selectedFontName;
+            _regularTextFont = regularTextFont;
+            _selectedTextFont = selectedTextFont;
         }
 
-        public bool IsVisible { get; set; }
-        public bool Enabled { get; set; }
-        public Vector2 Position { get; set; }
-        public int Width => _width;
-        public int Height => _height;
         public int SelectedIndex { get; set; }
 
         public void SetMenuItems(Dictionary<string, Action> items)
         {
-            _menuItems.Clear();
+            _menuItems = new Dictionary<string, Action>();
             foreach (var item in items)
             {
                 _menuItems.Add(item.Key, item.Value);
             }
+            SelectedIndex = 0;
             CalculateBounds();
+        }
+
+        public void SelectCurrentItem()
+        {
+            var selectedAction = _menuItems?.Values.ElementAtOrDefault(SelectedIndex);
+            selectedAction?.Invoke();
         }
 
         public void Initialize()
         {
-            SelectedIndex = 0;
-            _menuItems = new Dictionary<string, Action>();
-            _regularTextFont = _gameContext.AssetManager.GetFont(_regularFontName);
-            _selectedTextFont = _gameContext.AssetManager.GetFont(_selectedFontName);
-
             _menuInputComponent.Initialize(this);
         }
 
@@ -75,7 +72,7 @@ namespace SSSRegen.Source.Core
 
         public void Draw(GameTime gameTime)
         {
-            float y = Position.Y;
+            float y = _position.Y;
             for (int i = 0; i < _menuItems.Count; i++) //Loop through the menu items
             {
                 SpriteFont drawFont;
@@ -92,17 +89,11 @@ namespace SSSRegen.Source.Core
                 }
 
                 //Draw a shadow for the text
-                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(Position.X + 1, y + 1), Color.Black);
+                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(_position.X + 1, y + 1), Color.Black);
                 //Draw the text item
-                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(Position.X, y), drawColour);
+                _gameContext.GameGraphics.DrawString(new UIText(drawFont, _menuItems.Keys.ElementAtOrDefault(i)), new Vector2(_position.X, y), drawColour);
                 y += drawFont.LineSpacing;
             }
-        }
-
-        public void SelectCurrentItem()
-        {
-            var selectedAction = _menuItems?.Values.ElementAtOrDefault(SelectedIndex);
-            selectedAction?.Invoke();
         }
 
         private void CalculateBounds()
@@ -121,6 +112,8 @@ namespace SSSRegen.Source.Core
                 //Calculates the height of the menu and adds extra spacing
                 _height += _selectedTextFont.LineSpacing + 5; 
             }
+
+            _position = new Vector2((_gameContext.ScreenBounds.Width / 2) - (_width / 2));
         }
     }
 }
