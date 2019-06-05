@@ -6,6 +6,7 @@ using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.States
 {
@@ -37,7 +38,7 @@ namespace SSSRegen.Source.States
             {
                 var textMenu = new TextMenu(
                     _gameContext,
-                    new TextMenuInput(new KeyboardInputController(Keyboard.GetState())),
+                    new GameMenuInput(new KeyboardInputController(Keyboard.GetState())),
                     _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName),
                     _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName));
 

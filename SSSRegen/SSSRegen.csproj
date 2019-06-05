@@ -47,13 +47,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Bonuses\BonusFactory.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
-    <Compile Include="Source\Core\Interfaces\ITextMenu.cs" />
+    <Compile Include="Source\Menus\IGameMenu.cs" />
     <Compile Include="Source\Core\Interfaces\IUIText.cs" />
     <Compile Include="Source\Core\UIText.cs" />
     <Compile Include="Source\GameComponents\Graphics\MainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\SplashStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Input\IInputComponent.cs" />
-    <Compile Include="Source\Core\TextMenu.cs" />
+    <Compile Include="Source\Menus\IMenuOption.cs" />
+    <Compile Include="Source\Menus\ISpriteMenuOption.cs" />
+    <Compile Include="Source\Menus\ITextMenuOption.cs" />
+    <Compile Include="Source\Menus\SpriteMenuOption.cs" />
+    <Compile Include="Source\Menus\TextMenu.cs" />
     <Compile Include="Source\GameComponents\Graphics\EnemyGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\HealthPackGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\MeteorGraphics.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Source\Health\NullHealthContainer.cs" />
     <Compile Include="Source\Health\PlayerHealthComponent.cs" />
     <Compile Include="Source\Health\PlayerHealthUnit.cs" />
+    <Compile Include="Source\Menus\TextMenuOption.cs" />
     <Compile Include="Source\Meteors\IMeteorFactory.cs" />
     <Compile Include="Source\GameComponents\Physics\MeteorPhysics.cs" />
     <Compile Include="Source\Meteors\ToDelete\MediumMeteor.cs" />

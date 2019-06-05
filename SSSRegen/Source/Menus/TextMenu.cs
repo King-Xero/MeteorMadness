@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
 
-namespace SSSRegen.Source.Core
+namespace SSSRegen.Source.Menus
 {
-    public class TextMenu : ITextMenu
+    public class TextMenu : IGameMenu
     {
         private readonly GameContext _gameContext;
-        private readonly IInputComponent<ITextMenu> _menuInputComponent;
+        private readonly IInputComponent<IGameMenu> _menuInputComponent;
         private SpriteFont _regularTextFont;
         private Color _regularTextColor;
         private SpriteFont _selectedTextFont;
@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Core
         private Vector2 _position;
 
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
-        public TextMenu(GameContext gameContext, IInputComponent<ITextMenu> menuInputComponent, SpriteFont regularTextFont, SpriteFont selectedTextFont)
+        public TextMenu(GameContext gameContext, IInputComponent<IGameMenu> menuInputComponent, SpriteFont regularTextFont, SpriteFont selectedTextFont)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));

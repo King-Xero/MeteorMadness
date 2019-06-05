@@ -1,23 +1,24 @@
 ﻿using System;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class TextMenuInput : IInputComponent<ITextMenu>
+    public class GameMenuInput : IInputComponent<IGameMenu>
     {
         private readonly IInputController _inputController;
 
-        public TextMenuInput(IInputController inputController)
+        public GameMenuInput(IInputController inputController)
         {
             _inputController = inputController ?? throw new ArgumentNullException(nameof(inputController));
         }
 
-        public void Initialize(ITextMenu textMenu)
+        public void Initialize(IGameMenu textMenu)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(ITextMenu textMenu)
+        public void Update(IGameMenu textMenu)
         {
             if (_inputController.IsDownButtonPressed())
             {

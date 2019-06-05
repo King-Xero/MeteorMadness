@@ -5,6 +5,7 @@ using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.States
 {
@@ -12,9 +13,9 @@ namespace SSSRegen.Source.States
     {
         private readonly GameContext _gameContext;
         private readonly IGraphicsComponent<IGameState> _mainMenuStateGraphics;
-        private readonly ITextMenu _textMenu;
+        private readonly IGameMenu _textMenu;
         
-        public MainMenuState(GameContext gameContext, IGraphicsComponent<IGameState> mainMenuStateGraphics, ITextMenu textMenu)
+        public MainMenuState(GameContext gameContext, IGraphicsComponent<IGameState> mainMenuStateGraphics, IGameMenu textMenu)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _mainMenuStateGraphics = mainMenuStateGraphics ?? throw new ArgumentNullException(nameof(mainMenuStateGraphics));

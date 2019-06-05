@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace SSSRegen.Source.Core.Interfaces
+namespace SSSRegen.Source.Menus
 {
-    public interface ITextMenu
+    public interface IGameMenu
     {
         int SelectedIndex { get; set; }
         //ToDo Create menu item interface
