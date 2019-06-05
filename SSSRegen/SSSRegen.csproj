@@ -63,7 +63,7 @@
     <Compile Include="Source\GameComponents\Graphics\MeteorGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\NullGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Input\NullGameObjectInputComponent.cs" />
-    <Compile Include="Source\GameComponents\Input\TextMenuInput.cs" />
+    <Compile Include="Source\GameComponents\Input\GameMenuInput.cs" />
     <Compile Include="Source\GameComponents\Physics\HealthPackPhysics.cs" />
     <Compile Include="Source\Bonuses\IBonusFactory.cs" />
     <Compile Include="Source\Bonuses\ToDelete\OldHealthPack.cs" />

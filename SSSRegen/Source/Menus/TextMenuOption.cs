@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Menus
@@ -13,25 +15,21 @@ namespace SSSRegen.Source.Menus
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             OptionAction = optionAction;
-            Text = text;
-            RegularFont = regularFont;
-            SelectedFont = selectedFont;
+            RegularText = new UIText(regularFont, text);
+            SelectedText = new UIText(selectedFont, text);
             CalculateSize();
         }
 
-        public string Text { get; }
-        public SpriteFont RegularFont { get; }
-        public SpriteFont SelectedFont { get; }
+        public UIText RegularText { get; }
+        public UIText SelectedText { get; }
         public Action OptionAction { get; }
         public int MaxWidth { get; private set; }
         public int MaxHeight { get; private set; }
         
         private void CalculateSize()
         {
-            Vector2 regularSize = RegularFont.MeasureString(Text);
-            Vector2 selectedSize = SelectedFont.MeasureString(Text);
-            MaxWidth = (int) Math.Max(regularSize.X, selectedSize.X);
-            MaxHeight = (int) Math.Max(regularSize.Y, selectedSize.Y);
+            MaxWidth = Math.Max(RegularText.Width, SelectedText.Width);
+            MaxHeight = Math.Max(SelectedText.Height, SelectedText.Height);
         }
     }
 }

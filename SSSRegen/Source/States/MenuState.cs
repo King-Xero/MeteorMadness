@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
@@ -26,12 +27,18 @@ namespace SSSRegen.Source.States
         {
             _mainMenuStateGraphics.Initialize(this);
 
-            _textMenu.SetMenuItems(new Dictionary<string, Action>
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
+
+            var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName);
+            var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName);
+
+            _textMenu.SetMenuItems(new List<IMenuOption>()
             {
-                {GameConstants.GameStates.MenuState.OnePlayerMenuText, OnSelectOnePlayer},
-                {GameConstants.GameStates.MenuState.TwoPlayerMenuText, OnSelectTwoPlayer},
-                {GameConstants.GameStates.MenuState.HelpMenuText, OnSelectHelp},
-                {GameConstants.GameStates.MenuState.QuitMenuText, OnSelectQuit},
+                new TextMenuOption(_gameContext, OnSelectOnePlayer, GameConstants.GameStates.MenuState.OnePlayerMenuText, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, OnSelectTwoPlayer, GameConstants.GameStates.MenuState.TwoPlayerMenuText, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, OnSelectHelp, GameConstants.GameStates.MenuState.HelpMenuText, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, OnSelectQuit, GameConstants.GameStates.MenuState.QuitMenuText, regularFont, selectedFont),
             });
 
 

@@ -26,9 +26,6 @@ namespace SSSRegen.Source.States
         {
             _splashStateGraphics.Initialize(this);
 
-            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
-            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
-
             base.Initialize();
         }
 
@@ -38,9 +35,7 @@ namespace SSSRegen.Source.States
             {
                 var textMenu = new TextMenu(
                     _gameContext,
-                    new GameMenuInput(new KeyboardInputController(Keyboard.GetState())),
-                    _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName),
-                    _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName));
+                    new GameMenuInput(new KeyboardInputController(Keyboard.GetState())));
 
                 //Go to main menu scene
                 _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), textMenu), true);

@@ -10,7 +10,7 @@ namespace SSSRegen.Source.Menus
         //ToDo Create menu item interface
         //Change SetMenuItems signature to take collection of menu item interface
         //Create menu base class that SetsMenuItems, Initializes, Updates, and Draws
-        void SetMenuItems(Dictionary<string, Action> items);
+        void SetMenuItems(List<IMenuOption> items);
         void SelectCurrentItem();
         void Initialize();
         void Update(GameTime gameTime);

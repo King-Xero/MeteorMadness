@@ -177,6 +177,7 @@ namespace SSSRegen.Source.GameData
                 public const string TwoPlayerMenuText = "Two Player";
                 public const string HelpMenuText = "Help";
                 public const string QuitMenuText = "Quit";
+                public const int ItemSpacing = 5;
             }
         }
     }

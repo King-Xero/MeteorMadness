@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core;
 
 namespace SSSRegen.Source.Menus
 {
     public interface ITextMenuOption : IMenuOption
     {
-        string Text { get; }
-        SpriteFont RegularFont { get; }
-        SpriteFont SelectedFont { get; }
+        UIText RegularText { get; }
+        UIText SelectedText { get; }
     }
 }
