@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.GameData
 {
@@ -22,5 +23,6 @@ namespace SSSRegen.Source.GameData
         public IGameGraphics GameGraphics { get; }
         public IAssetManager AssetManager { get; }
         public IGameStateMachine StateMachine { get; }
+        public IMenuFactory MenuFactory { get; }
     }
 }

@@ -15,7 +15,6 @@ namespace SSSRegen.Source.States
         private readonly GameContext _gameContext;
         private readonly IGraphicsComponent<IGameState> _splashStateGraphics;
         
-
         public SplashState(GameContext gameContext, IGraphicsComponent<IGameState> splashStateGraphics)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
@@ -33,12 +32,10 @@ namespace SSSRegen.Source.States
         {
             if (gameTime.ElapsedGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
-                var textMenu = new TextMenu(
-                    _gameContext,
-                    new GameMenuInput(new KeyboardInputController(Keyboard.GetState())));
-
+                var mainMenu = _gameContext.MenuFactory.CreateMainMenu();
+                
                 //Go to main menu scene
-                _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), textMenu), true);
+                _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), mainMenu), true);
             }
 
             base.Update(gameTime);
