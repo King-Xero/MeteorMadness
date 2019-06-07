@@ -23,6 +23,6 @@ namespace SSSRegen.Source.GameData
         public IGameGraphics GameGraphics { get; }
         public IAssetManager AssetManager { get; }
         public IGameStateMachine StateMachine { get; }
-        public IMenuFactory MenuFactory { get; }
+        public IGameFactories Factories { get; }
     }
 }

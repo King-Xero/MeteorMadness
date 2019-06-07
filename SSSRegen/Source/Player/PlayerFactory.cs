@@ -17,12 +17,10 @@ namespace SSSRegen.Source.Player
     public class PlayerFactory : IPlayerFactory
     {
         private readonly GameContext _gameContext;
-        private readonly Texture2D _spriteSheet;
-
-        public PlayerFactory(GameContext gameContext, Texture2D spriteSheet)
+        
+        public PlayerFactory(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
-            _spriteSheet = spriteSheet ?? throw new ArgumentNullException(nameof(spriteSheet));
         }
 
         public Player CreatePlayer()
@@ -69,9 +67,10 @@ namespace SSSRegen.Source.Player
 
         private IGraphicsComponent<IGameObject> CreatePlayerGraphics()
         {
-            Sprite idleSprite = new Sprite(_spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
-            Sprite moveLeftSprite = new Sprite(_spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
-            Sprite moveRightSprite = new Sprite(_spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
+            var spriteSheet =_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName);
+            Sprite idleSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
+            Sprite moveLeftSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
+            Sprite moveRightSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
             return new PlayerGraphics(_gameContext.GameGraphics, idleSprite, moveLeftSprite, moveRightSprite);
         }
     }

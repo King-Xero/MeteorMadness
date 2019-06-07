@@ -47,7 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Bonuses\BonusFactory.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
+    <Compile Include="Source\Core\GameFactories.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />
+    <Compile Include="Source\Core\Interfaces\IGameFactories.cs" />
     <Compile Include="Source\Menus\IMenuFactory.cs" />
     <Compile Include="Source\Menus\IGameMenu.cs" />
     <Compile Include="Source\Core\Interfaces\IUIText.cs" />
