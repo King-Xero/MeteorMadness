@@ -30,7 +30,7 @@ namespace SSSRegen.Source.States
 
         public override void Update(GameTime gameTime)
         {
-            if (gameTime.ElapsedGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
+            if (gameTime.TotalGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
                 var mainMenu = _gameContext.Factories.MenuFactory.CreateMainMenu();
                 

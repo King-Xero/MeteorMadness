@@ -46,6 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Bonuses\BonusFactory.cs" />
+    <Compile Include="Source\Bonuses\BonusManager.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
     <Compile Include="Source\Core\GameFactories.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Source\GameComponents\Input\PlayerInput.cs" />
     <Compile Include="Source\GameComponents\Physics\PlayerPhysics.cs" />
     <Compile Include="Source\Player\PlayerFactory.cs" />
+    <Compile Include="Source\Player\PlayerManager.cs" />
     <Compile Include="Source\Player\ToDelete\OldPlayer.cs" />
     <Compile Include="Source\Player\ToDelete\PlayerScore.cs" />
     <Compile Include="Source\Score\IHandleScore.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Source\States\MainMenuState.cs" />
     <Compile Include="Source\States\PlayState.cs" />
     <Compile Include="Source\States\SplashState.cs" />
+    <Compile Include="SSSGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -15,7 +15,6 @@ namespace SSSRegen.Source.GameComponents.Input
 
         public void Initialize(IGameMenu textMenu)
         {
-            throw new System.NotImplementedException();
         }
 
         public void Update(IGameMenu textMenu)

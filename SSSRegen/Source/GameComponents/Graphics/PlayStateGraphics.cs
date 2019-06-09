@@ -21,7 +21,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName, GameConstants.GameStates.MenuState.LogoSpriteSheetFileName);
 
-            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.BackgroundImageName));
+            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.BackgroundTextureName));
         }
 
         public void Update(IGameState entity)

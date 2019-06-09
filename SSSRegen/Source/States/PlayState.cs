@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Enemies;
@@ -7,6 +8,7 @@ using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Menus;
 using SSSRegen.Source.Meteors;
+using SSSRegen.Source.Player;
 
 namespace SSSRegen.Source.States
 {
@@ -25,11 +27,11 @@ namespace SSSRegen.Source.States
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playStateGraphics = playStateGraphics ?? throw new ArgumentNullException(nameof(playStateGraphics));
-            _gameObjectManagers = new[]
+            _gameObjectManagers = new IGameObjectManager[]
             {
                 new EnemiesManager(_gameContext.Factories.EnemyFactory),
                 new MeteorsManager(_gameContext.Factories.MeteorsFactory),
-                new BonusesManager(_gameContext.Factories.BonusesFactory),
+                new BonusManager(_gameContext.Factories.BonusesFactory),
                 new PlayerManager(_gameContext.Factories.PlayerFactory)
             };
         }

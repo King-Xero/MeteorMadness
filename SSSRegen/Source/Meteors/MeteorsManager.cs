@@ -9,7 +9,7 @@ namespace SSSRegen.Source.Meteors
     public class MeteorsManager : IGameObjectManager
     {
         private readonly IMeteorFactory _meteorFactory;
-        private Dictionary<string, List<Meteor>> _Meteors;
+        private Dictionary<string, List<Meteor>> _meteors;
 
         public MeteorsManager(IMeteorFactory meteorFactory)
         {
@@ -18,7 +18,7 @@ namespace SSSRegen.Source.Meteors
 
         public void Initialize()
         {
-            _Meteors = new Dictionary<string, List<Meteor>>
+            _meteors = new Dictionary<string, List<Meteor>>
             {
                 {GameConstants.Meteors.SmallMeteor.Name, new List<Meteor>()},
                 {GameConstants.Meteors.MediumMeteor.Name, new List<Meteor>()},
@@ -26,14 +26,14 @@ namespace SSSRegen.Source.Meteors
 
             for (var i = 0; i < GameConstants.Meteors.SmallMeteor.InitialCount; i++)
             {
-                _Meteors[GameConstants.Meteors.SmallMeteor.Name].Add(_meteorFactory.CreateSmallMeteor());
+                _meteors[GameConstants.Meteors.SmallMeteor.Name].Add(_meteorFactory.CreateSmallMeteor());
             }
             for (var i = 0; i < GameConstants.Meteors.MediumMeteor.InitialCount; i++)
             {
-                _Meteors[GameConstants.Meteors.MediumMeteor.Name].Add(_meteorFactory.CreateMediumMeteor());
+                _meteors[GameConstants.Meteors.MediumMeteor.Name].Add(_meteorFactory.CreateMediumMeteor());
             }
 
-            foreach (var meteorType in _Meteors)
+            foreach (var meteorType in _meteors)
             {
                 foreach (var meteor in meteorType.Value)
                 {
@@ -44,7 +44,7 @@ namespace SSSRegen.Source.Meteors
 
         public void Update()
         {
-            foreach (var meteorType in _Meteors)
+            foreach (var meteorType in _meteors)
             {
                 foreach (var meteor in meteorType.Value)
                 {
@@ -55,7 +55,7 @@ namespace SSSRegen.Source.Meteors
 
         public void Draw(GameTime gameTime)
         {
-            foreach (var meteorType in _Meteors)
+            foreach (var meteorType in _meteors)
             {
                 foreach (var meteor in meteorType.Value)
                 {

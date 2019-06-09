@@ -113,6 +113,7 @@ namespace SSSRegen.Source.GameData
                     new Rectangle {X = 169, Y = 210, Width = 15, Height = 15},
                 };
                 public const int FrameDelay = 200;
+                public const int InitialCount = 2;
             }
         }
 
@@ -140,7 +141,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
                 public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
-                public const string BackgroundImageName = @"MenuImages/MenuBackground";
+                public const string BackgroundTextureName = @"MenuImages/MenuBackground";
+                public const string BackgroundTextureFileName = @"MenuImages/MenuBackground";
                 public const string MenuTextResume = "Resume";
                 public const string MenuTextHelp = "Help";
                 public const string MenuTextQuit = "Quit";
@@ -154,6 +156,8 @@ namespace SSSRegen.Source.GameData
                 public const string RegularFontFileName = @"MenuFonts/smallFont";
                 public const string SelectedFontName = "selectedFontName";
                 public const string SelectedFontFileName = @"MenuFonts/largeFont";
+                public const string BackgroundTextureName = "menuBackground";
+                public const string BackgroundTextureFileName = @"MenuImages/MenuBackground";
 
                 public static class LogoLine1
                 {
