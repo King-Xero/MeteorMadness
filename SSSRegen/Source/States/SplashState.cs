@@ -1,12 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
-using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.States
 {

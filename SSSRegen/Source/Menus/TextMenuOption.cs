@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net.Mime;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameData;

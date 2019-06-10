@@ -68,7 +68,7 @@ namespace SSSRegen.Source.Menus
         private void OnMainMenuSelectHelp()
         {
             //ToDo Change to help state
-            _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
+            _gameContext.StateMachine.AddState(new HelpMainMenuState(_gameContext, new HelpMainMenuStateGraphics(_gameContext)), false);
         }
 
         private void OnMainMenuSelectQuit()

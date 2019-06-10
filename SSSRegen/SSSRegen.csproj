@@ -49,6 +49,7 @@
     <Compile Include="Source\Bonuses\BonusManager.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
     <Compile Include="Source\Core\GameFactories.cs" />
+    <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />
     <Compile Include="Source\Core\Interfaces\IGameFactories.cs" />
     <Compile Include="Source\Menus\IMenuFactory.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Source\Screens\HelpScreen.cs" />
     <Compile Include="Source\Screens\MenuScreen.cs" />
     <Compile Include="Source\Screens\PlayScreen.cs" />
+    <Compile Include="Source\States\HelpMainMenuState.cs" />
     <Compile Include="Source\States\MainMenuState.cs" />
     <Compile Include="Source\States\PlayState.cs" />
     <Compile Include="Source\States\SplashState.cs" />

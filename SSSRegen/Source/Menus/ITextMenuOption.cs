@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using SSSRegen.Source.Core;
+﻿using SSSRegen.Source.Core;
 
 namespace SSSRegen.Source.Menus
 {
