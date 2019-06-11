@@ -56,7 +56,7 @@ namespace SSSRegen.Source.Player
 
         private IInputComponent<IGameObject> CreatePlayerInput()
         {
-            return new PlayerInput(new KeyboardInputController(Keyboard.GetState()));
+            return new PlayerInput(new KeyboardInputController());
         }
 
         private IPhysicsComponent CreatePlayerPhysics()

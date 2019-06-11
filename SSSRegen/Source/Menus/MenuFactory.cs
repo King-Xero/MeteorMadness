@@ -23,7 +23,7 @@ namespace SSSRegen.Source.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName);
 
-            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController(Keyboard.GetState())));
+            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController()));
 
             mainMenu.SetMenuItems(new List<IMenuOption>()
             {
@@ -41,7 +41,7 @@ namespace SSSRegen.Source.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName);
 
-            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController(Keyboard.GetState())));
+            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController()));
 
             mainMenu.SetMenuItems(new List<IMenuOption>()
             {
@@ -90,7 +90,7 @@ namespace SSSRegen.Source.Menus
 
         private void OnPlayStateSelectQuit()
         {
-            var mainMenu = _gameContext.Factories.MenuFactory.CreateMainMenu();
+            var mainMenu = CreateMainMenu();
             //Go to main menu scene
             _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), mainMenu), true);
         }

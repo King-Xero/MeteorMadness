@@ -141,7 +141,7 @@ namespace SSSRegen.Source.GameData
             {
                 public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
                 public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
-                public const string BackgroundTextureName = @"MenuImages/MenuBackground";
+                public const string BackgroundTextureName = "playStateBackground";
                 public const string BackgroundTextureFileName = @"MenuImages/MenuBackground";
                 public const string MenuTextResume = "Resume";
                 public const string MenuTextHelp = "Help";

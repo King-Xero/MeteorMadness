@@ -2,6 +2,9 @@
 {
     public interface IInputController
     {
+        void Initialize();
+        void Update();
+
         bool IsLeftButtonPressed();
         bool IsRightButtonPressed();
         bool IsUpButtonPressed();

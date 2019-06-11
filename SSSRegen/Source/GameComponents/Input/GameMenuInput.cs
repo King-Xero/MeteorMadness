@@ -15,10 +15,13 @@ namespace SSSRegen.Source.GameComponents.Input
 
         public void Initialize(IGameMenu textMenu)
         {
+            _inputController.Initialize();
         }
 
         public void Update(IGameMenu textMenu)
         {
+            _inputController.Update();
+
             if (_inputController.IsDownButtonPressed())
             {
                 textMenu.SelectedIndex++;

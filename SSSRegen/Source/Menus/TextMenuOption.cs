@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameData;
@@ -14,7 +15,7 @@ namespace SSSRegen.Source.Menus
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             OptionAction = optionAction;
             RegularText = new UIText(regularFont, text);
-            SelectedText = new UIText(selectedFont, text);
+            SelectedText = new UIText(selectedFont, text, Color.Red);
             CalculateSize();
         }
 
