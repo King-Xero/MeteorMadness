@@ -14,6 +14,7 @@ namespace SSSRegen.Source.Menus
         private readonly IInputComponent<IGameMenu> _menuInputComponent;
 
         private List<IMenuOption> _menuItems;
+        private List<Vector2> _menuItemPositions;
         private int _width;
         private int _height;
         private Vector2 _position;
@@ -25,6 +26,7 @@ namespace SSSRegen.Source.Menus
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
         }
 
+        public bool IsEnabled { get; set; } = true;
         public int SelectedIndex { get; set; }
 
         public void SetMenuItems(List<IMenuOption> items)
@@ -36,6 +38,7 @@ namespace SSSRegen.Source.Menus
             }
             SelectedIndex = 0;
             CalculateBounds();
+            CalculateItemPositions();
         }
 
         public void SelectCurrentItem()
@@ -50,47 +53,58 @@ namespace SSSRegen.Source.Menus
 
         public void Update(GameTime gameTime)
         {
-            _menuInputComponent.Update(this);
-            if (SelectedIndex == _menuItems.Count)
+            if (IsEnabled)
             {
-                SelectedIndex = 0;
-            }
-            if (SelectedIndex < 0)
-            {
-                SelectedIndex = _menuItems.Count - 1;
+                _menuInputComponent.Update(this);
+                if (SelectedIndex == _menuItems.Count)
+                {
+                    SelectedIndex = 0;
+                }
+                if (SelectedIndex < 0)
+                {
+                    SelectedIndex = _menuItems.Count - 1;
+                }
             }
         }
 
         public void Draw(GameTime gameTime)
         {
-            float y = _position.Y;
-
-            //ToDo probably shouldn't be newing up objects in draw methods.
-            for (int i = 0; i < _menuItems.Count; i++)
+            if (IsEnabled)
             {
-                if (_menuItems.ElementAtOrDefault(i) is TextMenuOption textOption)
-                {
-                    IUIText uiText = i == SelectedIndex ? textOption.SelectedText : textOption.RegularText;
-                    //Draw a shadow for the text
-                    _gameContext.GameGraphics.DrawString(uiText, new Vector2(_position.X + 1, y + 1), Color.Black);
-                    //Draw the text item
-                    _gameContext.GameGraphics.DrawString(uiText, new Vector2(_position.X, y), uiText.TextColor);
+                float y = _position.Y;
 
-                    y += uiText.Height;  //uiText.Font.LineSpacing;
-                }
-                else if (_menuItems.ElementAtOrDefault(i) is SpriteMenuOption spriteOption)
+                //ToDo probably shouldn't be newing up objects in draw methods.
+                for (int i = 0; i < _menuItems.Count; i++)
                 {
-                    ISprite sprite = i == SelectedIndex ? spriteOption.SelectedSprite : spriteOption.RegularSprite;
-                    //Draw a shadow for the text
-                    _gameContext.GameGraphics.Draw(sprite, new Rectangle((int) _position.X + 1, (int) y + 1, sprite.Width, sprite.Height), Color.Black);
-                    //Draw the text item
-                    _gameContext.GameGraphics.Draw(sprite, new Rectangle((int)_position.X + 1, (int)y + 1, sprite.Width, sprite.Height), Color.White);
+                    if (_menuItems.ElementAtOrDefault(i) is TextMenuOption textOption)
+                    {
+                        IUIText uiText = i == SelectedIndex ? textOption.SelectedText : textOption.RegularText;
+                        //Draw a shadow for the text
+                        _gameContext.GameGraphics.DrawString(uiText, _menuItemPositions[i] + Vector2.One, Color.Black);
+                        //Draw the text item
+                        _gameContext.GameGraphics.DrawString(uiText, _menuItemPositions[i], uiText.TextColor);
 
-                    y += sprite.Height;
+                        y += uiText.Height; //uiText.Font.LineSpacing;
+                    }
+                    else if (_menuItems.ElementAtOrDefault(i) is SpriteMenuOption spriteOption)
+                    {
+                        ISprite sprite = i == SelectedIndex ? spriteOption.SelectedSprite : spriteOption.RegularSprite;
+                        //Draw a shadow for the text
+                        _gameContext.GameGraphics.Draw(sprite,
+                            new Rectangle((int) (_menuItemPositions[i] + Vector2.One).X,
+                                (int) (_menuItemPositions[i] + Vector2.One).Y, sprite.Width, sprite.Height),
+                            Color.Black);
+                        //Draw the text item
+                        _gameContext.GameGraphics.Draw(sprite,
+                            new Rectangle((int) _menuItemPositions[i].X, (int) _menuItemPositions[i].Y, sprite.Width,
+                                sprite.Height), Color.White);
+
+                        y += sprite.Height;
+                    }
                 }
             }
         }
-
+        
         private void CalculateBounds()
         {
             //Sets values to zero so that the values are reset each time this method is called
@@ -103,7 +117,20 @@ namespace SSSRegen.Source.Menus
                 _height += item.MaxHeight + GameConstants.GameStates.MenuState.ItemSpacing; 
             }
 
-            _position = new Vector2((_gameContext.ScreenBounds.Width / 2) - (_width / 2));
+            _position = new Vector2(_gameContext.ScreenBounds.Width / 2 - _width / 2);
+        }
+
+        private void CalculateItemPositions()
+        {
+            _menuItemPositions = new List<Vector2>();
+            var y = _position.Y;
+
+            foreach (var item in _menuItems)
+            {
+                _menuItemPositions.Add(new Vector2(_position.X, y));
+
+                y += item.MaxHeight;
+            }
         }
     }
 }

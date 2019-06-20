@@ -22,7 +22,7 @@ namespace SSSRegen.Source.Score
 
         public void Draw(IHandleScore player)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //ToDo draw _scoreText
         }
 

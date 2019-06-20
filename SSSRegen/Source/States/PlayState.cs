@@ -41,6 +41,7 @@ namespace SSSRegen.Source.States
             _playStateGraphics.Initialize(this);
             _playStateMenu = _gameContext.Factories.MenuFactory.CreatePlayStateMenu();
             _playStateMenu.Initialize();
+            _playStateMenu.IsEnabled = false;
 
             foreach (var gameObjectManager in _gameObjectManagers)
             {
@@ -57,7 +58,7 @@ namespace SSSRegen.Source.States
 
             foreach (var gameObjectManager in _gameObjectManagers)
             {
-                gameObjectManager.Initialize();
+                gameObjectManager.Update();
             }
 
             base.Update(gameTime);
@@ -70,7 +71,7 @@ namespace SSSRegen.Source.States
 
             foreach (var gameObjectManager in _gameObjectManagers)
             {
-                gameObjectManager.Initialize();
+                gameObjectManager.Draw(gameTime);
             }
 
             base.Draw(gameTime);

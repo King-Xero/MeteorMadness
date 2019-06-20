@@ -75,6 +75,8 @@ namespace SSSRegen
         {
             _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
             _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
+
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.BackgroundTextureName, GameConstants.GameStates.SplashState.BackgroundTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName, GameConstants.GameStates.PlayState.PlayElementsSpriteSheetFilePath);
 
             base.LoadContent();
