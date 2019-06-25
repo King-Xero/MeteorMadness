@@ -21,16 +21,16 @@ namespace SSSRegen.Source.Meteors
 
         public Meteor CreateSmallMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Meteors.SmallMeteor.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName), GameConstants.Meteors.SmallMeteor.SpriteFrames.FirstOrDefault());
             var graphicsComponent = new MeteorGraphics(_gameContext.GameGraphics, sprite);
-            return new Meteor(new NullInputComponent(), new MeteorPhysics(_gameContext, _random), graphicsComponent);
+            return new Meteor(new NullGameObjectInputComponent(), new MeteorPhysics(_gameContext, _random), graphicsComponent);
         }
 
         public Meteor CreateMediumMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName), GameConstants.Meteors.MediumMeteor.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName), GameConstants.Meteors.MediumMeteor.SpriteFrames.FirstOrDefault());
             var graphicsComponent = new MeteorGraphics(_gameContext.GameGraphics, sprite);
-            return new Meteor(new NullInputComponent(), new MeteorPhysics(_gameContext, _random), graphicsComponent);
+            return new Meteor(new NullGameObjectInputComponent(), new MeteorPhysics(_gameContext, _random), graphicsComponent);
         }
     }
 }

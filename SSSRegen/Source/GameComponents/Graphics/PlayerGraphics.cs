@@ -5,7 +5,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class PlayerGraphics : IGraphicsComponent
+    public class PlayerGraphics : IGraphicsComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly Sprite _idleSprite;

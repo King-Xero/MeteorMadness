@@ -7,7 +7,7 @@ namespace SSSRegen.Source.Core
 {
     public class Sprite : ISprite
     {
-        public Sprite(ref Texture2D texture)
+        public Sprite(Texture2D texture)
         {
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             SourceRectangle = null;
@@ -28,6 +28,7 @@ namespace SSSRegen.Source.Core
         public Rectangle? SourceRectangle { get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public bool IsVisible { get; set; }
 
         //ToDo Animated Sprite
         //private List<Rectangle> _spriteFrames;

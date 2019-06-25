@@ -7,5 +7,8 @@ namespace SSSRegen.Source.Core.Interfaces
     {
         Texture2D Texture { get; }
         Rectangle? SourceRectangle { get; }
+        int Width { get; }
+        int Height { get; }
+        bool IsVisible { get; set; }
     }
 }

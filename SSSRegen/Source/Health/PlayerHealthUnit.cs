@@ -36,13 +36,13 @@ namespace SSSRegen.Source.Health
 
         public void Update()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //ToDo use FillAmount to update the sprite(s) to be drawn to represent a health unit
         }
 
         public void Draw()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //ToDo draw the sprite(s)
         }
 

@@ -23,8 +23,6 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
             var playerPosition = player.Position;
 
-            playerPosition.X += player.HorizontalVelocity;
-
             //ToDo Resolve collisions
             //If player collides with object, execute only what the player should do.
             //Other objects will handle themselves
@@ -36,9 +34,10 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
             if (player.Position.X >= _gameContext.ScreenBounds.Width - player.Bounds.Width)
             {
-                
                 playerPosition.X = _gameContext.ScreenBounds.Width - player.Bounds.Width;
             }
+
+            playerPosition.X += player.HorizontalVelocity;
 
             player.Position = playerPosition;
         }

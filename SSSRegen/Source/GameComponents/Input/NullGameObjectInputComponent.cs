@@ -2,7 +2,7 @@
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class NullInputComponent : IInputComponent
+    public class NullGameObjectInputComponent : IInputComponent<IGameObject>
     {
         public void Initialize(IGameObject player)
         {

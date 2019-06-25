@@ -10,15 +10,21 @@ namespace SSSRegen.Source.GameData
     {
         private readonly Game _game;
 
-        public GameContext(Game game)
+        public GameContext(Game game, SpriteBatch spriteBatch)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
-            GameGraphics = new GameGraphics(new SpriteBatch(_game.GraphicsDevice));
+            Random = new Random();
+            GameGraphics = new GameGraphics(spriteBatch);
             AssetManager = new AssetManager(_game);
+            StateMachine = new GameStateMachine();
+            Factories = new GameFactories(this, Random);
         }
 
         public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
+        public Random Random { get; }
         public IGameGraphics GameGraphics { get; }
         public IAssetManager AssetManager { get; }
+        public IGameStateMachine StateMachine { get; }
+        public IGameFactories Factories { get; }
     }
 }

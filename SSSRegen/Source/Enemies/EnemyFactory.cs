@@ -23,14 +23,14 @@ namespace SSSRegen.Source.Enemies
         public Enemy CreateEnemy1()
         {
             var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
                 GameConstants.Enemies.Enemy1.SpriteFrames.FirstOrDefault());
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -38,14 +38,14 @@ namespace SSSRegen.Source.Enemies
         public Enemy CreateEnemy2()
         {
             var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
                 GameConstants.Enemies.Enemy2.SpriteFrames.FirstOrDefault());
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -53,14 +53,14 @@ namespace SSSRegen.Source.Enemies
         public Enemy CreateEnemy3()
         {
             var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
                 GameConstants.Enemies.Enemy3.SpriteFrames.FirstOrDefault());
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -68,14 +68,14 @@ namespace SSSRegen.Source.Enemies
         public Enemy CreateEnemyBoss()
         {
             var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.PlayElementsSpriteSheetName),
+                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
                 GameConstants.Enemies.EnemyBoss.SpriteFrames.FirstOrDefault());
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 new EnemyHealthComponent(GameConstants.Enemies.EnemyBoss.InitialMaxHealth, new NullHealthContainer()),
-                new NullInputComponent(),
+                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }

@@ -1,10 +1,8 @@
-﻿using SSSRegen.Source.Core.Interfaces;
-
-namespace SSSRegen.Source.GameComponents.Input
+﻿namespace SSSRegen.Source.GameComponents.Input
 {
-    public interface IInputComponent
+    public interface IInputComponent<T>
     {
-        void Initialize(IGameObject player);
-        void Update(IGameObject player);
+        void Initialize(T entity);
+        void Update(T entity);
     }
 }

@@ -17,7 +17,7 @@ namespace SSSRegen.Source.Core
             _gameStates = new Stack<GameState>();
         }
 
-        public GameState ActiveState => _gameStates.Peek();
+        public GameState ActiveState => _gameStates?.Peek();
 
         public void AddState(GameState newState, bool isReplacing = true)
         {

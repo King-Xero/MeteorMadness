@@ -13,9 +13,10 @@ namespace SSSRegen.Source.Core
             GameObjects = new List<IGameObject>();
         }
 
+        //ToDo "Objects" in the scene should be added to collection to call 
         public IEnumerable<IGameObject> GameObjects { get; }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             _isPaused = false;
             foreach (var gameObject in GameObjects)
@@ -24,7 +25,7 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public void Update()
+        public virtual void Update(GameTime gameTime)
         {
             if (!_isPaused)
             {
@@ -35,7 +36,7 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime)
         {
             foreach (var gameObject in GameObjects)
             {
@@ -43,12 +44,12 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public void Pause()
+        public virtual void Pause()
         {
             _isPaused = true;
         }
 
-        public void Resume()
+        public virtual void Resume()
         {
             _isPaused = true;
         }

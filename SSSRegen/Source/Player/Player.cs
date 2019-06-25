@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
@@ -13,7 +14,7 @@ namespace SSSRegen.Source.Player
     {
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
-        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent) :
+        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
@@ -61,6 +62,11 @@ namespace SSSRegen.Source.Player
         public void UpdateScore(int scoreAmount)
         {
             ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
+        }
+
+        public void Shoot()
+        {
+            Console.WriteLine("Pew!!!");
         }
 
         private void PlayerOnDied(object sender, EventArgs e)

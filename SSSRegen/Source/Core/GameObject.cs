@@ -9,11 +9,11 @@ namespace SSSRegen.Source.Core
 {
     public class GameObject : IGameObject
     {
-        private readonly IInputComponent _inputComponent;
+        private readonly IInputComponent<IGameObject> _inputComponent;
         private readonly IPhysicsComponent _physicsComponent;
-        private readonly IGraphicsComponent _graphicsComponent;
+        private readonly IGraphicsComponent<IGameObject> _graphicsComponent;
 
-        public GameObject(IInputComponent inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent graphicsComponent)
+        public GameObject(IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent)
         {
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
@@ -32,15 +32,15 @@ namespace SSSRegen.Source.Core
         public virtual void Initialize()
         {
             _inputComponent.Initialize(this);
-            _physicsComponent.Initialize(this);
             _graphicsComponent.Initialize(this);
+            _physicsComponent.Initialize(this);
         }
 
         public virtual void Update()
         {
             _inputComponent.Update(this);
-            _physicsComponent.Update(this);
             _graphicsComponent.Update(this);
+            _physicsComponent.Update(this);
         }
 
         public virtual void Draw(GameTime gameTime)

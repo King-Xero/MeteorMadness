@@ -1,11 +1,9 @@
-﻿using SSSRegen.Source.Core.Interfaces;
-
-namespace SSSRegen.Source.GameComponents.Graphics
+﻿namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public interface IGraphicsComponent
+    public interface IGraphicsComponent<T>
     {
-        void Initialize(IGameObject player);
-        void Update(IGameObject player);
-        void Draw(IGameObject player);
+        void Initialize(T entity);
+        void Update(T entity);
+        void Draw(T entity);
     }
 }
