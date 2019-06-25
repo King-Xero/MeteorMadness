@@ -13,25 +13,24 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController = inputController ?? throw new ArgumentNullException(nameof(inputController));
         }
 
-        public void Initialize(IGameMenu textMenu)
+        public virtual void Initialize(IGameMenu textMenu)
         {
             _inputController.Initialize();
         }
 
-        public void Update(IGameMenu textMenu)
+        public virtual void Update(IGameMenu textMenu)
         {
             _inputController.Update();
 
-            if (_inputController.IsDownButtonPressed())
+            if (textMenu.IsEnabled && _inputController.IsDownButtonPressed())
             {
                 textMenu.SelectedIndex++;
             }
-            if (_inputController.IsUpButtonPressed())
+            if (textMenu.IsEnabled && _inputController.IsUpButtonPressed())
             {
                 textMenu.SelectedIndex--;
             }
-
-            if (_inputController.IsStartButtonPressed())
+            if (textMenu.IsEnabled && _inputController.IsStartButtonPressed())
             {
                 textMenu.SelectCurrentItem();
             }

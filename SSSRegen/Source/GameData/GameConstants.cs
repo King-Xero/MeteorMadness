@@ -134,7 +134,7 @@ namespace SSSRegen.Source.GameData
             {
                 public const string BackgroundTextureName = "splashBackground";
                 public const string BackgroundTextureFileName = @"SplashScreen/tempBackground";
-                public const float SplashStateDisplayTime = 3.0f;
+                public const float SplashStateDisplayTime = 1.0f;
             }
 
             public static class PlayState

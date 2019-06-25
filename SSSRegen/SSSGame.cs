@@ -14,7 +14,13 @@ namespace SSSRegen
 
         public SSSGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1366,
+                PreferredBackBufferHeight = 768
+            };
+
+
             Content.RootDirectory = "Content";
         }
         
@@ -78,6 +84,8 @@ namespace SSSRegen
 
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.BackgroundTextureName, GameConstants.GameStates.SplashState.BackgroundTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName, GameConstants.GameStates.PlayState.PlayElementsSpriteSheetFilePath);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName, GameConstants.GameStates.MenuState.LogoSpriteSheetFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.BackgroundTextureName, GameConstants.GameStates.MenuState.BackgroundTextureFileName);
 
             base.LoadContent();
         }

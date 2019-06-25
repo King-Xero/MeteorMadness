@@ -53,17 +53,15 @@ namespace SSSRegen.Source.Menus
 
         public void Update(GameTime gameTime)
         {
-            if (IsEnabled)
+            _menuInputComponent.Update(this);
+            if (SelectedIndex == _menuItems.Count)
             {
-                _menuInputComponent.Update(this);
-                if (SelectedIndex == _menuItems.Count)
-                {
-                    SelectedIndex = 0;
-                }
-                if (SelectedIndex < 0)
-                {
-                    SelectedIndex = _menuItems.Count - 1;
-                }
+                SelectedIndex = 0;
+            }
+
+            if (SelectedIndex < 0)
+            {
+                SelectedIndex = _menuItems.Count - 1;
             }
         }
 

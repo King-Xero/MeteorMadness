@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
@@ -41,12 +40,12 @@ namespace SSSRegen.Source.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName);
 
-            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController()));
+            var mainMenu = new TextMenu(_gameContext, new PlayStateMenuInput(new KeyboardInputController()));
 
             mainMenu.SetMenuItems(new List<IMenuOption>()
             {
-                new TextMenuOption(_gameContext, OnPlayStateSelectResume, GameConstants.GameStates.PlayState.MenuTextResume, regularFont, selectedFont),
-                new TextMenuOption(_gameContext, OnPlayStateSelectHelp, GameConstants.GameStates.PlayState.MenuTextHelp, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, () => OnPlayStateSelectResume(mainMenu), GameConstants.GameStates.PlayState.MenuTextResume, regularFont, selectedFont),
+                //new TextMenuOption(_gameContext, OnPlayStateSelectHelp, GameConstants.GameStates.PlayState.MenuTextHelp, regularFont, selectedFont),
                 new TextMenuOption(_gameContext, OnPlayStateSelectQuit, GameConstants.GameStates.PlayState.MenuTextQuit, regularFont, selectedFont),
             });
 
@@ -77,9 +76,9 @@ namespace SSSRegen.Source.Menus
             throw new NotImplementedException();
         }
 
-        private void OnPlayStateSelectResume()
+        private void OnPlayStateSelectResume(TextMenu menu)
         {
-            throw new NotImplementedException();
+            menu.IsEnabled = false;
         }
 
         private void OnPlayStateSelectHelp()

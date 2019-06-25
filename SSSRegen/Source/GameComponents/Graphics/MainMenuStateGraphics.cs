@@ -29,9 +29,6 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Initialize(IGameState entity)
         {
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName, GameConstants.GameStates.MenuState.LogoSpriteSheetFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.BackgroundTextureName, GameConstants.GameStates.MenuState.BackgroundTextureFileName);
-
             _line1Sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName), GameConstants.GameStates.MenuState.LogoLine1.SpriteFrames.FirstOrDefault());
             _line2Sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName), GameConstants.GameStates.MenuState.LogoLine2.SpriteFrames.FirstOrDefault());
             _line3Sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName), GameConstants.GameStates.MenuState.LogoLine3.SpriteFrames.FirstOrDefault());

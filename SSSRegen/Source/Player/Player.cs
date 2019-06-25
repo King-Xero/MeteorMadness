@@ -64,6 +64,11 @@ namespace SSSRegen.Source.Player
             ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
         }
 
+        public void Shoot()
+        {
+            Console.WriteLine("Pew!!!");
+        }
+
         private void PlayerOnDied(object sender, EventArgs e)
         {
             throw new NotImplementedException();

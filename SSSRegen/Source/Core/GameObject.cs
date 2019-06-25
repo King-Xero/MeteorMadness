@@ -32,15 +32,15 @@ namespace SSSRegen.Source.Core
         public virtual void Initialize()
         {
             _inputComponent.Initialize(this);
-            _physicsComponent.Initialize(this);
             _graphicsComponent.Initialize(this);
+            _physicsComponent.Initialize(this);
         }
 
         public virtual void Update()
         {
             _inputComponent.Update(this);
-            _physicsComponent.Update(this);
             _graphicsComponent.Update(this);
+            _physicsComponent.Update(this);
         }
 
         public virtual void Draw(GameTime gameTime)
