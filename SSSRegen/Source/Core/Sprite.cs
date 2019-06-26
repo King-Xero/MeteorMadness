@@ -11,23 +11,20 @@ namespace SSSRegen.Source.Core
         {
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             SourceRectangle = null;
-            Width = Texture.Width;
-            Height = Texture.Height;
+            Size = new Vector2(Texture.Width, Texture.Height);
         }
 
-        public Sprite(Texture2D texture, Rectangle? sourceRectangle)
+        public Sprite(Texture2D texture, Rectangle sourceRectangle)
         {
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
-            SourceRectangle = sourceRectangle ?? throw new ArgumentNullException(nameof(sourceRectangle));
-            Width = SourceRectangle.Value.Width;
-            Height = SourceRectangle.Value.Height;
+            SourceRectangle = sourceRectangle;
+            Size = new Vector2(SourceRectangle.Value.Width, SourceRectangle.Value.Height);
         }
 
         public Texture2D Texture { get; }
 
         public Rectangle? SourceRectangle { get; }
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        public Vector2 Size { get; }
         public bool IsVisible { get; set; }
 
         //ToDo Animated Sprite

@@ -1,4 +1,5 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Input
@@ -23,15 +24,15 @@ namespace SSSRegen.Source.GameComponents.Input
 
             if (_inputController.IsLeftButtonHeld())
             {
-                player.HorizontalVelocity = -GameConstants.Player.MovementVelocity;
+                player.Velocity = -GameConstants.Player.MovementVelocity;
             }
             else if (_inputController.IsRightButtonHeld())
             {
-                player.HorizontalVelocity = GameConstants.Player.MovementVelocity;
+                player.Velocity = GameConstants.Player.MovementVelocity;
             }
             else
             {
-                player.HorizontalVelocity = 0;
+                player.Velocity = Vector2.Zero;
             }
 
             if (_inputController.IsFireButtonPressed())

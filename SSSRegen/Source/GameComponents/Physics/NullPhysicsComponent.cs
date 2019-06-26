@@ -1,4 +1,5 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
@@ -8,7 +9,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
         }
 
-        public void Update(IGameObject player)
+        public void Update(IGameObject player, GameTime gameTime)
         {
         }
     }

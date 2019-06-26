@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
@@ -17,14 +19,15 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Initialize(IGameObject healthPack)
         {
-            healthPack.VerticalVelocity = 2;
+            healthPack.Velocity = new Vector2(0, 2);
+            healthPack.Speed = 100;
 
             //ToDo Execution order of components might cause an error here.
             //Reset uses Bounds to set position. Bounds is set using Height and Width which are initialized in graphics component.
             Reset(healthPack);
         }
 
-        public void Update(IGameObject healthPack)
+        public void Update(IGameObject healthPack, GameTime gameTime)
         {
             var healthPackPosition = healthPack.Position;
 
@@ -36,7 +39,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the healthPack
-            healthPackPosition.Y += healthPack.VerticalVelocity;
+            healthPackPosition += Vector2.Multiply(healthPack.Velocity, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If healthPack collides with object, execute only what the healthPack should do.

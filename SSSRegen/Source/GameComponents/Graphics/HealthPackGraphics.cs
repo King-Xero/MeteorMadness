@@ -21,8 +21,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
         public void Initialize(IGameObject healthPack)
         {
             _activeSprite = _hSprite;
-            healthPack.Width = _activeSprite.Width;
-            healthPack.Height = _activeSprite.Height;
+            healthPack.Size = _activeSprite.Size;
         }
 
         public void Update(IGameObject healthPack)
@@ -31,8 +30,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
             //ToDo add sprite "animation" here
 
-            healthPack.Width = _activeSprite.Width;
-            healthPack.Height = _activeSprite.Height;
+            healthPack.Size = _activeSprite.Size;
         }
 
         public void Draw(IGameObject healthPack)

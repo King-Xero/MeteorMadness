@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.Menus
 {
@@ -25,8 +27,8 @@ namespace SSSRegen.Source.Menus
 
         private void CalculateSize()
         {
-            MaxWidth = Math.Max(RegularSprite.Width, SelectedSprite.Width);
-            MaxHeight = Math.Max(RegularSprite.Width, SelectedSprite.Width);
+            MaxWidth = MathHelper.Max(RegularSprite.Size.X, SelectedSprite.Size.X).ToInt();
+            MaxHeight = MathHelper.Max(RegularSprite.Size.Y, SelectedSprite.Size.Y).ToInt();
         }
     }
 }

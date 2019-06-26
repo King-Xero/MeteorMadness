@@ -10,7 +10,7 @@ namespace SSSRegen.Source.GameData
             public static class Enemy1
             {
                 public const string Name = "enemy1";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 105, Y = 210, Width = 50, Height = 50}
                 };
@@ -21,7 +21,7 @@ namespace SSSRegen.Source.GameData
             public static class Enemy2
             {
                 public const string Name = "enemy2";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 105, Y = 260, Width = 65, Height = 65}
                 };
@@ -32,7 +32,7 @@ namespace SSSRegen.Source.GameData
             public static class Enemy3
             {
                 public const string Name = "enemy3";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 65, Y = 325, Width = 70, Height = 72}
                 };
@@ -43,7 +43,7 @@ namespace SSSRegen.Source.GameData
             public static class EnemyBoss
             {
                 public const string Name = "enemyBoss";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 65, Y = 397, Width = 96, Height = 96}
                 };
@@ -57,7 +57,7 @@ namespace SSSRegen.Source.GameData
             public static class SmallMeteor
             {
                 public const string Name = "smallMeteor";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 0, Y = 0, Width = 40, Height = 40},
                     new Rectangle {X = 0, Y = 40, Width = 40, Height = 40},
@@ -74,7 +74,7 @@ namespace SSSRegen.Source.GameData
             public static class MediumMeteor
             {
                 public const string Name = "mediumMeteor";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 0, Y = 0, Width = 65, Height = 65},
                     new Rectangle {X = 0, Y = 65, Width = 65, Height = 65},
@@ -94,7 +94,7 @@ namespace SSSRegen.Source.GameData
             public static class HealthPack
             {
                 public const string Name = "healthPack";
-                public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                 {
                     new Rectangle {X = 169, Y = 0, Width = 15, Height = 15},
                     new Rectangle {X = 169, Y = 15, Width = 15, Height = 15},
@@ -119,10 +119,10 @@ namespace SSSRegen.Source.GameData
 
         public static class Player
         {
-            public const float MovementVelocity = 6.0f;
+            public static readonly Vector2 MovementVelocity = new Vector2(6.0f, 0);
             public const int InitialMaxHealth = 100;
             public const string ScoreFormat = "000000000000";
-            public static List<Rectangle> IdleSpriteFrames = new List<Rectangle>
+            public static readonly List<Rectangle> IdleSpriteFrames = new List<Rectangle>
             {
                 new Rectangle {X = 105, Y = 0, Width = 50, Height = 40}
             };
@@ -161,21 +161,21 @@ namespace SSSRegen.Source.GameData
 
                 public static class LogoLine1
                 {
-                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                     {
                         new Rectangle(0, 0, 536, 131),
                     };
                 }
                 public static class LogoLine2
                 {
-                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                     {
                         new Rectangle(120, 165, 517, 130),
                     };
                 }
                 public static class LogoLine3
                 {
-                    public static List<Rectangle> SpriteFrames = new List<Rectangle>
+                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
                     {
                         new Rectangle(8, 304, 375, 144),
                     };

@@ -25,26 +25,24 @@ namespace SSSRegen.Source.GameComponents.Graphics
         public void Initialize(IGameObject player)
         {
             _activeSprite = _idleSprite;
-            player.Width = _activeSprite.Width;
-            player.Height = _activeSprite.Height;
+            player.Size = _activeSprite.Size;
         }
 
         public void Update(IGameObject player)
         {
             _activeSprite = _idleSprite;
 
-            if (player.HorizontalVelocity < 0)
+            if (player.Velocity.X < 0)
             {
                 _activeSprite = _moveLeftSprite;
             }
-            else if (player.HorizontalVelocity > 0)
+            else if (player.Velocity.X > 0)
             {
                 _activeSprite = _moveRightSprite;
             }
 
             //ToDo Possibly move into physics components as setting up bounds
-            player.Width = _activeSprite.Width;
-            player.Height = _activeSprite.Height;
+            player.Size = _activeSprite.Size;
         }
 
         public void Draw(IGameObject player)

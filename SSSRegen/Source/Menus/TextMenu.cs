@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.Menus
 {
@@ -26,8 +27,6 @@ namespace SSSRegen.Source.Menus
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
-
-            _spriteOptionDrawRectangle = new Rectangle();
         }
 
         public bool IsEnabled { get; set; } = true;
@@ -94,15 +93,15 @@ namespace SSSRegen.Source.Menus
                         //Draw a shadow for the text
                         _gameContext.GameGraphics.Draw(
                             sprite,
-                            ConfigureDrawRectangle((_menuItemPositions[i] + Vector2.One).X, (_menuItemPositions[i] + Vector2.One).Y, sprite.Width, sprite.Height),
+                            ConfigureDrawRectangle((_menuItemPositions[i] + Vector2.One).X, (_menuItemPositions[i] + Vector2.One).Y, sprite.Size),
                             Color.Black);
                         //Draw the text item
                         _gameContext.GameGraphics.Draw(
                             sprite,
-                            ConfigureDrawRectangle(_menuItemPositions[i].X, _menuItemPositions[i].Y, sprite.Width, sprite.Height),
+                            ConfigureDrawRectangle(_menuItemPositions[i].X, _menuItemPositions[i].Y, sprite.Size),
                             Color.White);
                         
-                        y += sprite.Height;
+                        y += sprite.Size.Y;
                     }
                 }
             }
@@ -120,6 +119,7 @@ namespace SSSRegen.Source.Menus
                 _height += item.MaxHeight + GameConstants.GameStates.MenuState.ItemSpacing; 
             }
 
+            //ToDo put menu in correct position
             _position = new Vector2(_gameContext.ScreenBounds.Width / 2 - _width / 2);
         }
 
@@ -136,12 +136,12 @@ namespace SSSRegen.Source.Menus
             }
         }
 
-        private Rectangle ConfigureDrawRectangle(float xPosition, float yPosition, int width, int height)
+        private Rectangle ConfigureDrawRectangle(float xPosition, float yPosition, Vector2 size)
         {
-            _spriteOptionDrawRectangle.X = (int) xPosition;
-            _spriteOptionDrawRectangle.Y = (int) yPosition;
-            _spriteOptionDrawRectangle.Width = width;
-            _spriteOptionDrawRectangle.Height = height;
+            _spriteOptionDrawRectangle.X = xPosition.ToInt();
+            _spriteOptionDrawRectangle.Y = yPosition.ToInt();
+            _spriteOptionDrawRectangle.Width = size.X.ToInt();
+            _spriteOptionDrawRectangle.Height = size.Y.ToInt();
 
             return _spriteOptionDrawRectangle;
         }

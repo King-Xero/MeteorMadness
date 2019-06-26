@@ -21,8 +21,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
         public void Initialize(IGameObject enemy)
         {
             _activeSprite = _eSprite;
-            enemy.Width = _activeSprite.Width;
-            enemy.Height = _activeSprite.Height;
+            enemy.Size = _activeSprite.Size;
         }
 
         public void Update(IGameObject enemy)
@@ -31,8 +30,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
             //ToDo add sprite "animation" here
 
-            enemy.Width = _activeSprite.Width;
-            enemy.Height = _activeSprite.Height;
+            enemy.Size = _activeSprite.Size;
         }
 
         public void Draw(IGameObject enemy)

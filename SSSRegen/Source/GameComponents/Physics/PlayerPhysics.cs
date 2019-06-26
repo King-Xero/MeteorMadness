@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
@@ -15,11 +17,13 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Initialize(IGameObject player)
         {
-            player.HorizontalVelocity = 0;
+            player.Velocity = Vector2.Zero;
+            player.Speed = 100;
+
             ResetPosition(player);
         }
 
-        public void Update(IGameObject player)
+        public void Update(IGameObject player, GameTime gameTime)
         {
             var playerPosition = player.Position;
 
@@ -37,7 +41,7 @@ namespace SSSRegen.Source.GameComponents.Physics
                 playerPosition.X = _gameContext.ScreenBounds.Width - player.Bounds.Width;
             }
 
-            playerPosition.X += player.HorizontalVelocity;
+            playerPosition += Vector2.Multiply(player.Velocity, player.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             player.Position = playerPosition;
         }

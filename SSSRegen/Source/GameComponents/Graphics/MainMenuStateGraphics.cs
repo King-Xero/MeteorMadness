@@ -34,7 +34,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _line3Sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName), GameConstants.GameStates.MenuState.LogoLine3.SpriteFrames.FirstOrDefault());
             _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.BackgroundTextureName));
 
-            _line1Position.X = -1 * _line1Sprite.Width;
+            _line1Position.X = -1 * _line1Sprite.Size.X;
             _line1Position.Y = 40;
             _line2Position.X = _gameContext.ScreenBounds.Width;
             _line2Position.Y = 180;
@@ -49,16 +49,19 @@ namespace SSSRegen.Source.GameComponents.Graphics
             {
                 if (_line1Position.X <= (_gameContext.ScreenBounds.Width - 715) / 2)
                 {
-                    _line1Position.X += 15; //Moves line 1 right if it is not in its final _position
+                    //Moves line 1 right if it is not in its final position
+                    _line1Position.X += 15;
                 }
 
                 if (_line2Position.X >= (_gameContext.ScreenBounds.Width - 595) / 2)
                 {
-                    _line2Position.X -= 15; //Moves line 2 left if it is not in its final _position
+                    //Moves line 2 left if it is not in its final position
+                    _line2Position.X -= 15;
                 }
                 else
                 {
-                    _line3Position = new Vector2((_line2Position.X + _line2Sprite.Width - _line3Sprite.Width / 2) - 80,
+                    //If line 2 is in final position, set line 3 position
+                    _line3Position = new Vector2((_line2Position.X + _line2Sprite.Size.X - _line3Sprite.Size.X / 2) - 80,
                         _line2Position.Y);
                     _canShowLine3 = true;
                 }
@@ -79,11 +82,12 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
 
-            _gameContext.GameGraphics.Draw(_line1Sprite, new Rectangle((int)_line1Position.X, (int)_line1Position.Y, _line1Sprite.Width, _line1Sprite.Height), Color.White);
-            _gameContext.GameGraphics.Draw(_line2Sprite, new Rectangle((int)_line2Position.X, (int)_line2Position.Y, _line2Sprite.Width, _line2Sprite.Height), Color.White);
+            //ToDo Remove new
+            _gameContext.GameGraphics.Draw(_line1Sprite, new Rectangle((int)_line1Position.X, (int)_line1Position.Y, (int) _line1Sprite.Size.X, (int) _line1Sprite.Size.Y), Color.White);
+            _gameContext.GameGraphics.Draw(_line2Sprite, new Rectangle((int)_line2Position.X, (int)_line2Position.Y, (int) _line2Sprite.Size.X, (int) _line2Sprite.Size.Y), Color.White);
             if (_line3Sprite.IsVisible)
             {
-                _gameContext.GameGraphics.Draw(_line3Sprite, new Rectangle((int)_line3Position.X, (int)_line3Position.Y, _line3Sprite.Width, _line3Sprite.Height), Color.White);
+                _gameContext.GameGraphics.Draw(_line3Sprite, new Rectangle((int)_line3Position.X, (int)_line3Position.Y, (int) _line3Sprite.Size.X, (int) _line3Sprite.Size.Y), Color.White);
             }
         }
     }

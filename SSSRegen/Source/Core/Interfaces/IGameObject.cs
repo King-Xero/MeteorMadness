@@ -5,10 +5,9 @@ namespace SSSRegen.Source.Core.Interfaces
     public interface IGameObject
     {
         Vector2 Position { get; set; }
-        float HorizontalVelocity { get; set; }
-        float VerticalVelocity { get; set; }
-        int Width { get; set; }
-        int Height { get; set; }
+        float Speed { get; set; }
+        Vector2 Velocity { get; set; }
+        Vector2 Size { get; set; }
         Rectangle Bounds { get; }
         void Initialize();
         void Update(GameTime gameTime);

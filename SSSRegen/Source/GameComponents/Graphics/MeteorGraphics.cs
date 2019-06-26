@@ -21,8 +21,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
         public void Initialize(IGameObject meteor)
         {
             _activeSprite = _mSprite;
-            meteor.Width = _activeSprite.Width;
-            meteor.Height = _activeSprite.Height;
+            meteor.Size = _activeSprite.Size;
         }
 
         public void Update(IGameObject meteor)
@@ -31,8 +30,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
             //ToDo add sprite "animation" here
 
-            meteor.Width = _activeSprite.Width;
-            meteor.Height = _activeSprite.Height;
+            meteor.Size = _activeSprite.Size;
         }
 
         public void Draw(IGameObject meteor)

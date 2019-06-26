@@ -21,13 +21,11 @@ namespace SSSRegen.Source.Core
         }
 
         public Vector2 Position { get; set; }
-        public float HorizontalVelocity { get; set; }
-        public float VerticalVelocity { get; set; }
+        public float Speed { get; set; }
+        public Vector2 Velocity { get; set; }
+        public Vector2 Size { get; set; }
 
-        public int Width { get; set; }
-        public int Height { get; set; }
-
-        public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+        public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, (int) Size.X, (int) Size.Y);
 
         public virtual void Initialize()
         {
@@ -40,7 +38,7 @@ namespace SSSRegen.Source.Core
         {
             _inputComponent.Update(this);
             _graphicsComponent.Update(this);
-            _physicsComponent.Update(this);
+            _physicsComponent.Update(this, gameTime);
         }
 
         public virtual void Draw(GameTime gameTime)
