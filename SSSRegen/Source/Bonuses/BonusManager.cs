@@ -30,11 +30,11 @@ namespace SSSRegen.Source.Bonuses
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (var healthPack in _healthPacks)
             {
-                healthPack.Update();
+                healthPack.Update(gameTime);
             }
         }
 

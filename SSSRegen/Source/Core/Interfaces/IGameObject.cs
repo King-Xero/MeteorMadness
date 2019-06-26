@@ -11,7 +11,7 @@ namespace SSSRegen.Source.Core.Interfaces
         int Height { get; set; }
         Rectangle Bounds { get; }
         void Initialize();
-        void Update();
+        void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
     }
 }

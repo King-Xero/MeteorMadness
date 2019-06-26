@@ -52,13 +52,13 @@ namespace SSSRegen.Source.Enemies
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (var enemyType in _enemies)
             {
                 foreach (var enemy in enemyType.Value)
                 {
-                    enemy.Update();
+                    enemy.Update(gameTime);
                 }
             }
         }

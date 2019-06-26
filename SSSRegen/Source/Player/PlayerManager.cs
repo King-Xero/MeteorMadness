@@ -28,11 +28,11 @@ namespace SSSRegen.Source.Player
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (var player in _players)
             {
-                player.Update();
+                player.Update(gameTime);
             }
         }
 

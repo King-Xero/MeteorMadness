@@ -20,8 +20,9 @@ namespace SSSRegen
                 PreferredBackBufferHeight = 768
             };
 
-
             Content.RootDirectory = "Content";
+
+            IsFixedTimeStep = false;
         }
         
         /// <summary>

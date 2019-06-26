@@ -35,11 +35,11 @@ namespace SSSRegen.Source.Player
             base.Initialize();
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             _healthComponent.Update(this);
             _scoreComponent.Update(this);
-            base.Update();
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

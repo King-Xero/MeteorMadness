@@ -30,13 +30,17 @@ namespace SSSRegen.Source.Enemies
             base.Initialize();
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            _healthComponent.Update(this);
+
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
+            _healthComponent.Draw(this);
+
             base.Draw(gameTime);
         }
 

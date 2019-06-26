@@ -31,7 +31,7 @@ namespace SSSRegen.Source.Core
             {
                 foreach (var gameObject in GameObjects)
                 {
-                    gameObject.Update();
+                    gameObject.Update(gameTime);
                 }
             }
         }

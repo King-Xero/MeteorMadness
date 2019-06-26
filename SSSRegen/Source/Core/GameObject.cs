@@ -36,7 +36,7 @@ namespace SSSRegen.Source.Core
             _physicsComponent.Initialize(this);
         }
 
-        public virtual void Update()
+        public virtual void Update(GameTime gameTime)
         {
             _inputComponent.Update(this);
             _graphicsComponent.Update(this);

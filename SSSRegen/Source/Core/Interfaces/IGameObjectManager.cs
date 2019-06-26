@@ -5,7 +5,7 @@ namespace SSSRegen.Source.Core.Interfaces
     public interface IGameObjectManager
     {
         void Initialize();
-        void Update();
+        void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
     }
 }

@@ -58,7 +58,7 @@ namespace SSSRegen.Source.States
 
             foreach (var gameObjectManager in _gameObjectManagers)
             {
-                gameObjectManager.Update();
+                gameObjectManager.Update(gameTime);
             }
 
             base.Update(gameTime);

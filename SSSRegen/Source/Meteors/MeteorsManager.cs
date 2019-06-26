@@ -42,13 +42,13 @@ namespace SSSRegen.Source.Meteors
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (var meteorType in _meteors)
             {
                 foreach (var meteor in meteorType.Value)
                 {
-                    meteor.Update();
+                    meteor.Update(gameTime);
                 }
             }
         }
