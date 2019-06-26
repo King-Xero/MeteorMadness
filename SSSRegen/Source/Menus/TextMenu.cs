@@ -19,11 +19,15 @@ namespace SSSRegen.Source.Menus
         private int _height;
         private Vector2 _position;
 
+        private Rectangle _spriteOptionDrawRectangle;
+
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
         public TextMenu(GameContext gameContext, IInputComponent<IGameMenu> menuInputComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
+
+            _spriteOptionDrawRectangle = new Rectangle();
         }
 
         public bool IsEnabled { get; set; } = true;
@@ -71,7 +75,6 @@ namespace SSSRegen.Source.Menus
             {
                 float y = _position.Y;
 
-                //ToDo probably shouldn't be newing up objects in draw methods.
                 for (int i = 0; i < _menuItems.Count; i++)
                 {
                     if (_menuItems.ElementAtOrDefault(i) is TextMenuOption textOption)
@@ -87,16 +90,18 @@ namespace SSSRegen.Source.Menus
                     else if (_menuItems.ElementAtOrDefault(i) is SpriteMenuOption spriteOption)
                     {
                         ISprite sprite = i == SelectedIndex ? spriteOption.SelectedSprite : spriteOption.RegularSprite;
+
                         //Draw a shadow for the text
-                        _gameContext.GameGraphics.Draw(sprite,
-                            new Rectangle((int) (_menuItemPositions[i] + Vector2.One).X,
-                                (int) (_menuItemPositions[i] + Vector2.One).Y, sprite.Width, sprite.Height),
+                        _gameContext.GameGraphics.Draw(
+                            sprite,
+                            ConfigureDrawRectangle((_menuItemPositions[i] + Vector2.One).X, (_menuItemPositions[i] + Vector2.One).Y, sprite.Width, sprite.Height),
                             Color.Black);
                         //Draw the text item
-                        _gameContext.GameGraphics.Draw(sprite,
-                            new Rectangle((int) _menuItemPositions[i].X, (int) _menuItemPositions[i].Y, sprite.Width,
-                                sprite.Height), Color.White);
-
+                        _gameContext.GameGraphics.Draw(
+                            sprite,
+                            ConfigureDrawRectangle(_menuItemPositions[i].X, _menuItemPositions[i].Y, sprite.Width, sprite.Height),
+                            Color.White);
+                        
                         y += sprite.Height;
                     }
                 }
@@ -129,6 +134,16 @@ namespace SSSRegen.Source.Menus
 
                 y += item.MaxHeight;
             }
+        }
+
+        private Rectangle ConfigureDrawRectangle(float xPosition, float yPosition, int width, int height)
+        {
+            _spriteOptionDrawRectangle.X = (int) xPosition;
+            _spriteOptionDrawRectangle.Y = (int) yPosition;
+            _spriteOptionDrawRectangle.Width = width;
+            _spriteOptionDrawRectangle.Height = height;
+
+            return _spriteOptionDrawRectangle;
         }
     }
 }
