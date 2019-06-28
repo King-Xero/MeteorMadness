@@ -26,7 +26,7 @@ namespace SSSRegen.Source.Menus
 
             mainMenu.SetMenuItems(new List<IMenuOption>()
             {
-                new TextMenuOption(_gameContext, OnMainMenuSelectOnePlayer, GameConstants.GameStates.MenuState.OnePlayerMenuText, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, OnMainMenuSelectOnePlayer, GameConstants.GameStates.MenuState.PlayMenuText, regularFont, selectedFont),
                 //new TextMenuOption(_gameContext, OnMainMenuSelectTwoPlayer, GameConstants.GameStates.MenuState.TwoPlayerMenuText, regularFont, selectedFont),
                 //new TextMenuOption(_gameContext, OnMainMenuSelectHelp, GameConstants.GameStates.MenuState.HelpMenuText, regularFont, selectedFont),
                 new TextMenuOption(_gameContext, OnMainMenuSelectQuit, GameConstants.GameStates.MenuState.QuitMenuText, regularFont, selectedFont),

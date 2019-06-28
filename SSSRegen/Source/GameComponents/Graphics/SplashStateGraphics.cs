@@ -18,7 +18,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Initialize(IGameState entity)
         {
-            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.SplashState.BackgroundTextureName));
+            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.SplashState.Textures.BackgroundTextureName));
         }
 
         public void Update(IGameState entity)

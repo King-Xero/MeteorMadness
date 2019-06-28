@@ -220,19 +220,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <None Include="Content\MenuFonts\largeFont.spritefont" />
-    <None Include="Content\MenuFonts\smallFont.spritefont" />
-    <None Include="Content\PlayFonts\scoreFont.spritefont" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\HelpImages\HelpBackground.jpg" />
-    <Content Include="Content\HelpImages\HelpInfo.png" />
-    <Content Include="Content\MenuImages\MenuBackground.png" />
-    <Content Include="Content\MenuImages\MenuElements.png" />
-    <Content Include="Content\PlayImages\GameBackground.png" />
-    <Content Include="Content\PlayImages\laserGreen04.png" />
-    <Content Include="Content\PlayImages\SpriteSheet.png" />
-    <Content Include="Content\SplashScreen\tempBackground.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

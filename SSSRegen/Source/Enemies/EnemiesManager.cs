@@ -30,17 +30,13 @@ namespace SSSRegen.Source.Enemies
             {
                 _enemies[GameConstants.Enemies.Enemy1.Name].Add(_enemyFactory.CreateEnemy1());
             }
-            for (var i = 0; i < GameConstants.Enemies.Enemy2.InitialEnemyCount; i++)
+            for (var i = 0; i < GameConstants.Enemies.Enemy2.InitialCount; i++)
             {
                 _enemies[GameConstants.Enemies.Enemy2.Name].Add(_enemyFactory.CreateEnemy2());
             }
             for (var i = 0; i < GameConstants.Enemies.Enemy3.InitialCount; i++)
             {
                 _enemies[GameConstants.Enemies.Enemy3.Name].Add(_enemyFactory.CreateEnemy3());
-            }
-            for (var i = 0; i < GameConstants.Enemies.EnemyBoss.InitialCount; i++)
-            {
-                _enemies[GameConstants.Enemies.EnemyBoss.Name].Add(_enemyFactory.CreateEnemyBoss());
             }
 
             foreach (var enemyType in _enemies)

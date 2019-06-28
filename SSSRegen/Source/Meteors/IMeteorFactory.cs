@@ -2,7 +2,9 @@
 {
     public interface IMeteorFactory
     {
-        Meteor CreateSmallMeteor();
+        Meteor CreateBigMeteor();
         Meteor CreateMediumMeteor();
+        Meteor CreateSmallMeteor();
+        Meteor CreateTinyMeteor();
     }
 }

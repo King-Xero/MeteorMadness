@@ -19,7 +19,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Initialize(IGameState entity)
         {
-            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.BackgroundTextureName));
+            _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.Textures.BackgroundTextureName));
         }
 
         public void Update(IGameState entity)
