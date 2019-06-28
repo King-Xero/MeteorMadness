@@ -87,6 +87,7 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName, GameConstants.GameStates.PlayState.PlayElementsSpriteSheetFilePath);
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName, GameConstants.GameStates.MenuState.LogoSpriteSheetFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.BackgroundTextureName, GameConstants.GameStates.MenuState.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.BulletTextureName, GameConstants.Projectiles.BulletTextureFileName);
 
             base.LoadContent();
         }

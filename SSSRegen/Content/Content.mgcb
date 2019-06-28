@@ -94,6 +94,18 @@
 /processorParam:TextureFormat=Color
 /build:PlayImages/GameBackground.png
 
+#begin PlayImages/laserGreen04.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayImages/laserGreen04.png
+
 #begin PlayImages/SpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

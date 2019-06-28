@@ -188,5 +188,16 @@ namespace SSSRegen.Source.GameData
                 public const int ItemSpacing = 5;
             }
         }
+
+        public static class Projectiles
+        {
+            public static class Player
+            {
+                public const int MaxBulletsOnScreen = 30;
+            }
+
+            public const string BulletTextureName = "bulletTexture";
+            public const string BulletTextureFileName = @"PlayImages/laserGreen04";
+        }
     }
 }

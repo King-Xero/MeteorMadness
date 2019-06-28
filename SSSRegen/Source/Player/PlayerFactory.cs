@@ -9,6 +9,7 @@ using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Projectiles;
 using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.Player
@@ -29,7 +30,8 @@ namespace SSSRegen.Source.Player
                 CreatePlayerScore(),
                 CreatePlayerInput(),
                 CreatePlayerPhysics(),
-                CreatePlayerGraphics());
+                CreatePlayerGraphics(),
+                CreatePlayerProjectileManager());
         }
 
         private IHealthComponent CreatePlayerHealth()
@@ -71,6 +73,11 @@ namespace SSSRegen.Source.Player
             Sprite moveLeftSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
             Sprite moveRightSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
             return new PlayerGraphics(_gameContext.GameGraphics, idleSprite, moveLeftSprite, moveRightSprite);
+        }
+
+        private IProjectilesManager CreatePlayerProjectileManager()
+        {
+            return new PlayerProjectilesManager(_gameContext);
         }
     }
 }

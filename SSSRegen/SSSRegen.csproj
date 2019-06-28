@@ -49,10 +49,12 @@
     <Compile Include="Source\Bonuses\BonusManager.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
     <Compile Include="Source\Core\GameFactories.cs" />
+    <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />
     <Compile Include="Source\Core\Interfaces\IGameFactories.cs" />
     <Compile Include="Source\GameComponents\Input\PlayStateMenuInput.cs" />
+    <Compile Include="Source\GameComponents\Physics\BulletPhysicsComponent.cs" />
     <Compile Include="Source\Menus\IMenuFactory.cs" />
     <Compile Include="Source\Menus\IGameMenu.cs" />
     <Compile Include="Source\Core\Interfaces\IUIText.cs" />
@@ -139,6 +141,13 @@
     <Compile Include="Source\Player\PlayerManager.cs" />
     <Compile Include="Source\Player\ToDelete\OldPlayer.cs" />
     <Compile Include="Source\Player\ToDelete\PlayerScore.cs" />
+    <Compile Include="Source\Projectiles\Bullet.cs" />
+    <Compile Include="Source\Projectiles\IProjectile.cs" />
+    <Compile Include="Source\Projectiles\IProjectileFactory.cs" />
+    <Compile Include="Source\Projectiles\IProjectilesManager.cs" />
+    <Compile Include="Source\Projectiles\IShootProjectiles.cs" />
+    <Compile Include="Source\Projectiles\PlayerProjectilesManager.cs" />
+    <Compile Include="Source\Projectiles\ProjectileFactory.cs" />
     <Compile Include="Source\Score\IHandleScore.cs" />
     <Compile Include="Source\Score\IScoreComponent.cs" />
     <Compile Include="Source\Score\PlayerScoreComponent.cs" />
@@ -221,6 +230,7 @@
     <Content Include="Content\MenuImages\MenuBackground.png" />
     <Content Include="Content\MenuImages\MenuElements.png" />
     <Content Include="Content\PlayImages\GameBackground.png" />
+    <Content Include="Content\PlayImages\laserGreen04.png" />
     <Content Include="Content\PlayImages\SpriteSheet.png" />
     <Content Include="Content\SplashScreen\tempBackground.png" />
   </ItemGroup>
