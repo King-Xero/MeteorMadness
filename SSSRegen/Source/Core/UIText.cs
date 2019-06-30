@@ -12,6 +12,7 @@ namespace SSSRegen.Source.Core
             Font = font ?? throw new ArgumentNullException(nameof(font));
             Text = text ?? throw new ArgumentNullException(nameof(text));
             TextColor = Color.White;
+            Size = new Vector2(Font.MeasureString(Text).X, Font.MeasureString(Text).Y);
         }
 
         public UIText(SpriteFont font, string text, Color color)
@@ -19,12 +20,13 @@ namespace SSSRegen.Source.Core
             Font = font ?? throw new ArgumentNullException(nameof(font));
             Text = text ?? throw new ArgumentNullException(nameof(text));
             TextColor = color;
+            Size = new Vector2(Font.MeasureString(Text).X, Font.MeasureString(Text).Y);
         }
 
         public SpriteFont Font { get; }
         public Color TextColor { get; set ; }
         public string Text { get; }
-        public int Width => (int) Font.MeasureString(Text).X;
-        public int Height => (int) Font.MeasureString(Text).Y;
+        public Vector2 Size { get; }
+        public bool IsVisible { get; set; }
     }
 }

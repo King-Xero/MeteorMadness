@@ -22,13 +22,13 @@ namespace SSSRegen.Source.Menus
         public UIText RegularText { get; }
         public UIText SelectedText { get; }
         public Action OptionAction { get; }
-        public int MaxWidth { get; private set; }
-        public int MaxHeight { get; private set; }
+        public Vector2 MaxSize { get; private set; }
         
         private void CalculateSize()
         {
-            MaxWidth = Math.Max(RegularText.Width, SelectedText.Width);
-            MaxHeight = Math.Max(SelectedText.Height, SelectedText.Height);
+            MaxSize = new Vector2(
+                Math.Max(RegularText.Size.X, SelectedText.Size.X),
+                Math.Max(SelectedText.Size.Y, SelectedText.Size.Y));
         }
     }
 }

@@ -301,6 +301,8 @@ namespace SSSRegen.Source.GameData
                 public const string RegularFontFileName = @"Fonts/smallFont";
                 public const string SelectedFontName = "selectedFontName";
                 public const string SelectedFontFileName = @"Fonts/largeFont";
+                public const string LogoFontName = "logoFontName";
+                public const string LogoFontFileName = @"Fonts/logoFont";
 
                 public static class Textures
                 {
