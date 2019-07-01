@@ -50,7 +50,7 @@ namespace SSSRegen.Source.Projectiles
                 _bullets.Add(bulletToShoot);
             }
 
-            bulletToShoot.Position = obj.BulletPosition;
+            bulletToShoot.Position = new Vector2(obj.BulletPosition.X - (bulletToShoot.Size.X / 2), obj.BulletPosition.Y);
             bulletToShoot.IsActive = true;
         }
 
