@@ -22,9 +22,7 @@ namespace SSSRegen.Source.Enemies
 
         public Enemy CreateEnemy1()
         {
-            var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
-                GameConstants.Enemies.Enemy1.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Enemies.Enemy1.Textures.BlackTextureName));
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
@@ -37,9 +35,7 @@ namespace SSSRegen.Source.Enemies
 
         public Enemy CreateEnemy2()
         {
-            var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
-                GameConstants.Enemies.Enemy2.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Enemies.Enemy2.Textures.BlueTextureName));
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
@@ -52,9 +48,7 @@ namespace SSSRegen.Source.Enemies
 
         public Enemy CreateEnemy3()
         {
-            var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
-                GameConstants.Enemies.Enemy3.SpriteFrames.FirstOrDefault());
+            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Enemies.Enemy3.Textures.GreenTextureName));
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
@@ -65,19 +59,6 @@ namespace SSSRegen.Source.Enemies
                 graphicsComponent);
         }
 
-        public Enemy CreateEnemyBoss()
-        {
-            var sprite = new Sprite(
-                _gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName),
-                GameConstants.Enemies.EnemyBoss.SpriteFrames.FirstOrDefault());
-
-            var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
-
-            return new Enemy(
-                new EnemyHealthComponent(GameConstants.Enemies.EnemyBoss.InitialMaxHealth, new NullHealthContainer()),
-                new NullGameObjectInputComponent(),
-                new EnemyPhysics(_gameContext, _random),
-                graphicsComponent);
-        }
+        //ToDo Create more enemy types
     }
 }

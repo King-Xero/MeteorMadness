@@ -68,11 +68,12 @@ namespace SSSRegen.Source.Player
 
         private IGraphicsComponent<IGameObject> CreatePlayerGraphics()
         {
-            var spriteSheet =_gameContext.AssetManager.GetTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName);
-            Sprite idleSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
-            Sprite moveLeftSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
-            Sprite moveRightSprite = new Sprite(spriteSheet, GameConstants.Player.IdleSpriteFrames.FirstOrDefault());
-            return new PlayerGraphics(_gameContext.GameGraphics, idleSprite, moveLeftSprite, moveRightSprite);
+            return new PlayerGraphics(
+                _gameContext.GameGraphics,
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName)),
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName)),
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName)),
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName)));
         }
 
         private IProjectilesManager CreatePlayerProjectileManager()

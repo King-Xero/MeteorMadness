@@ -30,7 +30,7 @@ namespace SSSRegen.Source.Projectiles
 
         private IGraphicsComponent<IGameObject> CreateBulletGraphics()
         {
-            var bulletTexture = _gameContext.AssetManager.GetTexture(GameConstants.Projectiles.BulletTextureName);
+            var bulletTexture = _gameContext.AssetManager.GetTexture(GameConstants.Projectiles.Bullet3.Textures.RedTextureName);
             var bulletSprite = new Sprite(bulletTexture);
 
             return new BulletGraphicsComponent(_gameContext.GameGraphics, bulletSprite);

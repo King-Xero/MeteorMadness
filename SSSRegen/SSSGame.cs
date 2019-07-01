@@ -80,14 +80,62 @@ namespace SSSRegen
         /// </summary>
         protected override void LoadContent()
         {
+            //Fonts
             _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
             _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.LogoFontName, GameConstants.GameStates.MenuState.LogoFontFileName);
+            
+            //Background Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.Textures.BackgroundTextureName, GameConstants.GameStates.SplashState.Textures.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.Textures.BackgroundTextureName, GameConstants.GameStates.MenuState.Textures.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.Textures.BackgroundTextureName, GameConstants.GameStates.PlayState.Textures.BackgroundTextureFileName);
 
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.BackgroundTextureName, GameConstants.GameStates.SplashState.BackgroundTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.PlayElementsSpriteSheetName, GameConstants.GameStates.PlayState.PlayElementsSpriteSheetFilePath);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.LogoSpriteSheetName, GameConstants.GameStates.MenuState.LogoSpriteSheetFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.BackgroundTextureName, GameConstants.GameStates.MenuState.BackgroundTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.BulletTextureName, GameConstants.Projectiles.BulletTextureFileName);
+            //Bonus Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.Bonuses.HealthPack.Textures.RedTextureName, GameConstants.Bonuses.HealthPack.Textures.RedTextureFileName);
+
+            //Projectile Textures
+            //ToDo Add different player types
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet1.Textures.BlueTextureName, GameConstants.Projectiles.Bullet1.Textures.BlueTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet2.Textures.GreenTextureName, GameConstants.Projectiles.Bullet2.Textures.GreenTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet3.Textures.RedTextureName, GameConstants.Projectiles.Bullet3.Textures.RedTextureFileName);
+
+            //Player Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName, GameConstants.Player.PlayerShip1.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName, GameConstants.Player.PlayerShip1.Textures.LightDamageTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName, GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureFileName);
+
+
+            //ToDo Add different player types
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip2.Textures.GreenTextureName, GameConstants.Player.PlayerShip2.Textures.GreenTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip2.Textures.LightDamageTextureName, GameConstants.Player.PlayerShip2.Textures.LightDamageTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip2.Textures.MediumDamageTextureName, GameConstants.Player.PlayerShip2.Textures.MediumDamageTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip2.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip2.Textures.HeavyDamageTextureFileName);
+
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip3.Textures.BlueTextureName, GameConstants.Player.PlayerShip3.Textures.BlueTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip3.Textures.LightDamageTextureName, GameConstants.Player.PlayerShip3.Textures.LightDamageTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip3.Textures.MediumDamageTextureName, GameConstants.Player.PlayerShip3.Textures.MediumDamageTextureFileName);
+            //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip3.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip3.Textures.HeavyDamageTextureFileName);
+
+            //Enemy Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy1.Textures.BlackTextureName, GameConstants.Enemies.Enemy1.Textures.BlackTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy2.Textures.BlueTextureName, GameConstants.Enemies.Enemy2.Textures.BlueTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy3.Textures.GreenTextureName, GameConstants.Enemies.Enemy3.Textures.GreenTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy4.Textures.RedTextureName, GameConstants.Enemies.Enemy4.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy5.Textures.BlackTextureName, GameConstants.Enemies.Enemy5.Textures.BlackTextureFileName);
+
+            //Meteor Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor1.Textures.BrownTextureName, GameConstants.Meteors.BigMeteor1.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor2.Textures.GreyTextureName, GameConstants.Meteors.BigMeteor2.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor3.Textures.BrownTextureName, GameConstants.Meteors.BigMeteor3.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor4.Textures.GreyTextureName, GameConstants.Meteors.BigMeteor4.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor1.Textures.BrownTextureName, GameConstants.Meteors.MediumMeteor1.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor2.Textures.GreyTextureName, GameConstants.Meteors.MediumMeteor2.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor3.Textures.BrownTextureName, GameConstants.Meteors.MediumMeteor3.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.SmallMeteor1.Textures.GreyTextureName, GameConstants.Meteors.SmallMeteor1.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureName, GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureName, GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureName, GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureFileName);
 
             base.LoadContent();
         }

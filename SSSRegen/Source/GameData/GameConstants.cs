@@ -10,34 +10,71 @@ namespace SSSRegen.Source.GameData
             public static class Enemy1
             {
                 public const string Name = "enemy1";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                {
-                    new Rectangle {X = 105, Y = 210, Width = 50, Height = 50}
-                };
                 public const int InitialCount = 4;
                 public const int InitialMaxHealth = 20;
+                public const int Speed = 40;
+
+                public static class Textures
+                {
+                    public const string BlackTextureName = "enemy1Black";
+                    public const string BlackTextureFileName = @"Images/Enemies/enemyBlack1";
+                }
             }
 
             public static class Enemy2
             {
                 public const string Name = "enemy2";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
+                public const int InitialCount = 4;
+                public const int InitialMaxHealth = 20;
+                public const int Speed = 40;
+
+                public static class Textures
                 {
-                    new Rectangle {X = 105, Y = 260, Width = 65, Height = 65}
-                };
-                public const int InitialEnemyCount = 2;
-                public const int InitialMaxHealth = 30;
+                    public const string BlueTextureName = "enemy2Blue";
+                    public const string BlueTextureFileName = @"Images/Enemies/enemyBlue2";
+                }
             }
 
             public static class Enemy3
             {
                 public const string Name = "enemy3";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
+                public const int InitialCount = 4;
+                public const int InitialMaxHealth = 20;
+                public const int Speed = 40;
+
+                public static class Textures
                 {
-                    new Rectangle {X = 65, Y = 325, Width = 70, Height = 72}
-                };
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 40;
+                    public const string GreenTextureName = "enemy3Green";
+                    public const string GreenTextureFileName = @"Images/Enemies/enemyGreen3";
+                }
+            }
+
+            public static class Enemy4
+            {
+                public const string Name = "enemy4";
+                public const int InitialCount = 4;
+                public const int InitialMaxHealth = 20;
+                public const int Speed = 40;
+
+                public static class Textures
+                {
+                    public const string RedTextureName = "enemy4Red";
+                    public const string RedTextureFileName = @"Images/Enemies/enemyRed4";
+                }
+            }
+
+            public static class Enemy5
+            {
+                public const string Name = "enemy5";
+                public const int InitialCount = 4;
+                public const int InitialMaxHealth = 20;
+                public const int Speed = 40;
+
+                public static class Textures
+                {
+                    public const string BlackTextureName = "enemy5Black";
+                    public const string BlackTextureFileName = @"Images/Enemies/enemyBlack5";
+                }
             }
 
             public static class EnemyBoss
@@ -54,38 +91,115 @@ namespace SSSRegen.Source.GameData
 
         public static class Meteors
         {
-            public static class SmallMeteor
+            public static class BigMeteor1
             {
-                public const string Name = "smallMeteor";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                {
-                    new Rectangle {X = 0, Y = 0, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 40, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 80, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 120, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 160, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 200, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 240, Width = 40, Height = 40},
-                    new Rectangle {X = 0, Y = 280, Width = 40, Height = 40},
-                };
+                public const string Name = "bigMeteor1";
                 public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "bigMeteor1Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big1";
+                }
             }
-
-            public static class MediumMeteor
+            public static class BigMeteor2
             {
-                public const string Name = "mediumMeteor";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                {
-                    new Rectangle {X = 0, Y = 0, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 65, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 130, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 195, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 260, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 325, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 390, Width = 65, Height = 65},
-                    new Rectangle {X = 0, Y = 455, Width = 65, Height = 65},
-                };
+                public const string Name = "bigMeteor2";
                 public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string GreyTextureName = "bigMeteor2Grey";
+                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big2";
+                }
+            }
+            public static class BigMeteor3
+            {
+                public const string Name = "bigMeteor3";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "bigMeteor3Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big3";
+                }
+            }
+            public static class BigMeteor4
+            {
+                public const string Name = "bigMeteor4";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string GreyTextureName = "bigMeteor4Grey";
+                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big4";
+                }
+            }
+            public static class MediumMeteor1
+            {
+                public const string Name = "mediumMeteor1";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "mediumMeteor1Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med1";
+                }
+            }
+            public static class MediumMeteor2
+            {
+                public const string Name = "mediumMeteor2";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string GreyTextureName = "mediumMeteor2Grey";
+                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_med2";
+                }
+            }
+            public static class MediumMeteor3
+            {
+                public const string Name = "mediumMeteor3";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "mediumMeteor3Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med3";
+                }
+            }
+            public static class SmallMeteor1
+            {
+                public const string Name = "smallMeteor1";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string GreyTextureName = "smallMeteor1Grey";
+                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_small1";
+                }
+            }
+            public static class SmallMeteor2
+            {
+                public const string Name = "smallMeteor1";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "smallMeteor2Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_small2";
+                }
+            }
+            public static class TinyMeteor1
+            {
+                public const string Name = "tinyMeteor1";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string GreyTextureName = "tinyMeteor1Grey";
+                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_tiny1";
+                }
+            }
+            public static class TinyMeteor2
+            {
+                public const string Name = "tinyMeteor1";
+                public const int InitialCount = 2;
+                public static class Textures
+                {
+                    public const string BrownTextureName = "tinyMeteor2Brown";
+                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_tiny2";
+                }
             }
         }
 
@@ -93,26 +207,11 @@ namespace SSSRegen.Source.GameData
         {
             public static class HealthPack
             {
-                public const string Name = "healthPack";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
+                public static class Textures
                 {
-                    new Rectangle {X = 169, Y = 0, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 15, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 30, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 45, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 60, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 75, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 90, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 105, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 120, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 135, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 150, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 165, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 180, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 195, Width = 15, Height = 15},
-                    new Rectangle {X = 169, Y = 210, Width = 15, Height = 15},
-                };
-                public const int FrameDelay = 200;
+                    public const string RedTextureName = "healthPackRed";
+                    public const string RedTextureFileName = @"Images/Bonuses/pill_red";
+                }
                 public const int InitialCount = 2;
             }
         }
@@ -122,27 +221,75 @@ namespace SSSRegen.Source.GameData
             public static readonly Vector2 MovementVelocity = new Vector2(6.0f, 0);
             public const int InitialMaxHealth = 100;
             public const string ScoreFormat = "000000000000";
-            public static readonly List<Rectangle> IdleSpriteFrames = new List<Rectangle>
+            
+            public static class PlayerShip1
             {
-                new Rectangle {X = 105, Y = 0, Width = 50, Height = 40}
-            };
+                public static class Textures
+                {
+                    public const string LightDamageTextureName = "playerShip1Damage1";
+                    public const string LightDamageTextureFileName = @"Images/Players/playerShip1_damage1";
+                    public const string MediumDamageTextureName = "playerShip1Damage2";
+                    public const string MediumDamageTextureFileName = @"Images/Players/playerShip1_damage2";
+                    public const string HeavyDamageTextureName = "playerShip1Damage3";
+                    public const string HeavyDamageTextureFileName = @"Images/Players/playerShip1_damage3";
+
+                    public const string RedTextureName = "playerShip1Red";
+                    public const string RedTextureFileName = @"Images/Players/playerShip1_red";
+                }
+            }
+            public static class PlayerShip2
+            {
+                public static class Textures
+                {
+                    public const string LightDamageTextureName = "playerShip2Damage1";
+                    public const string LightDamageTextureFileName = @"Images/Players/playerShip2_damage1";
+                    public const string MediumDamageTextureName = "playerShip2Damage2";
+                    public const string MediumDamageTextureFileName = @"Images/Players/playerShip2_damage2";
+                    public const string HeavyDamageTextureName = "playerShip2Damage3";
+                    public const string HeavyDamageTextureFileName = @"Images/Players/playerShip2_damage3";
+
+                    public const string GreenTextureName = "playerShip2Green";
+                    public const string GreenTextureFileName = @"Images/Players/playerShip2_green";
+                }
+            }
+            public static class PlayerShip3
+            {
+                public static class Textures
+                {
+                    public const string LightDamageTextureName = "playerShip3Damage1";
+                    public const string LightDamageTextureFileName = @"Images/Players/playerShip3_damage1";
+                    public const string MediumDamageTextureName = "playerShip3Damage2";
+                    public const string MediumDamageTextureFileName = @"Images/Players/playerShip3_damage2";
+                    public const string HeavyDamageTextureName = "playerShip3Damage3";
+                    public const string HeavyDamageTextureFileName = @"Images/Players/playerShip3_damage3";
+
+                    public const string BlueTextureName = "playerShip3Blue";
+                    public const string BlueTextureFileName = @"Images/Players/playerShip3_blue";
+                }
+            }
         }
 
         public static class GameStates
         {
             public static class SplashState
             {
-                public const string BackgroundTextureName = "splashBackground";
-                public const string BackgroundTextureFileName = @"SplashScreen/tempBackground";
+                public static class Textures
+                {
+                    public const string BackgroundTextureName = "splashStateBackground";
+                    public const string BackgroundTextureFileName = @"Images/Backgrounds/SplashState/tempBackground";
+                }
+
                 public const float SplashStateDisplayTime = 1.0f;
             }
 
             public static class PlayState
             {
-                public const string PlayElementsSpriteSheetName = "PlayElementsSpriteSheet";
-                public const string PlayElementsSpriteSheetFilePath = @"PlayImages/SpriteSheet";
-                public const string BackgroundTextureName = "playStateBackground";
-                public const string BackgroundTextureFileName = @"MenuImages/MenuBackground";
+                public static class Textures
+                {
+                    public const string BackgroundTextureName = "playStateBackground";
+                    public const string BackgroundTextureFileName = @"Images/Backgrounds/PlayState/Space003";
+                }
+
                 public const string MenuTextResume = "Resume";
                 public const string MenuTextHelp = "Help";
                 public const string MenuTextQuit = "Quit";
@@ -150,39 +297,35 @@ namespace SSSRegen.Source.GameData
 
             public static class MenuState
             {
-                public const string LogoSpriteSheetName = "menuElements";
-                public const string LogoSpriteSheetFileName = @"MenuImages/MenuElements";
                 public const string RegularFontName = "regularFontName";
-                public const string RegularFontFileName = @"MenuFonts/smallFont";
+                public const string RegularFontFileName = @"Fonts/smallFont";
                 public const string SelectedFontName = "selectedFontName";
-                public const string SelectedFontFileName = @"MenuFonts/largeFont";
-                public const string BackgroundTextureName = "menuBackground";
-                public const string BackgroundTextureFileName = @"MenuImages/MenuBackground";
+                public const string SelectedFontFileName = @"Fonts/largeFont";
+                public const string LogoFontName = "logoFontName";
+                public const string LogoFontFileName = @"Fonts/logoFont";
+
+                public static class Textures
+                {
+                    public const string BackgroundTextureName = "menuBackground";
+                    public const string BackgroundTextureFileName = @"Images/Backgrounds/MenuState/Space005";
+                }
 
                 public static class LogoLine1
                 {
-                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                    {
-                        new Rectangle(0, 0, 536, 131),
-                    };
+                    //ToDo Logo position to go here
                 }
                 public static class LogoLine2
                 {
-                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                    {
-                        new Rectangle(120, 165, 517, 130),
-                    };
+                    //ToDo Logo position to go here
                 }
                 public static class LogoLine3
                 {
-                    public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                    {
-                        new Rectangle(8, 304, 375, 144),
-                    };
+                    //ToDo Logo position to go here
                 }
 
-                public const string OnePlayerMenuText = "One Player";
-                public const string TwoPlayerMenuText = "Two Player";
+                public const string PlayMenuText = "Play";
+                //public const string OnePlayerMenuText = "One Player";
+                //public const string TwoPlayerMenuText = "Two Player";
                 public const string HelpMenuText = "Help";
                 public const string QuitMenuText = "Quit";
                 public const int ItemSpacing = 5;
@@ -196,8 +339,32 @@ namespace SSSRegen.Source.GameData
                 public const int MaxBulletsOnScreen = 30;
             }
 
-            public const string BulletTextureName = "bulletTexture";
-            public const string BulletTextureFileName = @"PlayImages/laserGreen04";
+            public static class Bullet1
+            {
+                public static class Textures
+                {
+                    public const string BlueTextureName = "blueBullet1";
+                    public const string BlueTextureFileName = @"Images/Projectiles/laserBlue07";
+                }
+            }
+
+            public static class Bullet2
+            {
+                public static class Textures
+                {
+                    public const string GreenTextureName = "greenBullet2";
+                    public const string GreenTextureFileName = @"Images/Projectiles/laserGreen05";
+                }
+            }
+
+            public static class Bullet3
+            {
+                public static class Textures
+                {
+                    public const string RedTextureName = "redBullet3";
+                    public const string RedTextureFileName = @"Images/Projectiles/laserRed13";
+                }
+            }
         }
     }
 }

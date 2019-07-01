@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Projectiles;
 using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.GameComponents.Physics
@@ -28,6 +29,12 @@ namespace SSSRegen.Source.GameComponents.Physics
             position -= Vector2.Multiply(obj.Velocity, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             obj.Position = position;
+
+            if (!_gameContext.ScreenBounds.Intersects(obj.Bounds))
+            {
+                var proj = (IProjectile) obj;
+                proj.IsActive = false;
+            }
         }
     }
 }

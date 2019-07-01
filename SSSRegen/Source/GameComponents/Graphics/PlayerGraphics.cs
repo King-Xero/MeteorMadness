@@ -8,46 +8,51 @@ namespace SSSRegen.Source.GameComponents.Graphics
     public class PlayerGraphics : IGraphicsComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
-        private readonly Sprite _idleSprite;
-        private readonly Sprite _moveLeftSprite;
-        private readonly Sprite _moveRightSprite;
+        private readonly Sprite _playerShipSprite;
+        private readonly Sprite _lightDamageSprite;
+        private readonly Sprite _mediumDamageSprite;
+        private readonly Sprite _heavyDamageSprite;
+        
+        private Sprite _activeDamageSprite;
 
-        private Sprite _activeSprite;
-
-        public PlayerGraphics(IGameGraphics gameGraphics, Sprite idleSprite, Sprite moveLeftSprite, Sprite moveRightSprite)
+        public PlayerGraphics(IGameGraphics gameGraphics, Sprite playerShipSprite, Sprite lightDamageSprite, Sprite mediumDamageSprite, Sprite heavyDamageSprite)
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
-            _idleSprite = idleSprite ?? throw new ArgumentNullException(nameof(idleSprite));
-            _moveLeftSprite = moveLeftSprite ?? throw new ArgumentNullException(nameof(moveLeftSprite));
-            _moveRightSprite = moveRightSprite ?? throw new ArgumentNullException(nameof(moveRightSprite));
+            _playerShipSprite = playerShipSprite ?? throw new ArgumentNullException(nameof(playerShipSprite));
+            _lightDamageSprite = lightDamageSprite ?? throw new ArgumentNullException(nameof(lightDamageSprite));
+            _mediumDamageSprite = mediumDamageSprite?? throw new ArgumentNullException(nameof(mediumDamageSprite));
+            _heavyDamageSprite = heavyDamageSprite ?? throw new ArgumentNullException(nameof(heavyDamageSprite));
         }
 
         public void Initialize(IGameObject player)
         {
-            _activeSprite = _idleSprite;
-            player.Size = _activeSprite.Size;
+            _activeDamageSprite = null;
+            player.Size = _playerShipSprite.Size;
         }
 
         public void Update(IGameObject player)
         {
-            _activeSprite = _idleSprite;
-
-            if (player.Velocity.X < 0)
-            {
-                _activeSprite = _moveLeftSprite;
-            }
-            else if (player.Velocity.X > 0)
-            {
-                _activeSprite = _moveRightSprite;
-            }
+            //ToDo Set damage sprites
+            //if (player.Velocity.X < 0)
+            //{
+            //    _activeSprite = _moveLeftSprite;
+            //}
+            //else if (player.Velocity.X > 0)
+            //{
+            //    _activeSprite = _moveRightSprite;
+            //}
 
             //ToDo Possibly move into physics components as setting up bounds
-            player.Size = _activeSprite.Size;
+            player.Size = _playerShipSprite.Size;
         }
 
         public void Draw(IGameObject player)
         {
-            _gameGraphics.Draw(_activeSprite, player.Bounds, Color.White);
+            _gameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
+            if (_activeDamageSprite != null)
+            {
+                _gameGraphics.Draw(_activeDamageSprite, player.Bounds, Color.White);
+            }
         }
     }
 }

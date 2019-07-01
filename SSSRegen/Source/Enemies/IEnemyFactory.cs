@@ -5,6 +5,6 @@
         Enemy CreateEnemy1();
         Enemy CreateEnemy2();
         Enemy CreateEnemy3();
-        Enemy CreateEnemyBoss();
+        //ToDo Create more enemy types
     }
 }

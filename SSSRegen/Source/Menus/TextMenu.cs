@@ -80,11 +80,11 @@ namespace SSSRegen.Source.Menus
                     {
                         IUIText uiText = i == SelectedIndex ? textOption.SelectedText : textOption.RegularText;
                         //Draw a shadow for the text
-                        _gameContext.GameGraphics.DrawString(uiText, _menuItemPositions[i] + Vector2.One, Color.Black);
+                        _gameContext.GameGraphics.DrawText(uiText, _menuItemPositions[i] + Vector2.One, Color.Black);
                         //Draw the text item
-                        _gameContext.GameGraphics.DrawString(uiText, _menuItemPositions[i], uiText.TextColor);
+                        _gameContext.GameGraphics.DrawText(uiText, _menuItemPositions[i], uiText.TextColor);
 
-                        y += uiText.Height; //uiText.Font.LineSpacing;
+                        y += uiText.Size.Y; //uiText.Font.LineSpacing;
                     }
                     else if (_menuItems.ElementAtOrDefault(i) is SpriteMenuOption spriteOption)
                     {
@@ -114,9 +114,9 @@ namespace SSSRegen.Source.Menus
             _width = 0;
             foreach (var item in _menuItems)
             {
-                _width = Math.Max(_width, item.MaxWidth);
+                _width = Math.Max(_width, item.MaxSize.X).ToInt();
                 //Calculates the height of the menu and adds extra spacing
-                _height += item.MaxHeight + GameConstants.GameStates.MenuState.ItemSpacing; 
+                _height += item.MaxSize.Y.ToInt() + GameConstants.GameStates.MenuState.ItemSpacing; 
             }
 
             //ToDo put menu in correct position
@@ -132,7 +132,7 @@ namespace SSSRegen.Source.Menus
             {
                 _menuItemPositions.Add(new Vector2(_position.X, y));
 
-                y += item.MaxHeight;
+                y += item.MaxSize.Y;
             }
         }
 

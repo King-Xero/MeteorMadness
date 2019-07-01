@@ -22,13 +22,13 @@ namespace SSSRegen.Source.Menus
         public ISprite RegularSprite { get; }
         public ISprite SelectedSprite { get; }
         public Action OptionAction { get; }
-        public int MaxWidth { get; private set; }
-        public int MaxHeight { get; private set; }
+        public Vector2 MaxSize { get; private set; }
 
         private void CalculateSize()
         {
-            MaxWidth = MathHelper.Max(RegularSprite.Size.X, SelectedSprite.Size.X).ToInt();
-            MaxHeight = MathHelper.Max(RegularSprite.Size.Y, SelectedSprite.Size.Y).ToInt();
+            MaxSize = new Vector2(
+            MathHelper.Max(RegularSprite.Size.X, SelectedSprite.Size.X).ToInt(),
+            MathHelper.Max(RegularSprite.Size.Y, SelectedSprite.Size.Y).ToInt());
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
@@ -30,7 +29,7 @@ namespace SSSRegen.Source.Player
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
-        public Vector2 BulletPosition => Position;
+        public Vector2 BulletPosition => new Vector2(Position.X + (Size.X / 2), Position.Y - (Size.Y / 2));
 
         public override void Initialize()
         {
