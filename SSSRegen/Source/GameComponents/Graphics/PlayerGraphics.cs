@@ -8,10 +8,10 @@ namespace SSSRegen.Source.GameComponents.Graphics
     public class PlayerGraphics : IGraphicsComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
-        private readonly Sprite _playerShipSprite;
-        private readonly Sprite _lightDamageSprite;
-        private readonly Sprite _mediumDamageSprite;
-        private readonly Sprite _heavyDamageSprite;
+        private readonly ISprite _playerShipSprite;
+        private readonly ISprite _lightDamageSprite;
+        private readonly ISprite _mediumDamageSprite;
+        private readonly ISprite _heavyDamageSprite;
         
         private Sprite _activeDamageSprite;
 

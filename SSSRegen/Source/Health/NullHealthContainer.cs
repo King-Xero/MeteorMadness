@@ -6,7 +6,12 @@
         {
         }
 
-        public void Update()
+        public void Initialize(IHandleHealth entity)
+        {
+            //Do nothing
+        }
+
+        public void Update(IHandleHealth entity)
         {
             //Do nothing
         }

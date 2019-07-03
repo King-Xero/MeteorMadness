@@ -29,7 +29,7 @@ namespace SSSRegen.Source.Health
 
         public void Update(IHandleHealth enemy)
         {
-            _enemyHealthContainer.Update();
+            _enemyHealthContainer.Update(enemy);
         }
 
         public void Draw(IHandleHealth enemy)
