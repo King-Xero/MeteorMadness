@@ -54,13 +54,15 @@ namespace SSSRegen.Source.Health
 
         public void Initialize()
         {
+            FillAmount = 1;
+
             _backgroundSprite = new Sprite(_healthUnitTexture);
 
             _leftFillSprite = new Sprite(_healthUnitTexture, new Rectangle(0, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
-            _leftFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Center.X, _unitDrawRectangle.Height);
+            _leftFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Width /2, _unitDrawRectangle.Height);
 
             _rightFillSprite = new Sprite(_healthUnitTexture, new Rectangle(_healthUnitTexture.Width / 2, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
-            _rightFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Center.X, _unitDrawRectangle.Height);
+            _rightFillDrawPosition = new Rectangle(_unitDrawRectangle.X + _healthUnitTexture.Width / 2, _unitDrawRectangle.Y, _unitDrawRectangle.Width / 2 , _unitDrawRectangle.Height);
         }
 
         public void Update()

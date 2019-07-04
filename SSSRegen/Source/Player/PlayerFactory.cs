@@ -58,7 +58,7 @@ namespace SSSRegen.Source.Player
         {
             return new PlayerGraphics(
                 _gameContext.GameGraphics,
-                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName)),
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedShipTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName)));

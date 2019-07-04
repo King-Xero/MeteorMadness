@@ -22,17 +22,21 @@ namespace SSSRegen.Source.Health
 
         public void Initialize(IHandleHealth entity)
         {
-            _drawPosition = 
+            _drawPosition = new Rectangle(_gameContext.ScreenBounds.X + 10, _gameContext.ScreenBounds.Y + 10, 0, 0);
 
             var healthUnits = new List<IHealthUnit>();
 
             for (int i = 0; i < entity.MaxHealth / PlayerHealthUnit.HEALTH_PIECES_PER_UNIT; i++)
             {
                 //ToDo use creation strategy
-                var healthUnit = new PlayerHealthUnit(_gameContext, _gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName), );
-                healthUnit.Initialize();
+                var texture = _gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedLifeIconTextureName);
+                var drawRect = new Rectangle(_drawPosition.X, _drawPosition.Y, texture.Width, texture.Height);
+                var healthUnit = new PlayerHealthUnit(_gameContext, texture, drawRect);
 
+                healthUnit.Initialize();
                 healthUnits.Add(healthUnit);
+
+                _drawPosition.X += drawRect.Width;
             }
 
             _healthUnits = healthUnits.ToArray();

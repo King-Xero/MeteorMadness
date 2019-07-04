@@ -100,7 +100,8 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet3.Textures.RedTextureName, GameConstants.Projectiles.Bullet3.Textures.RedTextureFileName);
 
             //Player Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName, GameConstants.Player.PlayerShip1.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedShipTextureName, GameConstants.Player.PlayerShip1.Textures.RedShipTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedLifeIconTextureName, GameConstants.Player.PlayerShip1.Textures.RedLifeIconTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName, GameConstants.Player.PlayerShip1.Textures.LightDamageTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName, GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureFileName);

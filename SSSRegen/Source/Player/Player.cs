@@ -86,7 +86,6 @@ namespace SSSRegen.Source.Player
         public void Shoot()
         {
             Console.WriteLine("Pew!!!");
-            UpdateScore(10);
             _projectileManager.Shoot(this);
         }
 

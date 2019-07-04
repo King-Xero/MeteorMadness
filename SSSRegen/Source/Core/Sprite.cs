@@ -12,6 +12,7 @@ namespace SSSRegen.Source.Core
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             SourceRectangle = null;
             Size = new Vector2(Texture.Width, Texture.Height);
+            IsVisible = true;
         }
 
         public Sprite(Texture2D texture, Rectangle sourceRectangle)
@@ -19,6 +20,7 @@ namespace SSSRegen.Source.Core
             Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             SourceRectangle = sourceRectangle;
             Size = new Vector2(SourceRectangle.Value.Width, SourceRectangle.Value.Height);
+            IsVisible = true;
         }
 
         public Texture2D Texture { get; }
