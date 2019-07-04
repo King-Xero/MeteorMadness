@@ -1,4 +1,6 @@
-﻿namespace SSSRegen.Source.Health
+﻿using Microsoft.Xna.Framework;
+
+namespace SSSRegen.Source.Health
 {
     public interface IHealthContainer
     {

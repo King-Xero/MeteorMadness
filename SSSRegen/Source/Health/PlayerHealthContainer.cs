@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Health
@@ -9,6 +10,7 @@ namespace SSSRegen.Source.Health
     {
         private readonly GameContext _gameContext;
         private IHealthUnit[] _healthUnits;
+        private Rectangle _drawPosition;
 
         public PlayerHealthContainer(GameContext gameContext)
         {
@@ -20,12 +22,14 @@ namespace SSSRegen.Source.Health
 
         public void Initialize(IHandleHealth entity)
         {
+            _drawPosition = 
+
             var healthUnits = new List<IHealthUnit>();
 
             for (int i = 0; i < entity.MaxHealth / PlayerHealthUnit.HEALTH_PIECES_PER_UNIT; i++)
             {
                 //ToDo use creation strategy
-                var healthUnit = new PlayerHealthUnit(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName));
+                var healthUnit = new PlayerHealthUnit(_gameContext, _gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName), );
                 healthUnit.Initialize();
 
                 healthUnits.Add(healthUnit);

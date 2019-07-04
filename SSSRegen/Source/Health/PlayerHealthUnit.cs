@@ -11,6 +11,7 @@ namespace SSSRegen.Source.Health
     {
         private readonly GameContext _gameContext;
         private readonly Texture2D _healthUnitTexture;
+        private readonly Rectangle _unitDrawRectangle;
         private const float FILL_AMOUNT_PER_HEALTH_PIECE = 0.5f;
 
         private float _fillAmount;
@@ -18,14 +19,14 @@ namespace SSSRegen.Source.Health
         private ISprite _leftFillSprite;
         private ISprite _rightFillSprite;
         
-        private Rectangle _backgroundDrawPosition;
         private Rectangle _leftFillDrawPosition;
         private Rectangle _rightFillDrawPosition;
 
-        public PlayerHealthUnit(GameContext gameContext, Texture2D healthUnitTexture)
+        public PlayerHealthUnit(GameContext gameContext, Texture2D healthUnitTexture, Rectangle unitDrawRectangle)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _healthUnitTexture = healthUnitTexture ?? throw new ArgumentNullException(nameof(healthUnitTexture));
+            _unitDrawRectangle = unitDrawRectangle;
         }
 
         private float FillAmount
@@ -53,11 +54,13 @@ namespace SSSRegen.Source.Health
 
         public void Initialize()
         {
-            throw new NotImplementedException("Draw positions need to be set!");
-
             _backgroundSprite = new Sprite(_healthUnitTexture);
+
             _leftFillSprite = new Sprite(_healthUnitTexture, new Rectangle(0, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
+            _leftFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Center.X, _unitDrawRectangle.Height);
+
             _rightFillSprite = new Sprite(_healthUnitTexture, new Rectangle(_healthUnitTexture.Width / 2, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
+            _rightFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Center.X, _unitDrawRectangle.Height);
         }
 
         public void Update()
@@ -82,7 +85,7 @@ namespace SSSRegen.Source.Health
 
         public void Draw()
         {
-            _gameContext.GameGraphics.Draw(_backgroundSprite, _backgroundDrawPosition, Color.Gray);
+            _gameContext.GameGraphics.Draw(_backgroundSprite, _unitDrawRectangle, Color.Gray);
 
             if (_leftFillSprite.IsVisible)
             {
