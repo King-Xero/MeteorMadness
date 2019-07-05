@@ -219,7 +219,7 @@ namespace SSSRegen.Source.GameData
         public static class Player
         {
             public static readonly Vector2 MovementVelocity = new Vector2(6.0f, 0);
-            public const int InitialMaxHealth = 100;
+            public const int InitialMaxHealth = 10;
             public const string ScoreFormat = "000000000000";
             
             public static class PlayerShip1
@@ -233,8 +233,10 @@ namespace SSSRegen.Source.GameData
                     public const string HeavyDamageTextureName = "playerShip1Damage3";
                     public const string HeavyDamageTextureFileName = @"Images/Players/playerShip1_damage3";
 
-                    public const string RedTextureName = "playerShip1Red";
-                    public const string RedTextureFileName = @"Images/Players/playerShip1_red";
+                    public const string RedShipTextureName = "playerShip1Red";
+                    public const string RedShipTextureFileName = @"Images/Players/playerShip1_red";
+                    public const string RedLifeIconTextureName = "playerShip1RedLife";
+                    public const string RedLifeIconTextureFileName = @"Images/UI/playerLife1_red";
                 }
             }
             public static class PlayerShip2
@@ -248,8 +250,10 @@ namespace SSSRegen.Source.GameData
                     public const string HeavyDamageTextureName = "playerShip2Damage3";
                     public const string HeavyDamageTextureFileName = @"Images/Players/playerShip2_damage3";
 
-                    public const string GreenTextureName = "playerShip2Green";
-                    public const string GreenTextureFileName = @"Images/Players/playerShip2_green";
+                    public const string GreenShipTextureName = "playerShip2Green";
+                    public const string GreenShipTextureFileName = @"Images/Players/playerShip2_green";
+                    public const string GreenLifeIconTextureName = "playerShip2GreenLife";
+                    public const string GreenLifeIconTextureFileName = @"Images/UI/playerLife2_Green";
                 }
             }
             public static class PlayerShip3
@@ -263,8 +267,10 @@ namespace SSSRegen.Source.GameData
                     public const string HeavyDamageTextureName = "playerShip3Damage3";
                     public const string HeavyDamageTextureFileName = @"Images/Players/playerShip3_damage3";
 
-                    public const string BlueTextureName = "playerShip3Blue";
-                    public const string BlueTextureFileName = @"Images/Players/playerShip3_blue";
+                    public const string BlueShipTextureName = "playerShip3Blue";
+                    public const string BlueShipTextureFileName = @"Images/Players/playerShip3_blue";
+                    public const string BlueLifeIconTextureName = "playerShip3BlueLife";
+                    public const string BlueLifeIconTextureFileName = @"Images/UI/playerLife3_Blue";
                 }
             }
         }

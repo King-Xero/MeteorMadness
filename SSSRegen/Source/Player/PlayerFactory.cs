@@ -36,24 +36,12 @@ namespace SSSRegen.Source.Player
 
         private IHealthComponent CreatePlayerHealth()
         {
-            return new PlayerHealthComponent(GameConstants.Player.InitialMaxHealth, new PlayerHealthContainer(CreatePlayerHealthUnits()));
-        }
-
-        private IHealthUnit[] CreatePlayerHealthUnits()
-        {
-            var healthUnits = new List<IHealthUnit>();
-
-            for (int i = 0; i < GameConstants.Player.InitialMaxHealth / PlayerHealthUnit.HEALTH_PIECES_PER_UNIT; i++)
-            {
-                healthUnits.Add(new PlayerHealthUnit());
-            }
-
-            return healthUnits.ToArray();
+            return new PlayerHealthComponent(GameConstants.Player.InitialMaxHealth, new PlayerHealthContainer(_gameContext));
         }
 
         private IScoreComponent CreatePlayerScore()
         {
-            return new PlayerScoreComponent();
+            return new PlayerScoreComponent(_gameContext);
         }
 
         private IInputComponent<IGameObject> CreatePlayerInput()
@@ -70,7 +58,7 @@ namespace SSSRegen.Source.Player
         {
             return new PlayerGraphics(
                 _gameContext.GameGraphics,
-                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedTextureName)),
+                new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedShipTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName)));

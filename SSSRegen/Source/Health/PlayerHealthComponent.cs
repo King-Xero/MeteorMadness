@@ -21,8 +21,10 @@ namespace SSSRegen.Source.Health
 
         public void Initialize(IHandleHealth player)
         {
-            _maxHealth = GameConstants.Player.InitialMaxHealth;
+            _maxHealth = player.MaxHealth;
             _currentHealth = _maxHealth;
+
+            _playerHealthContainer.Initialize(player);
 
             player.Healed += PlayerOnHealed;
             player.Damaged += PlayerOnDamaged;
@@ -30,7 +32,7 @@ namespace SSSRegen.Source.Health
 
         public void Update(IHandleHealth player)
         {
-            _playerHealthContainer.Update();
+            _playerHealthContainer.Update(player);
         }
 
         public void Draw(IHandleHealth player)

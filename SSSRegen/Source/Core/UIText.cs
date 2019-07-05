@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Core
 
         public SpriteFont Font { get; }
         public Color TextColor { get; set ; }
-        public string Text { get; }
+        public string Text { get; set; }
         public Vector2 Size { get; }
         public bool IsVisible { get; set; }
     }

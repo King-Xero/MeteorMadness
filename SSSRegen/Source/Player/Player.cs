@@ -5,6 +5,7 @@ using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
+using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
 using SSSRegen.Source.Projectiles;
 using SSSRegen.Source.Score;
@@ -29,10 +30,14 @@ namespace SSSRegen.Source.Player
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
+        public int MaxHealth { get; private set; }
+
         public Vector2 BulletPosition => new Vector2(Position.X + (Size.X / 2), Position.Y - (Size.Y / 2));
 
         public override void Initialize()
         {
+            MaxHealth = GameConstants.Player.InitialMaxHealth;
+
             _healthComponent.Initialize(this);
             _healthComponent.Died += PlayerOnDied;
 

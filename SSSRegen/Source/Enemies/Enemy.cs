@@ -13,14 +13,17 @@ namespace SSSRegen.Source.Enemies
     {
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(IHealthComponent healthComponent, IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent) :
+        public Enemy(int maxHealth, IHealthComponent healthComponent, IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
+            MaxHealth = maxHealth;
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
         }
 
         public event EventHandler<HealEventArgs> Healed;
         public event EventHandler<DamageEventArgs> Damaged;
+
+        public int MaxHealth { get; private set; }
 
         public override void Initialize()
         {

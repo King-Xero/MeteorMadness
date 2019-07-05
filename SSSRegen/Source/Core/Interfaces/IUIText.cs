@@ -7,7 +7,7 @@ namespace SSSRegen.Source.Core.Interfaces
     {
         SpriteFont Font { get; }
         Color TextColor { get; set; }
-        string Text { get; }
+        string Text { get; set; }
         Vector2 Size { get; }
         bool IsVisible { get; set; }
     }

@@ -5,6 +5,7 @@
         int FilledHealthPieces { get; }
         int EmptyHealthPieces { get; }
 
+        void Initialize();
         void Update();
         void Draw();
         void Replenish(int numberOfHealthPieces);
