@@ -8,7 +8,7 @@ namespace SSSRegen.Source.Projectiles
 {
     public class Bullet : GameObject, IProjectile
     {
-        public Bullet(IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent) : base(inputComponent, physicsComponent, graphicsComponent)
+        public Bullet(IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) : base(inputComponent, physicsComponent, graphicsComponent)
         {
         }
 

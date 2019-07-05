@@ -10,9 +10,9 @@ namespace SSSRegen.Source.States
     public class HelpMainMenuState : GameState
     {
         private readonly GameContext _gameContext;
-        private readonly IGraphicsComponent<IGameState> _helpMainMenuStateGraphics;
+        private readonly IDrawableComponent<IGameState> _helpMainMenuStateGraphics;
         
-        public HelpMainMenuState(GameContext gameContext, IGraphicsComponent<IGameState> helpMainMenuStateGraphics)
+        public HelpMainMenuState(GameContext gameContext, IDrawableComponent<IGameState> helpMainMenuStateGraphics)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _helpMainMenuStateGraphics = helpMainMenuStateGraphics ?? throw new ArgumentNullException(nameof(helpMainMenuStateGraphics));
@@ -27,14 +27,14 @@ namespace SSSRegen.Source.States
 
         public override void Update(GameTime gameTime)
         {
-            _helpMainMenuStateGraphics.Update(this);
+            _helpMainMenuStateGraphics.Update(this, gameTime);
 
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            _helpMainMenuStateGraphics.Draw(this);
+            _helpMainMenuStateGraphics.Draw(this, gameTime);
 
             base.Draw(gameTime);
         }

@@ -6,20 +6,20 @@ namespace SSSRegen.Source.Core
 {
     public class GameStateMachine : IGameStateMachine
     {
-        private Stack<GameState> _gameStates;
-        private GameState _newState;
+        private Stack<IGameState> _gameStates;
+        private IGameState _newState;
         private bool _isRemoving;
         private bool _isAdding;
         private bool _isReplacing;
 
         public GameStateMachine()
         {
-            _gameStates = new Stack<GameState>();
+            _gameStates = new Stack<IGameState>();
         }
 
-        public GameState ActiveState => _gameStates?.Peek();
+        public IGameState ActiveState => _gameStates?.Peek();
 
-        public void AddState(GameState newState, bool isReplacing = true)
+        public void AddState(IGameState newState, bool isReplacing = true)
         {
             _isAdding = true;
             _isReplacing = isReplacing;

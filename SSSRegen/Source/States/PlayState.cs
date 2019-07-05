@@ -15,7 +15,7 @@ namespace SSSRegen.Source.States
     public class PlayState : GameState
     {
         private readonly GameContext _gameContext;
-        private readonly IGraphicsComponent<IGameState> _playStateGraphics;
+        private readonly IDrawableComponent<IGameState> _playStateGraphics;
         private readonly IGameObjectManager[] _gameObjectManagers;
 
         private IGameMenu _playStateMenu;
@@ -23,7 +23,7 @@ namespace SSSRegen.Source.States
         private bool _isPaused;
         private bool _isGameOver;
         
-        public PlayState(GameContext gameContext, IGraphicsComponent<IGameState> playStateGraphics)
+        public PlayState(GameContext gameContext, IDrawableComponent<IGameState> playStateGraphics)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playStateGraphics = playStateGraphics ?? throw new ArgumentNullException(nameof(playStateGraphics));
@@ -53,7 +53,7 @@ namespace SSSRegen.Source.States
 
         public override void Update(GameTime gameTime)
         {
-            _playStateGraphics.Update(this);
+            _playStateGraphics.Update(this, gameTime);
             _playStateMenu.Update(gameTime);
 
             foreach (var gameObjectManager in _gameObjectManagers)
@@ -66,7 +66,7 @@ namespace SSSRegen.Source.States
 
         public override void Draw(GameTime gameTime)
         {
-            _playStateGraphics.Draw(this);
+            _playStateGraphics.Draw(this, gameTime);
             _playStateMenu.Draw(gameTime);
 
             foreach (var gameObjectManager in _gameObjectManagers)

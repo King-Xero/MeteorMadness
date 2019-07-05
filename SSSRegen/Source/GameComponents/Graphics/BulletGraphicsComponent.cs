@@ -4,7 +4,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class BulletGraphicsComponent : IGraphicsComponent<IGameObject>
+    public class BulletGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly ISprite _bulletSprite;
@@ -20,12 +20,12 @@ namespace SSSRegen.Source.GameComponents.Graphics
             entity.Size = _bulletSprite.Size;
         }
 
-        public void Update(IGameObject entity)
+        public void Update(IGameObject entity, GameTime gameTime)
         {
             entity.Size = _bulletSprite.Size;
         }
 
-        public void Draw(IGameObject entity)
+        public void Draw(IGameObject entity, GameTime gameTime)
         {
             _gameGraphics.Draw(_bulletSprite, entity.Bounds, Color.White);
         }

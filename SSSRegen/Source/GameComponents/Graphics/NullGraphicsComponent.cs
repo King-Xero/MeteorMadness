@@ -1,18 +1,19 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class NullGraphicsComponent : IGraphicsComponent<IGameObject>
+    public class NullGraphicsComponent : IDrawableComponent<IGameObject>
     {
         public void Initialize(IGameObject entity)
         {
         }
 
-        public void Update(IGameObject entity)
+        public void Update(IGameObject entity, GameTime gameTime)
         {
         }
 
-        public void Draw(IGameObject entity)
+        public void Draw(IGameObject entity, GameTime gameTime)
         {
         }
     }

@@ -12,7 +12,7 @@ namespace SSSRegen.Source.Menus
     public class TextMenu : IGameMenu
     {
         private readonly GameContext _gameContext;
-        private readonly IInputComponent<IGameMenu> _menuInputComponent;
+        private readonly IComponent<IGameMenu> _menuInputComponent;
 
         private List<IMenuOption> _menuItems;
         private List<Vector2> _menuItemPositions;
@@ -23,7 +23,7 @@ namespace SSSRegen.Source.Menus
         private Rectangle _spriteOptionDrawRectangle;
 
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
-        public TextMenu(GameContext gameContext, IInputComponent<IGameMenu> menuInputComponent)
+        public TextMenu(GameContext gameContext, IComponent<IGameMenu> menuInputComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
@@ -56,7 +56,7 @@ namespace SSSRegen.Source.Menus
 
         public void Update(GameTime gameTime)
         {
-            _menuInputComponent.Update(this);
+            _menuInputComponent.Update(this, gameTime);
             if (SelectedIndex == _menuItems.Count)
             {
                 SelectedIndex = 0;

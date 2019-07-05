@@ -4,7 +4,7 @@ using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class PlayerInput : IInputComponent<IGameObject>
+    public class PlayerInput : IComponent<IGameObject>
     {
         private readonly IInputController _inputController;
 
@@ -18,7 +18,7 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController.Initialize();
         }
 
-        public void Update(IGameObject player)
+        public void Update(IGameObject player, GameTime gameTime)
         {
             _inputController.Update();
 

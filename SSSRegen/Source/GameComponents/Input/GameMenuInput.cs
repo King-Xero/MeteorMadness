@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Menus;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class GameMenuInput : IInputComponent<IGameMenu>
+    public class GameMenuInput : IComponent<IGameMenu>
     {
         private readonly IInputController _inputController;
 
@@ -18,7 +19,7 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController.Initialize();
         }
 
-        public virtual void Update(IGameMenu textMenu)
+        public virtual void Update(IGameMenu textMenu, GameTime gameTime)
         {
             _inputController.Update();
 

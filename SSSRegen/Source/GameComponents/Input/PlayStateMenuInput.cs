@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Menus;
 
@@ -13,9 +14,9 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController = inputController ?? throw new ArgumentNullException(nameof(inputController));
         }
 
-        public override void Update(IGameMenu textMenu)
+        public override void Update(IGameMenu textMenu, GameTime gameTime)
         {
-            base.Update(textMenu);
+            base.Update(textMenu, gameTime);
 
             if (_inputController.IsEscapeButtonPressed())
             {

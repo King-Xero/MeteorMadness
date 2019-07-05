@@ -18,7 +18,7 @@ namespace SSSRegen.Source.Player
         private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
+        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));

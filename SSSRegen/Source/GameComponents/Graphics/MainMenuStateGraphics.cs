@@ -8,7 +8,7 @@ using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class MainMenuStateGraphics : IGraphicsComponent<IGameState>
+    public class MainMenuStateGraphics : IDrawableComponent<IGameState>
     {
         private readonly GameContext _gameContext;
 
@@ -56,7 +56,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _stopwatch.Start();
         }
 
-        public void Update(IGameState entity)
+        public void Update(IGameState entity, GameTime gameTime)
         {
             if (!_canShowLine3)
             {
@@ -89,7 +89,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             }
         }
 
-        public void Draw(IGameState entity)
+        public void Draw(IGameState entity, GameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
 

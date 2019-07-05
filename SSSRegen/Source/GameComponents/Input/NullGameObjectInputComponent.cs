@@ -1,14 +1,15 @@
-﻿using SSSRegen.Source.Core.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
-    public class NullGameObjectInputComponent : IInputComponent<IGameObject>
+    public class NullGameObjectInputComponent : IComponent<IGameObject>
     {
         public void Initialize(IGameObject player)
         {
         }
 
-        public void Update(IGameObject player)
+        public void Update(IGameObject player, GameTime gameTime)
         {
         }
     }

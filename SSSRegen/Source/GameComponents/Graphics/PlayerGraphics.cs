@@ -5,7 +5,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class PlayerGraphics : IGraphicsComponent<IGameObject>
+    public class PlayerGraphics : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly ISprite _playerShipSprite;
@@ -30,7 +30,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             player.Size = _playerShipSprite.Size;
         }
 
-        public void Update(IGameObject player)
+        public void Update(IGameObject player, GameTime gameTime)
         {
             //ToDo Set damage sprites
             //if (player.Velocity.X < 0)
@@ -46,7 +46,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             player.Size = _playerShipSprite.Size;
         }
 
-        public void Draw(IGameObject player)
+        public void Draw(IGameObject player, GameTime gameTime)
         {
             _gameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
             if (_activeDamageSprite != null)

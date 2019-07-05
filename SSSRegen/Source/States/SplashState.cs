@@ -10,9 +10,9 @@ namespace SSSRegen.Source.States
     public class SplashState : GameState
     {
         private readonly GameContext _gameContext;
-        private readonly IGraphicsComponent<IGameState> _splashStateGraphics;
+        private readonly IDrawableComponent<IGameState> _splashStateGraphics;
         
-        public SplashState(GameContext gameContext, IGraphicsComponent<IGameState> splashStateGraphics)
+        public SplashState(GameContext gameContext, IDrawableComponent<IGameState> splashStateGraphics)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _splashStateGraphics = splashStateGraphics ?? throw new ArgumentNullException(nameof(splashStateGraphics));
@@ -40,7 +40,7 @@ namespace SSSRegen.Source.States
 
         public override void Draw(GameTime gameTime)
         {
-            _splashStateGraphics.Draw(this);
+            _splashStateGraphics.Draw(this, gameTime);
 
             base.Draw(gameTime);
         }

@@ -6,7 +6,7 @@ using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class HelpMainMenuStateGraphics : IGraphicsComponent<IGameState>
+    public class HelpMainMenuStateGraphics : IDrawableComponent<IGameState>
     {
         private readonly GameContext _gameContext;
 
@@ -22,11 +22,11 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.MenuState.Textures.BackgroundTextureName));
         }
 
-        public void Update(IGameState entity)
+        public void Update(IGameState entity, GameTime gameTime)
         {
         }
 
-        public void Draw(IGameState entity)
+        public void Draw(IGameState entity, GameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
         }

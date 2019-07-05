@@ -6,7 +6,7 @@ using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
-    public class MeteorPhysics : IPhysicsComponent
+    public class MeteorPhysics : IComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
         private readonly Random _random;

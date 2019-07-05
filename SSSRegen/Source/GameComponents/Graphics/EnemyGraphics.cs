@@ -5,7 +5,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class EnemyGraphics : IGraphicsComponent<IGameObject>
+    public class EnemyGraphics : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly Sprite _eSprite;
@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             enemy.Size = _activeSprite.Size;
         }
 
-        public void Update(IGameObject enemy)
+        public void Update(IGameObject enemy, GameTime gameTime)
         {
             _activeSprite = _eSprite;
 
@@ -33,7 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             enemy.Size = _activeSprite.Size;
         }
 
-        public void Draw(IGameObject enemy)
+        public void Draw(IGameObject enemy, GameTime gameTime)
         {
             _gameGraphics.Draw(_activeSprite, enemy.Bounds, Color.White);
         }

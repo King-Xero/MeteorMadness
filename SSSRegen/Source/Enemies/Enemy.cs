@@ -13,7 +13,7 @@ namespace SSSRegen.Source.Enemies
     {
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(int maxHealth, IHealthComponent healthComponent, IInputComponent<IGameObject> inputComponent, IPhysicsComponent physicsComponent, IGraphicsComponent<IGameObject> graphicsComponent) :
+        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(inputComponent, physicsComponent, graphicsComponent)
         {
             MaxHealth = maxHealth;

@@ -6,7 +6,7 @@ using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class SplashStateGraphics : IGraphicsComponent<IGameState>
+    public class SplashStateGraphics : IDrawableComponent<IGameState>
     {
         private readonly GameContext _gameContext;
         private ISprite _backgroundImage;
@@ -21,12 +21,12 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.SplashState.Textures.BackgroundTextureName));
         }
 
-        public void Update(IGameState entity)
+        public void Update(IGameState entity, GameTime gameTime)
         {
             //Do Nothing
         }
 
-        public void Draw(IGameState entity)
+        public void Draw(IGameState entity, GameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
         }

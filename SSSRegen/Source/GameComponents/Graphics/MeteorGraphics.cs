@@ -5,7 +5,7 @@ using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
-    public class MeteorGraphics : IGraphicsComponent<IGameObject>
+    public class MeteorGraphics : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly Sprite _mSprite;
@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             meteor.Size = _activeSprite.Size;
         }
 
-        public void Update(IGameObject meteor)
+        public void Update(IGameObject meteor, GameTime gameTime)
         {
             _activeSprite = _mSprite;
 
@@ -33,7 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             meteor.Size = _activeSprite.Size;
         }
 
-        public void Draw(IGameObject meteor)
+        public void Draw(IGameObject meteor, GameTime gameTime)
         {
             _gameGraphics.Draw(_activeSprite, meteor.Bounds, Color.White);
         }

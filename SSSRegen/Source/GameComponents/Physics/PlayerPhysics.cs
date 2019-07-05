@@ -6,7 +6,7 @@ using SSSRegen.Source.Utils.Extensions;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
-    public class PlayerPhysics : IPhysicsComponent
+    public class PlayerPhysics : IComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
 

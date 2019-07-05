@@ -28,7 +28,7 @@ namespace SSSRegen.Source.Projectiles
                 CreateBulletGraphics());
         }
 
-        private IGraphicsComponent<IGameObject> CreateBulletGraphics()
+        private IDrawableComponent<IGameObject> CreateBulletGraphics()
         {
             var bulletTexture = _gameContext.AssetManager.GetTexture(GameConstants.Projectiles.Bullet3.Textures.RedTextureName);
             var bulletSprite = new Sprite(bulletTexture);
