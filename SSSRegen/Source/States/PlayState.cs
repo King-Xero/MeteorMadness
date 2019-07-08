@@ -51,7 +51,7 @@ namespace SSSRegen.Source.States
             base.Initialize();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(IGameTime gameTime)
         {
             _playStateGraphics.Update(this, gameTime);
             _playStateMenu.Update(gameTime);
@@ -64,7 +64,7 @@ namespace SSSRegen.Source.States
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(IGameTime gameTime)
         {
             _playStateGraphics.Draw(this, gameTime);
             _playStateMenu.Draw(gameTime);

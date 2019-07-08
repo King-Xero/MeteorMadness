@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Menus
 {
@@ -11,7 +11,7 @@ namespace SSSRegen.Source.Menus
         void SetMenuItems(List<IMenuOption> items);
         void SelectCurrentItem();
         void Initialize();
-        void Update(GameTime gameTime);
-        void Draw(GameTime gameTime);
+        void Update(IGameTime gameTime);
+        void Draw(IGameTime gameTime);
     }
 }

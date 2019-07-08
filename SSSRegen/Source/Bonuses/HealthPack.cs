@@ -19,12 +19,12 @@ namespace SSSRegen.Source.Bonuses
             base.Initialize();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(IGameTime gameTime)
         {
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(IGameTime gameTime)
         {
             base.Draw(gameTime);
         }

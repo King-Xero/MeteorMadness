@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
@@ -30,7 +29,7 @@ namespace SSSRegen.Source.Bonuses
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             foreach (var healthPack in _healthPacks)
             {
@@ -38,7 +37,7 @@ namespace SSSRegen.Source.Bonuses
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             foreach (var healthPack in _healthPacks)
             {

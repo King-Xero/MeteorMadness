@@ -31,7 +31,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             player.Size = _playerShipSprite.Size;
         }
 
-        public void Update(IGameObject player, GameTime gameTime)
+        public void Update(IGameObject player, IGameTime gameTime)
         {
             //ToDo Set damage sprites
             //if (player.Velocity.X < 0)
@@ -47,7 +47,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             player.Size = _playerShipSprite.Size;
         }
 
-        public void Draw(IGameObject player, GameTime gameTime)
+        public void Draw(IGameObject player, IGameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
             if (_activeDamageSprite != null)

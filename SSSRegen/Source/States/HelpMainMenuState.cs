@@ -25,14 +25,14 @@ namespace SSSRegen.Source.States
             base.Initialize();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(IGameTime gameTime)
         {
             _helpMainMenuStateGraphics.Update(this, gameTime);
 
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(IGameTime gameTime)
         {
             _helpMainMenuStateGraphics.Draw(this, gameTime);
 

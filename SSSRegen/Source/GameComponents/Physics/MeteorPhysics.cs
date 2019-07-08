@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             Reset(meteor);
         }
 
-        public void Update(IGameObject meteor, GameTime gameTime)
+        public void Update(IGameObject meteor, IGameTime gameTime)
         {
             var meteorPosition = meteor.Position;
 

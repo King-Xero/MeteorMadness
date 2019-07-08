@@ -14,7 +14,7 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController = inputController ?? throw new ArgumentNullException(nameof(inputController));
         }
 
-        public override void Update(IGameMenu textMenu, GameTime gameTime)
+        public override void Update(IGameMenu textMenu, IGameTime gameTime)
         {
             base.Update(textMenu, gameTime);
 

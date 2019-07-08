@@ -56,7 +56,7 @@ namespace SSSRegen.Source.Meteors
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             foreach (var meteorType in _meteors)
             {
@@ -67,7 +67,7 @@ namespace SSSRegen.Source.Meteors
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             foreach (var meteorType in _meteors)
             {

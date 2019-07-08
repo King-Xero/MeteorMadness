@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Projectiles
@@ -28,7 +29,7 @@ namespace SSSRegen.Source.Projectiles
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             foreach (var bullet in _bullets)
             {
@@ -54,7 +55,7 @@ namespace SSSRegen.Source.Projectiles
             bulletToShoot.IsActive = true;
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             foreach (var bullet in _bullets)
             {

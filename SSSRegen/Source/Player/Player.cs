@@ -45,7 +45,7 @@ namespace SSSRegen.Source.Player
             base.Initialize();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(IGameTime gameTime)
         {
             _healthComponent.Update(this);
             _scoreComponent.Update(this);
@@ -55,7 +55,7 @@ namespace SSSRegen.Source.Player
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(IGameTime gameTime)
         {
             _healthComponent.Draw(this);
             _scoreComponent.Draw(this);

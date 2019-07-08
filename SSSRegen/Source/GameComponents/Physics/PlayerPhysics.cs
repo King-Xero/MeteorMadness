@@ -23,7 +23,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             ResetPosition(player);
         }
 
-        public void Update(IGameObject player, GameTime gameTime)
+        public void Update(IGameObject player, IGameTime gameTime)
         {
             var playerPosition = player.Position;
 

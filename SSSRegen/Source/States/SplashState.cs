@@ -25,7 +25,7 @@ namespace SSSRegen.Source.States
             base.Initialize();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(IGameTime gameTime)
         {
             if (gameTime.TotalGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
@@ -38,7 +38,7 @@ namespace SSSRegen.Source.States
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(IGameTime gameTime)
         {
             _splashStateGraphics.Draw(this, gameTime);
 

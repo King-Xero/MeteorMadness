@@ -48,7 +48,7 @@ namespace SSSRegen.Source.Enemies
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             foreach (var enemyType in _enemies)
             {
@@ -59,7 +59,7 @@ namespace SSSRegen.Source.Enemies
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             foreach (var enemyType in _enemies)
             {

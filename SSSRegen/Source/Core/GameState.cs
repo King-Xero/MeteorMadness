@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(IGameTime gameTime)
         {
             if (!_isPaused)
             {
@@ -36,7 +36,7 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        public virtual void Draw(GameTime gameTime)
+        public virtual void Draw(IGameTime gameTime)
         {
             foreach (var gameObject in GameObjects)
             {

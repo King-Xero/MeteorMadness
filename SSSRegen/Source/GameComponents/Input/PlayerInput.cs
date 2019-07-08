@@ -18,7 +18,7 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController.Initialize();
         }
 
-        public void Update(IGameObject player, GameTime gameTime)
+        public void Update(IGameObject player, IGameTime gameTime)
         {
             _inputController.Update();
 

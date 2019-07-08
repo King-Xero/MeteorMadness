@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             enemy.Size = _activeSprite.Size;
         }
 
-        public void Update(IGameObject enemy, GameTime gameTime)
+        public void Update(IGameObject enemy, IGameTime gameTime)
         {
             _activeSprite = _eSprite;
 
@@ -33,7 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             enemy.Size = _activeSprite.Size;
         }
 
-        public void Draw(IGameObject enemy, GameTime gameTime)
+        public void Draw(IGameObject enemy, IGameTime gameTime)
         {
             _gameGraphics.Draw(_activeSprite, enemy.Bounds, Color.White);
         }

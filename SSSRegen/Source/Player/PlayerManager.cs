@@ -28,7 +28,7 @@ namespace SSSRegen.Source.Player
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             foreach (var player in _players)
             {
@@ -36,7 +36,7 @@ namespace SSSRegen.Source.Player
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             foreach (var player in _players)
             {

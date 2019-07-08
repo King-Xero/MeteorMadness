@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Utils.Extensions;
 
@@ -54,7 +53,7 @@ namespace SSSRegen.Source.Menus
             _menuInputComponent.Initialize(this);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(IGameTime gameTime)
         {
             _menuInputComponent.Update(this, gameTime);
             if (SelectedIndex == _menuItems.Count)
@@ -68,7 +67,7 @@ namespace SSSRegen.Source.Menus
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(IGameTime gameTime)
         {
             if (IsEnabled)
             {

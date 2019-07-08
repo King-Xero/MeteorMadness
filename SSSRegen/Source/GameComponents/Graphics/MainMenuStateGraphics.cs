@@ -56,7 +56,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _stopwatch.Start();
         }
 
-        public void Update(IGameState entity, GameTime gameTime)
+        public void Update(IGameState entity, IGameTime gameTime)
         {
             if (!_canShowLine3)
             {
@@ -89,7 +89,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             }
         }
 
-        public void Draw(IGameState entity, GameTime gameTime)
+        public void Draw(IGameState entity, IGameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
 

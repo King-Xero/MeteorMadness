@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Projectiles
 {
     public interface IProjectilesManager
     {
         void Initialize();
-        void Update(GameTime gameTime);
+        void Update(IGameTime gameTime);
         void Shoot(IShootProjectiles obj);
-        void Draw(GameTime gameTime);
+        void Draw(IGameTime gameTime);
     }
 }

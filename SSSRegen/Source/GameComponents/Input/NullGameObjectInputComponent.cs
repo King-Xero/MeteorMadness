@@ -9,7 +9,7 @@ namespace SSSRegen.Source.GameComponents.Input
         {
         }
 
-        public void Update(IGameObject player, GameTime gameTime)
+        public void Update(IGameObject player, IGameTime gameTime)
         {
         }
     }

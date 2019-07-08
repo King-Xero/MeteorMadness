@@ -9,11 +9,11 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
         }
 
-        public void Update(IGameObject entity, GameTime gameTime)
+        public void Update(IGameObject entity, IGameTime gameTime)
         {
         }
 
-        public void Draw(IGameObject entity, GameTime gameTime)
+        public void Draw(IGameObject entity, IGameTime gameTime)
         {
         }
     }

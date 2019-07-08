@@ -22,7 +22,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             obj.Speed = 400;
         }
 
-        public void Update(IGameObject obj, GameTime gameTime)
+        public void Update(IGameObject obj, IGameTime gameTime)
         {
             var position = obj.Position;
 

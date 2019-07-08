@@ -10,7 +10,7 @@ namespace SSSRegen.Source.Core.Interfaces
         Vector2 Size { get; set; }
         Rectangle Bounds { get; }
         void Initialize();
-        void Update(GameTime gameTime);
-        void Draw(GameTime gameTime);
+        void Update(IGameTime gameTime);
+        void Draw(IGameTime gameTime);
     }
 }

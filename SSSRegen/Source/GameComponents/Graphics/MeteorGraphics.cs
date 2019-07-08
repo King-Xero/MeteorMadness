@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             meteor.Size = _activeSprite.Size;
         }
 
-        public void Update(IGameObject meteor, GameTime gameTime)
+        public void Update(IGameObject meteor, IGameTime gameTime)
         {
             _activeSprite = _mSprite;
 
@@ -33,7 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             meteor.Size = _activeSprite.Size;
         }
 
-        public void Draw(IGameObject meteor, GameTime gameTime)
+        public void Draw(IGameObject meteor, IGameTime gameTime)
         {
             _gameGraphics.Draw(_activeSprite, meteor.Bounds, Color.White);
         }

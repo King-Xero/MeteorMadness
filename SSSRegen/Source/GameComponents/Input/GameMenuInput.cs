@@ -19,7 +19,7 @@ namespace SSSRegen.Source.GameComponents.Input
             _inputController.Initialize();
         }
 
-        public virtual void Update(IGameMenu textMenu, GameTime gameTime)
+        public virtual void Update(IGameMenu textMenu, IGameTime gameTime)
         {
             _inputController.Update();
 

@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             Reset(enemy);
         }
 
-        public void Update(IGameObject enemy, GameTime gameTime)
+        public void Update(IGameObject enemy, IGameTime gameTime)
         {
             var enemyPosition = enemy.Position;
 

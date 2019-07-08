@@ -24,7 +24,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             healthPack.Size = _activeSprite.Size;
         }
 
-        public void Update(IGameObject healthPack, GameTime gameTime)
+        public void Update(IGameObject healthPack, IGameTime gameTime)
         {
             _activeSprite = _hSprite;
 
@@ -33,7 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
             healthPack.Size = _activeSprite.Size;
         }
 
-        public void Draw(IGameObject healthPack, GameTime gameTime)
+        public void Draw(IGameObject healthPack, IGameTime gameTime)
         {
             _gameGraphics.Draw(_activeSprite, healthPack.Bounds, Color.White);
         }

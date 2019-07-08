@@ -27,7 +27,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             Reset(healthPack);
         }
 
-        public void Update(IGameObject healthPack, GameTime gameTime)
+        public void Update(IGameObject healthPack, IGameTime gameTime)
         {
             var healthPackPosition = healthPack.Position;
 

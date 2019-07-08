@@ -34,14 +34,14 @@ namespace SSSRegen.Source.Core
             _physicsComponent.Initialize(this);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(IGameTime gameTime)
         {
             _inputComponent.Update(this, gameTime);
             _graphicsComponent.Update(this, gameTime);
             _physicsComponent.Update(this, gameTime);
         }
 
-        public virtual void Draw(GameTime gameTime)
+        public virtual void Draw(IGameTime gameTime)
         {
             _graphicsComponent.Draw(this, gameTime);
         }

@@ -21,12 +21,12 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _backgroundImage = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.GameStates.SplashState.Textures.BackgroundTextureName));
         }
 
-        public void Update(IGameState entity, GameTime gameTime)
+        public void Update(IGameState entity, IGameTime gameTime)
         {
             //Do Nothing
         }
 
-        public void Draw(IGameState entity, GameTime gameTime)
+        public void Draw(IGameState entity, IGameTime gameTime)
         {
             _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
         }

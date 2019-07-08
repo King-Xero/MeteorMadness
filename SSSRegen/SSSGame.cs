@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.States;
@@ -8,10 +9,12 @@ namespace SSSRegen
 {
     public class SSSGame : Game
     {
+        private readonly IGameTime _gameTime;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameContext _gameContext;
-
+        
         public SSSGame()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -23,6 +26,8 @@ namespace SSSRegen
             Content.RootDirectory = "Content";
 
             IsFixedTimeStep = false;
+
+            _gameTime = new Source.Core.GameTime();
         }
         
         /// <summary>
@@ -53,7 +58,10 @@ namespace SSSRegen
         {
             _gameContext.StateMachine.ProcessStateChanges();
 
-            _gameContext.StateMachine.ActiveState.Update(gameTime);
+            _gameTime.ElapsedGameTime = gameTime.ElapsedGameTime;
+            _gameTime.TotalGameTime = gameTime.TotalGameTime;
+
+            _gameContext.StateMachine.ActiveState.Update(_gameTime);
 
             base.Update(gameTime);
         }
@@ -68,7 +76,10 @@ namespace SSSRegen
 
             _spriteBatch.Begin();
 
-            _gameContext.StateMachine.ActiveState.Draw(gameTime);
+            _gameTime.ElapsedGameTime = gameTime.ElapsedGameTime;
+            _gameTime.TotalGameTime = gameTime.TotalGameTime;
+
+            _gameContext.StateMachine.ActiveState.Draw(_gameTime);
 
             _spriteBatch.End();
             base.Draw(gameTime);
