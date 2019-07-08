@@ -1,10 +1,8 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Enemies;
-using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Menus;
 using SSSRegen.Source.Meteors;

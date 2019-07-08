@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;

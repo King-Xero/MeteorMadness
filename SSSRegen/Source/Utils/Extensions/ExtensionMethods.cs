@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SSSRegen.Source.Utils.Extensions
+﻿namespace SSSRegen.Source.Utils.Extensions
 {
     public static class ExtensionMethods
     {

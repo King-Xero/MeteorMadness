@@ -1,5 +1,4 @@
 ﻿using System;
-using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.Health
 {

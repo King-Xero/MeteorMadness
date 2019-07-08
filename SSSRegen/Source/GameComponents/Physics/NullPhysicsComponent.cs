@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Interfaces;
+﻿using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {

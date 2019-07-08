@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Core
