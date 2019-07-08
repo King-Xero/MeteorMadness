@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameComponents.Input;
-using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
 using SSSRegen.Source.Projectiles;

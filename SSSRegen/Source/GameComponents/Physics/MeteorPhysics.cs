@@ -38,7 +38,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the enemy
-            meteorPosition += Vector2.Multiply(meteor.Velocity, meteor.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            meteorPosition += Vector2.Multiply(meteor.MovementDirection, meteor.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If meteor collides with object, execute only what the meteor should do.
@@ -50,7 +50,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         private void Reset(IGameObject meteor)
         {
-            meteor.Velocity = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
+            meteor.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
             meteor.Speed = 100;
 
             var meteorPosition = meteor.Position;

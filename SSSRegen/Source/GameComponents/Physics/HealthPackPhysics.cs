@@ -19,7 +19,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Initialize(IGameObject healthPack)
         {
-            healthPack.Velocity = new Vector2(0, 2);
+            healthPack.MovementDirection = new Vector2(0, 2);
             healthPack.Speed = 100;
 
             //ToDo Execution order of components might cause an error here.
@@ -39,7 +39,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the healthPack
-            healthPackPosition += Vector2.Multiply(healthPack.Velocity, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            healthPackPosition += Vector2.Multiply(healthPack.MovementDirection, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If healthPack collides with object, execute only what the healthPack should do.

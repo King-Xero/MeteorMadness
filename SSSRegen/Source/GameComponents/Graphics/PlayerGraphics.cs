@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.GameData;
 
 namespace SSSRegen.Source.GameComponents.Graphics
 {
     public class PlayerGraphics : IDrawableComponent<IGameObject>
     {
-        private readonly IGameGraphics _gameGraphics;
+        private readonly GameContext _gameContext;
         private readonly ISprite _playerShipSprite;
         private readonly ISprite _lightDamageSprite;
         private readonly ISprite _mediumDamageSprite;
@@ -15,9 +16,9 @@ namespace SSSRegen.Source.GameComponents.Graphics
         
         private Sprite _activeDamageSprite;
 
-        public PlayerGraphics(IGameGraphics gameGraphics, Sprite playerShipSprite, Sprite lightDamageSprite, Sprite mediumDamageSprite, Sprite heavyDamageSprite)
+        public PlayerGraphics(GameContext gameContext, Sprite playerShipSprite, Sprite lightDamageSprite, Sprite mediumDamageSprite, Sprite heavyDamageSprite)
         {
-            _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playerShipSprite = playerShipSprite ?? throw new ArgumentNullException(nameof(playerShipSprite));
             _lightDamageSprite = lightDamageSprite ?? throw new ArgumentNullException(nameof(lightDamageSprite));
             _mediumDamageSprite = mediumDamageSprite?? throw new ArgumentNullException(nameof(mediumDamageSprite));
@@ -48,10 +49,10 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject player, GameTime gameTime)
         {
-            _gameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
+            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
             if (_activeDamageSprite != null)
             {
-                _gameGraphics.Draw(_activeDamageSprite, player.Bounds, Color.White);
+                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Bounds, Color.White);
             }
         }
     }

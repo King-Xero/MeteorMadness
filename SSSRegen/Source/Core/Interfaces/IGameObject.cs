@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 
 namespace SSSRegen.Source.Core.Interfaces
 {
@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Core.Interfaces
     {
         Vector2 Position { get; set; }
         float Speed { get; set; }
-        Vector2 Velocity { get; set; }
+        Vector2 MovementDirection { get; set; }
         Vector2 Size { get; set; }
         Rectangle Bounds { get; }
         void Initialize();

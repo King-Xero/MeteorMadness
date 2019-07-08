@@ -218,7 +218,7 @@ namespace SSSRegen.Source.GameData
 
         public static class Player
         {
-            public static readonly Vector2 MovementVelocity = new Vector2(6.0f, 0);
+            public static readonly Vector2 MovementVector = new Vector2(1.0f, 0);
             public const int InitialMaxHealth = 10;
             public const string ScoreFormat = "000000000000";
             

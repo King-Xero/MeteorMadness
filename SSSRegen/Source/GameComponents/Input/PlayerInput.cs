@@ -24,15 +24,15 @@ namespace SSSRegen.Source.GameComponents.Input
 
             if (_inputController.IsLeftButtonHeld())
             {
-                player.Velocity = -GameConstants.Player.MovementVelocity;
+                player.MovementDirection = -GameConstants.Player.MovementVector;
             }
             else if (_inputController.IsRightButtonHeld())
             {
-                player.Velocity = GameConstants.Player.MovementVelocity;
+                player.MovementDirection = GameConstants.Player.MovementVector;
             }
             else
             {
-                player.Velocity = Vector2.Zero;
+                player.MovementDirection = Vector2.Zero;
             }
 
             if (_inputController.IsFireButtonPressed())

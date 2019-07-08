@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
@@ -22,7 +22,7 @@ namespace SSSRegen.Source.Core
 
         public Vector2 Position { get; set; }
         public float Speed { get; set; }
-        public Vector2 Velocity { get; set; }
+        public Vector2 MovementDirection { get; set; }
         public Vector2 Size { get; set; }
 
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, (int) Size.X, (int) Size.Y);

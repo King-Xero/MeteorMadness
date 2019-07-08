@@ -18,7 +18,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Initialize(IGameObject obj)
         {
-            obj.Velocity = new Vector2(0, 1);
+            obj.MovementDirection = new Vector2(0, 1);
             obj.Speed = 400;
         }
 
@@ -26,7 +26,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
             var position = obj.Position;
 
-            position -= Vector2.Multiply(obj.Velocity, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            position -= Vector2.Multiply(obj.MovementDirection, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             obj.Position = position;
 

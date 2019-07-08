@@ -38,7 +38,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the enemy
-            enemyPosition += Vector2.Multiply(enemy.Velocity, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            enemyPosition += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If enemy collides with object, execute only what the enemy should do.
@@ -50,7 +50,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         private void Reset(IGameObject enemy)
         {
-            enemy.Velocity = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
+            enemy.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
             enemy.Speed = 100;
 
             var enemyPosition = enemy.Position;

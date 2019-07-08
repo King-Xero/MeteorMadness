@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework.Input;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
@@ -57,7 +54,7 @@ namespace SSSRegen.Source.Player
         private IDrawableComponent<IGameObject> CreatePlayerGraphics()
         {
             return new PlayerGraphics(
-                _gameContext.GameGraphics,
+                _gameContext,
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.RedShipTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName)),

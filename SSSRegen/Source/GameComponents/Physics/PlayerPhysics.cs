@@ -17,8 +17,8 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Initialize(IGameObject player)
         {
-            player.Velocity = Vector2.Zero;
-            player.Speed = 100;
+            player.MovementDirection = Vector2.Zero;
+            player.Speed = 500;
 
             ResetPosition(player);
         }
@@ -32,16 +32,16 @@ namespace SSSRegen.Source.GameComponents.Physics
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(player);
             
-            if (player.Position.X <= _gameContext.ScreenBounds.Left)
+            playerPosition += player.Speed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+
+            if (playerPosition.X <= _gameContext.ScreenBounds.Left)
             {
                 playerPosition.X = _gameContext.ScreenBounds.Left;
             }
-            if (player.Position.X >= _gameContext.ScreenBounds.Width - player.Bounds.Width)
+            if (playerPosition.X >= _gameContext.ScreenBounds.Width - player.Bounds.Width)
             {
                 playerPosition.X = _gameContext.ScreenBounds.Width - player.Bounds.Width;
             }
-
-            playerPosition += Vector2.Multiply(player.Velocity, player.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             player.Position = playerPosition;
         }
@@ -54,16 +54,6 @@ namespace SSSRegen.Source.GameComponents.Physics
             playerPosition.Y = _gameContext.ScreenBounds.Height - player.Bounds.Height - 10;
 
             player.Position = playerPosition;
-
-            //ToDo change starting position depending on number of players
-            //if (_playerIndex == PlayerIndex.One)
-            //{
-            //    _position.X = _screenBounds.Width / 3; //Player ones's _position along the bottom of the screen
-            //}
-            //else
-            //{
-            //    _position.X = (int)(_screenBounds.Width / 1.5); //Player two's _position along the bottom of the screen
-            //}
         }
     }
 }
