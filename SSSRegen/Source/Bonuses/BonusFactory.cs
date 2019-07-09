@@ -1,7 +1,6 @@
 ﻿using System;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 
@@ -22,7 +21,7 @@ namespace SSSRegen.Source.Bonuses
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.Bonuses.HealthPack.Textures.RedTextureName));
             var healthPackGraphics = new HealthPackGraphics(_gameContext.GameGraphics, sprite);
-            return new HealthPack(new NullGameObjectInputComponent(), new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
+            return new HealthPack(new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
         }
     }
 }

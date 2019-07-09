@@ -29,24 +29,20 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Update(IGameObject healthPack, IGameTime gameTime)
         {
-            var healthPackPosition = healthPack.Position;
-
             //If the healthPack moves out of screen bounds, reset it
-            if (healthPackPosition.Y >= _gameContext.ScreenBounds.Height)
+            if (healthPack.Position.Y >= _gameContext.ScreenBounds.Height)
             {
                 Reset(healthPack);
                 return;
             }
 
             //Move the healthPack
-            healthPackPosition += Vector2.Multiply(healthPack.MovementDirection, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            healthPack.Position += Vector2.Multiply(healthPack.MovementDirection, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If healthPack collides with object, execute only what the healthPack should do.
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(healthPack);
-
-            healthPack.Position = healthPackPosition;
         }
 
         private void Reset(IGameObject healthPack)

@@ -26,26 +26,22 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Update(IGameObject meteor, IGameTime gameTime)
         {
-            var meteorPosition = meteor.Position;
-
             //If the meteor moves out of screen bounds, reset it
-            if (meteorPosition.Y >= _gameContext.ScreenBounds.Height ||
-                meteorPosition.X >= _gameContext.ScreenBounds.Width ||
-                meteorPosition.X <= _gameContext.ScreenBounds.Left - meteor.Size.X)
+            if (meteor.Position.Y >= _gameContext.ScreenBounds.Height ||
+                meteor.Position.X >= _gameContext.ScreenBounds.Width ||
+                meteor.Position.X <= _gameContext.ScreenBounds.Left - meteor.Size.X)
             {
                 Reset(meteor);
                 return;
             }
 
             //Move the enemy
-            meteorPosition += Vector2.Multiply(meteor.MovementDirection, meteor.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            meteor.Position += Vector2.Multiply(meteor.MovementDirection, meteor.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If meteor collides with object, execute only what the meteor should do.
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(meteor);
-
-            meteor.Position = meteorPosition;
         }
 
         private void Reset(IGameObject meteor)

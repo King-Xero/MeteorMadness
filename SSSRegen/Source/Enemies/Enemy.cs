@@ -9,8 +9,8 @@ namespace SSSRegen.Source.Enemies
     {
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+            base(physicsComponent, graphicsComponent)
         {
             MaxHealth = maxHealth;
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
@@ -23,6 +23,8 @@ namespace SSSRegen.Source.Enemies
 
         public override void Initialize()
         {
+            IsActive = true;
+
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
 

@@ -1,7 +1,9 @@
-﻿namespace SSSRegen.Source.Projectiles
+﻿using SSSRegen.Source.Core.Interfaces;
+
+namespace SSSRegen.Source.Projectiles
 {
     public interface IProjectileFactory
     {
-        IProjectile CreateBullet();
+        IGameObject CreateBullet();
     }
 }

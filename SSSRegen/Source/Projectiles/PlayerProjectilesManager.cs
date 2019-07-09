@@ -11,7 +11,7 @@ namespace SSSRegen.Source.Projectiles
     {
         private readonly GameContext _gameContext;
 
-        private List<IProjectile> _bullets;
+        private List<IGameObject> _bullets;
 
         public PlayerProjectilesManager(GameContext gameContext)
         {
@@ -20,7 +20,7 @@ namespace SSSRegen.Source.Projectiles
 
         public void Initialize()
         {
-            _bullets = new List<IProjectile>();
+            _bullets = new List<IGameObject>();
             for (int i = 0; i < Math.Round(GameConstants.Projectiles.Player.MaxBulletsOnScreen * 0.8); i++)
             {
                 var bullet = _gameContext.Factories.ProjectileFactory.CreateBullet();

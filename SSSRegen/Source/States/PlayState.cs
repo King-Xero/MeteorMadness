@@ -27,15 +27,17 @@ namespace SSSRegen.Source.States
             _playStateGraphics = playStateGraphics ?? throw new ArgumentNullException(nameof(playStateGraphics));
             _gameObjectManagers = new IGameObjectManager[]
             {
-                new EnemiesManager(_gameContext.Factories.EnemyFactory),
-                new MeteorsManager(_gameContext.Factories.MeteorsFactory),
-                new BonusManager(_gameContext.Factories.BonusesFactory),
-                new PlayerManager(_gameContext.Factories.PlayerFactory)
+                new EnemiesManager(_gameContext.Factories.EnemyFactory, _gameContext.CollisionSystem),
+                new MeteorsManager(_gameContext.Factories.MeteorsFactory, _gameContext.CollisionSystem),
+                new BonusManager(_gameContext.Factories.BonusesFactory, _gameContext.CollisionSystem),
+                new PlayerManager(_gameContext.Factories.PlayerFactory, _gameContext.CollisionSystem)
             };
         }
 
         public override void Initialize()
         {
+            _gameContext.CollisionSystem.Initialize();
+
             _playStateGraphics.Initialize(this);
             _playStateMenu = _gameContext.Factories.MenuFactory.CreatePlayStateMenu();
             _playStateMenu.Initialize();
@@ -51,6 +53,8 @@ namespace SSSRegen.Source.States
 
         public override void Update(IGameTime gameTime)
         {
+            _gameContext.CollisionSystem.Update(gameTime);
+
             _playStateGraphics.Update(this, gameTime);
             _playStateMenu.Update(gameTime);
 

@@ -11,13 +11,15 @@ namespace SSSRegen.Source.Player
 {
     public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles
     {
+        private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
         public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+            base(physicsComponent, graphicsComponent)
         {
+            _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
             _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
@@ -34,6 +36,9 @@ namespace SSSRegen.Source.Player
         public override void Initialize()
         {
             MaxHealth = GameConstants.Player.InitialMaxHealth;
+            IsActive = true;
+
+            _inputComponent.Initialize(this);
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += PlayerOnDied;
@@ -47,6 +52,8 @@ namespace SSSRegen.Source.Player
 
         public override void Update(IGameTime gameTime)
         {
+            _inputComponent.Update(this, gameTime);
+
             _healthComponent.Update(this);
             _scoreComponent.Update(this);
 

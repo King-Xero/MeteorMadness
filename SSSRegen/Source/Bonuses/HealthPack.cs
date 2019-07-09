@@ -5,13 +5,15 @@ namespace SSSRegen.Source.Bonuses
 {
     public class HealthPack : GameObject
     {
-        public HealthPack(IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+        public HealthPack(IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+            base(physicsComponent, graphicsComponent)
         {
         }
 
         public override void Initialize()
         {
+            IsActive = true;
+
             base.Initialize();
         }
 

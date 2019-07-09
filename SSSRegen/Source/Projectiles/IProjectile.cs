@@ -1,9 +1,7 @@
-﻿using SSSRegen.Source.Core.Interfaces;
-
-namespace SSSRegen.Source.Projectiles
+﻿namespace SSSRegen.Source.Projectiles
 {
-    public interface IProjectile : IGameObject
-    {
-        bool IsActive { get; set; }
-    }
+    //public interface IProjectile : IGameObject
+    //{
+    //    bool IsActive { get; set; }
+    //}
 }

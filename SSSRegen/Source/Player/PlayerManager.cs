@@ -7,11 +7,13 @@ namespace SSSRegen.Source.Player
     public class PlayerManager : IGameObjectManager
     {
         private readonly IPlayerFactory _playerFactory;
+        private readonly ICollisionSystem _collisionSystem;
         private List<Player> _players;
 
-        public PlayerManager(IPlayerFactory playerFactory)
+        public PlayerManager(IPlayerFactory playerFactory, ICollisionSystem collisionSystem)
         {
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
+            _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
@@ -24,6 +26,7 @@ namespace SSSRegen.Source.Player
             foreach (var player in _players)
             {
                 player.Initialize();
+                _collisionSystem.RegisterEntity(player);
             }
         }
 

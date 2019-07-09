@@ -8,11 +8,13 @@ namespace SSSRegen.Source.Meteors
     public class MeteorsManager : IGameObjectManager
     {
         private readonly IMeteorFactory _meteorFactory;
+        private readonly ICollisionSystem _collisionSystem;
         private Dictionary<string, List<Meteor>> _meteors;
 
-        public MeteorsManager(IMeteorFactory meteorFactory)
+        public MeteorsManager(IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
         {
             _meteorFactory = meteorFactory ?? throw new ArgumentNullException(nameof(meteorFactory));
+            _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
@@ -29,6 +31,7 @@ namespace SSSRegen.Source.Meteors
             {
                 var meteor = _meteorFactory.CreateBigMeteor();
                 meteor.Initialize();
+                _collisionSystem.RegisterEntity(meteor);
 
                 _meteors[GameConstants.Meteors.BigMeteor1.Name].Add(meteor);
             }
@@ -36,6 +39,7 @@ namespace SSSRegen.Source.Meteors
             {
                 var meteor = _meteorFactory.CreateMediumMeteor();
                 meteor.Initialize();
+                _collisionSystem.RegisterEntity(meteor);
 
                 _meteors[GameConstants.Meteors.MediumMeteor1.Name].Add(meteor);
             }
@@ -43,6 +47,7 @@ namespace SSSRegen.Source.Meteors
             {
                 var meteor = _meteorFactory.CreateSmallMeteor();
                 meteor.Initialize();
+                _collisionSystem.RegisterEntity(meteor);
 
                 _meteors[GameConstants.Meteors.SmallMeteor1.Name].Add(meteor);
             }
@@ -50,6 +55,7 @@ namespace SSSRegen.Source.Meteors
             {
                 var meteor = _meteorFactory.CreateTinyMeteor();
                 meteor.Initialize();
+                _collisionSystem.RegisterEntity(meteor);
 
                 _meteors[GameConstants.Meteors.TinyMeteor1.Name].Add(meteor);
             }

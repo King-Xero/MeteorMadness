@@ -8,11 +8,13 @@ namespace SSSRegen.Source.Enemies
     public class EnemiesManager : IGameObjectManager
     {
         private readonly IEnemyFactory _enemyFactory;
+        private readonly ICollisionSystem _collisionSystem;
         private Dictionary<string, List<Enemy>> _enemies;
 
-        public EnemiesManager(IEnemyFactory enemyFactory)
+        public EnemiesManager(IEnemyFactory enemyFactory, ICollisionSystem collisionSystem)
         {
             _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
+            _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
@@ -27,23 +29,27 @@ namespace SSSRegen.Source.Enemies
 
             for (var i = 0; i < GameConstants.Enemies.Enemy1.InitialCount; i++)
             {
-                _enemies[GameConstants.Enemies.Enemy1.Name].Add(_enemyFactory.CreateEnemy1());
+                var enemy = _enemyFactory.CreateEnemy1();
+                enemy.Initialize();
+                _collisionSystem.RegisterEntity(enemy);
+
+                _enemies[GameConstants.Enemies.Enemy1.Name].Add(enemy);
             }
             for (var i = 0; i < GameConstants.Enemies.Enemy2.InitialCount; i++)
             {
-                _enemies[GameConstants.Enemies.Enemy2.Name].Add(_enemyFactory.CreateEnemy2());
+                var enemy = _enemyFactory.CreateEnemy2();
+                enemy.Initialize();
+                _collisionSystem.RegisterEntity(enemy);
+
+                _enemies[GameConstants.Enemies.Enemy2.Name].Add(enemy);
             }
             for (var i = 0; i < GameConstants.Enemies.Enemy3.InitialCount; i++)
             {
-                _enemies[GameConstants.Enemies.Enemy3.Name].Add(_enemyFactory.CreateEnemy3());
-            }
+                var enemy = _enemyFactory.CreateEnemy3();
+                enemy.Initialize();
+                _collisionSystem.RegisterEntity(enemy);
 
-            foreach (var enemyType in _enemies)
-            {
-                foreach (var enemy in enemyType.Value)
-                {
-                    enemy.Initialize();
-                }
+                _enemies[GameConstants.Enemies.Enemy3.Name].Add(enemy);
             }
         }
 

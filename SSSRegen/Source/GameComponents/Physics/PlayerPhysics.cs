@@ -34,14 +34,8 @@ namespace SSSRegen.Source.GameComponents.Physics
             
             playerPosition += player.Speed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            if (playerPosition.X <= _gameContext.ScreenBounds.Left)
-            {
-                playerPosition.X = _gameContext.ScreenBounds.Left;
-            }
-            if (playerPosition.X >= _gameContext.ScreenBounds.Width - player.Bounds.Width)
-            {
-                playerPosition.X = _gameContext.ScreenBounds.Width - player.Bounds.Width;
-            }
+            playerPosition.X = MathHelper.Clamp(playerPosition.X, _gameContext.ScreenBounds.Left,
+                _gameContext.ScreenBounds.Width - player.Bounds.Width);
 
             player.Position = playerPosition;
         }

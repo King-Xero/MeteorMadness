@@ -5,13 +5,14 @@ namespace SSSRegen.Source.Meteors
 {
     public class Meteor : GameObject
     {
-        public Meteor(IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+        public Meteor(IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+            base(physicsComponent, graphicsComponent)
         {
         }
 
         public override void Initialize()
         {
+            IsActive = true;
             base.Initialize();
         }
 

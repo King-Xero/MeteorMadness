@@ -8,11 +8,13 @@ namespace SSSRegen.Source.Bonuses
     public class BonusManager : IGameObjectManager
     {
         private readonly IBonusFactory _bonusFactory;
+        private readonly ICollisionSystem _collisionSystem;
         private List<HealthPack> _healthPacks;
 
-        public BonusManager(IBonusFactory bonusFactory)
+        public BonusManager(IBonusFactory bonusFactory, ICollisionSystem collisionSystem)
         {
             _bonusFactory = bonusFactory ?? throw new ArgumentNullException(nameof(bonusFactory));
+            _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
@@ -26,6 +28,7 @@ namespace SSSRegen.Source.Bonuses
             foreach (var healthPack in _healthPacks)
             {
                 healthPack.Initialize();
+                _collisionSystem.RegisterEntity(healthPack);
             }
         }
 
