@@ -22,18 +22,18 @@ namespace SSSRegen.Source.GameComponents.Input
         {
             _inputController.Update();
 
+            var movementVector = Vector2.Zero;
+
             if (_inputController.IsLeftButtonHeld())
             {
-                player.MovementDirection = -GameConstants.Player.MovementVector;
+                movementVector -= GameConstants.Player.MovementVector;
             }
-            else if (_inputController.IsRightButtonHeld())
+            if (_inputController.IsRightButtonHeld())
             {
-                player.MovementDirection = GameConstants.Player.MovementVector;
+                movementVector += GameConstants.Player.MovementVector;
             }
-            else
-            {
-                player.MovementDirection = Vector2.Zero;
-            }
+
+            player.MovementDirection = movementVector;
 
             if (_inputController.IsFireButtonPressed())
             {
