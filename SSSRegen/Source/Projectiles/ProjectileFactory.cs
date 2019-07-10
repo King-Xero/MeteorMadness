@@ -18,7 +18,7 @@ namespace SSSRegen.Source.Projectiles
             _random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        public IGameObject CreateBullet()
+        public Bullet CreateBullet()
         {
             return new Bullet(
                 new BulletPhysicsComponent(_gameContext),

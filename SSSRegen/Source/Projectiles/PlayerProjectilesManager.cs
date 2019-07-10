@@ -25,6 +25,7 @@ namespace SSSRegen.Source.Projectiles
             {
                 var bullet = _gameContext.Factories.ProjectileFactory.CreateBullet();
                 bullet.Initialize();
+                _gameContext.CollisionSystem.RegisterEntity(bullet);
                 _bullets.Add(bullet);
             }
         }

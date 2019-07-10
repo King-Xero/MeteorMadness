@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Timers;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
@@ -9,7 +13,8 @@ namespace SSSRegen.Source.Bonuses
     {
         private readonly IBonusFactory _bonusFactory;
         private readonly ICollisionSystem _collisionSystem;
-        private List<HealthPack> _healthPacks;
+        private List<IHandleCollisions> _bonuses;
+        private Stopwatch _spawnTimer;
 
         public BonusManager(IBonusFactory bonusFactory, ICollisionSystem collisionSystem)
         {
@@ -19,33 +24,59 @@ namespace SSSRegen.Source.Bonuses
 
         public void Initialize()
         {
-            _healthPacks = new List<HealthPack>();
+            _bonuses = new List<IHandleCollisions>();
             for (int i = 0; i < GameConstants.Bonuses.HealthPack.InitialCount; i++)
             {
-                _healthPacks.Add(_bonusFactory.CreateHealthPack());
-            }
-
-            foreach (var healthPack in _healthPacks)
-            {
+                var healthPack = _bonusFactory.CreateHealthPack();
                 healthPack.Initialize();
                 _collisionSystem.RegisterEntity(healthPack);
+                _bonuses.Add(healthPack);
             }
+
+            _spawnTimer = new Stopwatch();
+            _spawnTimer.Start();
         }
 
         public void Update(IGameTime gameTime)
         {
-            foreach (var healthPack in _healthPacks)
+            if (_spawnTimer.Elapsed.Seconds == 30)
             {
-                healthPack.Update(gameTime);
+                SpawnBonus();
+                _spawnTimer.Restart();
+            }
+
+            foreach (var bonus in _bonuses)
+            {
+                if (bonus.IsActive)
+                {
+                    bonus.Update(gameTime);
+                }
             }
         }
 
         public void Draw(IGameTime gameTime)
         {
-            foreach (var healthPack in _healthPacks)
+            foreach (var bonus in _bonuses)
             {
-                healthPack.Draw(gameTime);
+                if (bonus.IsActive)
+                {
+                    bonus.Draw(gameTime);
+                }
             }
+        }
+
+        private void SpawnBonus()
+        {
+            var bonusToSpawn = _bonuses.FirstOrDefault(b => !b.IsActive);
+            if (bonusToSpawn == null)
+            {
+                bonusToSpawn = _bonusFactory.CreateHealthPack();
+                bonusToSpawn.Initialize();
+
+                _bonuses.Add(bonusToSpawn);
+            }
+
+            bonusToSpawn.IsActive = true;
         }
     }
 }

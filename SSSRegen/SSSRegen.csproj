@@ -53,6 +53,7 @@
     <Compile Include="Source\Bonuses\HealthPack.cs" />
     <Compile Include="Source\Core\GameFactories.cs" />
     <Compile Include="Source\Core\Interfaces\IDrawableComponent.cs" />
+    <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
     <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />

@@ -23,11 +23,6 @@ namespace SSSRegen.Source.Core
 
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, (int) Size.X, (int) Size.Y);
 
-        public void CollidedWith(IGameObject gameObject)
-        {
-            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
-        }
-
         public virtual void Initialize()
         {
             _graphicsComponent.Initialize(this);

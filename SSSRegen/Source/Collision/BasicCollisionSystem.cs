@@ -6,7 +6,7 @@ namespace SSSRegen.Source.Collision
     public class BasicCollisionSystem : ICollisionSystem
     {
         private bool _isPaused;
-        private List<IGameObject> _entities;
+        private List<IHandleCollisions> _entities;
 
         public void Pause()
         {
@@ -18,7 +18,7 @@ namespace SSSRegen.Source.Collision
             _isPaused = false;
         }
 
-        public void RegisterEntity(IGameObject entity)
+        public void RegisterEntity(IHandleCollisions entity)
         {
             _entities.Add(entity);
         }
@@ -26,7 +26,7 @@ namespace SSSRegen.Source.Collision
         public void Initialize()
         {
             _isPaused = false;
-            _entities = new List<IGameObject>();
+            _entities = new List<IHandleCollisions>();
         }
 
         public void Update(IGameTime gameTime)

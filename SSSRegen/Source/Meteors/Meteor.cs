@@ -1,9 +1,10 @@
-﻿using SSSRegen.Source.Core;
+﻿using System;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Meteors
 {
-    public class Meteor : GameObject
+    public class Meteor : GameObject, IHandleCollisions
     {
         public Meteor(IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
@@ -24,6 +25,11 @@ namespace SSSRegen.Source.Meteors
         public override void Draw(IGameTime gameTime)
         {
             base.Draw(gameTime);
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
     }
 }

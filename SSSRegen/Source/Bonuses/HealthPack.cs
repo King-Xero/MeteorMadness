@@ -1,9 +1,10 @@
-﻿using SSSRegen.Source.Core;
+﻿using System;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Bonuses
 {
-    public class HealthPack : GameObject
+    public class HealthPack : GameObject, IHandleCollisions
     {
         public HealthPack(IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
@@ -12,8 +13,6 @@ namespace SSSRegen.Source.Bonuses
 
         public override void Initialize()
         {
-            IsActive = true;
-
             base.Initialize();
         }
 
@@ -25,6 +24,17 @@ namespace SSSRegen.Source.Bonuses
         public override void Draw(IGameTime gameTime)
         {
             base.Draw(gameTime);
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
+
+            //ToDo Assign and use collision layers
+            if (gameObject is Player.Player)
+            {
+                IsActive = false;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using SSSRegen.Source.Health;
 
 namespace SSSRegen.Source.Enemies
 {
-    public class Enemy : GameObject, IHandleHealth
+    public class Enemy : GameObject, IHandleHealth, IHandleCollisions
     {
         private readonly IHealthComponent _healthComponent;
 
@@ -53,6 +53,11 @@ namespace SSSRegen.Source.Enemies
         public void Damage(int damageAmount)
         {
             Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         private void EnemyOnDied(object sender, EventArgs e)

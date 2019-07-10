@@ -9,7 +9,7 @@ using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.Player
 {
-    public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles
+    public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
     {
         private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
@@ -85,6 +85,11 @@ namespace SSSRegen.Source.Player
         public void UpdateScore(int scoreAmount)
         {
             ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         public void Shoot()

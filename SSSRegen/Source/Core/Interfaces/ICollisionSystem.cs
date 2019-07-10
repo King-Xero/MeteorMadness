@@ -5,7 +5,7 @@
         void Pause();
         void Resume();
 
-        void RegisterEntity(IGameObject entity);
+        void RegisterEntity(IHandleCollisions entity);
 
         void Initialize();
         void Update(IGameTime gameTime);
