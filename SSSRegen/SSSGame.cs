@@ -39,7 +39,7 @@ namespace SSSRegen
         protected override void Initialize()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Services.AddService(typeof(SpriteBatch), _spriteBatch);
+
             _gameContext = new GameContext(this, _spriteBatch);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);

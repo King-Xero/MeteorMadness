@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
@@ -9,15 +10,17 @@ using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.Player
 {
-    public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles
+    public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
     {
+        private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
         public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+            base(physicsComponent, graphicsComponent)
         {
+            _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
             _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
@@ -29,11 +32,16 @@ namespace SSSRegen.Source.Player
 
         public int MaxHealth { get; private set; }
 
+        public CollisionLayer CollisionLayer => CollisionLayer.Player;
+
         public Vector2 BulletPosition => new Vector2(Position.X + (Size.X / 2), Position.Y - (Size.Y / 2));
 
         public override void Initialize()
         {
             MaxHealth = GameConstants.Player.InitialMaxHealth;
+            IsActive = true;
+
+            _inputComponent.Initialize(this);
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += PlayerOnDied;
@@ -47,6 +55,8 @@ namespace SSSRegen.Source.Player
 
         public override void Update(IGameTime gameTime)
         {
+            _inputComponent.Update(this, gameTime);
+
             _healthComponent.Update(this);
             _scoreComponent.Update(this);
 
@@ -78,6 +88,11 @@ namespace SSSRegen.Source.Player
         public void UpdateScore(int scoreAmount)
         {
             ScoreUpdated?.Invoke(this, new ScoreUpdatedEventArgs(scoreAmount));
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         public void Shoot()

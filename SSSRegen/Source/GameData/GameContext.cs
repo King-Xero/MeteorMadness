@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
@@ -18,6 +19,7 @@ namespace SSSRegen.Source.GameData
             AssetManager = new AssetManager(_game);
             StateMachine = new GameStateMachine();
             Factories = new GameFactories(this, Random);
+            CollisionSystem = new BasicCollisionSystem();
         }
 
         public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
@@ -26,5 +28,6 @@ namespace SSSRegen.Source.GameData
         public IAssetManager AssetManager { get; }
         public IGameStateMachine StateMachine { get; }
         public IGameFactories Factories { get; }
+        public ICollisionSystem CollisionSystem { get; }
     }
 }

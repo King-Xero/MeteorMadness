@@ -1,7 +1,6 @@
 ﻿using System;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
@@ -28,7 +27,6 @@ namespace SSSRegen.Source.Enemies
             return new Enemy(
                 GameConstants.Enemies.Enemy1.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
-                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -42,7 +40,6 @@ namespace SSSRegen.Source.Enemies
             return new Enemy(
                 GameConstants.Enemies.Enemy2.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
-                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }
@@ -56,7 +53,6 @@ namespace SSSRegen.Source.Enemies
             return new Enemy(
                 GameConstants.Enemies.Enemy3.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
-                new NullGameObjectInputComponent(),
                 new EnemyPhysics(_gameContext, _random),
                 graphicsComponent);
         }

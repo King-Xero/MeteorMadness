@@ -35,7 +35,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject meteor, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_activeSprite, meteor.Bounds, Color.White);
+            _gameGraphics.Draw(_activeSprite, meteor.Position, Color.White);
         }
     }
 }

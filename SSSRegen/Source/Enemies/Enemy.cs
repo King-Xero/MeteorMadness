@@ -1,16 +1,17 @@
 ﻿using System;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Health;
 
 namespace SSSRegen.Source.Enemies
 {
-    public class Enemy : GameObject, IHandleHealth
+    public class Enemy : GameObject, IHandleHealth, IHandleCollisions
     {
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(inputComponent, physicsComponent, graphicsComponent)
+        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+            base(physicsComponent, graphicsComponent)
         {
             MaxHealth = maxHealth;
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
@@ -21,8 +22,12 @@ namespace SSSRegen.Source.Enemies
 
         public int MaxHealth { get; private set; }
 
+        public CollisionLayer CollisionLayer => CollisionLayer.Enemy;
+
         public override void Initialize()
         {
+            IsActive = true;
+
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
 
@@ -51,6 +56,11 @@ namespace SSSRegen.Source.Enemies
         public void Damage(int damageAmount)
         {
             Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+        }
+
+        public void CollidedWith(IHandleCollisions gameObject)
+        {
+            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         private void EnemyOnDied(object sender, EventArgs e)

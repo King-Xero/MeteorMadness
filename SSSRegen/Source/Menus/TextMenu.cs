@@ -19,8 +19,6 @@ namespace SSSRegen.Source.Menus
         private int _height;
         private Vector2 _position;
 
-        private Rectangle _spriteOptionDrawRectangle;
-
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
         public TextMenu(GameContext gameContext, IComponent<IGameMenu> menuInputComponent)
         {
@@ -90,15 +88,9 @@ namespace SSSRegen.Source.Menus
                         ISprite sprite = i == SelectedIndex ? spriteOption.SelectedSprite : spriteOption.RegularSprite;
 
                         //Draw a shadow for the text
-                        _gameContext.GameGraphics.Draw(
-                            sprite,
-                            ConfigureDrawRectangle((_menuItemPositions[i] + Vector2.One).X, (_menuItemPositions[i] + Vector2.One).Y, sprite.Size),
-                            Color.Black);
+                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i] + Vector2.One, Color.Black);
                         //Draw the text item
-                        _gameContext.GameGraphics.Draw(
-                            sprite,
-                            ConfigureDrawRectangle(_menuItemPositions[i].X, _menuItemPositions[i].Y, sprite.Size),
-                            Color.White);
+                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i], Color.White);
                         
                         y += sprite.Size.Y;
                     }
@@ -133,16 +125,6 @@ namespace SSSRegen.Source.Menus
 
                 y += item.MaxSize.Y;
             }
-        }
-
-        private Rectangle ConfigureDrawRectangle(float xPosition, float yPosition, Vector2 size)
-        {
-            _spriteOptionDrawRectangle.X = xPosition.ToInt();
-            _spriteOptionDrawRectangle.Y = yPosition.ToInt();
-            _spriteOptionDrawRectangle.Width = size.X.ToInt();
-            _spriteOptionDrawRectangle.Height = size.Y.ToInt();
-
-            return _spriteOptionDrawRectangle;
         }
     }
 }

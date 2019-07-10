@@ -2,7 +2,6 @@
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameComponents.Input;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 
@@ -19,10 +18,9 @@ namespace SSSRegen.Source.Projectiles
             _random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        public IProjectile CreateBullet()
+        public Bullet CreateBullet()
         {
             return new Bullet(
-                new NullGameObjectInputComponent(),
                 new BulletPhysicsComponent(_gameContext),
                 CreateBulletGraphics());
         }

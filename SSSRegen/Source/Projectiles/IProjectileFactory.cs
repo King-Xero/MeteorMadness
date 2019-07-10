@@ -2,6 +2,6 @@
 {
     public interface IProjectileFactory
     {
-        IProjectile CreateBullet();
+        Bullet CreateBullet();
     }
 }

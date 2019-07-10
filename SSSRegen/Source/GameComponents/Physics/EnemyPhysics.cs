@@ -26,30 +26,28 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         public void Update(IGameObject enemy, IGameTime gameTime)
         {
-            var enemyPosition = enemy.Position;
-
             //If the enemy moves out of screen bounds, reset it
-            if (enemyPosition.Y >= _gameContext.ScreenBounds.Height ||
-                enemyPosition.X >= _gameContext.ScreenBounds.Width ||
-                enemyPosition.X <= _gameContext.ScreenBounds.Left - enemy.Size.X)
+            if (enemy.Position.Y >= _gameContext.ScreenBounds.Height ||
+                enemy.Position.X >= _gameContext.ScreenBounds.Width ||
+                enemy.Position.X <= _gameContext.ScreenBounds.Left - enemy.Size.X)
             {
                 Reset(enemy);
                 return;
             }
 
             //Move the enemy
-            enemyPosition += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If enemy collides with object, execute only what the enemy should do.
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(enemy);
-
-            enemy.Position = enemyPosition;
         }
 
         private void Reset(IGameObject enemy)
         {
+            enemy.IsActive = false;
+
             enemy.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
             enemy.Speed = 100;
 

@@ -4,6 +4,7 @@ namespace SSSRegen.Source.Core.Interfaces
 {
     public interface IGameObject
     {
+        bool IsActive { get; set; }
         Vector2 Position { get; set; }
         float Speed { get; set; }
         Vector2 MovementDirection { get; set; }
