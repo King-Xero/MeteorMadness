@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Source\Collision\BasicCollisionSystem.cs" />
+    <Compile Include="Source\Collision\CollisionLayer.cs" />
     <Compile Include="Source\Core\GameTime.cs" />
     <Compile Include="Source\Core\Interfaces\ICollisionSystem.cs" />
     <Compile Include="Source\Core\Interfaces\IGameTime.cs" />

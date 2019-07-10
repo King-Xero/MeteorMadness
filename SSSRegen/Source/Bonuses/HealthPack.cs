@@ -1,4 +1,5 @@
 ﻿using System;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
@@ -10,6 +11,8 @@ namespace SSSRegen.Source.Bonuses
             base(physicsComponent, graphicsComponent)
         {
         }
+
+        public CollisionLayer CollisionLayer => CollisionLayer.Bonus;
 
         public override void Initialize()
         {
@@ -31,7 +34,7 @@ namespace SSSRegen.Source.Bonuses
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
 
             //ToDo Assign and use collision layers
-            if (gameObject is Player.Player)
+            if (gameObject.CollisionLayer == CollisionLayer.Player)
             {
                 IsActive = false;
             }

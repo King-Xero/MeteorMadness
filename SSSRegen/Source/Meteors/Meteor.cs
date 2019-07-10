@@ -1,4 +1,5 @@
 ﻿using System;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 
@@ -10,6 +11,8 @@ namespace SSSRegen.Source.Meteors
             base(physicsComponent, graphicsComponent)
         {
         }
+
+        public CollisionLayer CollisionLayer => CollisionLayer.Meteor;
 
         public override void Initialize()
         {

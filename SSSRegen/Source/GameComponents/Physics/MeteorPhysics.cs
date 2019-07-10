@@ -46,6 +46,8 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         private void Reset(IGameObject meteor)
         {
+            meteor.IsActive = false;
+
             meteor.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
             meteor.Speed = 100;
 

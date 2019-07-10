@@ -1,4 +1,5 @@
 ﻿using System;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Health;
@@ -20,6 +21,8 @@ namespace SSSRegen.Source.Enemies
         public event EventHandler<DamageEventArgs> Damaged;
 
         public int MaxHealth { get; private set; }
+
+        public CollisionLayer CollisionLayer => CollisionLayer.Enemy;
 
         public override void Initialize()
         {

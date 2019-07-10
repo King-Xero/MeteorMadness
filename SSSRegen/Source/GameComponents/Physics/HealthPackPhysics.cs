@@ -47,6 +47,8 @@ namespace SSSRegen.Source.GameComponents.Physics
 
         private void Reset(IGameObject healthPack)
         {
+            healthPack.IsActive = false;
+
             var healthPackPosition = healthPack.Position;
 
             healthPackPosition.X = _random.Next(_gameContext.ScreenBounds.Width - healthPack.Bounds.Width);

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
@@ -30,6 +31,8 @@ namespace SSSRegen.Source.Player
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public int MaxHealth { get; private set; }
+
+        public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
         public Vector2 BulletPosition => new Vector2(Position.X + (Size.X / 2), Position.Y - (Size.Y / 2));
 

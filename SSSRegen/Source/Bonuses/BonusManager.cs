@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Timers;
-using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
@@ -13,8 +11,9 @@ namespace SSSRegen.Source.Bonuses
     {
         private readonly IBonusFactory _bonusFactory;
         private readonly ICollisionSystem _collisionSystem;
+
         private List<IHandleCollisions> _bonuses;
-        private Stopwatch _spawnTimer;
+        private List<Timer> _spawnTimers;
 
         public BonusManager(IBonusFactory bonusFactory, ICollisionSystem collisionSystem)
         {
@@ -25,6 +24,9 @@ namespace SSSRegen.Source.Bonuses
         public void Initialize()
         {
             _bonuses = new List<IHandleCollisions>();
+
+            _spawnTimers = new List<Timer>();
+
             for (int i = 0; i < GameConstants.Bonuses.HealthPack.InitialCount; i++)
             {
                 var healthPack = _bonusFactory.CreateHealthPack();
@@ -33,18 +35,16 @@ namespace SSSRegen.Source.Bonuses
                 _bonuses.Add(healthPack);
             }
 
-            _spawnTimer = new Stopwatch();
-            _spawnTimer.Start();
+            AddSpawnTimer(30000, _bonusFactory.CreateHealthPack);
+
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Start();
+            }
         }
 
         public void Update(IGameTime gameTime)
         {
-            if (_spawnTimer.Elapsed.Seconds == 30)
-            {
-                SpawnBonus();
-                _spawnTimer.Restart();
-            }
-
             foreach (var bonus in _bonuses)
             {
                 if (bonus.IsActive)
@@ -65,13 +65,21 @@ namespace SSSRegen.Source.Bonuses
             }
         }
 
-        private void SpawnBonus()
+        private void AddSpawnTimer(int interval, Func<HealthPack> createBonus)
+        {
+            var timer = new Timer(interval);
+            timer.Elapsed += (sender, args) => SpawnBonus(createBonus);
+            _spawnTimers.Add(timer);
+        }
+
+        private void SpawnBonus(Func<HealthPack> createBonus)
         {
             var bonusToSpawn = _bonuses.FirstOrDefault(b => !b.IsActive);
             if (bonusToSpawn == null)
             {
-                bonusToSpawn = _bonusFactory.CreateHealthPack();
+                bonusToSpawn = createBonus();
                 bonusToSpawn.Initialize();
+                _collisionSystem.RegisterEntity(bonusToSpawn);
 
                 _bonuses.Add(bonusToSpawn);
             }

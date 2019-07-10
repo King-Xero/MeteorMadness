@@ -35,11 +35,7 @@ namespace SSSRegen.Source.Collision
             {
                 foreach (var otherEntity in _entities)
                 {
-                    if (!entity.IsActive || !otherEntity.IsActive)
-                    {
-                        continue;
-                    }
-                    if (entity == otherEntity)
+                    if (!entity.IsActive || !otherEntity.IsActive || entity.CollisionLayer == otherEntity.CollisionLayer)
                     {
                         continue;
                     }
