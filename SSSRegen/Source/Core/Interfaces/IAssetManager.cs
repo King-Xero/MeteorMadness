@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
@@ -16,6 +17,6 @@ namespace SSSRegen.Source.Core.Interfaces
         Song GetSong(string name);
 
         void LoadSoundEffect(string name, string fileName);
-        Song GetSoundEffect(string name);
+        SoundEffect GetSoundEffect(string name);
     }
 }

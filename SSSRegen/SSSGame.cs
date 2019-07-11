@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.States;
+using GameTime = Microsoft.Xna.Framework.GameTime;
 
 namespace SSSRegen
 {
@@ -13,6 +15,7 @@ namespace SSSRegen
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private IGameAudioManager _gameAudioManager;
         private GameContext _gameContext;
         
         public SSSGame()
@@ -40,7 +43,11 @@ namespace SSSRegen
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _gameContext = new GameContext(this, _spriteBatch);
+            _gameAudioManager = new GameAudioManager();
+
+            _gameAudioManager.Initialize();
+
+            _gameContext = new GameContext(this, _spriteBatch, _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
 
@@ -62,6 +69,8 @@ namespace SSSRegen
             _gameTime.TotalGameTime = gameTime.TotalGameTime;
 
             _gameContext.StateMachine.ActiveState.Update(_gameTime);
+
+            _gameAudioManager.Update();
 
             base.Update(gameTime);
         }

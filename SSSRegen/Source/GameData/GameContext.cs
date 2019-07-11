@@ -11,11 +11,13 @@ namespace SSSRegen.Source.GameData
     {
         private readonly Game _game;
 
-        public GameContext(Game game, SpriteBatch spriteBatch)
+        public GameContext(Game game, SpriteBatch spriteBatch, IGameAudioManager gameAudioManager)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
-            Random = new Random();
+            if (spriteBatch == null) throw new ArgumentNullException(nameof(spriteBatch));
             GameGraphics = new GameGraphics(spriteBatch);
+            GameAudio = gameAudioManager ?? throw new ArgumentNullException(nameof(gameAudioManager));
+            Random = new Random();
             AssetManager = new AssetManager(_game);
             StateMachine = new GameStateMachine();
             Factories = new GameFactories(this, Random);
@@ -25,6 +27,7 @@ namespace SSSRegen.Source.GameData
         public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
         public Random Random { get; }
         public IGameGraphics GameGraphics { get; }
+        public IGameAudioManager GameAudio { get; }
         public IAssetManager AssetManager { get; }
         public IGameStateMachine StateMachine { get; }
         public IGameFactories Factories { get; }

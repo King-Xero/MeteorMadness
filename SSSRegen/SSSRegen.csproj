@@ -44,8 +44,11 @@
   <ItemGroup>
     <Compile Include="Source\Collision\BasicCollisionSystem.cs" />
     <Compile Include="Source\Collision\CollisionLayer.cs" />
+    <Compile Include="Source\Core\GameAudioManager.cs" />
+    <Compile Include="Source\Core\GameSoundEffect.cs" />
     <Compile Include="Source\Core\GameTime.cs" />
     <Compile Include="Source\Core\Interfaces\ICollisionSystem.cs" />
+    <Compile Include="Source\Core\Interfaces\IGameAudio.cs" />
     <Compile Include="Source\Core\Interfaces\IGameTime.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Source\Core\GameFactories.cs" />
     <Compile Include="Source\Core\Interfaces\IDrawableComponent.cs" />
     <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
+    <Compile Include="Source\Core\Interfaces\ISoundEffect.cs" />
     <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />

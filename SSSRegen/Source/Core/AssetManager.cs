@@ -66,17 +66,21 @@ namespace SSSRegen.Source.Core
 
         public Song GetSong(string name)
         {
-            throw new NotImplementedException();
+            return _songs[name];
         }
 
         public void LoadSoundEffect(string name, string fileName)
         {
-            throw new NotImplementedException();
+            var soundEffect = _game.Content.Load<SoundEffect>(fileName);
+            if (soundEffect != null)
+            {
+                _soundEffects.Add(name, soundEffect);
+            }
         }
 
-        public Song GetSoundEffect(string name)
+        public SoundEffect GetSoundEffect(string name)
         {
-            throw new NotImplementedException();
+            return _soundEffects[name];
         }
     }
 }
