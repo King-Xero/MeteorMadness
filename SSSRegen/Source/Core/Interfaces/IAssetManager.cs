@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System.Collections.Specialized;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace SSSRegen.Source.Core.Interfaces
 {
@@ -9,5 +11,11 @@ namespace SSSRegen.Source.Core.Interfaces
 
         void LoadFont(string name, string fileName);
         SpriteFont GetFont(string name);
+
+        void LoadSong(string name, string fileName);
+        Song GetSong(string name);
+
+        void LoadSoundEffect(string name, string fileName);
+        Song GetSoundEffect(string name);
     }
 }
