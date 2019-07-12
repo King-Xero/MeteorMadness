@@ -48,7 +48,7 @@
     <Compile Include="Source\Core\GameSoundEffect.cs" />
     <Compile Include="Source\Core\GameTime.cs" />
     <Compile Include="Source\Core\Interfaces\ICollisionSystem.cs" />
-    <Compile Include="Source\Core\Interfaces\IGameAudio.cs" />
+    <Compile Include="Source\Core\Interfaces\IGameAudioManager.cs" />
     <Compile Include="Source\Core\Interfaces\IGameTime.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

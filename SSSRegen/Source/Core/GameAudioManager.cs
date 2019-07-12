@@ -81,16 +81,16 @@ namespace SSSRegen.Source.Core
             MediaPlayer.Volume = volume;
         }
 
-        public ISoundEffect CreateSoundEffect(SoundEffect soundEffect)
-        {
-            var sfx = new GameSoundEffect(soundEffect.CreateInstance());
-            sfx.OnDisposed += SfxOnOnDisposed;
-            _soundEffectInstances.Add(sfx);
+        //public ISoundEffect CreateSoundEffect(SoundEffect soundEffect)
+        //{
+        //    var sfx = new GameSoundEffect(soundEffect.CreateInstance());
+        //    sfx.OnDisposed += SfxOnOnDisposed;
+        //    _soundEffectInstances.Add(sfx);
 
-            return sfx;
-        }
+        //    return sfx;
+        //}
 
-        public void PlayOneShotSoundEffect(SoundEffect soundEffect)
+        public void PlaySoundEffect(SoundEffect soundEffect)
         {
             var sfx = soundEffect.CreateInstance();
             _soundEffectOneShots.Add(sfx);
@@ -149,9 +149,9 @@ namespace SSSRegen.Source.Core
             }
         }
 
-        private void SfxOnOnDisposed(object sender, GameSoundEffectDisposedEventArgs e)
-        {
-            _soundEffectInstances.Remove(e.SoundEffect);
-        }
+        //private void SfxOnOnDisposed(object sender, GameSoundEffectDisposedEventArgs e)
+        //{
+        //    _soundEffectInstances.Remove(e.SoundEffect);
+        //}
     }
 }

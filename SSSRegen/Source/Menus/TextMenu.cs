@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Utils.Extensions;
@@ -12,25 +13,43 @@ namespace SSSRegen.Source.Menus
     {
         private readonly GameContext _gameContext;
         private readonly IComponent<IGameMenu> _menuInputComponent;
+        private readonly SoundEffect _menuNavigateSoundEffect;
 
         private List<IMenuOption> _menuItems;
         private List<Vector2> _menuItemPositions;
         private int _width;
         private int _height;
         private Vector2 _position;
+        private int _selectedIndex;
+        //Used to stop the menu navigate sound playing when the menu is created, or menu items are set
+        private bool _canPlaySoundEffect;
 
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
-        public TextMenu(GameContext gameContext, IComponent<IGameMenu> menuInputComponent)
+        public TextMenu(GameContext gameContext, IComponent<IGameMenu> menuInputComponent, SoundEffect menuNavigateSoundEffect)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _menuInputComponent = menuInputComponent ?? throw new ArgumentNullException(nameof(menuInputComponent));
+            _menuNavigateSoundEffect = menuNavigateSoundEffect ?? throw new ArgumentException(nameof(menuInputComponent));
         }
 
         public bool IsEnabled { get; set; } = true;
-        public int SelectedIndex { get; set; }
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                if (_canPlaySoundEffect)
+                {
+                    _gameContext.GameAudio.PlaySoundEffect(_menuNavigateSoundEffect);
+                }
+                _selectedIndex = value;
+            }
+        }
 
         public void SetMenuItems(List<IMenuOption> items)
         {
+            _canPlaySoundEffect = false;
             _menuItems = new List<IMenuOption>();
             foreach (var item in items)
             {
@@ -39,6 +58,7 @@ namespace SSSRegen.Source.Menus
             SelectedIndex = 0;
             CalculateBounds();
             CalculateItemPositions();
+            _canPlaySoundEffect = true;
         }
 
         public void SelectCurrentItem()

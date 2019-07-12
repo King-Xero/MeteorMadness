@@ -158,6 +158,14 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureName, GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureName, GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureFileName);
 
+            //SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectName, GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectFileName);
+            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
+            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
+
             base.LoadContent();
         }
 

@@ -20,8 +20,9 @@ namespace SSSRegen.Source.States
         public override void Initialize()
         {
             _splashStateGraphics.Initialize(this);
-
             base.Initialize();
+
+            _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectName));
         }
 
         public override void Update(IGameTime gameTime)

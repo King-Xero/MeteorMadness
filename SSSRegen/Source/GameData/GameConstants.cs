@@ -285,6 +285,12 @@ namespace SSSRegen.Source.GameData
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/SplashState/tempBackground";
                 }
 
+                public static class Audio
+                {
+                    public const string SplashScreenSoundEffectName = "splashStateSoundEffect";
+                    public const string SplashScreenSoundEffectFileName = @"Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo";
+                }
+
                 public const float SplashStateDisplayTime = 1.0f;
             }
 
@@ -314,6 +320,20 @@ namespace SSSRegen.Source.GameData
                 {
                     public const string BackgroundTextureName = "menuBackground";
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/MenuState/Space005";
+                }
+
+                public static class Audio
+                {
+                    public const string ModalMenuOpenedSoundEffectName = "modalMenuOpenedSoundEffect";
+                    public const string ModalMenuOpenedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo";
+                    public const string ModalMenuClosedSoundEffectName = "modalMenuClosedSoundEffect";
+                    public const string ModalMenuClosedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo";
+                    public const string MenuNavigateSoundEffectName = "menuSelectionChangedSoundEffect";
+                    public const string MenuNavigateSoundEffectFileName = @"Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo";
+                    public const string MenuSelectionConfirmedSoundEffectName = "menuSelectionConfirmedSoundEffect";
+                    public const string MenuSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
+                    public const string NewStateSelectionConfirmedSoundEffectName = "newStateSelectionConfirmedSoundEffect";
+                    public const string NewStateSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
                 }
 
                 public static class LogoLine1

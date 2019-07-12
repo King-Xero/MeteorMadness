@@ -13,6 +13,42 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo.wav
+
+#begin Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo.wav
+
+#begin Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo.wav
+
+#begin Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo.wav
+
+#begin Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
+
+#begin Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
+
 #begin Fonts/largefont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
