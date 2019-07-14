@@ -334,6 +334,8 @@ namespace SSSRegen.Source.GameData
                     public const string MenuSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
                     public const string NewStateSelectionConfirmedSoundEffectName = "newStateSelectionConfirmedSoundEffect";
                     public const string NewStateSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
+                    public const string MenuMusicName = "mainMenuMusic";
+                    public const string MenuMusicFileName = @"Audio/States/MenuState/Planet_Title_LOOP";
                 }
 
                 public static class LogoLine1
@@ -372,6 +374,11 @@ namespace SSSRegen.Source.GameData
                     public const string BlueTextureName = "blueBullet1";
                     public const string BlueTextureFileName = @"Images/Projectiles/laserBlue07";
                 }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet1ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo";
+                }
             }
 
             public static class Bullet2
@@ -381,6 +388,11 @@ namespace SSSRegen.Source.GameData
                     public const string GreenTextureName = "greenBullet2";
                     public const string GreenTextureFileName = @"Images/Projectiles/laserGreen05";
                 }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet2ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo";
+                }
             }
 
             public static class Bullet3
@@ -389,6 +401,11 @@ namespace SSSRegen.Source.GameData
                 {
                     public const string RedTextureName = "redBullet3";
                     public const string RedTextureFileName = @"Images/Projectiles/laserRed13";
+                }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet3ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo";
                 }
             }
         }

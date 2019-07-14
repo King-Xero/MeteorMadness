@@ -47,11 +47,10 @@ namespace SSSRegen.Source.Projectiles
             if (bulletToShoot == null)
             {
                 bulletToShoot = _gameContext.Factories.ProjectileFactory.CreateBullet();
-                bulletToShoot.Initialize();
-
+                
                 _bullets.Add(bulletToShoot);
+                bulletToShoot.Initialize();
             }
-
             bulletToShoot.Position = new Vector2(obj.BulletPosition.X - (bulletToShoot.Size.X / 2), obj.BulletPosition.Y);
             bulletToShoot.IsActive = true;
         }

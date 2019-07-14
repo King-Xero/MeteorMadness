@@ -13,6 +13,30 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
+
+#begin Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo.wav
+
+#begin Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo.wav
+
+#begin Audio/States/MenuState/Planet_Title_LOOP.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/Planet_Title_LOOP.wav
+
 #begin Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

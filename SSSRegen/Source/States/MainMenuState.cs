@@ -22,10 +22,10 @@ namespace SSSRegen.Source.States
         public override void Initialize()
         {
             _mainMenuStateGraphics.Initialize(this);
-
             _textMenu.Initialize();
-            
             base.Initialize();
+
+            _gameContext.GameAudio.PlayMusic(_gameContext.AssetManager.GetSong(GameConstants.GameStates.MenuState.Audio.MenuMusicName), true);
         }
 
         public override void Update(IGameTime gameTime)

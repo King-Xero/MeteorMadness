@@ -36,8 +36,9 @@ namespace SSSRegen.Source.States
 
         public override void Initialize()
         {
-            _gameContext.CollisionSystem.Initialize();
+            _gameContext.GameAudio.StopMusic();
 
+            _gameContext.CollisionSystem.Initialize();
             _playStateGraphics.Initialize(this);
             _playStateMenu = _gameContext.Factories.MenuFactory.CreatePlayStateMenu();
             _playStateMenu.Initialize();

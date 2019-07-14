@@ -15,7 +15,7 @@ namespace SSSRegen.Source.Core
             _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
         }
 
-        public bool IsActive { get; set; }
+        public virtual bool IsActive { get; set; }
         public Vector2 Position { get; set; }
         public float Speed { get; set; }
         public Vector2 MovementDirection { get; set; }

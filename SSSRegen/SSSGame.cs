@@ -158,13 +158,22 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureName, GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureName, GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureFileName);
 
-            //SoundEffects
+            //Menu SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectName, GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectFileName);
             //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
             //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
+
+            //Bullet SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectFileName);
+
+
+            //Music
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.MenuState.Audio.MenuMusicName, GameConstants.GameStates.MenuState.Audio.MenuMusicFileName);
 
             base.LoadContent();
         }
