@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using SSSRegen.Source.Core.Interfaces;
@@ -14,7 +13,8 @@ namespace SSSRegen.Source.Meteors
         private readonly ICollisionSystem _collisionSystem;
 
         private Dictionary<string, List<Meteor>> _meteors;
-        private List<Timer> _spawnTimers;
+        private List<PausableTimer> _spawnTimers;
+        private bool _isPaused;
 
         public MeteorsManager(IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
         {
@@ -32,7 +32,7 @@ namespace SSSRegen.Source.Meteors
                 {GameConstants.Meteors.TinyMeteor1.Name, new List<Meteor>()},
             };
 
-            _spawnTimers = new List<Timer>();
+            _spawnTimers = new List<PausableTimer>();
 
             for (var i = 0; i < GameConstants.Meteors.BigMeteor1.InitialCount; i++)
             {
@@ -82,6 +82,8 @@ namespace SSSRegen.Source.Meteors
 
         public void Update(IGameTime gameTime)
         {
+            if (_isPaused) return;
+
             foreach (var meteorType in _meteors)
             {
                 foreach (var meteor in meteorType.Value)
@@ -108,9 +110,27 @@ namespace SSSRegen.Source.Meteors
             }
         }
 
+        public void Pause()
+        {
+            _isPaused = true;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Pause();
+            }
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Resume();
+            }
+        }
+
         private void AddSpawnTimer(int interval, Func<Meteor> createMeteor, string enemyName)
         {
-            var timer = new Timer(interval);
+            var timer = new PausableTimer(interval);
             timer.Elapsed += (sender, args) => SpawnMeteor(createMeteor, enemyName);
             _spawnTimers.Add(timer);
         }

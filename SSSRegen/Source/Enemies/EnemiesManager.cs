@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Timers;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
@@ -14,7 +12,8 @@ namespace SSSRegen.Source.Enemies
         private readonly ICollisionSystem _collisionSystem;
 
         private Dictionary<string, List<Enemy>> _enemies;
-        private List<Timer> _spawnTimers;
+        private List<PausableTimer> _spawnTimers;
+        private bool _isPaused;
 
         public EnemiesManager(IEnemyFactory enemyFactory, ICollisionSystem collisionSystem)
         {
@@ -32,7 +31,7 @@ namespace SSSRegen.Source.Enemies
                 {GameConstants.Enemies.EnemyBoss.Name, new List<Enemy>()}
             };
 
-            _spawnTimers = new List<Timer>();
+            _spawnTimers = new List<PausableTimer>();
 
             for (var i = 0; i < GameConstants.Enemies.Enemy1.InitialCount; i++)
             {
@@ -72,6 +71,8 @@ namespace SSSRegen.Source.Enemies
 
         public void Update(IGameTime gameTime)
         {
+            if (_isPaused) return;
+
             foreach (var enemyType in _enemies)
             {
                 foreach (var enemy in enemyType.Value)
@@ -98,9 +99,27 @@ namespace SSSRegen.Source.Enemies
             }
         }
 
+        public void Pause()
+        {
+            _isPaused = true;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Pause();
+            }
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Resume();
+            }
+        }
+
         private void AddSpawnTimer(int interval, Func<Enemy> createEnemy, string enemyName)
         {
-            var timer = new Timer(interval);
+            var timer = new PausableTimer(interval);
             timer.Elapsed += (sender, args) => SpawnEnemy(createEnemy, enemyName);
             _spawnTimers.Add(timer);
         }

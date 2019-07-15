@@ -1,4 +1,4 @@
-﻿namespace SSSRegen.Source.Utils.Extensions
+﻿namespace SSSRegen.Source.Utils
 {
     public static class ExtensionMethods
     {

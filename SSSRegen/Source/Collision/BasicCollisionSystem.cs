@@ -31,6 +31,7 @@ namespace SSSRegen.Source.Collision
 
         public void Update(IGameTime gameTime)
         {
+            if (_isPaused) return;
             foreach (var entity in _entities)
             {
                 foreach (var otherEntity in _entities)

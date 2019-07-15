@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
 namespace SSSRegen.Source.Core.Interfaces
