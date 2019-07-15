@@ -21,6 +21,7 @@ namespace SSSRegen.Source.Projectiles
         public Bullet CreateBullet()
         {
             return new Bullet(
+                _gameContext,
                 new BulletPhysicsComponent(_gameContext),
                 CreateBulletGraphics());
         }

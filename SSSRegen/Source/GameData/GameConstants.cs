@@ -212,6 +212,13 @@ namespace SSSRegen.Source.GameData
                     public const string RedTextureName = "healthPackRed";
                     public const string RedTextureFileName = @"Images/Bonuses/pill_red";
                 }
+
+                public static class Audio
+                {
+                    public const string CollectedSoundEffectName = "healthPackCollectedSoundEffect";
+                    public const string CollectedSoundEffectFileName = @"Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo";
+                }
+
                 public const int InitialCount = 2;
             }
         }
@@ -285,6 +292,12 @@ namespace SSSRegen.Source.GameData
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/SplashState/tempBackground";
                 }
 
+                public static class Audio
+                {
+                    public const string SplashScreenSoundEffectName = "splashStateSoundEffect";
+                    public const string SplashScreenSoundEffectFileName = @"Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo";
+                }
+
                 public const float SplashStateDisplayTime = 1.0f;
             }
 
@@ -294,6 +307,12 @@ namespace SSSRegen.Source.GameData
                 {
                     public const string BackgroundTextureName = "playStateBackground";
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/PlayState/Space003";
+                }
+
+                public static class Audio
+                {
+                    public const string BackgroundMusicName = "playStateBackgroundMusic";
+                    public const string BackgroundMusicFileName = @"Audio/States/PlayState/Long_Range_Combat_LOOP";
                 }
 
                 public const string MenuTextResume = "Resume";
@@ -314,6 +333,22 @@ namespace SSSRegen.Source.GameData
                 {
                     public const string BackgroundTextureName = "menuBackground";
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/MenuState/Space005";
+                }
+
+                public static class Audio
+                {
+                    public const string ModalMenuOpenedSoundEffectName = "modalMenuOpenedSoundEffect";
+                    public const string ModalMenuOpenedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo";
+                    public const string ModalMenuClosedSoundEffectName = "modalMenuClosedSoundEffect";
+                    public const string ModalMenuClosedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo";
+                    public const string MenuNavigateSoundEffectName = "menuSelectionChangedSoundEffect";
+                    public const string MenuNavigateSoundEffectFileName = @"Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo";
+                    public const string MenuSelectionConfirmedSoundEffectName = "menuSelectionConfirmedSoundEffect";
+                    public const string MenuSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
+                    public const string NewStateSelectionConfirmedSoundEffectName = "newStateSelectionConfirmedSoundEffect";
+                    public const string NewStateSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
+                    public const string BackgroundMusicName = "mainMenuMusic";
+                    public const string BackgroundMusicFileName = @"Audio/States/MenuState/Planet_Title_LOOP";
                 }
 
                 public static class LogoLine1
@@ -352,6 +387,11 @@ namespace SSSRegen.Source.GameData
                     public const string BlueTextureName = "blueBullet1";
                     public const string BlueTextureFileName = @"Images/Projectiles/laserBlue07";
                 }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet1ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo";
+                }
             }
 
             public static class Bullet2
@@ -361,6 +401,11 @@ namespace SSSRegen.Source.GameData
                     public const string GreenTextureName = "greenBullet2";
                     public const string GreenTextureFileName = @"Images/Projectiles/laserGreen05";
                 }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet2ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo";
+                }
             }
 
             public static class Bullet3
@@ -369,6 +414,11 @@ namespace SSSRegen.Source.GameData
                 {
                     public const string RedTextureName = "redBullet3";
                     public const string RedTextureFileName = @"Images/Projectiles/laserRed13";
+                }
+                public static class Audio
+                {
+                    public const string ShootSoundEffectName = "bullet3ShootSoundEffect";
+                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo";
                 }
             }
         }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.States;
+using GameTime = Microsoft.Xna.Framework.GameTime;
 
 namespace SSSRegen
 {
@@ -13,6 +15,7 @@ namespace SSSRegen
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private IGameAudioManager _gameAudioManager;
         private GameContext _gameContext;
         
         public SSSGame()
@@ -40,7 +43,11 @@ namespace SSSRegen
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _gameContext = new GameContext(this, _spriteBatch);
+            _gameAudioManager = new GameAudioManager();
+
+            _gameAudioManager.Initialize();
+
+            _gameContext = new GameContext(this, _spriteBatch, _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
 
@@ -62,6 +69,8 @@ namespace SSSRegen
             _gameTime.TotalGameTime = gameTime.TotalGameTime;
 
             _gameContext.StateMachine.ActiveState.Update(_gameTime);
+
+            _gameAudioManager.Update();
 
             base.Update(gameTime);
         }
@@ -148,6 +157,28 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureName, GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureName, GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureName, GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureFileName);
+
+            //Menu SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectName, GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectFileName);
+            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
+            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
+
+            //Bullet SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectFileName);
+
+            //Bonus SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectName, GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectFileName);
+
+            //Main Menu Music
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.MenuState.Audio.BackgroundMusicName, GameConstants.GameStates.MenuState.Audio.BackgroundMusicFileName);
+
+            //Play State Music
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.PlayState.Audio.BackgroundMusicName, GameConstants.GameStates.PlayState.Audio.BackgroundMusicFileName);
 
             base.LoadContent();
         }

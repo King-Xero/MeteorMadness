@@ -13,6 +13,78 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo.wav
+
+#begin Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
+
+#begin Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet2/BLASTER_Cartoon_stereo.wav
+
+#begin Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo.wav
+
+#begin Audio/States/MenuState/Planet_Title_LOOP.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/Planet_Title_LOOP.wav
+
+#begin Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo.wav
+
+#begin Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo.wav
+
+#begin Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo.wav
+
+#begin Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo.wav
+
+#begin Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
+
+#begin Audio/States/PlayState/Long_Range_Combat_LOOP.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/Long_Range_Combat_LOOP.wav
+
+#begin Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
+
 #begin Fonts/largefont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
