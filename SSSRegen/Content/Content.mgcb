@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo.wav
+
 #begin Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -66,6 +72,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
+
+#begin Audio/States/PlayState/Long_Range_Combat_LOOP.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/Long_Range_Combat_LOOP.wav
 
 #begin Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
 /importer:WavImporter

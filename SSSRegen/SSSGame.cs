@@ -171,9 +171,14 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectFileName);
 
+            //Bonus SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectName, GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectFileName);
 
-            //Music
-            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.MenuState.Audio.MenuMusicName, GameConstants.GameStates.MenuState.Audio.MenuMusicFileName);
+            //Main Menu Music
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.MenuState.Audio.BackgroundMusicName, GameConstants.GameStates.MenuState.Audio.BackgroundMusicFileName);
+
+            //Play State Music
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.PlayState.Audio.BackgroundMusicName, GameConstants.GameStates.PlayState.Audio.BackgroundMusicFileName);
 
             base.LoadContent();
         }

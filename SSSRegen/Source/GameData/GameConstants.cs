@@ -212,6 +212,13 @@ namespace SSSRegen.Source.GameData
                     public const string RedTextureName = "healthPackRed";
                     public const string RedTextureFileName = @"Images/Bonuses/pill_red";
                 }
+
+                public static class Audio
+                {
+                    public const string CollectedSoundEffectName = "healthPackCollectedSoundEffect";
+                    public const string CollectedSoundEffectFileName = @"Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo";
+                }
+
                 public const int InitialCount = 2;
             }
         }
@@ -302,6 +309,12 @@ namespace SSSRegen.Source.GameData
                     public const string BackgroundTextureFileName = @"Images/Backgrounds/PlayState/Space003";
                 }
 
+                public static class Audio
+                {
+                    public const string BackgroundMusicName = "playStateBackgroundMusic";
+                    public const string BackgroundMusicFileName = @"Audio/States/PlayState/Long_Range_Combat_LOOP";
+                }
+
                 public const string MenuTextResume = "Resume";
                 public const string MenuTextHelp = "Help";
                 public const string MenuTextQuit = "Quit";
@@ -334,8 +347,8 @@ namespace SSSRegen.Source.GameData
                     public const string MenuSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
                     public const string NewStateSelectionConfirmedSoundEffectName = "newStateSelectionConfirmedSoundEffect";
                     public const string NewStateSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
-                    public const string MenuMusicName = "mainMenuMusic";
-                    public const string MenuMusicFileName = @"Audio/States/MenuState/Planet_Title_LOOP";
+                    public const string BackgroundMusicName = "mainMenuMusic";
+                    public const string BackgroundMusicFileName = @"Audio/States/MenuState/Planet_Title_LOOP";
                 }
 
                 public static class LogoLine1
