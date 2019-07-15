@@ -163,8 +163,8 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectFileName);
-            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
-            //_gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
 
             //Bullet SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectFileName);

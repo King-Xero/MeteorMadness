@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
-using SSSRegen.Source.Utils.Extensions;
+using SSSRegen.Source.Utils;
 
 namespace SSSRegen.Source.Menus
 {
@@ -74,6 +74,8 @@ namespace SSSRegen.Source.Menus
         public void Update(IGameTime gameTime)
         {
             _menuInputComponent.Update(this, gameTime);
+            //ToDo check if selected index is changed when menu is not enabled
+
             if (SelectedIndex == _menuItems.Count)
             {
                 SelectedIndex = 0;
@@ -89,8 +91,6 @@ namespace SSSRegen.Source.Menus
         {
             if (IsEnabled)
             {
-                float y = _position.Y;
-
                 for (int i = 0; i < _menuItems.Count; i++)
                 {
                     if (_menuItems.ElementAtOrDefault(i) is TextMenuOption textOption)
@@ -100,8 +100,6 @@ namespace SSSRegen.Source.Menus
                         _gameContext.GameGraphics.DrawText(uiText, _menuItemPositions[i] + Vector2.One, Color.Black);
                         //Draw the text item
                         _gameContext.GameGraphics.DrawText(uiText, _menuItemPositions[i], uiText.TextColor);
-
-                        y += uiText.Size.Y; //uiText.Font.LineSpacing;
                     }
                     else if (_menuItems.ElementAtOrDefault(i) is SpriteMenuOption spriteOption)
                     {
@@ -111,8 +109,6 @@ namespace SSSRegen.Source.Menus
                         _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i] + Vector2.One, Color.Black);
                         //Draw the text item
                         _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i], Color.White);
-                        
-                        y += sprite.Size.Y;
                     }
                 }
             }

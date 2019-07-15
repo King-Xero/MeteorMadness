@@ -13,7 +13,8 @@ namespace SSSRegen.Source.Bonuses
         private readonly ICollisionSystem _collisionSystem;
 
         private List<IHandleCollisions> _bonuses;
-        private List<Timer> _spawnTimers;
+        private List<PausableTimer> _spawnTimers;
+        private bool _isPaused;
 
         public BonusManager(IBonusFactory bonusFactory, ICollisionSystem collisionSystem)
         {
@@ -25,7 +26,7 @@ namespace SSSRegen.Source.Bonuses
         {
             _bonuses = new List<IHandleCollisions>();
 
-            _spawnTimers = new List<Timer>();
+            _spawnTimers = new List<PausableTimer>();
 
             for (int i = 0; i < GameConstants.Bonuses.HealthPack.InitialCount; i++)
             {
@@ -45,6 +46,8 @@ namespace SSSRegen.Source.Bonuses
 
         public void Update(IGameTime gameTime)
         {
+            if (_isPaused) return;
+
             foreach (var bonus in _bonuses)
             {
                 if (bonus.IsActive)
@@ -65,9 +68,27 @@ namespace SSSRegen.Source.Bonuses
             }
         }
 
+        public void Pause()
+        {
+            _isPaused = true;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Pause();
+            }
+        }
+
+        public void Resume()
+        {
+            _isPaused = true;
+            foreach (var spawnTimer in _spawnTimers)
+            {
+                spawnTimer.Resume();
+            }
+        }
+
         private void AddSpawnTimer(int interval, Func<HealthPack> createBonus)
         {
-            var timer = new Timer(interval);
+            var timer = new PausableTimer(interval);
             timer.Elapsed += (sender, args) => SpawnBonus(createBonus);
             _spawnTimers.Add(timer);
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;

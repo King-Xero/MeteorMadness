@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Audio;
 using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
@@ -14,17 +15,42 @@ namespace SSSRegen.Source.States
     {
         private readonly GameContext _gameContext;
         private readonly IDrawableComponent<IGameState> _playStateGraphics;
+        private readonly SoundEffect _pauseMenuAppearingSoundEffect;
+        private readonly SoundEffect _pauseMenuDisappearingSoundEffect;
         private readonly IGameObjectManager[] _gameObjectManagers;
 
         private IGameMenu _playStateMenu;
-        private bool _isTwoPlayer;
         private bool _isPaused;
+        private bool _isTwoPlayer;
         private bool _isGameOver;
+
+        private bool IsPaused
+        {
+            get => _isPaused;
+            set
+            {
+                if (_isPaused == value) return;
+
+                _isPaused = value;
+
+                if (_isPaused)
+                {
+                    PauseGame();
+                }
+                else
+                {
+                    ResumeGame();
+                }
+            }
+        }
         
-        public PlayState(GameContext gameContext, IDrawableComponent<IGameState> playStateGraphics)
+        public PlayState(GameContext gameContext, IDrawableComponent<IGameState> playStateGraphics, SoundEffect pauseMenuAppearingSoundEffect, SoundEffect pauseMenuDisappearingSoundEffect)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playStateGraphics = playStateGraphics ?? throw new ArgumentNullException(nameof(playStateGraphics));
+            _pauseMenuAppearingSoundEffect = pauseMenuAppearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuAppearingSoundEffect));
+            _pauseMenuDisappearingSoundEffect = pauseMenuDisappearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuDisappearingSoundEffect));
+
             _gameObjectManagers = new IGameObjectManager[]
             {
                 new EnemiesManager(_gameContext.Factories.EnemyFactory, _gameContext.CollisionSystem),
@@ -55,11 +81,11 @@ namespace SSSRegen.Source.States
 
         public override void Update(IGameTime gameTime)
         {
-            _gameContext.CollisionSystem.Update(gameTime);
-
-            _playStateGraphics.Update(this, gameTime);
+            IsPaused = _playStateMenu.IsEnabled;
+            
             _playStateMenu.Update(gameTime);
-
+            _gameContext.CollisionSystem.Update(gameTime);
+            _playStateGraphics.Update(this, gameTime);
             foreach (var gameObjectManager in _gameObjectManagers)
             {
                 gameObjectManager.Update(gameTime);
@@ -71,14 +97,38 @@ namespace SSSRegen.Source.States
         public override void Draw(IGameTime gameTime)
         {
             _playStateGraphics.Draw(this, gameTime);
-            _playStateMenu.Draw(gameTime);
-
+            
             foreach (var gameObjectManager in _gameObjectManagers)
             {
                 gameObjectManager.Draw(gameTime);
             }
+            _playStateMenu.Draw(gameTime);
 
             base.Draw(gameTime);
+        }
+
+        private void PauseGame()
+        {
+            _gameContext.GameAudio.PauseAllAudio();
+            _gameContext.GameAudio.PlaySoundEffect(_pauseMenuAppearingSoundEffect);
+
+            _gameContext.CollisionSystem.Pause();
+            foreach (var gameObjectManager in _gameObjectManagers)
+            {
+                gameObjectManager.Pause();
+            }
+        }
+
+        private void ResumeGame()
+        {
+            _gameContext.GameAudio.PlaySoundEffect(_pauseMenuDisappearingSoundEffect);
+            _gameContext.GameAudio.ResumeAllAudio();
+
+            _gameContext.CollisionSystem.Resume();
+            foreach (var gameObjectManager in _gameObjectManagers)
+            {
+                gameObjectManager.Resume();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ namespace SSSRegen.Source.Player
         private readonly IPlayerFactory _playerFactory;
         private readonly ICollisionSystem _collisionSystem;
         private List<Player> _players;
+        private bool _isPaused;
 
         public PlayerManager(IPlayerFactory playerFactory, ICollisionSystem collisionSystem)
         {
@@ -32,6 +33,8 @@ namespace SSSRegen.Source.Player
 
         public void Update(IGameTime gameTime)
         {
+            if (_isPaused) return;
+
             foreach (var player in _players)
             {
                 player.Update(gameTime);
@@ -44,6 +47,16 @@ namespace SSSRegen.Source.Player
             {
                 player.Draw(gameTime);
             }
+        }
+
+        public void Pause()
+        {
+            _isPaused = true;
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
         }
     }
 }

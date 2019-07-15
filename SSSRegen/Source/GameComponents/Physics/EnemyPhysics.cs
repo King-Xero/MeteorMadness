@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
-using SSSRegen.Source.Utils.Extensions;
+using SSSRegen.Source.Utils;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {

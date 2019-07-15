@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Input;
@@ -42,17 +41,17 @@ namespace SSSRegen.Source.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName);
 
-            var mainMenu = new TextMenu(_gameContext, new PlayStateMenuInput(new KeyboardInputController()),
+            var playMenu = new TextMenu(_gameContext, new PlayStateMenuInput(new KeyboardInputController()),
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName));
 
-            mainMenu.SetMenuItems(new List<IMenuOption>()
+            playMenu.SetMenuItems(new List<IMenuOption>()
             {
-                new TextMenuOption(_gameContext, () => OnPlayStateSelectResume(mainMenu), GameConstants.GameStates.PlayState.MenuTextResume, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, () => OnPlayStateSelectResume(playMenu), GameConstants.GameStates.PlayState.MenuTextResume, regularFont, selectedFont),
                 //new TextMenuOption(_gameContext, OnPlayStateSelectHelp, GameConstants.GameStates.PlayState.MenuTextHelp, regularFont, selectedFont),
                 new TextMenuOption(_gameContext, OnPlayStateSelectQuit, GameConstants.GameStates.PlayState.MenuTextQuit, regularFont, selectedFont),
             });
 
-            return mainMenu;
+            return playMenu;
         }
 
         private void OnMainMenuSelectOnePlayer()
@@ -60,7 +59,13 @@ namespace SSSRegen.Source.Menus
             _gameContext.GameAudio.PlaySoundEffect(
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName));
             //ToDo Change to play state with one active player
-            _gameContext.StateMachine.AddState(new PlayState(_gameContext, new PlayStateGraphics(_gameContext)), true);
+            _gameContext.StateMachine.AddState(
+                new PlayState(
+                    _gameContext,
+                    new PlayStateGraphics(_gameContext),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName)),
+                true);
         }
 
         private void OnMainMenuSelectTwoPlayer()
@@ -68,7 +73,13 @@ namespace SSSRegen.Source.Menus
             _gameContext.GameAudio.PlaySoundEffect(
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName));
             //ToDo Change to play state with two active players
-            _gameContext.StateMachine.AddState(new PlayState(_gameContext, new PlayStateGraphics(_gameContext)), true);
+            _gameContext.StateMachine.AddState(
+                new PlayState(
+                    _gameContext,
+                    new PlayStateGraphics(_gameContext),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName)),
+                true);
         }
 
         private void OnMainMenuSelectHelp()

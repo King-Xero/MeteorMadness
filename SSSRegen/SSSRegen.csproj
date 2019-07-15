@@ -148,7 +148,10 @@
     <Compile Include="Source\States\MainMenuState.cs" />
     <Compile Include="Source\States\PlayState.cs" />
     <Compile Include="Source\States\SplashState.cs" />
-    <Compile Include="Source\Utils\Extensions\ExtensionMethods.cs" />
+    <Compile Include="Source\Utils\ExtensionMethods.cs" />
+    <Compile Include="Source\Utils\PauseableTimer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SSSGame.cs" />
   </ItemGroup>
   <ItemGroup>

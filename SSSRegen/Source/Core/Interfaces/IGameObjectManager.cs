@@ -5,5 +5,7 @@
         void Initialize();
         void Update(IGameTime gameTime);
         void Draw(IGameTime gameTime);
+        void Pause();
+        void Resume();
     }
 }
