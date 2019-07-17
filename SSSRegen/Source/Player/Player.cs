@@ -1,10 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Projectiles;
 using SSSRegen.Source.Score;
 
@@ -92,6 +95,27 @@ namespace SSSRegen.Source.Player
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
+            switch (gameObject)
+            {
+                case Source.Player.Player player:
+                    break;
+                case Bullet bullet:
+                    //ToDo Add enemy bullet
+                    break;
+                case HealthPack healthPack:
+                    Heal(healthPack.HealAmount);
+                    break;
+                case Enemy enemy:
+                    //ToDo swap for appropriate sfx (player collided with enemyShip)
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(enemy.CollisionDamageAmount);
+                    break;
+                case Meteor meteor:
+                    //ToDo swap for appropriate sfx
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(meteor.CollisionDamageAmount);
+                    break;
+            }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
