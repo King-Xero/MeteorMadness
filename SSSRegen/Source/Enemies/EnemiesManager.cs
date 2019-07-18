@@ -28,7 +28,6 @@ namespace SSSRegen.Source.Enemies
                 {GameConstants.Enemies.Enemy1.Name, new List<Enemy>()},
                 {GameConstants.Enemies.Enemy2.Name, new List<Enemy>()},
                 {GameConstants.Enemies.Enemy3.Name, new List<Enemy>()},
-                {GameConstants.Enemies.EnemyBoss.Name, new List<Enemy>()}
             };
 
             _spawnTimers = new List<PausableTimer>();

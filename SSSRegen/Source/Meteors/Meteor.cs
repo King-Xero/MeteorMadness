@@ -17,10 +17,13 @@ namespace SSSRegen.Source.Meteors
         private readonly int _initialCollisionDamage;
         private readonly IHealthComponent _healthComponent;
 
-        public Meteor(GameContext gameContext, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+        public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _initialMaxHealth = initialMaxHealth;
+            _initialCollisionDamage = initialCollisionDamage;
+            _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
         }
         
         public event EventHandler<HealEventArgs> Healed;
