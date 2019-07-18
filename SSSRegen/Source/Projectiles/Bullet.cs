@@ -38,6 +38,8 @@ namespace SSSRegen.Source.Projectiles
         public override void Initialize()
         {
             CollisionDamageAmount = GameConstants.Player.InitialCollisionDamage;
+
+            base.Initialize();
         }
 
         public void CollidedWith(IHandleCollisions gameObject)
