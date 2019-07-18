@@ -33,6 +33,12 @@ namespace SSSRegen.Source.Projectiles
         }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
+        public int CollisionDamageAmount { get; private set; }
+
+        public override void Initialize()
+        {
+            CollisionDamageAmount = GameConstants.Player.InitialCollisionDamage;
+        }
 
         public void CollidedWith(IHandleCollisions gameObject)
         {

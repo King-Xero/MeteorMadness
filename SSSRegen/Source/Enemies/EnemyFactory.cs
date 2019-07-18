@@ -25,6 +25,7 @@ namespace SSSRegen.Source.Enemies
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
+                _gameContext,
                 GameConstants.Enemies.Enemy1.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),
@@ -38,6 +39,7 @@ namespace SSSRegen.Source.Enemies
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
+                _gameContext,
                 GameConstants.Enemies.Enemy2.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),
@@ -51,6 +53,7 @@ namespace SSSRegen.Source.Enemies
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
+                _gameContext,
                 GameConstants.Enemies.Enemy3.InitialMaxHealth,
                 new EnemyHealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),

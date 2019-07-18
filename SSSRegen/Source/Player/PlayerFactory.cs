@@ -23,6 +23,7 @@ namespace SSSRegen.Source.Player
         public Player CreatePlayer()
         {
             return new Player(
+                _gameContext,
                 CreatePlayerHealth(),
                 CreatePlayerScore(),
                 CreatePlayerInput(),

@@ -15,14 +15,16 @@ namespace SSSRegen.Source.Player
 {
     public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
     {
+        private readonly GameContext _gameContext;
         private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
             base(physicsComponent, graphicsComponent)
         {
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
             _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
@@ -34,6 +36,7 @@ namespace SSSRegen.Source.Player
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public int MaxHealth { get; private set; }
+        public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
@@ -42,6 +45,7 @@ namespace SSSRegen.Source.Player
         public override void Initialize()
         {
             MaxHealth = GameConstants.Player.InitialMaxHealth;
+            CollisionDamageAmount = GameConstants.Player.InitialCollisionDamage;
             IsActive = true;
 
             _inputComponent.Initialize(this);

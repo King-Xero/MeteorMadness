@@ -12,12 +12,17 @@ namespace SSSRegen.Source.Enemies
 {
     public class Enemy : GameObject, IHandleHealth, IHandleCollisions
     {
+        private readonly GameContext _gameContext;
+        private readonly int _initialMaxHealth;
+        private readonly int _initialCollisionDamage;
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
         {
-            MaxHealth = maxHealth;
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _initialMaxHealth = initialMaxHealth;
+            _initialCollisionDamage = initialCollisionDamage;
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
         }
 
@@ -25,11 +30,14 @@ namespace SSSRegen.Source.Enemies
         public event EventHandler<DamageEventArgs> Damaged;
 
         public int MaxHealth { get; private set; }
+        public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Enemy;
 
         public override void Initialize()
         {
+            MaxHealth = _initialMaxHealth;
+            CollisionDamageAmount = _initialCollisionDamage;
             IsActive = true;
 
             _healthComponent.Initialize(this);
@@ -66,7 +74,7 @@ namespace SSSRegen.Source.Enemies
         {
             switch (gameObject)
             {
-                case Source.Player.Player player:
+                case Player.Player player:
                     //ToDo swap for appropriate sfx (enemy collided with player)
                     _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
                     Damage(player.CollisionDamageAmount);
@@ -74,7 +82,7 @@ namespace SSSRegen.Source.Enemies
                 case Bullet bullet:
                     //ToDo swap for appropriate sfx (enemy collided with bullet)
                     _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-                    Damage(bullet.DamageAmount);
+                    Damage(bullet.CollisionDamageAmount);
                     break;
                 case HealthPack healthPack:
                     break;

@@ -227,6 +227,7 @@ namespace SSSRegen.Source.GameData
         {
             public static readonly Vector2 MovementVector = new Vector2(1.0f, 0);
             public const int InitialMaxHealth = 10;
+            public const int InitialCollisionDamage = 5;
             public const string ScoreFormat = "000000000000";
             
             public static class PlayerShip1
