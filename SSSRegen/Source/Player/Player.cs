@@ -101,7 +101,7 @@ namespace SSSRegen.Source.Player
         {
             switch (gameObject)
             {
-                case Source.Player.Player player:
+                case Player player:
                     break;
                 case Bullet bullet:
                     //ToDo Add enemy bullet

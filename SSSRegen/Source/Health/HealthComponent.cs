@@ -50,6 +50,7 @@ namespace SSSRegen.Source.Health
         {
             var newHealth = Math.Max(_currentHealth - e.Amount, 0);
             _healthContainer.Deplete(_currentHealth - newHealth);
+            _currentHealth = newHealth;
 
             if (_currentHealth <= 0)
             {
