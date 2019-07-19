@@ -42,6 +42,8 @@ namespace SSSRegen.Source.Enemies
         {
             MaxHealth = _initialMaxHealth;
             CollisionDamageAmount = _initialCollisionDamage;
+            IsActive = true;
+            //Target = null;
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;

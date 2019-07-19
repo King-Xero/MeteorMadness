@@ -35,13 +35,27 @@ namespace SSSRegen.Source.GameComponents.Physics
                 return;
             }
 
-            //Move the enemy
-            enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            if (enemy.Target != null)
+            {
+                //Move towards target
+                MoveTowardsTarget(enemy, enemy.Target, gameTime);
+            }
+            else
+            {
+                //Move the enemy
+                enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            }
 
             //ToDo Resolve collisions
             //If enemy collides with object, execute only what the enemy should do.
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(enemy);
+        }
+
+        private void MoveTowardsTarget(IGameObject enemy, IGameObject target, IGameTime gameTime)
+        {
+            enemy.Position += Vector2.Multiply(target.Position,
+                enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
         }
 
         private void Reset(IGameObject enemy)
