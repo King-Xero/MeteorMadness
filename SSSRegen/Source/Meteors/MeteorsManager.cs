@@ -37,7 +37,6 @@ namespace SSSRegen.Source.Meteors
             for (var i = 0; i < GameConstants.Meteors.BigMeteor1.InitialCount; i++)
             {
                 var meteor = _meteorFactory.CreateBigMeteor();
-                meteor.Initialize();
                 _collisionSystem.RegisterEntity(meteor);
                 _meteors[GameConstants.Meteors.BigMeteor1.Name].Add(meteor);
             }
@@ -47,7 +46,6 @@ namespace SSSRegen.Source.Meteors
             for (var i = 0; i < GameConstants.Meteors.MediumMeteor1.InitialCount; i++)
             {
                 var meteor = _meteorFactory.CreateMediumMeteor();
-                meteor.Initialize();
                 _collisionSystem.RegisterEntity(meteor);
                 _meteors[GameConstants.Meteors.MediumMeteor1.Name].Add(meteor);
             }
@@ -57,7 +55,6 @@ namespace SSSRegen.Source.Meteors
             for (var i = 0; i < GameConstants.Meteors.SmallMeteor1.InitialCount; i++)
             {
                 var meteor = _meteorFactory.CreateSmallMeteor();
-                meteor.Initialize();
                 _collisionSystem.RegisterEntity(meteor);
                 _meteors[GameConstants.Meteors.SmallMeteor1.Name].Add(meteor);
             }
@@ -67,7 +64,6 @@ namespace SSSRegen.Source.Meteors
             for (var i = 0; i < GameConstants.Meteors.TinyMeteor1.InitialCount; i++)
             {
                 var meteor = _meteorFactory.CreateTinyMeteor();
-                meteor.Initialize();
                 _collisionSystem.RegisterEntity(meteor);
                 _meteors[GameConstants.Meteors.TinyMeteor1.Name].Add(meteor);
             }
@@ -141,11 +137,11 @@ namespace SSSRegen.Source.Meteors
             if (meteorToSpawn == null)
             {
                 meteorToSpawn = createMeteor();
-                meteorToSpawn.Initialize();
                 _collisionSystem.RegisterEntity(meteorToSpawn);
 
                 _meteors[meteorName].Add(meteorToSpawn);
             }
+            meteorToSpawn.Initialize();
 
             meteorToSpawn.IsActive = true;
         }

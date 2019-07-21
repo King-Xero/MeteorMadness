@@ -37,7 +37,6 @@ namespace SSSRegen.Source.Meteors
         {
             MaxHealth = _initialMaxHealth;
             CollisionDamageAmount = _initialCollisionDamage;
-            IsActive = true;
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += MeteorOnDied;
@@ -99,8 +98,12 @@ namespace SSSRegen.Source.Meteors
 
         private void MeteorOnDied(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             //Meteor destroyed
+            //ToDo play destroyed sound
+            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+            //ToDo add to player score
+            _healthComponent.Died -= MeteorOnDied;
+            IsActive = false;
         }
     }
 }

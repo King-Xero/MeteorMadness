@@ -133,6 +133,10 @@ namespace SSSRegen.Source.Player
         {
             throw new NotImplementedException();
             //Player died
+            //ToDo play destroyed sound
+            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+            //ToDo show game over screen
+            _healthComponent.Died -= PlayerOnDied;
         }
     }
 }

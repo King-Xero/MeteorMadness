@@ -38,7 +38,6 @@ namespace SSSRegen.Source.Enemies
         {
             MaxHealth = _initialMaxHealth;
             CollisionDamageAmount = _initialCollisionDamage;
-            IsActive = true;
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
@@ -100,8 +99,12 @@ namespace SSSRegen.Source.Enemies
 
         private void EnemyOnDied(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             //Enemy died
+            //ToDo play destroyed sound
+            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+            //ToDo add to player score
+            _healthComponent.Died -= EnemyOnDied;
+            IsActive = false;
         }
     }
 }
