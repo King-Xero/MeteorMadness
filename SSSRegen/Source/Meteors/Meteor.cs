@@ -6,6 +6,7 @@ using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Notifications;
 using SSSRegen.Source.Projectiles;
 
 namespace SSSRegen.Source.Meteors
@@ -16,6 +17,9 @@ namespace SSSRegen.Source.Meteors
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
         private readonly IHealthComponent _healthComponent;
+
+        //ToDo Add to the game constants and pass in on creation
+        private int _scoreValue = 100;
 
         public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
@@ -101,7 +105,8 @@ namespace SSSRegen.Source.Meteors
             //Meteor destroyed
             //ToDo play destroyed sound
             //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-            //ToDo add to player score
+            
+            _gameContext.NotificationMediator.PublishPlayerScoreChange(new PlayerScoreNotificationArguments(_scoreValue));
             _healthComponent.Died -= MeteorOnDied;
             IsActive = false;
         }

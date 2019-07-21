@@ -98,6 +98,7 @@ namespace SSSRegen.Source.States
             {
                 gameObjectManager.Update(gameTime);
             }
+            _scoreComponent.Update();
 
             base.Update(gameTime);
         }
@@ -110,6 +111,9 @@ namespace SSSRegen.Source.States
             {
                 gameObjectManager.Draw(gameTime);
             }
+
+            _scoreComponent.Draw();
+
             _playStateMenu.Draw(gameTime);
 
             base.Draw(gameTime);
