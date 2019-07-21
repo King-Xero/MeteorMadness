@@ -1,10 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Projectiles;
 using SSSRegen.Source.Score;
 
@@ -12,14 +15,16 @@ namespace SSSRegen.Source.Player
 {
     public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
     {
+        private readonly GameContext _gameContext;
         private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
         private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
             base(physicsComponent, graphicsComponent)
         {
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
             _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
@@ -31,6 +36,7 @@ namespace SSSRegen.Source.Player
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public int MaxHealth { get; private set; }
+        public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
@@ -39,6 +45,7 @@ namespace SSSRegen.Source.Player
         public override void Initialize()
         {
             MaxHealth = GameConstants.Player.InitialMaxHealth;
+            CollisionDamageAmount = GameConstants.Player.InitialCollisionDamage;
             IsActive = true;
 
             _inputComponent.Initialize(this);
@@ -92,6 +99,27 @@ namespace SSSRegen.Source.Player
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
+            switch (gameObject)
+            {
+                case Player player:
+                    break;
+                case Bullet bullet:
+                    //ToDo Add enemy bullet
+                    break;
+                case HealthPack healthPack:
+                    Heal(healthPack.HealAmount);
+                    break;
+                case Enemy enemy:
+                    //ToDo swap for appropriate sfx (player collided with enemyShip)
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(enemy.CollisionDamageAmount);
+                    break;
+                case Meteor meteor:
+                    //ToDo swap for appropriate sfx
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(meteor.CollisionDamageAmount);
+                    break;
+            }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
@@ -105,6 +133,10 @@ namespace SSSRegen.Source.Player
         {
             throw new NotImplementedException();
             //Player died
+            //ToDo play destroyed sound
+            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+            //ToDo show game over screen
+            _healthComponent.Died -= PlayerOnDied;
         }
     }
 }

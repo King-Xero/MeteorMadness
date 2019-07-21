@@ -11,7 +11,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "enemy1";
                 public const int InitialCount = 4;
-                public const int InitialMaxHealth = 20;
+                public const int InitialMaxHealth = 10;
+                public const int CollisionDamage = 2;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -25,7 +26,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "enemy2";
                 public const int InitialCount = 4;
-                public const int InitialMaxHealth = 20;
+                public const int InitialMaxHealth = 15;
+                public const int CollisionDamage = 4;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -40,6 +42,7 @@ namespace SSSRegen.Source.GameData
                 public const string Name = "enemy3";
                 public const int InitialCount = 4;
                 public const int InitialMaxHealth = 20;
+                public const int CollisionDamage = 6;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -53,7 +56,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "enemy4";
                 public const int InitialCount = 4;
-                public const int InitialMaxHealth = 20;
+                public const int InitialMaxHealth = 25;
+                public const int CollisionDamage = 2;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -67,7 +71,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "enemy5";
                 public const int InitialCount = 4;
-                public const int InitialMaxHealth = 20;
+                public const int InitialMaxHealth = 30;
+                public const int CollisionDamage = 2;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -75,17 +80,6 @@ namespace SSSRegen.Source.GameData
                     public const string BlackTextureName = "enemy5Black";
                     public const string BlackTextureFileName = @"Images/Enemies/enemyBlack5";
                 }
-            }
-
-            public static class EnemyBoss
-            {
-                public const string Name = "enemyBoss";
-                public static readonly List<Rectangle> SpriteFrames = new List<Rectangle>
-                {
-                    new Rectangle {X = 65, Y = 397, Width = 96, Height = 96}
-                };
-                public const int InitialCount = 1;
-                public const int InitialMaxHealth = 150;
             }
         }
 
@@ -95,6 +89,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "bigMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 30;
+                public const int CollisionDamage = 10;
                 public static class Textures
                 {
                     public const string BrownTextureName = "bigMeteor1Brown";
@@ -105,6 +101,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "bigMeteor2";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 30;
+                public const int CollisionDamage = 10;
                 public static class Textures
                 {
                     public const string GreyTextureName = "bigMeteor2Grey";
@@ -115,6 +113,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "bigMeteor3";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 30;
+                public const int CollisionDamage = 10;
                 public static class Textures
                 {
                     public const string BrownTextureName = "bigMeteor3Brown";
@@ -125,6 +125,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "bigMeteor4";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 30;
+                public const int CollisionDamage = 10;
                 public static class Textures
                 {
                     public const string GreyTextureName = "bigMeteor4Grey";
@@ -135,6 +137,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "mediumMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 20;
+                public const int CollisionDamage = 6;
                 public static class Textures
                 {
                     public const string BrownTextureName = "mediumMeteor1Brown";
@@ -145,6 +149,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "mediumMeteor2";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 20;
+                public const int CollisionDamage = 6;
                 public static class Textures
                 {
                     public const string GreyTextureName = "mediumMeteor2Grey";
@@ -155,6 +161,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "mediumMeteor3";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 20;
+                public const int CollisionDamage = 6;
                 public static class Textures
                 {
                     public const string BrownTextureName = "mediumMeteor3Brown";
@@ -165,6 +173,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "smallMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 10;
+                public const int CollisionDamage = 4;
                 public static class Textures
                 {
                     public const string GreyTextureName = "smallMeteor1Grey";
@@ -175,6 +185,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "smallMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 10;
+                public const int CollisionDamage = 4;
                 public static class Textures
                 {
                     public const string BrownTextureName = "smallMeteor2Brown";
@@ -185,6 +197,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "tinyMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 5;
+                public const int CollisionDamage = 2;
                 public static class Textures
                 {
                     public const string GreyTextureName = "tinyMeteor1Grey";
@@ -195,6 +209,8 @@ namespace SSSRegen.Source.GameData
             {
                 public const string Name = "tinyMeteor1";
                 public const int InitialCount = 2;
+                public const int InitialMaxHealth = 5;
+                public const int CollisionDamage = 2;
                 public static class Textures
                 {
                     public const string BrownTextureName = "tinyMeteor2Brown";
@@ -220,6 +236,7 @@ namespace SSSRegen.Source.GameData
                 }
 
                 public const int InitialCount = 2;
+                public const int HealAmount = 2;
             }
         }
 
@@ -227,6 +244,7 @@ namespace SSSRegen.Source.GameData
         {
             public static readonly Vector2 MovementVector = new Vector2(1.0f, 0);
             public const int InitialMaxHealth = 10;
+            public const int InitialCollisionDamage = 50;
             public const string ScoreFormat = "000000000000";
             
             public static class PlayerShip1

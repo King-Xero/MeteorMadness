@@ -1,19 +1,28 @@
 ﻿using System;
+using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Meteors;
+using SSSRegen.Source.Projectiles;
 
 namespace SSSRegen.Source.Enemies
 {
     public class Enemy : GameObject, IHandleHealth, IHandleCollisions
     {
+        private readonly GameContext _gameContext;
+        private readonly int _initialMaxHealth;
+        private readonly int _initialCollisionDamage;
         private readonly IHealthComponent _healthComponent;
 
-        public Enemy(int maxHealth, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
         {
-            MaxHealth = maxHealth;
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _initialMaxHealth = initialMaxHealth;
+            _initialCollisionDamage = initialCollisionDamage;
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
         }
 
@@ -21,12 +30,14 @@ namespace SSSRegen.Source.Enemies
         public event EventHandler<DamageEventArgs> Damaged;
 
         public int MaxHealth { get; private set; }
+        public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Enemy;
 
         public override void Initialize()
         {
-            IsActive = true;
+            MaxHealth = _initialMaxHealth;
+            CollisionDamageAmount = _initialCollisionDamage;
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
@@ -60,13 +71,40 @@ namespace SSSRegen.Source.Enemies
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
+            switch (gameObject)
+            {
+                case Player.Player player:
+                    //ToDo swap for appropriate sfx (enemy collided with player)
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(player.CollisionDamageAmount);
+                    break;
+                case Bullet bullet:
+                    //ToDo swap for appropriate sfx (enemy collided with bullet)
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(bullet.CollisionDamageAmount);
+                    break;
+                case HealthPack healthPack:
+                    break;
+                case Enemy enemy:
+                    //ToDo do something here to stop enemies overlapping
+                    break;
+                case Meteor meteor:
+                    //ToDo swap for appropriate sfx (enemy collided with meteor)
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    Damage(meteor.CollisionDamageAmount);
+                    break;
+            }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         private void EnemyOnDied(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             //Enemy died
+            //ToDo play destroyed sound
+            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+            //ToDo add to player score
+            _healthComponent.Died -= EnemyOnDied;
+            IsActive = false;
         }
     }
 }

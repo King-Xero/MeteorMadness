@@ -1,8 +1,11 @@
 ﻿using System;
+using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
+using SSSRegen.Source.Meteors;
 
 namespace SSSRegen.Source.Projectiles
 {
@@ -30,6 +33,14 @@ namespace SSSRegen.Source.Projectiles
         }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
+        public int CollisionDamageAmount { get; private set; }
+
+        public override void Initialize()
+        {
+            CollisionDamageAmount = GameConstants.Player.InitialCollisionDamage;
+
+            base.Initialize();
+        }
 
         public void CollidedWith(IHandleCollisions gameObject)
         {

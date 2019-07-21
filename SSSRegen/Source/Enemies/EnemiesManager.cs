@@ -28,7 +28,6 @@ namespace SSSRegen.Source.Enemies
                 {GameConstants.Enemies.Enemy1.Name, new List<Enemy>()},
                 {GameConstants.Enemies.Enemy2.Name, new List<Enemy>()},
                 {GameConstants.Enemies.Enemy3.Name, new List<Enemy>()},
-                {GameConstants.Enemies.EnemyBoss.Name, new List<Enemy>()}
             };
 
             _spawnTimers = new List<PausableTimer>();
@@ -36,7 +35,6 @@ namespace SSSRegen.Source.Enemies
             for (var i = 0; i < GameConstants.Enemies.Enemy1.InitialCount; i++)
             {
                 var enemy = _enemyFactory.CreateEnemy1();
-                enemy.Initialize();
                 _collisionSystem.RegisterEntity(enemy);
                 _enemies[GameConstants.Enemies.Enemy1.Name].Add(enemy);
             }
@@ -46,7 +44,6 @@ namespace SSSRegen.Source.Enemies
             for (var i = 0; i < GameConstants.Enemies.Enemy2.InitialCount; i++)
             {
                 var enemy = _enemyFactory.CreateEnemy2();
-                enemy.Initialize();
                 _collisionSystem.RegisterEntity(enemy);
                 _enemies[GameConstants.Enemies.Enemy2.Name].Add(enemy);
             }
@@ -56,7 +53,6 @@ namespace SSSRegen.Source.Enemies
             for (var i = 0; i < GameConstants.Enemies.Enemy3.InitialCount; i++)
             {
                 var enemy = _enemyFactory.CreateEnemy3();
-                enemy.Initialize();
                 _collisionSystem.RegisterEntity(enemy);
                 _enemies[GameConstants.Enemies.Enemy3.Name].Add(enemy);
             }
@@ -130,11 +126,11 @@ namespace SSSRegen.Source.Enemies
             if (enemyToSpawn == null)
             {
                 enemyToSpawn = createEnemy();
-                enemyToSpawn.Initialize();
                 _collisionSystem.RegisterEntity(enemyToSpawn);
 
                 _enemies[enemyName].Add(enemyToSpawn);
             }
+            enemyToSpawn.Initialize();
 
             enemyToSpawn.IsActive = true;
         }

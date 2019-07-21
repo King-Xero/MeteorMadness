@@ -109,7 +109,6 @@
     <Compile Include="Source\GameData\GameConstants.cs" />
     <Compile Include="Source\GameData\GameContext.cs" />
     <Compile Include="Source\Health\DamageEventArgs.cs" />
-    <Compile Include="Source\Health\EnemyHealthComponent.cs" />
     <Compile Include="Source\Health\HealEventArgs.cs" />
     <Compile Include="Source\Health\PlayerHealthContainer.cs" />
     <Compile Include="Source\Health\IHandleHealth.cs" />
@@ -117,7 +116,7 @@
     <Compile Include="Source\Health\IHealthContainer.cs" />
     <Compile Include="Source\Health\IHealthUnit.cs" />
     <Compile Include="Source\Health\NullHealthContainer.cs" />
-    <Compile Include="Source\Health\PlayerHealthComponent.cs" />
+    <Compile Include="Source\Health\HealthComponent.cs" />
     <Compile Include="Source\Health\PlayerHealthUnit.cs" />
     <Compile Include="Source\Menus\TextMenuOption.cs" />
     <Compile Include="Source\Meteors\IMeteorFactory.cs" />

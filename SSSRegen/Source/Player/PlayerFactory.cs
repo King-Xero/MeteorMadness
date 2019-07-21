@@ -23,6 +23,7 @@ namespace SSSRegen.Source.Player
         public Player CreatePlayer()
         {
             return new Player(
+                _gameContext,
                 CreatePlayerHealth(),
                 CreatePlayerScore(),
                 CreatePlayerInput(),
@@ -33,7 +34,7 @@ namespace SSSRegen.Source.Player
 
         private IHealthComponent CreatePlayerHealth()
         {
-            return new PlayerHealthComponent(GameConstants.Player.InitialMaxHealth, new PlayerHealthContainer(_gameContext));
+            return new HealthComponent(GameConstants.Player.InitialMaxHealth, new PlayerHealthContainer(_gameContext));
         }
 
         private IScoreComponent CreatePlayerScore()
