@@ -125,6 +125,14 @@
     <Compile Include="Source\Meteors\MeteorFactory.cs" />
     <Compile Include="Source\Meteors\MeteorsManager.cs" />
     <Compile Include="Source\Core\Interfaces\IGameGraphics.cs" />
+    <Compile Include="Source\Notifications\ActionOnDisposeAdapter.cs" />
+    <Compile Include="Source\Notifications\INotificationMediator.cs" />
+    <Compile Include="Source\Notifications\INotificationPublisher.cs" />
+    <Compile Include="Source\Notifications\INotificationSource.cs" />
+    <Compile Include="Source\Notifications\IReceiveNotifications.cs" />
+    <Compile Include="Source\Notifications\NotificationChannel.cs" />
+    <Compile Include="Source\Notifications\NotificationMediator.cs" />
+    <Compile Include="Source\Notifications\PlayerScoreNotificationArguments.cs" />
     <Compile Include="Source\Player\IPlayerFactory.cs" />
     <Compile Include="Source\Player\Player.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayerGraphics.cs" />

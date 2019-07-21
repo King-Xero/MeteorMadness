@@ -2,8 +2,8 @@
 {
     public interface IScoreComponent
     {
-        void Initialize(IHandleScore player);
-        void Update(IHandleScore player);
-        void Draw(IHandleScore player);
+        void Initialize();
+        void Update();
+        void Draw();
     }
 }
