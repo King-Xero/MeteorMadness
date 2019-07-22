@@ -13,19 +13,22 @@ using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.Player
 {
-    public class Player : GameObject, IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
+    public class Player : GameObject, IPlayer
     {
         private readonly GameContext _gameContext;
         private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
+        private readonly IComponent<IGameObject> _physicsComponent;
+        private readonly IDrawableComponent<IGameObject> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
-            base(physicsComponent, graphicsComponent)
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+            _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
+            _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
         }
 
@@ -47,33 +50,28 @@ namespace SSSRegen.Source.Player
             IsActive = true;
 
             _inputComponent.Initialize(this);
-
+            _graphicsComponent.Initialize(this);
+            _physicsComponent.Initialize(this);
             _healthComponent.Initialize(this);
             _healthComponent.Died += PlayerOnDied;
 
             _projectileManager.Initialize();
-
-            base.Initialize();
         }
 
         public override void Update(IGameTime gameTime)
         {
             _inputComponent.Update(this, gameTime);
-
-            _healthComponent.Update(this);
-
+            _graphicsComponent.Update(this, gameTime);
+            _physicsComponent.Update(this, gameTime);
+            _healthComponent.Update(this, gameTime);
             _projectileManager.Update(gameTime);
-
-            base.Update(gameTime);
         }
 
         public override void Draw(IGameTime gameTime)
         {
-            _healthComponent.Draw(this);
-
+            _graphicsComponent.Draw(this, gameTime);
+            _healthComponent.Draw(this, gameTime);
             _projectileManager.Draw(gameTime);
-
-            base.Draw(gameTime);
         }
 
         public void Heal(int healAmount)

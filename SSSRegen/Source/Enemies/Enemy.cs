@@ -15,15 +15,18 @@ namespace SSSRegen.Source.Enemies
     {
         private readonly GameContext _gameContext;
         private readonly IHealthComponent _healthComponent;
+        private readonly IComponent<IEnemy> _physicsComponent;
+        private readonly IDrawableComponent<IGameObject> _graphicsComponent;
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
         private readonly int _scoreValue;
 
-        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(physicsComponent, graphicsComponent)
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IEnemy> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+            _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
+            _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
 
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
@@ -47,24 +50,23 @@ namespace SSSRegen.Source.Enemies
             IsActive = true;
             Target = null;
 
+            _physicsComponent.Initialize(this);
+            _graphicsComponent.Initialize(this);
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
-
-            base.Initialize();
         }
 
         public override void Update(IGameTime gameTime)
         {
-            _healthComponent.Update(this);
-
-            base.Update(gameTime);
+            _physicsComponent.Update(this, gameTime);
+            _graphicsComponent.Update(this, gameTime);
+            _healthComponent.Update(this, gameTime);
         }
 
         public override void Draw(IGameTime gameTime)
         {
-            _healthComponent.Draw(this);
-
-            base.Draw(gameTime);
+            _graphicsComponent.Draw(this, gameTime);
+            _healthComponent.Draw(this, gameTime);
         }
 
         public void Heal(int healAmount)

@@ -98,11 +98,12 @@ namespace SSSRegen.Source.Bonuses
             if (bonusToSpawn == null)
             {
                 bonusToSpawn = createBonus();
-                bonusToSpawn.Initialize();
                 _collisionSystem.RegisterEntity(bonusToSpawn);
 
                 _bonuses.Add(bonusToSpawn);
             }
+
+            bonusToSpawn.Initialize();
 
             bonusToSpawn.IsActive = true;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Health
 {
@@ -29,12 +30,12 @@ namespace SSSRegen.Source.Health
             entity.Damaged += OnDamaged;
         }
 
-        public void Update(IHandleHealth entity)
+        public void Update(IHandleHealth entity, IGameTime gameTime)
         {
             _healthContainer.Update(entity);
         }
 
-        public void Draw(IHandleHealth entity)
+        public void Draw(IHandleHealth entity, IGameTime gameTime)
         {
             _healthContainer.Draw();
         }
