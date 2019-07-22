@@ -6,6 +6,7 @@ using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Notifications;
 using SSSRegen.Source.Projectiles;
 
 namespace SSSRegen.Source.Meteors
@@ -13,17 +14,20 @@ namespace SSSRegen.Source.Meteors
     public class Meteor : GameObject, IHandleHealth, IHandleCollisions
     {
         private readonly GameContext _gameContext;
+        private readonly IHealthComponent _healthComponent;
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
-        private readonly IHealthComponent _healthComponent;
-
-        public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+        private readonly int _scoreValue;
+        
+        public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
-            _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+            _scoreValue = scoreValue;
         }
         
         public event EventHandler<HealEventArgs> Healed;
@@ -101,7 +105,8 @@ namespace SSSRegen.Source.Meteors
             //Meteor destroyed
             //ToDo play destroyed sound
             //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-            //ToDo add to player score
+            
+            _gameContext.NotificationMediator.PublishPlayerScoreChange(new PlayerScoreNotificationArguments(_scoreValue));
             _healthComponent.Died -= MeteorOnDied;
             IsActive = false;
         }

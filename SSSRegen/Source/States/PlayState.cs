@@ -8,6 +8,7 @@ using SSSRegen.Source.GameData;
 using SSSRegen.Source.Menus;
 using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Player;
+using SSSRegen.Source.Score;
 
 namespace SSSRegen.Source.States
 {
@@ -18,6 +19,7 @@ namespace SSSRegen.Source.States
         private readonly SoundEffect _pauseMenuAppearingSoundEffect;
         private readonly SoundEffect _pauseMenuDisappearingSoundEffect;
         private readonly IGameObjectManager[] _gameObjectManagers;
+        private readonly IScoreComponent _scoreComponent;
 
         private IGameMenu _playStateMenu;
         private bool _isPaused;
@@ -58,6 +60,8 @@ namespace SSSRegen.Source.States
                 new BonusManager(_gameContext.Factories.BonusesFactory, _gameContext.CollisionSystem),
                 new PlayerManager(_gameContext.Factories.PlayerFactory, _gameContext.CollisionSystem)
             };
+
+            _scoreComponent = new PlayerScoreComponent(_gameContext);
         }
 
         public override void Initialize()
@@ -65,7 +69,11 @@ namespace SSSRegen.Source.States
             _gameContext.GameAudio.StopMusic();
             _gameContext.GameAudio.PlayMusic(_gameContext.AssetManager.GetSong(GameConstants.GameStates.PlayState.Audio.BackgroundMusicName), true);
 
+            //ToDo move collision system out of GameContext. Make local to play state.
             _gameContext.CollisionSystem.Initialize();
+
+            _scoreComponent.Initialize();
+
             _playStateGraphics.Initialize(this);
             _playStateMenu = _gameContext.Factories.MenuFactory.CreatePlayStateMenu();
             _playStateMenu.Initialize();
@@ -90,6 +98,7 @@ namespace SSSRegen.Source.States
             {
                 gameObjectManager.Update(gameTime);
             }
+            _scoreComponent.Update();
 
             base.Update(gameTime);
         }
@@ -102,6 +111,9 @@ namespace SSSRegen.Source.States
             {
                 gameObjectManager.Draw(gameTime);
             }
+
+            _scoreComponent.Draw();
+
             _playStateMenu.Draw(gameTime);
 
             base.Draw(gameTime);

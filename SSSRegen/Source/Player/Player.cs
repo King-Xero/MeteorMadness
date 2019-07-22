@@ -18,16 +18,14 @@ namespace SSSRegen.Source.Player
         private readonly GameContext _gameContext;
         private readonly IComponent<IGameObject> _inputComponent;
         private readonly IHealthComponent _healthComponent;
-        private readonly IScoreComponent _scoreComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IScoreComponent scoreComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager) :
             base(physicsComponent, graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
-            _scoreComponent = scoreComponent ?? throw new ArgumentNullException(nameof(scoreComponent));
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
         }
 
@@ -53,8 +51,6 @@ namespace SSSRegen.Source.Player
             _healthComponent.Initialize(this);
             _healthComponent.Died += PlayerOnDied;
 
-            _scoreComponent.Initialize(this);
-
             _projectileManager.Initialize();
 
             base.Initialize();
@@ -65,7 +61,6 @@ namespace SSSRegen.Source.Player
             _inputComponent.Update(this, gameTime);
 
             _healthComponent.Update(this);
-            _scoreComponent.Update(this);
 
             _projectileManager.Update(gameTime);
 
@@ -75,7 +70,6 @@ namespace SSSRegen.Source.Player
         public override void Draw(IGameTime gameTime)
         {
             _healthComponent.Draw(this);
-            _scoreComponent.Draw(this);
 
             _projectileManager.Draw(gameTime);
 

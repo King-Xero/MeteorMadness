@@ -27,6 +27,7 @@ namespace SSSRegen.Source.Meteors
                 _gameContext,
                 GameConstants.Meteors.BigMeteor1.InitialMaxHealth,
                 GameConstants.Meteors.BigMeteor1.CollisionDamage,
+                GameConstants.Meteors.BigMeteor1.ScoreValue,
                 new HealthComponent(GameConstants.Meteors.BigMeteor1.InitialMaxHealth, new NullHealthContainer()),
                 new MeteorPhysics(_gameContext, _random),
                 graphicsComponent);
@@ -41,6 +42,7 @@ namespace SSSRegen.Source.Meteors
                 _gameContext,
                 GameConstants.Meteors.MediumMeteor1.InitialMaxHealth,
                 GameConstants.Meteors.MediumMeteor1.CollisionDamage,
+                GameConstants.Meteors.MediumMeteor1.ScoreValue,
                 new HealthComponent(GameConstants.Meteors.MediumMeteor1.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysics(_gameContext, _random),
                 graphicsComponent);
@@ -55,6 +57,7 @@ namespace SSSRegen.Source.Meteors
                 _gameContext,
                 GameConstants.Meteors.SmallMeteor1.InitialMaxHealth,
                 GameConstants.Meteors.SmallMeteor1.CollisionDamage,
+                GameConstants.Meteors.SmallMeteor1.ScoreValue,
                 new HealthComponent(GameConstants.Meteors.SmallMeteor1.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysics(_gameContext, _random),
                 graphicsComponent);
@@ -69,6 +72,7 @@ namespace SSSRegen.Source.Meteors
                 _gameContext,
                 GameConstants.Meteors.TinyMeteor1.InitialMaxHealth,
                 GameConstants.Meteors.TinyMeteor1.CollisionDamage,
+                GameConstants.Meteors.TinyMeteor1.ScoreValue,
                 new HealthComponent(GameConstants.Meteors.TinyMeteor1.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysics(_gameContext, _random),
                 graphicsComponent);

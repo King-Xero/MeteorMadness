@@ -25,7 +25,6 @@ namespace SSSRegen.Source.Player
             return new Player(
                 _gameContext,
                 CreatePlayerHealth(),
-                CreatePlayerScore(),
                 CreatePlayerInput(),
                 CreatePlayerPhysics(),
                 CreatePlayerGraphics(),

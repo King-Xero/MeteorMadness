@@ -22,6 +22,7 @@ namespace SSSRegen.Source.Projectiles
         {
             return new Bullet(
                 _gameContext,
+                GameConstants.Projectiles.Bullet3.DamageAmount,
                 new BulletPhysicsComponent(_gameContext),
                 CreateBulletGraphics());
         }
