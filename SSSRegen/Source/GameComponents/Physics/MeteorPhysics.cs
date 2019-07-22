@@ -37,11 +37,6 @@ namespace SSSRegen.Source.GameComponents.Physics
 
             //Move the enemy
             meteor.Position += Vector2.Multiply(meteor.MovementDirection, meteor.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
-
-            //ToDo Resolve collisions
-            //If meteor collides with object, execute only what the meteor should do.
-            //Other objects will handle themselves
-            //_gameContext.Collisions.ResolveCollision(meteor);
         }
 
         private void Reset(IGameObject meteor)

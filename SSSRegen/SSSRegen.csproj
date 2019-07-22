@@ -59,6 +59,7 @@
     <Compile Include="Source\Core\Interfaces\IDrawableComponent.cs" />
     <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
     <Compile Include="Source\Core\Interfaces\ISoundEffect.cs" />
+    <Compile Include="Source\Enemies\IEnemy.cs" />
     <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />

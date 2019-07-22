@@ -11,7 +11,7 @@ using SSSRegen.Source.Projectiles;
 
 namespace SSSRegen.Source.Enemies
 {
-    public class Enemy : GameObject, IHandleHealth, IHandleCollisions
+    public class Enemy : GameObject, IEnemy
     {
         private readonly GameContext _gameContext;
         private readonly IHealthComponent _healthComponent;
@@ -36,6 +36,8 @@ namespace SSSRegen.Source.Enemies
         public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }
 
+        public IGameObject Target { get; private set; }
+
         public CollisionLayer CollisionLayer => CollisionLayer.Enemy;
 
         public override void Initialize()
@@ -43,7 +45,7 @@ namespace SSSRegen.Source.Enemies
             MaxHealth = _initialMaxHealth;
             CollisionDamageAmount = _initialCollisionDamage;
             IsActive = true;
-            //Target = null;
+            Target = null;
 
             _healthComponent.Initialize(this);
             _healthComponent.Died += EnemyOnDied;
