@@ -33,6 +33,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Update(IGameObject player, IGameTime gameTime)
         {
+            _gameContext.GameGraphics.PlayableCamera.Follow(player);
             //ToDo Set damage sprites
             //if (player.Velocity.X < 0)
             //{
@@ -49,10 +50,10 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject player, IGameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
+            _gameContext.GameGraphics.DrawPlayable(_playerShipSprite, player.Bounds, Color.White);
             if (_activeDamageSprite != null)
             {
-                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Bounds, Color.White);
+                _gameContext.GameGraphics.DrawPlayable(_activeDamageSprite, player.Bounds, Color.White);
             }
         }
     }

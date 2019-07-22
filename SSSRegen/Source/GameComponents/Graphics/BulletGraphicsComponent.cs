@@ -26,7 +26,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject entity, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_bulletSprite, entity.Position, Color.White);
+            _gameGraphics.DrawPlayable(_bulletSprite, entity.Position, Color.White);
         }
     }
 }
