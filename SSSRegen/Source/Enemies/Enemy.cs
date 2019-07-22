@@ -14,20 +14,20 @@ namespace SSSRegen.Source.Enemies
     public class Enemy : GameObject, IHandleHealth, IHandleCollisions
     {
         private readonly GameContext _gameContext;
+        private readonly IHealthComponent _healthComponent;
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
-        private readonly IHealthComponent _healthComponent;
+        private readonly int _scoreValue;
 
-        //ToDo Add to the game constants and pass in on creation
-        private int _scoreValue = 200;
-
-        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
             base(physicsComponent, graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
-            _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
+            _scoreValue = scoreValue;
         }
 
         public event EventHandler<HealEventArgs> Healed;

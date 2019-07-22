@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Timers;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameData;
 
