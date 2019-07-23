@@ -95,8 +95,8 @@ namespace SSSRegen.Source.Meteors
                     break;
                 case Enemy enemy:
                     //ToDo swap for appropriate sfx (meteor collided with enemy)
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-                    Damage(enemy.CollisionDamageAmount);
+                    //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    //Damage(enemy.CollisionDamageAmount);
                     break;
             }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");

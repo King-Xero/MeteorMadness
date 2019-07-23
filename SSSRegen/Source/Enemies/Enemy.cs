@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Bonuses;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
@@ -7,6 +8,7 @@ using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
 using SSSRegen.Source.Meteors;
 using SSSRegen.Source.Notifications;
+using SSSRegen.Source.Player;
 using SSSRegen.Source.Projectiles;
 
 namespace SSSRegen.Source.Enemies
@@ -58,6 +60,25 @@ namespace SSSRegen.Source.Enemies
 
         public override void Update(IGameTime gameTime)
         {
+            float aggroRange = 600;
+            if (PlayerManager.Player != null)
+            {
+                if (Vector2.Distance(PlayerManager.Player.Position, Position) < aggroRange &&
+                    Position.Y < PlayerManager.Player.Position.Y && PlayerManager.Player.Position.X >= Position.X - aggroRange / 2 && PlayerManager.Player.Position.X <= Position.X + aggroRange / 2)
+                {
+                    Target = PlayerManager.Player;
+                }
+                else
+                {
+                    Target = null;
+                }
+            }
+            else
+            {
+                Target = null;
+            }
+            
+
             _physicsComponent.Update(this, gameTime);
             _graphicsComponent.Update(this, gameTime);
             _healthComponent.Update(this, gameTime);
@@ -100,8 +121,8 @@ namespace SSSRegen.Source.Enemies
                     break;
                 case Meteor meteor:
                     //ToDo swap for appropriate sfx (enemy collided with meteor)
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-                    Damage(meteor.CollisionDamageAmount);
+                    //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                    //Damage(meteor.CollisionDamageAmount);
                     break;
             }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
