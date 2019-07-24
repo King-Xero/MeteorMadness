@@ -10,13 +10,14 @@ namespace SSSRegen.Source.Projectiles
     public class PlayerProjectilesManager : IProjectilesManager
     {
         private readonly IProjectileFactory _projectileFactory;
-        private readonly GameContext _gameContext;
+        private readonly ICollisionSystem _collisionSystem;
 
         private List<IGameObject> _bullets;
 
-        public PlayerProjectilesManager(IProjectileFactory projectileFactory)
+        public PlayerProjectilesManager(IProjectileFactory projectileFactory, ICollisionSystem collisionSystem)
         {
             _projectileFactory = projectileFactory ?? throw new ArgumentNullException(nameof(projectileFactory));
+            _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
@@ -26,7 +27,7 @@ namespace SSSRegen.Source.Projectiles
             {
                 var bullet = _projectileFactory.CreateBullet();
                 bullet.Initialize();
-                _gameContext.CollisionSystem.RegisterEntity(bullet);
+                _collisionSystem.RegisterEntity(bullet);
                 _bullets.Add(bullet);
             }
         }

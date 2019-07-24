@@ -24,8 +24,9 @@ namespace SSSRegen.Source.Enemies
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
         private readonly int _scoreValue;
-        
-        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IEnemy> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, PlayerManager playerManager)
+        private readonly float _aggroRange;
+
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, float aggroRange, IHealthComponent healthComponent, IComponent<IEnemy> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, PlayerManager playerManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
@@ -36,6 +37,7 @@ namespace SSSRegen.Source.Enemies
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
             _scoreValue = scoreValue;
+            _aggroRange = aggroRange;
         }
 
         public event EventHandler<HealEventArgs> Healed;
@@ -63,11 +65,11 @@ namespace SSSRegen.Source.Enemies
 
         public override void Update(IGameTime gameTime)
         {
-            float aggroRange = 600;
+            //ToDo move this logic out of the enemy classS
             if (_playerManager.Player != null)
             {
-                if (Vector2.Distance(_playerManager.Player.Position, Position) < aggroRange &&
-                    Position.Y < _playerManager.Player.Position.Y && _playerManager.Player.Position.X >= Position.X - aggroRange / 2 && _playerManager.Player.Position.X <= Position.X + aggroRange / 2)
+                if (Vector2.Distance(_playerManager.Player.Position, Position) < _aggroRange &&
+                    Position.Y < _playerManager.Player.Position.Y && _playerManager.Player.Position.X >= Position.X - _aggroRange / 2 && _playerManager.Player.Position.X <= Position.X + _aggroRange / 2)
                 {
                     Target = _playerManager.Player;
                 }

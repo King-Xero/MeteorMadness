@@ -16,6 +16,9 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _eSprite = eSprite ?? throw new ArgumentNullException(nameof(eSprite));
+
+            //Ensure that _active sprite is not null, as update could potentially be called before initialize
+            _activeSprite = _eSprite;
         }
 
         public void Initialize(IGameObject enemy)
