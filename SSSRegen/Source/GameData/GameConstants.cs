@@ -13,6 +13,7 @@ namespace SSSRegen.Source.GameData
                 public const int InitialMaxHealth = 10;
                 public const int CollisionDamage = 2;
                 public const int ScoreValue = 100;
+                public const int AggroRange = 600;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -29,6 +30,7 @@ namespace SSSRegen.Source.GameData
                 public const int InitialMaxHealth = 15;
                 public const int CollisionDamage = 4;
                 public const int ScoreValue = 200;
+                public const int AggroRange = 600;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -45,6 +47,7 @@ namespace SSSRegen.Source.GameData
                 public const int InitialMaxHealth = 20;
                 public const int CollisionDamage = 6;
                 public const int ScoreValue = 300;
+                public const int AggroRange = 600;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -61,6 +64,7 @@ namespace SSSRegen.Source.GameData
                 public const int InitialMaxHealth = 25;
                 public const int CollisionDamage = 2;
                 public const int ScoreValue = 400;
+                public const int AggroRange = 600;
                 public const int Speed = 40;
 
                 public static class Textures
@@ -77,6 +81,7 @@ namespace SSSRegen.Source.GameData
                 public const int InitialMaxHealth = 30;
                 public const int CollisionDamage = 2;
                 public const int ScoreValue = 500;
+                public const int AggroRange = 600;
                 public const int Speed = 40;
 
                 public static class Textures

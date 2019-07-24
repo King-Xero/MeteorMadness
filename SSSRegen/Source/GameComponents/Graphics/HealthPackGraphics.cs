@@ -16,6 +16,9 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _hSprite = hSprite ?? throw new ArgumentNullException(nameof(hSprite));
+
+            //Ensure that _active sprite is not null, as update could potentially be called before initialize
+            _activeSprite = _hSprite;
         }
 
         public void Initialize(IGameObject healthPack)

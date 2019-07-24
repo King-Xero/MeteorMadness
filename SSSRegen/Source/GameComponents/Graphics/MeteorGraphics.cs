@@ -16,6 +16,9 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _mSprite = mSprite ?? throw new ArgumentNullException(nameof(mSprite));
+
+            //Ensure that _active sprite is not null, as update could potentially be called before initialize
+            _activeSprite = _mSprite;
         }
 
         public void Initialize(IGameObject meteor)

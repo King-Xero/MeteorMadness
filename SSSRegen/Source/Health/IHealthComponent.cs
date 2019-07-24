@@ -1,14 +1,11 @@
 ﻿using System;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Health
 {
-    public interface IHealthComponent
+    public interface IHealthComponent : IDrawableComponent<IHandleHealth>
     {
         //ToDo use more detailed event args
         event EventHandler<EventArgs> Died;
-
-        void Initialize(IHandleHealth player);
-        void Update(IHandleHealth player);
-        void Draw(IHandleHealth player);
     }
 }

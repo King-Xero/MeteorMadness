@@ -8,7 +8,6 @@ namespace SSSRegen.Source.Player
     {
         private readonly IPlayerFactory _playerFactory;
         private readonly ICollisionSystem _collisionSystem;
-        private List<Player> _players;
         private bool _isPaused;
 
         public PlayerManager(IPlayerFactory playerFactory, ICollisionSystem collisionSystem)
@@ -17,36 +16,25 @@ namespace SSSRegen.Source.Player
             _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
+        public IPlayer Player { get; private set; }
+
         public void Initialize()
         {
-            _players = new List<Player>()
-            {
-                _playerFactory.CreatePlayer()
-            };
-
-            foreach (var player in _players)
-            {
-                player.Initialize();
-                _collisionSystem.RegisterEntity(player);
-            }
+            Player = _playerFactory.CreatePlayer();
+            Player.Initialize();
+            _collisionSystem.RegisterEntity(Player);
         }
 
         public void Update(IGameTime gameTime)
         {
             if (_isPaused) return;
 
-            foreach (var player in _players)
-            {
-                player.Update(gameTime);
-            }
+            Player.Update(gameTime);
         }
 
         public void Draw(IGameTime gameTime)
         {
-            foreach (var player in _players)
-            {
-                player.Draw(gameTime);
-            }
+            Player.Draw(gameTime);
         }
 
         public void Pause()

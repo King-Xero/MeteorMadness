@@ -1,15 +1,18 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Enemies;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Utils;
 
 namespace SSSRegen.Source.GameComponents.Physics
 {
-    public class EnemyPhysics : IComponent<IGameObject>
+    public class EnemyPhysics : IComponent<IEnemy>
     {
         private readonly GameContext _gameContext;
         private readonly Random _random;
+        private int _horizontalSpeedMultiplier;
+        private int _verticalSpeedMultiplier;
 
         public EnemyPhysics(GameContext gameContext, Random random)
         {
@@ -17,14 +20,14 @@ namespace SSSRegen.Source.GameComponents.Physics
             _random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        public void Initialize(IGameObject enemy)
+        public void Initialize(IEnemy enemy)
         {
             //ToDo Execution order of components might cause an error here.
             //Reset uses Bounds to set position. Bounds is set using Height and Width which are initialized in graphics component.
             Reset(enemy);
         }
 
-        public void Update(IGameObject enemy, IGameTime gameTime)
+        public void Update(IEnemy enemy, IGameTime gameTime)
         {
             //If the enemy moves out of screen bounds, reset it
             if (enemy.Position.Y >= _gameContext.ScreenBounds.Height ||
@@ -35,20 +38,35 @@ namespace SSSRegen.Source.GameComponents.Physics
                 return;
             }
 
-            //Move the enemy
-            enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            if (enemy.Target != null)
+            {
+                var movementDirection = Vector2.Subtract(enemy.Target.Position, enemy.Position);
 
-            //ToDo Resolve collisions
-            //If enemy collides with object, execute only what the enemy should do.
-            //Other objects will handle themselves
-            //_gameContext.Collisions.ResolveCollision(enemy);
+                movementDirection.Normalize();
+
+                movementDirection.X *= _horizontalSpeedMultiplier * 10;
+                movementDirection.Y *= _verticalSpeedMultiplier;
+
+                //Move towards target
+                enemy.Position += Vector2.Multiply(movementDirection,
+                    enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            }
+            else
+            {
+                //Move the enemy
+                enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            }
         }
 
-        private void Reset(IGameObject enemy)
+        private void Reset(IEnemy enemy)
         {
             enemy.IsActive = false;
 
-            enemy.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
+            _horizontalSpeedMultiplier = _random.Next(1,3);
+            _verticalSpeedMultiplier = _random.Next(1, 5);
+
+            enemy.MovementDirection = new Vector2(_horizontalSpeedMultiplier, _verticalSpeedMultiplier);
+
             enemy.Speed = 100;
 
             var enemyPosition = enemy.Position;

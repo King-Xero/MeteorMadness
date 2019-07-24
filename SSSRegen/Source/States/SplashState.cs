@@ -29,7 +29,7 @@ namespace SSSRegen.Source.States
         {
             if (gameTime.TotalGameTime.Seconds > GameConstants.GameStates.SplashState.SplashStateDisplayTime)
             {
-                var mainMenu = _gameContext.Factories.MenuFactory.CreateMainMenu();
+                var mainMenu = _gameContext.MenuFactory.CreateMainMenu();
                 
                 //Go to main menu scene
                 _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), mainMenu), true);

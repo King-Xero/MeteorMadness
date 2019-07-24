@@ -9,11 +9,16 @@ namespace SSSRegen.Source.Projectiles
     public class Bullet : GameObject, IHandleCollisions
     {
         private readonly GameContext _gameContext;
+        private readonly IComponent<IGameObject> _physicsComponent;
+        private readonly IDrawableComponent<IGameObject> _graphicsComponent;
+
         private bool _isActive;
 
-        public Bullet(GameContext gameContext, int damageAmount, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) : base(physicsComponent, graphicsComponent)
+        public Bullet(GameContext gameContext, int damageAmount, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
+            _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
 
             CollisionDamageAmount = damageAmount;
         }
@@ -29,6 +34,23 @@ namespace SSSRegen.Source.Projectiles
                     PlaySoundEffect();
                 }
             }
+        }
+
+        public override void Initialize()
+        {
+            _physicsComponent.Initialize(this);
+            _graphicsComponent.Initialize(this);
+        }
+
+        public override void Update(IGameTime gameTime)
+        {
+            _physicsComponent.Update(this, gameTime);
+            _graphicsComponent.Update(this, gameTime);
+        }
+
+        public override void Draw(IGameTime gameTime)
+        {
+            _graphicsComponent.Draw(this, gameTime);
         }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;

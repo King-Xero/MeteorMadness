@@ -9,11 +9,14 @@ namespace SSSRegen.Source.Bonuses
     public class HealthPack : GameObject, IHandleCollisions, IHealthPack
     {
         private readonly GameContext _gameContext;
+        private readonly IComponent<IGameObject> _physicsComponent;
+        private readonly IDrawableComponent<IGameObject> _graphicsComponent;
 
-        public HealthPack(GameContext gameContext, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent) :
-            base(physicsComponent, graphicsComponent)
+        public HealthPack(GameContext gameContext, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
+            _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
         }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Bonus;
@@ -24,17 +27,20 @@ namespace SSSRegen.Source.Bonuses
         public override void Initialize()
         {
             HealAmount = GameConstants.Bonuses.HealthPack.HealAmount;
-            base.Initialize();
+
+            _physicsComponent.Initialize(this);
+            _graphicsComponent.Initialize(this);
         }
 
         public override void Update(IGameTime gameTime)
         {
-            base.Update(gameTime);
+            _physicsComponent.Update(this, gameTime);
+            _graphicsComponent.Update(this, gameTime);
         }
 
         public override void Draw(IGameTime gameTime)
         {
-            base.Draw(gameTime);
+            _graphicsComponent.Draw(this, gameTime);
         }
 
         public void CollidedWith(IHandleCollisions gameObject)

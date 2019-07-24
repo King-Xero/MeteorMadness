@@ -63,7 +63,7 @@ namespace SSSRegen.Source.Player
 
         private IProjectilesManager CreatePlayerProjectileManager()
         {
-            return new PlayerProjectilesManager(_gameContext);
+            return new PlayerProjectilesManager(new ProjectileFactory(_gameContext), _gameContext.CollisionSystem);
         }
     }
 }

@@ -53,12 +53,14 @@ namespace SSSRegen.Source.States
             _pauseMenuAppearingSoundEffect = pauseMenuAppearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuAppearingSoundEffect));
             _pauseMenuDisappearingSoundEffect = pauseMenuDisappearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuDisappearingSoundEffect));
 
+            var playerManager = new PlayerManager(new PlayerFactory(_gameContext), _gameContext.CollisionSystem);
+
             _gameObjectManagers = new IGameObjectManager[]
             {
-                new EnemiesManager(_gameContext.Factories.EnemyFactory, _gameContext.CollisionSystem),
-                new MeteorsManager(_gameContext.Factories.MeteorsFactory, _gameContext.CollisionSystem),
-                new BonusManager(_gameContext.Factories.BonusesFactory, _gameContext.CollisionSystem),
-                new PlayerManager(_gameContext.Factories.PlayerFactory, _gameContext.CollisionSystem)
+                playerManager,
+                new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
+                new MeteorsManager(new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
+                new BonusManager(new BonusFactory(_gameContext), _gameContext.CollisionSystem),
             };
 
             _scoreComponent = new PlayerScoreComponent(_gameContext);
@@ -75,7 +77,7 @@ namespace SSSRegen.Source.States
             _scoreComponent.Initialize();
 
             _playStateGraphics.Initialize(this);
-            _playStateMenu = _gameContext.Factories.MenuFactory.CreatePlayStateMenu();
+            _playStateMenu = _gameContext.MenuFactory.CreatePlayStateMenu();
             _playStateMenu.Initialize();
             _playStateMenu.IsEnabled = false;
 

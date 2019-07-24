@@ -1,8 +1,9 @@
 ﻿using System;
+using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Health
 {
-    public interface IHandleHealth
+    public interface IHandleHealth : IGameObject
     {
         event EventHandler<HealEventArgs> Healed;
         event EventHandler<DamageEventArgs> Damaged;
