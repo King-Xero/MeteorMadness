@@ -12,10 +12,10 @@ namespace SSSRegen.Source.Meteors
         private readonly GameContext _gameContext;
         private readonly Random _random;
 
-        public MeteorFactory(GameContext gameContext, Random random)
+        public MeteorFactory(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
-            _random = random ?? throw new ArgumentNullException(nameof(random));
+            _random = gameContext.Random ?? throw new ArgumentNullException(nameof(gameContext.Random));
         }
 
         public Meteor CreateBigMeteor()

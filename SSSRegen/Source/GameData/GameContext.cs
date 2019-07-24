@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Menus;
 using SSSRegen.Source.Notifications;
 
 namespace SSSRegen.Source.GameData
@@ -21,7 +22,7 @@ namespace SSSRegen.Source.GameData
             Random = new Random();
             AssetManager = new AssetManager(_game);
             StateMachine = new GameStateMachine();
-            Factories = new GameFactories(this, Random);
+            MenuFactory = new MenuFactory(this);
             CollisionSystem = new BasicCollisionSystem();
             NotificationMediator = new NotificationMediator();
         }
@@ -32,7 +33,7 @@ namespace SSSRegen.Source.GameData
         public IGameAudioManager GameAudio { get; }
         public IAssetManager AssetManager { get; }
         public IGameStateMachine StateMachine { get; }
-        public IGameFactories Factories { get; }
+        public IMenuFactory MenuFactory { get; }
         public ICollisionSystem CollisionSystem { get; }
         public INotificationMediator NotificationMediator { get; }
     }

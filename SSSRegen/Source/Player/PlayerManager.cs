@@ -16,7 +16,7 @@ namespace SSSRegen.Source.Player
             _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
-        public static IPlayer Player { get; private set; }
+        public IPlayer Player { get; private set; }
 
         public void Initialize()
         {

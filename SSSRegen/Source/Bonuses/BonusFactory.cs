@@ -11,10 +11,10 @@ namespace SSSRegen.Source.Bonuses
         private readonly GameContext _gameContext;
         private readonly Random _random;
 
-        public BonusFactory(GameContext gameContext, Random random)
+        public BonusFactory(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
-            _random = random ?? throw new ArgumentNullException(nameof(random));
+            _random = gameContext.Random ?? throw new ArgumentNullException(nameof(gameContext.Random));
         }
 
         public HealthPack CreateHealthPack()

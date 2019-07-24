@@ -4,18 +4,21 @@ using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameComponents.Physics;
 using SSSRegen.Source.GameData;
 using SSSRegen.Source.Health;
+using SSSRegen.Source.Player;
 
 namespace SSSRegen.Source.Enemies
 {
     public class EnemyFactory : IEnemyFactory
     {
         private readonly GameContext _gameContext;
+        private readonly PlayerManager _playerManager;
         private readonly Random _random;
 
-        public EnemyFactory(GameContext gameContext, Random random)
+        public EnemyFactory(GameContext gameContext, PlayerManager playerManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
-            _random = random ?? throw new ArgumentNullException(nameof(random));
+            _playerManager = playerManager ?? throw new ArgumentNullException(nameof(playerManager));
+            _random = gameContext.Random ?? throw new ArgumentNullException(nameof(gameContext.Random));
         }
 
         public Enemy CreateEnemy1()
@@ -24,6 +27,7 @@ namespace SSSRegen.Source.Enemies
 
             var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
 
+            //ToDo pass in enemy strategy instead of multiple config values
             return new Enemy(
                 _gameContext,
                 GameConstants.Enemies.Enemy1.InitialMaxHealth,
@@ -31,7 +35,8 @@ namespace SSSRegen.Source.Enemies
                 GameConstants.Enemies.Enemy1.ScoreValue,
                 new HealthComponent(GameConstants.Enemies.Enemy1.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),
-                graphicsComponent);
+                graphicsComponent,
+                _playerManager);
         }
 
         public Enemy CreateEnemy2()
@@ -47,7 +52,8 @@ namespace SSSRegen.Source.Enemies
                 GameConstants.Enemies.Enemy2.ScoreValue,
                 new HealthComponent(GameConstants.Enemies.Enemy2.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),
-                graphicsComponent);
+                graphicsComponent,
+                _playerManager);
         }
 
         public Enemy CreateEnemy3()
@@ -63,7 +69,8 @@ namespace SSSRegen.Source.Enemies
                 GameConstants.Enemies.Enemy3.ScoreValue,
                 new HealthComponent(GameConstants.Enemies.Enemy3.InitialMaxHealth, new NullHealthContainer()),
                 new EnemyPhysics(_gameContext, _random),
-                graphicsComponent);
+                graphicsComponent,
+                _playerManager);
         }
 
         //ToDo Create more enemy types

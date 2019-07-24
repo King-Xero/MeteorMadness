@@ -19,16 +19,19 @@ namespace SSSRegen.Source.Enemies
         private readonly IHealthComponent _healthComponent;
         private readonly IComponent<IEnemy> _physicsComponent;
         private readonly IDrawableComponent<IGameObject> _graphicsComponent;
+        private readonly PlayerManager _playerManager;
+
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
         private readonly int _scoreValue;
-
-        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IEnemy> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
+        
+        public Enemy(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IEnemy> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, PlayerManager playerManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
             _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
             _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
+            _playerManager = playerManager ?? throw new ArgumentNullException(nameof(playerManager));
 
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
@@ -61,12 +64,12 @@ namespace SSSRegen.Source.Enemies
         public override void Update(IGameTime gameTime)
         {
             float aggroRange = 600;
-            if (PlayerManager.Player != null)
+            if (_playerManager.Player != null)
             {
-                if (Vector2.Distance(PlayerManager.Player.Position, Position) < aggroRange &&
-                    Position.Y < PlayerManager.Player.Position.Y && PlayerManager.Player.Position.X >= Position.X - aggroRange / 2 && PlayerManager.Player.Position.X <= Position.X + aggroRange / 2)
+                if (Vector2.Distance(_playerManager.Player.Position, Position) < aggroRange &&
+                    Position.Y < _playerManager.Player.Position.Y && _playerManager.Player.Position.X >= Position.X - aggroRange / 2 && _playerManager.Player.Position.X <= Position.X + aggroRange / 2)
                 {
-                    Target = PlayerManager.Player;
+                    Target = _playerManager.Player;
                 }
                 else
                 {

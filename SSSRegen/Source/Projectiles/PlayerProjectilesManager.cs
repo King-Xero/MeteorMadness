@@ -9,13 +9,14 @@ namespace SSSRegen.Source.Projectiles
 {
     public class PlayerProjectilesManager : IProjectilesManager
     {
+        private readonly IProjectileFactory _projectileFactory;
         private readonly GameContext _gameContext;
 
         private List<IGameObject> _bullets;
 
-        public PlayerProjectilesManager(GameContext gameContext)
+        public PlayerProjectilesManager(IProjectileFactory projectileFactory)
         {
-            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
+            _projectileFactory = projectileFactory ?? throw new ArgumentNullException(nameof(projectileFactory));
         }
 
         public void Initialize()
@@ -23,7 +24,7 @@ namespace SSSRegen.Source.Projectiles
             _bullets = new List<IGameObject>();
             for (int i = 0; i < Math.Round(GameConstants.Projectiles.Player.MaxBulletsOnScreen * 0.8); i++)
             {
-                var bullet = _gameContext.Factories.ProjectileFactory.CreateBullet();
+                var bullet = _projectileFactory.CreateBullet();
                 bullet.Initialize();
                 _gameContext.CollisionSystem.RegisterEntity(bullet);
                 _bullets.Add(bullet);
@@ -46,7 +47,7 @@ namespace SSSRegen.Source.Projectiles
             var bulletToShoot = _bullets.FirstOrDefault(b => !b.IsActive);
             if (bulletToShoot == null)
             {
-                bulletToShoot = _gameContext.Factories.ProjectileFactory.CreateBullet();
+                bulletToShoot = _projectileFactory.CreateBullet();
                 
                 _bullets.Add(bulletToShoot);
                 bulletToShoot.Initialize();

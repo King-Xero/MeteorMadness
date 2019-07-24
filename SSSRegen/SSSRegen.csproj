@@ -55,7 +55,6 @@
     <Compile Include="Source\Bonuses\BonusFactory.cs" />
     <Compile Include="Source\Bonuses\BonusManager.cs" />
     <Compile Include="Source\Bonuses\HealthPack.cs" />
-    <Compile Include="Source\Core\GameFactories.cs" />
     <Compile Include="Source\Core\Interfaces\IDrawableComponent.cs" />
     <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
     <Compile Include="Source\Core\Interfaces\ISoundEffect.cs" />
@@ -63,7 +62,6 @@
     <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />
-    <Compile Include="Source\Core\Interfaces\IGameFactories.cs" />
     <Compile Include="Source\GameComponents\Input\PlayStateMenuInput.cs" />
     <Compile Include="Source\GameComponents\Physics\BulletPhysicsComponent.cs" />
     <Compile Include="Source\Menus\IMenuFactory.cs" />
