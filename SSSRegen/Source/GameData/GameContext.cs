@@ -13,11 +13,12 @@ namespace SSSRegen.Source.GameData
     {
         private readonly Game _game;
 
-        public GameContext(Game game, SpriteBatch spriteBatch, IGameAudioManager gameAudioManager)
+        public GameContext(Game game, SpriteBatch spriteBatch, IResolution resolution, IGameAudioManager gameAudioManager)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             if (spriteBatch == null) throw new ArgumentNullException(nameof(spriteBatch));
-            GameGraphics = new GameGraphics(spriteBatch, new TrackingCamera2D(this){Zoom = 1f});
+            if (resolution == null) throw new ArgumentNullException(nameof(resolution));
+            GameGraphics = new GameGraphics(spriteBatch, resolution, new TrackingCamera2D(this){Zoom = 1f});
             GameAudio = gameAudioManager ?? throw new ArgumentNullException(nameof(gameAudioManager));
             Random = new Random();
             AssetManager = new AssetManager(_game);

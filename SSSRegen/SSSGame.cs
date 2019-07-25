@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.ComponentModel.Design;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Interfaces;
@@ -47,7 +48,7 @@ namespace SSSRegen
 
             _gameAudioManager.Initialize();
 
-            _gameContext = new GameContext(this, _spriteBatch, _gameAudioManager);
+            _gameContext = new GameContext(this, _spriteBatch, new GameScreenResolution(GraphicsDevice.Viewport.Width) _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
 

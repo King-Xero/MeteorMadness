@@ -28,8 +28,8 @@ namespace SSSRegen.Source.Player
                 CreatePlayerInput(),
                 CreatePlayerPhysics(),
                 CreatePlayerGraphics(),
-                CreatePlayerProjectileManager(),
-                _gameContext.GameGraphics.PlayableCamera);
+                CreatePlayerProjectileManager());
+                //_gameContext.GameGraphics.PlayableCamera);
         }
 
         private IHealthComponent CreatePlayerHealth()
