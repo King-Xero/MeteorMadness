@@ -33,6 +33,8 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Update(IGameObject player, IGameTime gameTime)
         {
+            //ToDo Add camera if needed
+            //_gameContext.GameGraphics.PlayableCamera.Follow(player);
             //ToDo Set damage sprites
             //if (player.Velocity.X < 0)
             //{

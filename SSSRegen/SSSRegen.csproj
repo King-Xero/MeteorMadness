@@ -44,9 +44,11 @@
   <ItemGroup>
     <Compile Include="Source\Collision\BasicCollisionSystem.cs" />
     <Compile Include="Source\Collision\CollisionLayer.cs" />
+    <Compile Include="Source\Core\Camera2D.cs" />
     <Compile Include="Source\Core\GameAudioManager.cs" />
     <Compile Include="Source\Core\GameSoundEffect.cs" />
     <Compile Include="Source\Core\GameTime.cs" />
+    <Compile Include="Source\Core\Interfaces\ICamera.cs" />
     <Compile Include="Source\Core\Interfaces\ICollisionSystem.cs" />
     <Compile Include="Source\Core\Interfaces\IGameAudioManager.cs" />
     <Compile Include="Source\Core\Interfaces\IGameTime.cs" />
@@ -59,6 +61,8 @@
     <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
     <Compile Include="Source\Core\Interfaces\ISoundEffect.cs" />
     <Compile Include="Source\Enemies\IEnemy.cs" />
+    <Compile Include="Source\Core\MovableCamera2D.cs" />
+    <Compile Include="Source\Core\TrackingCamera2D.cs" />
     <Compile Include="Source\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\GameComponents\Graphics\HelpMainMenuStateGraphics.cs" />
     <Compile Include="Source\GameComponents\Graphics\PlayStateGraphics.cs" />

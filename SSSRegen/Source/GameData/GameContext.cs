@@ -17,7 +17,7 @@ namespace SSSRegen.Source.GameData
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             if (spriteBatch == null) throw new ArgumentNullException(nameof(spriteBatch));
-            GameGraphics = new GameGraphics(spriteBatch);
+            GameGraphics = new GameGraphics(spriteBatch, new TrackingCamera2D(this){Zoom = 1f});
             GameAudio = gameAudioManager ?? throw new ArgumentNullException(nameof(gameAudioManager));
             Random = new Random();
             AssetManager = new AssetManager(_game);

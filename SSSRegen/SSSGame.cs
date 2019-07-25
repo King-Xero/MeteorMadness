@@ -83,14 +83,11 @@ namespace SSSRegen
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
-
             _gameTime.ElapsedGameTime = gameTime.ElapsedGameTime;
             _gameTime.TotalGameTime = gameTime.TotalGameTime;
 
             _gameContext.StateMachine.ActiveState.Draw(_gameTime);
-
-            _spriteBatch.End();
+            
             base.Draw(gameTime);
         }
 
