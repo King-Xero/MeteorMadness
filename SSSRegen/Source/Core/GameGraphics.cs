@@ -13,14 +13,13 @@ namespace SSSRegen.Source.Core
         {
             _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
             PlayableCamera = playableCamera ?? throw new ArgumentNullException(nameof(playableCamera));
-
         }
 
         public ITrackingCamera PlayableCamera { get; }
 
         public void Draw(ISprite sprite, Rectangle destinationRect, Color color)
         {
-            _spriteBatch.Begin(SpriteSortMode.BackToFront);
+            _spriteBatch.Begin();
             _spriteBatch.Draw(sprite.Texture, destinationRect, sprite.SourceRectangle, color);
             _spriteBatch.End();
         }

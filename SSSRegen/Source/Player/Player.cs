@@ -21,9 +21,8 @@ namespace SSSRegen.Source.Player
         private readonly IComponent<IGameObject> _physicsComponent;
         private readonly IDrawableComponent<IGameObject> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
-        private readonly ITrackingCamera _camera;
 
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager, ITrackingCamera camera)
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
