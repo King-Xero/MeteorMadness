@@ -30,7 +30,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Update(IGameObject healthPack, IGameTime gameTime)
         {
             //If the healthPack moves out of screen bounds, reset it
-            if (healthPack.Position.Y >= _gameContext.ScreenBounds.Height)
+            if (healthPack.Position.Y >= _gameContext.GameGraphics.ScreenBounds.Height)
             {
                 Reset(healthPack);
                 return;
@@ -51,7 +51,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
             var healthPackPosition = healthPack.Position;
 
-            healthPackPosition.X = _random.Next(_gameContext.ScreenBounds.Width - healthPack.Bounds.Width);
+            healthPackPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - healthPack.Bounds.Width);
             healthPackPosition.Y = -15;
 
             healthPack.Position = healthPackPosition;

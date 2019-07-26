@@ -23,8 +23,8 @@ namespace SSSRegen
         {
             _graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferWidth = 1366,
-                PreferredBackBufferHeight = 768
+                PreferredBackBufferWidth = 1366,//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+                PreferredBackBufferHeight = 768//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
             };
 
             Content.RootDirectory = "Content";
@@ -48,7 +48,15 @@ namespace SSSRegen
 
             _gameAudioManager.Initialize();
 
-            _gameContext = new GameContext(this, _spriteBatch, new GameScreenResolution(GraphicsDevice.Viewport.Width) _gameAudioManager);
+            var gameScreenResolution = new GameScreenResolution(
+                GameConstants.GameSetup.VirtualResolution,
+                new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+
+            _gameContext = new GameContext(
+                this,
+                _spriteBatch,
+                gameScreenResolution,
+                _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
 

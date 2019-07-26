@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Core
 
             var zoom = Matrix.CreateScale(Zoom, Zoom, 1);
 
-            var offset = Matrix.CreateTranslation(_gameContext.ScreenBounds.Width / 2, _gameContext.ScreenBounds.Height / 2, 0);
+            var offset = Matrix.CreateTranslation(_gameContext.GameGraphics.ScreenBounds.Width / 2, _gameContext.GameGraphics.ScreenBounds.Height / 2, 0);
 
             _transform = position *
                          rotation *

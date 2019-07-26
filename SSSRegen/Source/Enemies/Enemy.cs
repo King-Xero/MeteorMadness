@@ -111,7 +111,7 @@ namespace SSSRegen.Source.Enemies
             {
                 case Player.Player player:
                     //ToDo swap for appropriate sfx (enemy collided with player)
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
+                      _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
                     Damage(player.CollisionDamageAmount);
                     break;
                 case Bullet bullet:

@@ -81,11 +81,4 @@ namespace SSSRegen.Source.Core
             _spriteBatch.End();
         }
     }
-
-    public interface IResolution
-    {
-        Vector2 VirtualResolution { get; }
-        Vector2 ActualResolution { get; }
-        Matrix GetTransformationMatrix();
-    }
 }

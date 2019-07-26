@@ -28,7 +28,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameState entity, IGameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
+            _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.GameGraphics.ScreenBounds, Color.White);
         }
     }
 }

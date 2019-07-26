@@ -127,7 +127,7 @@ namespace SSSRegen.Source.Menus
             }
 
             //ToDo put menu in correct position
-            _position = new Vector2(_gameContext.ScreenBounds.Width / 2 - _width / 2);
+            _position = new Vector2(_gameContext.GameGraphics.ScreenBounds.Width / 2 - _width / 2);
         }
 
         private void CalculateItemPositions()

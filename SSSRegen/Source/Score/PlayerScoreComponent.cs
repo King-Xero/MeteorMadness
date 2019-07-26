@@ -33,7 +33,7 @@ namespace SSSRegen.Source.Score
                 _gameContext.AssetManager.GetFont(GameConstants.GameStates.MenuState.SelectedFontName),
                 _totalScore.ToString(GameConstants.Player.ScoreFormat));
 
-            _drawPosition = new Vector2(_gameContext.ScreenBounds.Width - _scoreText.Size.X, _gameContext.ScreenBounds.Y);
+            _drawPosition = new Vector2(_gameContext.GameGraphics.ScreenBounds.Width - _scoreText.Size.X, _gameContext.GameGraphics.ScreenBounds.Y);
         }
 
         public void Update()

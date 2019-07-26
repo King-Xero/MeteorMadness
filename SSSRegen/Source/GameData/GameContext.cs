@@ -28,7 +28,6 @@ namespace SSSRegen.Source.GameData
             NotificationMediator = new NotificationMediator();
         }
 
-        public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
         public Random Random { get; }
         public IGameGraphics GameGraphics { get; }
         public IGameAudioManager GameAudio { get; }
