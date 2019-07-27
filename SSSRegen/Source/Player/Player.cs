@@ -41,7 +41,7 @@ namespace SSSRegen.Source.Player
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
-        public Vector2 BulletPosition => new Vector2(Position.X + (Size.X / 2), Position.Y - (Size.Y / 2));
+        public Vector2 BulletPosition => new Vector2(Position.X + Origin.X, Position.Y - Origin.Y);
 
         public override void Initialize()
         {

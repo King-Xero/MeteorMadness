@@ -53,7 +53,11 @@ namespace SSSRegen.Source.Projectiles
                 _bullets.Add(bulletToShoot);
                 bulletToShoot.Initialize();
             }
-            bulletToShoot.Position = new Vector2(obj.BulletPosition.X - (bulletToShoot.Size.X / 2), obj.BulletPosition.Y);
+
+            //ToDo replace hard coded values with constants
+            bulletToShoot.MovementSpeed = obj.MovementSpeed + 400;
+            bulletToShoot.Rotation = obj.Rotation;
+            bulletToShoot.Position = new Vector2(obj.BulletPosition.X - bulletToShoot.Origin.X, obj.BulletPosition.Y);
             bulletToShoot.IsActive = true;
         }
 

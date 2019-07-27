@@ -55,7 +55,8 @@ namespace SSSRegen.Source.Core.Graphics
         public void Draw(ISprite sprite, Vector2 position, Color color, float rotation, Vector2 origin)
         {
             _spriteBatch.Begin(transformMatrix: _screenSizeManager.GetScreenScaleTransformationMatrix());
-            _spriteBatch.Draw(sprite.Texture, position, sprite.SourceRectangle, color, rotation, origin, 1.0f, SpriteEffects.None, 0f);
+            //Position is offset by rotation as objects were not being drawn in the correct place
+            _spriteBatch.Draw(sprite.Texture, position + origin, sprite.SourceRectangle, color, rotation, origin, 1.0f, SpriteEffects.None, 0f);
             _spriteBatch.End();
         }
 

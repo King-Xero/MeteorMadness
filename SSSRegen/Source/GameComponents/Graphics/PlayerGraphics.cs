@@ -34,18 +34,6 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Update(IGameObject player, IGameTime gameTime)
         {
-            //ToDo Add camera if needed
-            //_gameContext.GameGraphics.PlayableCamera.Follow(player);
-            //ToDo Set damage sprites
-            //if (player.Velocity.X < 0)
-            //{
-            //    _activeSprite = _moveLeftSprite;
-            //}
-            //else if (player.Velocity.X > 0)
-            //{
-            //    _activeSprite = _moveRightSprite;
-            //}
-
             //ToDo Possibly move into physics components as setting up bounds
             player.Size = _playerShipSprite.Size;
             player.Origin = _playerShipSprite.Origin;
