@@ -18,7 +18,10 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject player)
         {
             player.MovementDirection = Vector2.Zero;
-            player.Speed = 500;
+
+            //ToDo replace hard coded values
+            player.MovementSpeed = 500;
+            player.RotationSpeed = 5;
 
             ResetPosition(player);
         }
@@ -32,7 +35,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             //Other objects will handle themselves
             //_gameContext.Collisions.ResolveCollision(player);
             
-            playerPosition += player.Speed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            playerPosition += player.MovementSpeed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
             playerPosition.X = MathHelper.Clamp(playerPosition.X, _gameContext.GameGraphics.ScreenBounds.Left,
                 _gameContext.GameGraphics.ScreenBounds.Width - player.Bounds.Width);

@@ -6,7 +6,11 @@ namespace SSSRegen.Source.Core.Interfaces
     {
         bool IsActive { get; set; }
         Vector2 Position { get; set; }
-        float Speed { get; set; }
+        float Rotation { get; set; }
+        Vector2 Origin { get; set; }
+        //ToDo Rotation/Movement speed could be private in physics component
+        float MovementSpeed { get; set; }
+        float RotationSpeed { get; set; }
         Vector2 MovementDirection { get; set; }
         Vector2 Size { get; set; }
         Rectangle Bounds { get; }

@@ -36,7 +36,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the enemy
-            meteor.Position += Vector2.Multiply(meteor.MovementDirection, meteor.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            meteor.Position += Vector2.Multiply(meteor.MovementDirection, meteor.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
         }
 
         private void Reset(IGameObject meteor)
@@ -44,7 +44,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             meteor.IsActive = false;
 
             meteor.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
-            meteor.Speed = 100;
+            meteor.MovementSpeed = 100;
 
             var meteorPosition = meteor.Position;
 

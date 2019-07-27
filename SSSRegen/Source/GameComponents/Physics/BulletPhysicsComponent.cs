@@ -18,12 +18,12 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject obj)
         {
             obj.MovementDirection = new Vector2(0, 1);
-            obj.Speed = 400;
+            obj.MovementSpeed = 400;
         }
 
         public void Update(IGameObject obj, IGameTime gameTime)
         {
-            obj.Position -= Vector2.Multiply(obj.MovementDirection, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            obj.Position -= Vector2.Multiply(obj.MovementDirection, obj.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             if (!_gameContext.GameGraphics.ScreenBounds.Intersects(obj.Bounds))
             {

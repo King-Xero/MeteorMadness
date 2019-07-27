@@ -20,7 +20,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject healthPack)
         {
             healthPack.MovementDirection = new Vector2(0, 2);
-            healthPack.Speed = 100;
+            healthPack.MovementSpeed = 100;
 
             //ToDo Execution order of components might cause an error here.
             //Reset uses Bounds to set position. Bounds is set using Height and Width which are initialized in graphics component.
@@ -37,7 +37,7 @@ namespace SSSRegen.Source.GameComponents.Physics
             }
 
             //Move the healthPack
-            healthPack.Position += Vector2.Multiply(healthPack.MovementDirection, healthPack.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            healthPack.Position += Vector2.Multiply(healthPack.MovementDirection, healthPack.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             //ToDo Resolve collisions
             //If healthPack collides with object, execute only what the healthPack should do.
