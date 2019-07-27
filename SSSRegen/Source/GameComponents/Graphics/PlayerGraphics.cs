@@ -29,6 +29,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
         {
             _activeDamageSprite = null;
             player.Size = _playerShipSprite.Size;
+            player.Origin = _playerShipSprite.Origin;
         }
 
         public void Update(IGameObject player, IGameTime gameTime)
@@ -47,14 +48,15 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
             //ToDo Possibly move into physics components as setting up bounds
             player.Size = _playerShipSprite.Size;
+            player.Origin = _playerShipSprite.Origin;
         }
 
         public void Draw(IGameObject player, IGameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Position, Color.White);
+            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Position, Color.White, player.Rotation, player.Origin);
             if (_activeDamageSprite != null)
             {
-                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Position, Color.White);
+                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Position, Color.White, player.Rotation, player.Origin);
             }
         }
     }
