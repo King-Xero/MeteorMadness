@@ -51,10 +51,10 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject player, IGameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Bounds, Color.White);
+            _gameContext.GameGraphics.Draw(_playerShipSprite, player.Position, Color.White);
             if (_activeDamageSprite != null)
             {
-                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Bounds, Color.White);
+                _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Position, Color.White);
             }
         }
     }

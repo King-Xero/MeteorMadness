@@ -39,7 +39,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameObject healthPack, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_activeSprite, healthPack.Bounds, Color.White);
+            _gameGraphics.Draw(_activeSprite, healthPack.Position, Color.White);
         }
     }
 }

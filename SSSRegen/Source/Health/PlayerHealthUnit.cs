@@ -12,6 +12,7 @@ namespace SSSRegen.Source.Health
         private readonly GameContext _gameContext;
         private readonly Texture2D _healthUnitTexture;
         private readonly Rectangle _unitDrawRectangle;
+        //ToDo Move to player constants
         private const float FILL_AMOUNT_PER_HEALTH_PIECE = 0.5f;
 
         private float _fillAmount;
@@ -19,8 +20,8 @@ namespace SSSRegen.Source.Health
         private ISprite _leftFillSprite;
         private ISprite _rightFillSprite;
         
-        private Rectangle _leftFillDrawPosition;
-        private Rectangle _rightFillDrawPosition;
+        private Rectangle _leftFillDrawRectangle;
+        private Rectangle _rightFillDrawRectangle;
 
         public PlayerHealthUnit(GameContext gameContext, Texture2D healthUnitTexture, Rectangle unitDrawRectangle)
         {
@@ -59,10 +60,10 @@ namespace SSSRegen.Source.Health
             _backgroundSprite = new Sprite(_healthUnitTexture);
 
             _leftFillSprite = new Sprite(_healthUnitTexture, new Rectangle(0, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
-            _leftFillDrawPosition = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Width /2, _unitDrawRectangle.Height);
+            _leftFillDrawRectangle = new Rectangle(_unitDrawRectangle.X, _unitDrawRectangle.Y, _unitDrawRectangle.Width /2, _unitDrawRectangle.Height);
 
             _rightFillSprite = new Sprite(_healthUnitTexture, new Rectangle(_healthUnitTexture.Width / 2, 0, _healthUnitTexture.Width / 2, _healthUnitTexture.Height));
-            _rightFillDrawPosition = new Rectangle(_unitDrawRectangle.X + _healthUnitTexture.Width / 2, _unitDrawRectangle.Y, _unitDrawRectangle.Width / 2 , _unitDrawRectangle.Height);
+            _rightFillDrawRectangle = new Rectangle(_unitDrawRectangle.X + _healthUnitTexture.Width / 2, _unitDrawRectangle.Y, _unitDrawRectangle.Width / 2 , _unitDrawRectangle.Height);
         }
 
         public void Update()
@@ -91,12 +92,12 @@ namespace SSSRegen.Source.Health
 
             if (_leftFillSprite.IsVisible)
             {
-                _gameContext.GameGraphics.Draw(_leftFillSprite, _leftFillDrawPosition, Color.White);
+                _gameContext.GameGraphics.Draw(_leftFillSprite, _leftFillDrawRectangle, Color.White);
             }
 
             if (_rightFillSprite.IsVisible)
             {
-                _gameContext.GameGraphics.Draw(_rightFillSprite, _rightFillDrawPosition, Color.White);
+                _gameContext.GameGraphics.Draw(_rightFillSprite, _rightFillDrawRectangle, Color.White);
             }
         }
 
