@@ -40,12 +40,12 @@ namespace SSSRegen.Source.GameComponents.Graphics
             //_line1Position.X = -1 * _line1Sprite.Size.X;
             _line1Position.X = -_logoLine1Text.Size.X;
             _line1Position.Y = 40;
-            _line1TargetPosition.X = (_gameContext.ScreenBounds.Width / 2) - (_logoLine1Text.Size.X / 2);
+            _line1TargetPosition.X = (_gameContext.GameGraphics.ScreenBounds.Width / 2) - (_logoLine1Text.Size.X / 2);
             _line1TargetPosition.Y = _line1Position.Y;
 
-            _line2Position.X = _gameContext.ScreenBounds.Width;
+            _line2Position.X = _gameContext.GameGraphics.ScreenBounds.Width;
             _line2Position.Y = _line1TargetPosition.Y + _logoLine2Text.Size.Y + 40;
-            _line2TargetPosition.X = (_gameContext.ScreenBounds.Width / 2) - (_logoLine2Text.Size.X / 2);
+            _line2TargetPosition.X = (_gameContext.GameGraphics.ScreenBounds.Width / 2) - (_logoLine2Text.Size.X / 2);
             _line2TargetPosition.Y = _line2Position.Y;
 
             _line3Position = new Vector2((_line2TargetPosition.X + _logoLine2Text.Size.X - _logoLine3Text.Size.X / 2) - 80,
@@ -90,7 +90,7 @@ namespace SSSRegen.Source.GameComponents.Graphics
 
         public void Draw(IGameState entity, IGameTime gameTime)
         {
-            _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.ScreenBounds, Color.White);
+            _gameContext.GameGraphics.Draw(_backgroundImage, _gameContext.GameGraphics.ScreenBounds, Color.White);
 
             _gameContext.GameGraphics.DrawText(_logoLine1Text, _line1Position, Color.White);
             _gameContext.GameGraphics.DrawText(_logoLine2Text, _line2Position, Color.White);

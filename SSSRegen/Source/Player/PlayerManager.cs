@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.Player

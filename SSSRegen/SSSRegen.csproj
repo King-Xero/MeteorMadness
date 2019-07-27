@@ -46,8 +46,12 @@
     <Compile Include="Source\Collision\CollisionLayer.cs" />
     <Compile Include="Source\Core\Camera2D.cs" />
     <Compile Include="Source\Core\GameAudioManager.cs" />
+    <Compile Include="Source\Core\Graphics\IScreenResolutionConverter.cs" />
+    <Compile Include="Source\Core\Graphics\ScreenResolutionConverter.cs" />
+    <Compile Include="Source\Core\Graphics\ScreenSizeManager.cs" />
     <Compile Include="Source\Core\GameSoundEffect.cs" />
     <Compile Include="Source\Core\GameTime.cs" />
+    <Compile Include="Source\Core\Graphics\ScreenResolutionOption.cs" />
     <Compile Include="Source\Core\Interfaces\ICamera.cs" />
     <Compile Include="Source\Core\Interfaces\ICollisionSystem.cs" />
     <Compile Include="Source\Core\Interfaces\IGameAudioManager.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Source\Core\Interfaces\IDrawableComponent.cs" />
     <Compile Include="Source\Core\Interfaces\IHandleCollisions.cs" />
     <Compile Include="Source\Core\Interfaces\ISoundEffect.cs" />
+    <Compile Include="Source\Core\Interfaces\IScreenSizeManager.cs" />
     <Compile Include="Source\Enemies\IEnemy.cs" />
     <Compile Include="Source\Core\MovableCamera2D.cs" />
     <Compile Include="Source\Core\TrackingCamera2D.cs" />
@@ -90,7 +95,7 @@
     <Compile Include="Source\GameComponents\Physics\HealthPackPhysics.cs" />
     <Compile Include="Source\Bonuses\IBonusFactory.cs" />
     <Compile Include="Source\Core\AssetManager.cs" />
-    <Compile Include="Source\Core\GameGraphics.cs" />
+    <Compile Include="Source\Core\Graphics\GameGraphics.cs" />
     <Compile Include="Source\Core\GameObject.cs" />
     <Compile Include="Source\Core\Interfaces\IGameObjectManager.cs" />
     <Compile Include="Source\Core\GameState.cs" />
@@ -127,7 +132,7 @@
     <Compile Include="Source\Meteors\Meteor.cs" />
     <Compile Include="Source\Meteors\MeteorFactory.cs" />
     <Compile Include="Source\Meteors\MeteorsManager.cs" />
-    <Compile Include="Source\Core\Interfaces\IGameGraphics.cs" />
+    <Compile Include="Source\Core\Interfaces\Graphics\IGameGraphics.cs" />
     <Compile Include="Source\Notifications\ActionOnDisposeAdapter.cs" />
     <Compile Include="Source\Notifications\INotificationMediator.cs" />
     <Compile Include="Source\Notifications\INotificationPublisher.cs" />

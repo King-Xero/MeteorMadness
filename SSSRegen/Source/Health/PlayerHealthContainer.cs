@@ -22,7 +22,7 @@ namespace SSSRegen.Source.Health
 
         public void Initialize(IHandleHealth entity)
         {
-            _drawPosition = new Rectangle(_gameContext.ScreenBounds.X + 10, _gameContext.ScreenBounds.Y + 10, 0, 0);
+            _drawPosition = new Rectangle(_gameContext.GameGraphics.ScreenBounds.X + 10, _gameContext.GameGraphics.ScreenBounds.Y + 10, 0, 0);
 
             var healthUnits = new List<IHealthUnit>();
 

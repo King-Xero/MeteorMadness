@@ -21,7 +21,7 @@ namespace SSSRegen.Source.Core
             Matrix.CreateTranslation(_position.X, _position.Y, 0) *
             Matrix.CreateRotationZ(Rotation) *
             Matrix.CreateScale(Zoom, Zoom, 1) *
-            Matrix.CreateTranslation(_gameContext.ScreenBounds.Width / 2, _gameContext.ScreenBounds.Height / 2, 0);
+            Matrix.CreateTranslation(_gameContext.GameGraphics.ScreenBounds.Width / 2, _gameContext.GameGraphics.ScreenBounds.Height / 2, 0);
 
         public void Move(Vector2 delta)
         {

@@ -30,9 +30,9 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Update(IEnemy enemy, IGameTime gameTime)
         {
             //If the enemy moves out of screen bounds, reset it
-            if (enemy.Position.Y >= _gameContext.ScreenBounds.Height ||
-                enemy.Position.X >= _gameContext.ScreenBounds.Width ||
-                enemy.Position.X <= _gameContext.ScreenBounds.Left - enemy.Size.X)
+            if (enemy.Position.Y >= _gameContext.GameGraphics.ScreenBounds.Height ||
+                enemy.Position.X >= _gameContext.GameGraphics.ScreenBounds.Width ||
+                enemy.Position.X <= _gameContext.GameGraphics.ScreenBounds.Left - enemy.Size.X)
             {
                 Reset(enemy);
                 return;
@@ -71,7 +71,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
             var enemyPosition = enemy.Position;
 
-            enemyPosition.X = _random.Next(_gameContext.ScreenBounds.Width - enemy.Bounds.Width);
+            enemyPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - enemy.Bounds.Width);
             enemyPosition.Y = 0;
 
             enemy.Position = enemyPosition;

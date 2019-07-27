@@ -25,7 +25,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
             obj.Position -= Vector2.Multiply(obj.MovementDirection, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
-            if (!_gameContext.ScreenBounds.Intersects(obj.Bounds))
+            if (!_gameContext.GameGraphics.ScreenBounds.Intersects(obj.Bounds))
             {
                 obj.IsActive = false;
             }

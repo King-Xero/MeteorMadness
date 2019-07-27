@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
@@ -12,19 +13,15 @@ namespace SSSRegen
     public class SSSGame : Game
     {
         private readonly IGameTime _gameTime;
+        private readonly GraphicsDeviceManager _graphics;
 
-        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private IGameAudioManager _gameAudioManager;
         private GameContext _gameContext;
         
         public SSSGame()
         {
-            _graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = 1366,
-                PreferredBackBufferHeight = 768
-            };
+            _graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
 
@@ -47,7 +44,19 @@ namespace SSSRegen
 
             _gameAudioManager.Initialize();
 
-            _gameContext = new GameContext(this, _spriteBatch, _gameAudioManager);
+            var screenSizeManager = new ScreenSizeManager(
+                _graphics,
+                new ScreenResolutionConverter(),
+                GameConstants.GameSetup.VirtualResolution);
+
+            //ToDo Remove this line once player preference settings are implemented
+            screenSizeManager.SetScreenResolution(ScreenResolutionOption.SRO_1366X768);
+
+            _gameContext = new GameContext(
+                this,
+                _spriteBatch,
+                screenSizeManager,
+                _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
 

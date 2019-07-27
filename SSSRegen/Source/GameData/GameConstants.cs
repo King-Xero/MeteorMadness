@@ -4,6 +4,12 @@ namespace SSSRegen.Source.GameData
 {
     public static class GameConstants
     {
+        public static class GameSetup
+        {
+            public static readonly Vector2 VirtualResolution = new Vector2(1366, 768);
+            public static readonly Vector2 DefaultActualResolution = new Vector2(1366, 768);
+        }
+
         public static class Enemies
         {
             public static class Enemy1

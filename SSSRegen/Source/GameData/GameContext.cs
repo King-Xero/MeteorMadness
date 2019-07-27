@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Collision;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Core.Interfaces.Graphics;
 using SSSRegen.Source.Menus;
 using SSSRegen.Source.Notifications;
 
@@ -13,11 +15,12 @@ namespace SSSRegen.Source.GameData
     {
         private readonly Game _game;
 
-        public GameContext(Game game, SpriteBatch spriteBatch, IGameAudioManager gameAudioManager)
+        public GameContext(Game game, SpriteBatch spriteBatch, IScreenSizeManager screenSizeManager, IGameAudioManager gameAudioManager)
         {
             _game = game ?? throw new ArgumentNullException(nameof(game));
             if (spriteBatch == null) throw new ArgumentNullException(nameof(spriteBatch));
-            GameGraphics = new GameGraphics(spriteBatch, new TrackingCamera2D(this){Zoom = 1f});
+            if (screenSizeManager == null) throw new ArgumentNullException(nameof(screenSizeManager));
+            GameGraphics = new GameGraphics(spriteBatch, screenSizeManager, new TrackingCamera2D(this){Zoom = 1f});
             GameAudio = gameAudioManager ?? throw new ArgumentNullException(nameof(gameAudioManager));
             Random = new Random();
             AssetManager = new AssetManager(_game);
@@ -27,7 +30,6 @@ namespace SSSRegen.Source.GameData
             NotificationMediator = new NotificationMediator();
         }
 
-        public Rectangle ScreenBounds => new Rectangle(0, 0, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height);
         public Random Random { get; }
         public IGameGraphics GameGraphics { get; }
         public IGameAudioManager GameAudio { get; }

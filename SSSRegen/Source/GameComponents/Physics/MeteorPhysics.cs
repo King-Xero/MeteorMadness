@@ -27,9 +27,9 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Update(IGameObject meteor, IGameTime gameTime)
         {
             //If the meteor moves out of screen bounds, reset it
-            if (meteor.Position.Y >= _gameContext.ScreenBounds.Height ||
-                meteor.Position.X >= _gameContext.ScreenBounds.Width ||
-                meteor.Position.X <= _gameContext.ScreenBounds.Left - meteor.Size.X)
+            if (meteor.Position.Y >= _gameContext.GameGraphics.ScreenBounds.Height ||
+                meteor.Position.X >= _gameContext.GameGraphics.ScreenBounds.Width ||
+                meteor.Position.X <= _gameContext.GameGraphics.ScreenBounds.Left - meteor.Size.X)
             {
                 Reset(meteor);
                 return;
@@ -48,7 +48,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
             var meteorPosition = meteor.Position;
 
-            meteorPosition.X = _random.Next(_gameContext.ScreenBounds.Width - meteor.Bounds.Width);
+            meteorPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - meteor.Bounds.Width);
             meteorPosition.Y = 0;
 
             meteor.Position = meteorPosition;

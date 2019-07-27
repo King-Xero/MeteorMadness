@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
 

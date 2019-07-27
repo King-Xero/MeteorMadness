@@ -34,8 +34,8 @@ namespace SSSRegen.Source.GameComponents.Physics
             
             playerPosition += player.Speed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            playerPosition.X = MathHelper.Clamp(playerPosition.X, _gameContext.ScreenBounds.Left,
-                _gameContext.ScreenBounds.Width - player.Bounds.Width);
+            playerPosition.X = MathHelper.Clamp(playerPosition.X, _gameContext.GameGraphics.ScreenBounds.Left,
+                _gameContext.GameGraphics.ScreenBounds.Width - player.Bounds.Width);
 
             player.Position = playerPosition;
         }
@@ -44,8 +44,8 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
             var playerPosition = player.Position;
 
-            playerPosition.X = _gameContext.ScreenBounds.Center.X - player.Bounds.Width;
-            playerPosition.Y = _gameContext.ScreenBounds.Height - player.Bounds.Height - 10;
+            playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Center.X - player.Bounds.Width;
+            playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Height - player.Bounds.Height - 10;
 
             player.Position = playerPosition;
         }
