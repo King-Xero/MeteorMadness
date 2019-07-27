@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.Design;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.GameComponents.Graphics;
 using SSSRegen.Source.GameData;
@@ -13,19 +13,15 @@ namespace SSSRegen
     public class SSSGame : Game
     {
         private readonly IGameTime _gameTime;
+        private readonly GraphicsDeviceManager _graphics;
 
-        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private IGameAudioManager _gameAudioManager;
         private GameContext _gameContext;
         
         public SSSGame()
         {
-            _graphics = new GraphicsDeviceManager(this)
-            {
-                PreferredBackBufferWidth = 1366,//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
-                PreferredBackBufferHeight = 768//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
-            };
+            _graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
 
@@ -48,14 +44,18 @@ namespace SSSRegen
 
             _gameAudioManager.Initialize();
 
-            var gameScreenResolution = new GameScreenResolution(
-                GameConstants.GameSetup.VirtualResolution,
-                new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            var screenSizeManager = new ScreenSizeManager(
+                _graphics,
+                new ScreenResolutionConverter(),
+                GameConstants.GameSetup.VirtualResolution);
+
+            //ToDo Remove this line once player preference settings are implemented
+            screenSizeManager.SetScreenResolution(ScreenResolutionOption.SRO_1366X768);
 
             _gameContext = new GameContext(
                 this,
                 _spriteBatch,
-                gameScreenResolution,
+                screenSizeManager,
                 _gameAudioManager);
 
             _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);

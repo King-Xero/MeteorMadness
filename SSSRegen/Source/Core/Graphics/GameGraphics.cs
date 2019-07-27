@@ -2,45 +2,52 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.Utils;
+using SSSRegen.Source.Core.Interfaces.Graphics;
 
-namespace SSSRegen.Source.Core
+namespace SSSRegen.Source.Core.Graphics
 {
     public class GameGraphics : IGameGraphics
     {
         private readonly SpriteBatch _spriteBatch;
-        private readonly IResolution _resolution;
+        private readonly IScreenSizeManager _screenSizeManager;
 
-        public GameGraphics(SpriteBatch spriteBatch, IResolution resolution, ITrackingCamera playableCamera)
+        public GameGraphics(SpriteBatch spriteBatch, IScreenSizeManager screenSizeManager, ITrackingCamera playableCamera)
         {
             _spriteBatch = spriteBatch ?? throw new ArgumentNullException(nameof(spriteBatch));
-            _resolution = resolution ?? throw new ArgumentNullException(nameof(resolution));
+            _screenSizeManager = screenSizeManager ?? throw new ArgumentNullException(nameof(screenSizeManager));
             PlayableCamera = playableCamera ?? throw new ArgumentNullException(nameof(playableCamera));
-
-            ScreenBounds = new Rectangle(0, 0, _resolution.VirtualResolution.X.ToInt(), _resolution.VirtualResolution.Y.ToInt());
         }
 
         public ITrackingCamera PlayableCamera { get; }
+        public void SetResolution(ScreenResolutionOption resolutionOption)
+        {
+            _screenSizeManager.SetScreenResolution(resolutionOption);
+        }
 
-        public Rectangle ScreenBounds { get; }
+        public void SetFullScreen(bool isFullScreen)
+        {
+            _screenSizeManager.SetFullScreen(isFullScreen);
+        }
+
+        public Rectangle ScreenBounds => _screenSizeManager.ScreenBounds;
 
         public void Draw(ISprite sprite, Rectangle destinationRect, Color color)
         {
-            _spriteBatch.Begin(transformMatrix: _resolution.GetTransformationMatrix());
+            _spriteBatch.Begin(transformMatrix: _screenSizeManager.GetScreenScaleTransformationMatrix());
             _spriteBatch.Draw(sprite.Texture, destinationRect, sprite.SourceRectangle, color);
             _spriteBatch.End();
         }
 
         public void Draw(ISprite sprite, Vector2 position, Color color)
         {
-            _spriteBatch.Begin(transformMatrix: _resolution.GetTransformationMatrix());
+            _spriteBatch.Begin(transformMatrix: _screenSizeManager.GetScreenScaleTransformationMatrix());
             _spriteBatch.Draw(sprite.Texture, position, sprite.SourceRectangle, color);
             _spriteBatch.End();
         }
 
         public void DrawText(IUIText uiText, Vector2 position, Color color)
         {
-            _spriteBatch.Begin(transformMatrix: _resolution.GetTransformationMatrix());
+            _spriteBatch.Begin(transformMatrix: _screenSizeManager.GetScreenScaleTransformationMatrix());
             _spriteBatch.DrawString(uiText.Font, uiText.Text, position, color);
             _spriteBatch.End();
         }
