@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces.Graphics;
 
 namespace SSSRegen.Source.Core.Graphics
 {

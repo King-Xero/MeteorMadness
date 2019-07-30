@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.Utils;
+using SSSRegen.Source.Core.Interfaces.Graphics;
+using SSSRegen.Source.Core.Utils;
 
 namespace SSSRegen.Source.Core.Graphics
 {

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core.Interfaces;
+using SSSRegen.Source.Core.Interfaces.Camera;
 using SSSRegen.Source.Core.Interfaces.Graphics;
 
 namespace SSSRegen.Source.Core.Graphics

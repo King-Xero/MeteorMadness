@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SSSRegen.Source.Core;
+using SSSRegen.Source.Core.Audio;
 using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.GameComponents.Graphics;
-using SSSRegen.Source.GameData;
-using SSSRegen.Source.States;
+using SSSRegen.Source.Core.Interfaces.Audio;
+using SSSRegen.Source.Core.Interfaces.GameStateMachine;
+using SSSRegen.Source.Game.GameComponents.Graphics;
+using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.States;
 using GameTime = Microsoft.Xna.Framework.GameTime;
 
 namespace SSSRegen
@@ -27,7 +30,7 @@ namespace SSSRegen
 
             IsFixedTimeStep = false;
 
-            _gameTime = new Source.Core.GameTime();
+            _gameTime = new Source.Core.GameStateMachine.GameTime();
         }
         
         /// <summary>
@@ -47,7 +50,7 @@ namespace SSSRegen
             var screenSizeManager = new ScreenSizeManager(
                 _graphics,
                 new ScreenResolutionConverter(),
-                GameConstants.GameSetup.VirtualResolution);
+                GameConstants.GameSetupConstants.VirtualResolution);
 
             //ToDo Remove this line once player preference settings are implemented
             screenSizeManager.SetScreenResolution(ScreenResolutionOption.SRO_1366X768);
@@ -107,30 +110,30 @@ namespace SSSRegen
         protected override void LoadContent()
         {
             //Fonts
-            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.RegularFontName, GameConstants.GameStates.MenuState.RegularFontFileName);
-            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.SelectedFontName, GameConstants.GameStates.MenuState.SelectedFontFileName);
-            _gameContext.AssetManager.LoadFont(GameConstants.GameStates.MenuState.LogoFontName, GameConstants.GameStates.MenuState.LogoFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStateConstants.MenuStateConstants.RegularFontName, GameConstants.GameStateConstants.MenuStateConstants.RegularFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStateConstants.MenuStateConstants.SelectedFontName, GameConstants.GameStateConstants.MenuStateConstants.SelectedFontFileName);
+            _gameContext.AssetManager.LoadFont(GameConstants.GameStateConstants.MenuStateConstants.LogoFontName, GameConstants.GameStateConstants.MenuStateConstants.LogoFontFileName);
             
             //Background Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.SplashState.Textures.BackgroundTextureName, GameConstants.GameStates.SplashState.Textures.BackgroundTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.MenuState.Textures.BackgroundTextureName, GameConstants.GameStates.MenuState.Textures.BackgroundTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.GameStates.PlayState.Textures.BackgroundTextureName, GameConstants.GameStates.PlayState.Textures.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStateConstants.SplashStateConstants.Textures.BackgroundTextureName, GameConstants.GameStateConstants.SplashStateConstants.Textures.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStateConstants.MenuStateConstants.Textures.BackgroundTextureName, GameConstants.GameStateConstants.MenuStateConstants.Textures.BackgroundTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.GameStateConstants.PlayStateConstants.Textures.BackgroundTextureName, GameConstants.GameStateConstants.PlayStateConstants.Textures.BackgroundTextureFileName);
 
             //Bonus Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.Bonuses.HealthPack.Textures.RedTextureName, GameConstants.Bonuses.HealthPack.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.BonusConstants.HealthPackConstants.Textures.RedTextureName, GameConstants.BonusConstants.HealthPackConstants.Textures.RedTextureFileName);
 
             //Projectile Textures
             //ToDo Add different player types
             //_gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet1.Textures.BlueTextureName, GameConstants.Projectiles.Bullet1.Textures.BlueTextureFileName);
             //_gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet2.Textures.GreenTextureName, GameConstants.Projectiles.Bullet2.Textures.GreenTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Projectiles.Bullet3.Textures.RedTextureName, GameConstants.Projectiles.Bullet3.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ProjectileConstants.Bullet3Constants.Textures.RedTextureName, GameConstants.ProjectileConstants.Bullet3Constants.Textures.RedTextureFileName);
 
             //Player Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedShipTextureName, GameConstants.Player.PlayerShip1.Textures.RedShipTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.RedLifeIconTextureName, GameConstants.Player.PlayerShip1.Textures.RedLifeIconTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.LightDamageTextureName, GameConstants.Player.PlayerShip1.Textures.LightDamageTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureName, GameConstants.Player.PlayerShip1.Textures.MediumDamageTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip1.Textures.HeavyDamageTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.RedShipTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.RedShipTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.RedLifeIconTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.RedLifeIconTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.LightDamageTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.LightDamageTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.MediumDamageTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.MediumDamageTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.HeavyDamageTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.HeavyDamageTextureFileName);
 
 
             //ToDo Add different player types
@@ -145,46 +148,46 @@ namespace SSSRegen
             //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip3.Textures.HeavyDamageTextureName, GameConstants.Player.PlayerShip3.Textures.HeavyDamageTextureFileName);
 
             //Enemy Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy1.Textures.BlackTextureName, GameConstants.Enemies.Enemy1.Textures.BlackTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy2.Textures.BlueTextureName, GameConstants.Enemies.Enemy2.Textures.BlueTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy3.Textures.GreenTextureName, GameConstants.Enemies.Enemy3.Textures.GreenTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy4.Textures.RedTextureName, GameConstants.Enemies.Enemy4.Textures.RedTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Enemies.Enemy5.Textures.BlackTextureName, GameConstants.Enemies.Enemy5.Textures.BlackTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy1Constants.Textures.BlackTextureName, GameConstants.EnemyConstants.Enemy1Constants.Textures.BlackTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy2Constants.Textures.BlueTextureName, GameConstants.EnemyConstants.Enemy2Constants.Textures.BlueTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy3Constants.Textures.GreenTextureName, GameConstants.EnemyConstants.Enemy3Constants.Textures.GreenTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy4Constants.Textures.RedTextureName, GameConstants.EnemyConstants.Enemy4Constants.Textures.RedTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy5Constants.Textures.BlackTextureName, GameConstants.EnemyConstants.Enemy5Constants.Textures.BlackTextureFileName);
 
             //Meteor Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor1.Textures.BrownTextureName, GameConstants.Meteors.BigMeteor1.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor2.Textures.GreyTextureName, GameConstants.Meteors.BigMeteor2.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor3.Textures.BrownTextureName, GameConstants.Meteors.BigMeteor3.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.BigMeteor4.Textures.GreyTextureName, GameConstants.Meteors.BigMeteor4.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor1.Textures.BrownTextureName, GameConstants.Meteors.MediumMeteor1.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor2.Textures.GreyTextureName, GameConstants.Meteors.MediumMeteor2.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.MediumMeteor3.Textures.BrownTextureName, GameConstants.Meteors.MediumMeteor3.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.SmallMeteor1.Textures.GreyTextureName, GameConstants.Meteors.SmallMeteor1.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureName, GameConstants.Meteors.SmallMeteor2.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureName, GameConstants.Meteors.TinyMeteor1.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureName, GameConstants.Meteors.TinyMeteor2.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteor1Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteor2Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteor3Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor4Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteor4Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteor1Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.MediumMeteor2Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteor3Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.SmallMeteor1Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.SmallMeteor2Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.TinyMeteor1Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.TinyMeteor2Constants.Textures.BrownTextureFileName);
 
             //Menu SoundEffects
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectName, GameConstants.GameStates.SplashState.Audio.SplashScreenSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuNavigateSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.MenuSelectionConfirmedSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStates.MenuState.Audio.NewStateSelectionConfirmedSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuOpenedSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStates.MenuState.Audio.ModalMenuClosedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.SplashStateConstants.Audio.SplashScreenSoundEffectName, GameConstants.GameStateConstants.SplashStateConstants.Audio.SplashScreenSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuSelectionConfirmedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuSelectionConfirmedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.NewStateSelectionConfirmedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectFileName);
 
             //Bullet SoundEffects
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet1.Audio.ShootSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet2.Audio.ShootSoundEffectFileName);
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName, GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet2Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet2Constants.Audio.ShootSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectFileName);
 
             //Bonus SoundEffects
-            _gameContext.AssetManager.LoadSoundEffect(GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectName, GameConstants.Bonuses.HealthPack.Audio.CollectedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectName, GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectFileName);
 
             //Main Menu Music
-            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.MenuState.Audio.BackgroundMusicName, GameConstants.GameStates.MenuState.Audio.BackgroundMusicFileName);
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStateConstants.MenuStateConstants.Audio.BackgroundMusicName, GameConstants.GameStateConstants.MenuStateConstants.Audio.BackgroundMusicFileName);
 
             //Play State Music
-            _gameContext.AssetManager.LoadSong(GameConstants.GameStates.PlayState.Audio.BackgroundMusicName, GameConstants.GameStates.PlayState.Audio.BackgroundMusicFileName);
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicName, GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicFileName);
 
             base.LoadContent();
         }

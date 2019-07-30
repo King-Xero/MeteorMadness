@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Graphics;
+using SSSRegen.Source.Core.Interfaces.Camera;
 
 namespace SSSRegen.Source.Core.Interfaces.Graphics
 {
