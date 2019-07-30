@@ -49,12 +49,12 @@ namespace SSSRegen.Source.GameComponents.Physics
 
                 //Move towards target
                 enemy.Position += Vector2.Multiply(movementDirection,
-                    enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+                    enemy.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
             }
             else
             {
                 //Move the enemy
-                enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.Speed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+                enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
             }
         }
 
@@ -67,7 +67,7 @@ namespace SSSRegen.Source.GameComponents.Physics
 
             enemy.MovementDirection = new Vector2(_horizontalSpeedMultiplier, _verticalSpeedMultiplier);
 
-            enemy.Speed = 100;
+            enemy.MovementSpeed = 100;
 
             var enemyPosition = enemy.Position;
 

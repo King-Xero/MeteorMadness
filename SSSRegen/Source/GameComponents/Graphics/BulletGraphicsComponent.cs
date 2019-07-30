@@ -15,19 +15,20 @@ namespace SSSRegen.Source.GameComponents.Graphics
             _bulletSprite = bulletSprite;
         }
 
-        public void Initialize(IGameObject entity)
+        public void Initialize(IGameObject bullet)
         {
-            entity.Size = _bulletSprite.Size;
+            bullet.Size = _bulletSprite.Size;
+            bullet.Origin = _bulletSprite.Origin;
         }
 
-        public void Update(IGameObject entity, IGameTime gameTime)
+        public void Update(IGameObject bullet, IGameTime gameTime)
         {
-            entity.Size = _bulletSprite.Size;
+            bullet.Size = _bulletSprite.Size;
         }
 
-        public void Draw(IGameObject entity, IGameTime gameTime)
+        public void Draw(IGameObject bullet, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_bulletSprite, entity.Position, Color.White);
+            _gameGraphics.Draw(_bulletSprite, bullet.Position, Color.White, bullet.Rotation, bullet.Origin);
         }
     }
 }

@@ -7,7 +7,10 @@ namespace SSSRegen.Source.Core
     {
         public virtual bool IsActive { get; set; }
         public Vector2 Position { get; set; }
-        public float Speed { get; set; }
+        public float Rotation { get; set; }
+        public Vector2 Origin { get; set; }
+        public float MovementSpeed { get; set; }
+        public float RotationSpeed { get; set; }
         public Vector2 MovementDirection { get; set; }
         public Vector2 Size { get; set; }
 

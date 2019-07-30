@@ -18,8 +18,7 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject player)
         {
             player.MovementDirection = Vector2.Zero;
-            player.Speed = 500;
-
+            
             ResetPosition(player);
         }
 
@@ -27,12 +26,14 @@ namespace SSSRegen.Source.GameComponents.Physics
         {
             var playerPosition = player.Position;
 
-            //ToDo Resolve collisions
-            //If player collides with object, execute only what the player should do.
-            //Other objects will handle themselves
-            //_gameContext.Collisions.ResolveCollision(player);
-            
-            playerPosition += player.Speed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            player.Rotation += MathHelper.ToRadians(player.RotationSpeed) * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+
+            //Rotation needs a 90 degree offset for upright sprites
+            player.MovementDirection = new Vector2(
+                Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
+                -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
+
+            playerPosition += player.MovementSpeed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
             playerPosition.X = MathHelper.Clamp(playerPosition.X, _gameContext.GameGraphics.ScreenBounds.Left,
                 _gameContext.GameGraphics.ScreenBounds.Width - player.Bounds.Width);

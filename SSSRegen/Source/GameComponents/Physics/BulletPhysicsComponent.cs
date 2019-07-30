@@ -18,16 +18,20 @@ namespace SSSRegen.Source.GameComponents.Physics
         public void Initialize(IGameObject obj)
         {
             obj.MovementDirection = new Vector2(0, 1);
-            obj.Speed = 400;
         }
 
-        public void Update(IGameObject obj, IGameTime gameTime)
+        public void Update(IGameObject bullet, IGameTime gameTime)
         {
-            obj.Position -= Vector2.Multiply(obj.MovementDirection, obj.Speed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            //Rotation needs a 90 degree offset for upright sprites
+            bullet.MovementDirection = new Vector2(
+                Math.Cos(MathHelper.ToRadians(90) - bullet.Rotation).ToFloat(),
+                -Math.Sin(MathHelper.ToRadians(90) - bullet.Rotation).ToFloat());
 
-            if (!_gameContext.GameGraphics.ScreenBounds.Intersects(obj.Bounds))
+            bullet.Position += Vector2.Multiply(bullet.MovementDirection, bullet.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+
+            if (!_gameContext.GameGraphics.ScreenBounds.Intersects(bullet.Bounds))
             {
-                obj.IsActive = false;
+                bullet.IsActive = false;
             }
         }
     }

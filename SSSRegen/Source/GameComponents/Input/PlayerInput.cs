@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Interfaces;
-using SSSRegen.Source.GameData;
+﻿using SSSRegen.Source.Core.Interfaces;
 
 namespace SSSRegen.Source.GameComponents.Input
 {
@@ -22,18 +20,23 @@ namespace SSSRegen.Source.GameComponents.Input
         {
             _inputController.Update();
 
-            var movementVector = Vector2.Zero;
+            float rotationSpeed = 0;
 
             if (_inputController.IsLeftButtonHeld())
             {
-                movementVector -= GameConstants.Player.MovementVector;
+                //ToDo replace hard coded values with constants
+                rotationSpeed -= 360;
             }
             if (_inputController.IsRightButtonHeld())
             {
-                movementVector += GameConstants.Player.MovementVector;
+                //ToDo replace hard coded values with constants
+                rotationSpeed += 360;
             }
 
-            player.MovementDirection = movementVector;
+            player.RotationSpeed = rotationSpeed;
+
+            //ToDo replace hard coded values with constants
+            player.MovementSpeed = _inputController.IsUpButtonHeld() ? 500 : 0;
 
             if (_inputController.IsFireButtonPressed())
             {

@@ -8,6 +8,7 @@ namespace SSSRegen.Source.Core.Interfaces
         Texture2D Texture { get; }
         Rectangle? SourceRectangle { get; }
         Vector2 Size { get; }
+        Vector2 Origin { get; }
         bool IsVisible { get; set; }
     }
 }
