@@ -56,11 +56,15 @@ namespace SSSRegen.Source.Game.Projectiles
             _graphicsComponent.Draw(this, gameTime);
         }
 
-        public CollisionLayer CollisionLayer => CollisionLayer.Player;
+        public CollisionLayer CollisionLayer => CollisionLayer.PlayerProjectile;
         public int CollisionDamageAmount { get; }
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
+            if (gameObject.CollisionLayer == CollisionLayer.Player)
+            {
+                return;
+            }
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
             IsActive = false;
         }

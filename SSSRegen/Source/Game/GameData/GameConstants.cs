@@ -419,14 +419,12 @@ namespace SSSRegen.Source.Game.GameData
 
         public static class ProjectileConstants
         {
-            public static class Player
-            {
-                public const int MaxBulletsOnScreen = 30;
-            }
-
+            public const int MaxBulletsOnScreen = 30;
+            
             public static class Bullet1Constants
             {
                 public const int DamageAmount = 10;
+                public const int BulletSpeed = 800;
 
                 public static class Textures
                 {
@@ -443,6 +441,7 @@ namespace SSSRegen.Source.Game.GameData
             public static class Bullet2Constants
             {
                 public const int DamageAmount = 15;
+                public const int BulletSpeed = 800;
 
                 public static class Textures
                 {
@@ -459,7 +458,8 @@ namespace SSSRegen.Source.Game.GameData
             public static class Bullet3Constants
             {
                 public const int DamageAmount = 20;
-
+                public const int BulletSpeed = 800;
+                
                 public static class Textures
                 {
                     public const string RedTextureName = "redBullet3";

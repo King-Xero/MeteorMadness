@@ -2,6 +2,7 @@
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Interfaces.Input;
+using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Input
 {

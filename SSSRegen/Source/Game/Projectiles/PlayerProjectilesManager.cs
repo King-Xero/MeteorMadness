@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Game.Projectiles
         public void Initialize()
         {
             _bullets = new List<IGameObject>();
-            for (int i = 0; i < Math.Round(GameConstants.ProjectileConstants.Player.MaxBulletsOnScreen * 0.8); i++)
+            for (int i = 0; i < Math.Round(GameConstants.ProjectileConstants.MaxBulletsOnScreen * 0.8); i++)
             {
                 var bullet = _projectileFactory.CreateBullet();
                 bullet.Initialize();
@@ -56,8 +56,7 @@ namespace SSSRegen.Source.Game.Projectiles
                 bulletToShoot.Initialize();
             }
 
-            //ToDo replace hard coded values with constants
-            bulletToShoot.MovementSpeed = obj.MovementSpeed + 400;
+            bulletToShoot.MovementSpeed = obj.MovementSpeed + GameConstants.ProjectileConstants.Bullet3Constants.BulletSpeed;
             bulletToShoot.Rotation = obj.Rotation;
             bulletToShoot.Position = new Vector2(obj.BulletPosition.X - bulletToShoot.Origin.X, obj.BulletPosition.Y);
             bulletToShoot.IsActive = true;

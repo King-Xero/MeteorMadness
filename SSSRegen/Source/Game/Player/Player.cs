@@ -44,7 +44,7 @@ namespace SSSRegen.Source.Game.Player
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
-        public Vector2 BulletPosition => new Vector2(Position.X + Origin.X, Position.Y - Origin.Y);
+        public Vector2 BulletPosition => new Vector2(Position.X + Origin.X, Position.Y);
 
         public override void Initialize()
         {
@@ -72,9 +72,9 @@ namespace SSSRegen.Source.Game.Player
 
         public override void Draw(IGameTime gameTime)
         {
+            _projectileManager.Draw(gameTime);
             _graphicsComponent.Draw(this, gameTime);
             _healthComponent.Draw(this, gameTime);
-            _projectileManager.Draw(gameTime);
         }
 
         public void Heal(int healAmount)

@@ -40,11 +40,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
             //Move the healthPack
             healthPack.Position += Vector2.Multiply(healthPack.MovementDirection, healthPack.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
-
-            //ToDo Resolve collisions
-            //If healthPack collides with object, execute only what the healthPack should do.
-            //Other objects will handle themselves
-            //_gameContext.Collisions.ResolveCollision(healthPack);
         }
 
         private void Reset(IGameObject healthPack)

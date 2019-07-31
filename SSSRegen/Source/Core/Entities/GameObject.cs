@@ -15,8 +15,6 @@ namespace SSSRegen.Source.Core.Entities
         public Vector2 MovementDirection { get; set; }
         public Vector2 Size { get; set; }
 
-        //ToDo Remove offset from draw call
-        //Position.X - Origin.X, Position.Y - Origin.Y
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, (int) Size.X, (int) Size.Y);
 
         public abstract void Initialize();

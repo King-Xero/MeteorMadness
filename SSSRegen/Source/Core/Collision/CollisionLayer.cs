@@ -6,5 +6,6 @@
         Enemy = 2,
         Meteor = 3,
         Bonus = 4,
+        PlayerProjectile = 5,
     }
 }
