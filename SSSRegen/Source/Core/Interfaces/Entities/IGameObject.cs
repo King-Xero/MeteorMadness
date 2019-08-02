@@ -9,9 +9,9 @@ namespace SSSRegen.Source.Core.Interfaces.Entities
         Vector2 Position { get; set; }
         float Rotation { get; set; }
         Vector2 Origin { get; set; }
-        //ToDo Rotation/Movement speed could be private in physics component
         float MovementSpeed { get; set; }
         float RotationSpeed { get; set; }
+        //ToDo Make movement direction private to physics component
         Vector2 MovementDirection { get; set; }
         Vector2 Size { get; set; }
         Rectangle Bounds { get; }

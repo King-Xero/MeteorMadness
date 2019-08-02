@@ -21,6 +21,7 @@ namespace SSSRegen.Source.Game.GameComponents.Input
         public void Initialize(IPlayer player)
         {
             _inputController.Initialize();
+            player.IsAccelerating = false;
         }
 
         public void Update(IPlayer player, IGameTime gameTime)
@@ -46,6 +47,7 @@ namespace SSSRegen.Source.Game.GameComponents.Input
             if (_inputController.IsUpButtonHeld())
             {
                 player.MovementSpeed += 10 * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+                MathHelper.Clamp(player.MovementSpeed, 0, 50);
                 player.IsAccelerating = true;
             }
             else
@@ -53,10 +55,7 @@ namespace SSSRegen.Source.Game.GameComponents.Input
                 player.MovementSpeed = 0;
                 player.IsAccelerating = false;
             }
-
-            MathHelper.Clamp(player.MovementSpeed, 0, 50);
-            //player.MovementSpeed = _inputController.IsUpButtonHeld() ? 500 : 0;
-
+            
             if (_inputController.IsFireButtonPressed())
             {
                 var playerObject = player as Player.Player;

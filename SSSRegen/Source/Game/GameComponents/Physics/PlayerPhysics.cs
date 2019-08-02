@@ -14,7 +14,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         private readonly GameContext _gameContext;
         private float _friction = 0.5f;
         private Vector2 _thrustingVelocity;
-        private Vector2 _resultingVelocity;
 
         public PlayerPhysics(GameContext gameContext)
         {
@@ -32,8 +31,10 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         {
             var playerPosition = player.Position;
 
+            //Calculate rotation using rotation speed set in PlayerInputComponent
             player.Rotation += MathHelper.ToRadians(player.RotationSpeed) * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
+            //Only update movement direction if accelerating. Allows player to rotate while "drifting".
             if (player.IsAccelerating)
             {
                 //Rotation needs a 90 degree offset for upright sprites
@@ -41,12 +42,11 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
                     Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
                     -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
             }
+            
+            //Calculate thrusting velocity. Based off of acceleration friction calculation here: http://community.monogame.net/t/acceleration-and-friction-in-2d-games/9319
+            _thrustingVelocity += player.MovementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            _thrustingVelocity += player.MovementDirection * player.MovementSpeed - _friction * _thrustingVelocity;
-
-            _resultingVelocity += _thrustingVelocity - _friction * _resultingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
-
-            playerPosition += _resultingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            playerPosition += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
             
             player.Position = KeepPlayerInScreenBounds(player, playerPosition);
         }

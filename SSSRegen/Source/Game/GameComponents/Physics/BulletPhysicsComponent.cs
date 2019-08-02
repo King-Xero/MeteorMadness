@@ -19,7 +19,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
         public void Initialize(IGameObject obj)
         {
-            obj.MovementDirection = new Vector2(0, 1);
         }
 
         public void Update(IGameObject bullet, IGameTime gameTime)
