@@ -1,12 +1,15 @@
-﻿using SSSRegen.Source.Core.Interfaces.Components;
+﻿using Microsoft.Xna.Framework;
+using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Interfaces.Input;
+using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Input
 {
-    public class PlayerInput : IComponent<IGameObject>
+    public class PlayerInput : IComponent<IPlayer>
     {
         private readonly IInputController _inputController;
 
@@ -15,12 +18,12 @@ namespace SSSRegen.Source.Game.GameComponents.Input
             _inputController = inputController;
         }
 
-        public void Initialize(IGameObject player)
+        public void Initialize(IPlayer player)
         {
             _inputController.Initialize();
         }
 
-        public void Update(IGameObject player, IGameTime gameTime)
+        public void Update(IPlayer player, IGameTime gameTime)
         {
             _inputController.Update();
 
@@ -40,7 +43,19 @@ namespace SSSRegen.Source.Game.GameComponents.Input
             player.RotationSpeed = rotationSpeed;
 
             //ToDo replace hard coded values with constants
-            player.MovementSpeed = _inputController.IsUpButtonHeld() ? 500 : 0;
+            if (_inputController.IsUpButtonHeld())
+            {
+                player.MovementSpeed += 10 * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+                player.IsAccelerating = true;
+            }
+            else
+            {
+                player.MovementSpeed = 0;
+                player.IsAccelerating = false;
+            }
+
+            MathHelper.Clamp(player.MovementSpeed, 0, 50);
+            //player.MovementSpeed = _inputController.IsUpButtonHeld() ? 500 : 0;
 
             if (_inputController.IsFireButtonPressed())
             {

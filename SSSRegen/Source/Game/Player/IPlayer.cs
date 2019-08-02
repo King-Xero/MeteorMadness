@@ -7,5 +7,6 @@ namespace SSSRegen.Source.Game.Player
 {
     public interface IPlayer : IHandleHealth, IHandleScore, IShootProjectiles, IHandleCollisions
     {
+        bool IsAccelerating { get; set; }
     }
 }

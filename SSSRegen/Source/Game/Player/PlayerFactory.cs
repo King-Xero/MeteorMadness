@@ -44,12 +44,12 @@ namespace SSSRegen.Source.Game.Player
             return new PlayerScoreComponent(_gameContext);
         }
 
-        private IComponent<IGameObject> CreatePlayerInput()
+        private IComponent<IPlayer> CreatePlayerInput()
         {
             return new PlayerInput(new KeyboardInputController());
         }
 
-        private IComponent<IGameObject> CreatePlayerPhysics()
+        private IComponent<IPlayer> CreatePlayerPhysics()
         {
             return new PlayerPhysics(_gameContext);
         }

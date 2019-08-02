@@ -5,43 +5,50 @@ using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class PlayerPhysics : IComponent<IGameObject>
+    public class PlayerPhysics : IComponent<IPlayer>
     {
         private readonly GameContext _gameContext;
+        private float _friction = 0.5f;
+        private Vector2 _thrustingVelocity;
+        private Vector2 _resultingVelocity;
 
         public PlayerPhysics(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }
 
-        public void Initialize(IGameObject player)
+        public void Initialize(IPlayer player)
         {
             player.MovementDirection = Vector2.Zero;
             
             ResetPosition(player);
         }
 
-        public void Update(IGameObject player, IGameTime gameTime)
+        public void Update(IPlayer player, IGameTime gameTime)
         {
             var playerPosition = player.Position;
 
             player.Rotation += MathHelper.ToRadians(player.RotationSpeed) * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            //Rotation needs a 90 degree offset for upright sprites
-            player.MovementDirection = new Vector2(
-                Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
-                -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
+            if (player.IsAccelerating)
+            {
+                //Rotation needs a 90 degree offset for upright sprites
+                player.MovementDirection = new Vector2(
+                    Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
+                    -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
+            }
 
-            playerPosition += player.MovementSpeed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            _thrustingVelocity += player.MovementDirection * player.MovementSpeed - _friction * _thrustingVelocity;
 
+            _resultingVelocity += _thrustingVelocity - _friction * _resultingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            playerPosition = KeepPlayerInScreenBounds(player, playerPosition);
-
-
-            player.Position = playerPosition;
+            playerPosition += _resultingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            
+            player.Position = KeepPlayerInScreenBounds(player, playerPosition);
         }
 
         //If the player moves off a side of the screen, wrap around to just off the opposite side of the screen
