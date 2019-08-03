@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SSSRegen.Source.Core;
 using SSSRegen.Source.Core.Audio;
 using SSSRegen.Source.Core.Graphics;
-using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Core.Interfaces.Audio;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Game.GameComponents.Graphics;
@@ -135,6 +133,14 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.MediumDamageTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.MediumDamageTextureFileName);
             _gameContext.AssetManager.LoadTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.HeavyDamageTextureName, GameConstants.PlayerConstants.PlayerShip1Constants.Textures.HeavyDamageTextureFileName);
 
+
+            //Thruster Textures
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame1TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame1TextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame2TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame2TextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame3TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame3TextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame4TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame4TextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame5TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame5TextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame6TextureName, GameConstants.ThrusterConstants.Thruster1Constants.Textures.Frame6TextureFileName);
 
             //ToDo Add different player types
             //_gameContext.AssetManager.LoadTexture(GameConstants.Player.PlayerShip2.Textures.GreenTextureName, GameConstants.Player.PlayerShip2.Textures.GreenTextureFileName);

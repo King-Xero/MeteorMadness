@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Interfaces;
 using SSSRegen.Source.Core.Interfaces.Camera;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Game.GameData;
