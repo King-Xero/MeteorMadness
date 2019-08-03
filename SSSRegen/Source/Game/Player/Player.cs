@@ -19,13 +19,13 @@ namespace SSSRegen.Source.Game.Player
     public class Player : GameObject, IPlayer
     {
         private readonly GameContext _gameContext;
-        private readonly IComponent<IGameObject> _inputComponent;
+        private readonly IComponent<IPlayer> _inputComponent;
         private readonly IHealthComponent _healthComponent;
-        private readonly IComponent<IGameObject> _physicsComponent;
+        private readonly IComponent<IPlayer> _physicsComponent;
         private readonly IDrawableComponent<IGameObject> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IGameObject> inputComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager)
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IComponent<IPlayer> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
@@ -38,6 +38,8 @@ namespace SSSRegen.Source.Game.Player
         public event EventHandler<HealEventArgs> Healed = delegate { };
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
+
+        public bool IsAccelerating { get; set; }
 
         public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }

@@ -5,43 +5,50 @@ using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class PlayerPhysics : IComponent<IGameObject>
+    public class PlayerPhysics : IComponent<IPlayer>
     {
         private readonly GameContext _gameContext;
+        private float _friction = 0.5f;
+        private Vector2 _thrustingVelocity;
 
         public PlayerPhysics(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }
 
-        public void Initialize(IGameObject player)
+        public void Initialize(IPlayer player)
         {
             player.MovementDirection = Vector2.Zero;
             
             ResetPosition(player);
         }
 
-        public void Update(IGameObject player, IGameTime gameTime)
+        public void Update(IPlayer player, IGameTime gameTime)
         {
             var playerPosition = player.Position;
 
+            //Calculate rotation using rotation speed set in PlayerInputComponent
             player.Rotation += MathHelper.ToRadians(player.RotationSpeed) * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            //Rotation needs a 90 degree offset for upright sprites
-            player.MovementDirection = new Vector2(
-                Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
-                -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
+            //Only update movement direction if accelerating. Allows player to rotate while "drifting".
+            if (player.IsAccelerating)
+            {
+                //Rotation needs a 90 degree offset for upright sprites
+                player.MovementDirection = new Vector2(
+                    Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
+                    -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
+            }
+            
+            //Calculate thrusting velocity. Based off of acceleration friction calculation here: http://community.monogame.net/t/acceleration-and-friction-in-2d-games/9319
+            _thrustingVelocity += player.MovementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            playerPosition += player.MovementSpeed * player.MovementDirection * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
-
-
-            playerPosition = KeepPlayerInScreenBounds(player, playerPosition);
-
-
-            player.Position = playerPosition;
+            playerPosition += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            
+            player.Position = KeepPlayerInScreenBounds(player, playerPosition);
         }
 
         //If the player moves off a side of the screen, wrap around to just off the opposite side of the screen
