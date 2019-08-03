@@ -11,8 +11,6 @@ namespace SSSRegen.Source.Core.Entities
         public float Rotation { get; set; }
         public Vector2 Origin { get; set; }
         public float MovementSpeed { get; set; }
-        public float RotationSpeed { get; set; }
-        public Vector2 MovementDirection { get; set; }
         public Vector2 Size { get; set; }
 
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, (int) Size.X, (int) Size.Y);

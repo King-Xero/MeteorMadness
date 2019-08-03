@@ -24,7 +24,7 @@ namespace SSSRegen.Source.Game.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.SelectedFontName);
 
-            var mainMenu = new TextMenu(_gameContext, new GameMenuInput(new KeyboardInputController()),
+            var mainMenu = new TextMenu(_gameContext, new GameMenuInputComponent(new KeyboardInputController()),
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectName));
 
             mainMenu.SetMenuItems(new List<IMenuOption>()
@@ -43,7 +43,7 @@ namespace SSSRegen.Source.Game.Menus
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.SelectedFontName);
 
-            var playMenu = new TextMenu(_gameContext, new PlayStateMenuInput(new KeyboardInputController()),
+            var playMenu = new TextMenu(_gameContext, new PlayStateMenuInputComponent(new KeyboardInputController()),
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectName));
 
             playMenu.SetMenuItems(new List<IMenuOption>()
@@ -64,7 +64,7 @@ namespace SSSRegen.Source.Game.Menus
             _gameContext.StateMachine.AddState(
                 new PlayState(
                     _gameContext,
-                    new PlayStateGraphics(_gameContext),
+                    new PlayStateGraphicsComponent(_gameContext),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
                 true);
@@ -78,7 +78,7 @@ namespace SSSRegen.Source.Game.Menus
             _gameContext.StateMachine.AddState(
                 new PlayState(
                     _gameContext,
-                    new PlayStateGraphics(_gameContext),
+                    new PlayStateGraphicsComponent(_gameContext),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
                 true);
@@ -89,7 +89,7 @@ namespace SSSRegen.Source.Game.Menus
             _gameContext.GameAudio.PlaySoundEffect(
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuSelectionConfirmedSoundEffectName));
             //ToDo Change to help state
-            _gameContext.StateMachine.AddState(new HelpMainMenuState(_gameContext, new HelpMainMenuStateGraphics(_gameContext)), false);
+            _gameContext.StateMachine.AddState(new HelpMainMenuState(_gameContext, new HelpMainMenuStateGraphicsComponent(_gameContext)), false);
         }
 
         private void OnMainMenuSelectQuit()
@@ -108,14 +108,14 @@ namespace SSSRegen.Source.Game.Menus
         private void OnPlayStateSelectHelp()
         {
             //ToDo Show help state
-            _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphics(_gameContext)), false);
+            _gameContext.StateMachine.AddState(new SplashState(_gameContext, new SplashStateGraphicsComponent(_gameContext)), false);
         }
 
         private void OnPlayStateSelectQuit()
         {
             var mainMenu = CreateMainMenu();
             //Go to main menu scene
-            _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), mainMenu), true);
+            _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphicsComponent(_gameContext), mainMenu), true);
         }
     }
 }

@@ -8,12 +8,13 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class HealthPackPhysics : IComponent<IGameObject>
+    public class HealthPackPhysicsComponent : IComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
         private readonly Random _random;
+        private Vector2 _movementDirection;
 
-        public HealthPackPhysics(GameContext gameContext, Random random)
+        public HealthPackPhysicsComponent(GameContext gameContext, Random random)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = random ?? throw new ArgumentNullException(nameof(random));
@@ -21,7 +22,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
         public void Initialize(IGameObject healthPack)
         {
-            healthPack.MovementDirection = new Vector2(0, 2);
+            _movementDirection = new Vector2(0, 2);
             healthPack.MovementSpeed = 100;
 
             //ToDo Execution order of components might cause an error here.
@@ -39,7 +40,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             }
 
             //Move the healthPack
-            healthPack.Position += Vector2.Multiply(healthPack.MovementDirection, healthPack.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            healthPack.Position += Vector2.Multiply(_movementDirection, healthPack.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
         }
 
         private void Reset(IGameObject healthPack)

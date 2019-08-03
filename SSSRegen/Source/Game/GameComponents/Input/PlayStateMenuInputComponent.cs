@@ -5,11 +5,11 @@ using SSSRegen.Source.Core.Interfaces.Menus;
 
 namespace SSSRegen.Source.Game.GameComponents.Input
 {
-    public class PlayStateMenuInput : GameMenuInput
+    public class PlayStateMenuInputComponent : GameMenuInputComponent
     {
         private readonly IInputController _inputController;
 
-        public PlayStateMenuInput(IInputController inputController) : base(inputController)
+        public PlayStateMenuInputComponent(IInputController inputController) : base(inputController)
         {
             _inputController = inputController ?? throw new ArgumentNullException(nameof(inputController));
         }

@@ -8,13 +8,13 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class PlayStateGraphics : IDrawableComponent<IGameState>
+    public class PlayStateGraphicsComponent : IDrawableComponent<IGameState>
     {
         private readonly GameContext _gameContext;
 
         private ISprite _backgroundImage;
 
-        public PlayStateGraphics(GameContext gameContext)
+        public PlayStateGraphicsComponent(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }

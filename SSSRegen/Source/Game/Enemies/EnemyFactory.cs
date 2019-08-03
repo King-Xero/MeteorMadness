@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Game.Enemies
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.EnemyConstants.Enemy1Constants.Textures.BlackTextureName));
 
-            var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
+            var graphicsComponent = new EnemyGraphicsComponent(_gameContext.GameGraphics, sprite);
 
             //ToDo pass in enemy strategy instead of multiple config values
             return new Enemy(
@@ -35,7 +35,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy1Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy1Constants.AggroRange,
                 new HealthComponent(GameConstants.EnemyConstants.Enemy1Constants.InitialMaxHealth, new NullHealthContainer()),
-                new EnemyPhysics(_gameContext, _random),
+                new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);
         }
@@ -44,7 +44,7 @@ namespace SSSRegen.Source.Game.Enemies
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.EnemyConstants.Enemy2Constants.Textures.BlueTextureName));
 
-            var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
+            var graphicsComponent = new EnemyGraphicsComponent(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 _gameContext,
@@ -53,7 +53,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy2Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy2Constants.AggroRange,
                 new HealthComponent(GameConstants.EnemyConstants.Enemy2Constants.InitialMaxHealth, new NullHealthContainer()),
-                new EnemyPhysics(_gameContext, _random),
+                new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);
         }
@@ -62,7 +62,7 @@ namespace SSSRegen.Source.Game.Enemies
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.EnemyConstants.Enemy3Constants.Textures.GreenTextureName));
 
-            var graphicsComponent = new EnemyGraphics(_gameContext.GameGraphics, sprite);
+            var graphicsComponent = new EnemyGraphicsComponent(_gameContext.GameGraphics, sprite);
 
             return new Enemy(
                 _gameContext,
@@ -71,7 +71,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy3Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy3Constants.AggroRange,
                 new HealthComponent(GameConstants.EnemyConstants.Enemy3Constants.InitialMaxHealth, new NullHealthContainer()),
-                new EnemyPhysics(_gameContext, _random),
+                new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);
         }

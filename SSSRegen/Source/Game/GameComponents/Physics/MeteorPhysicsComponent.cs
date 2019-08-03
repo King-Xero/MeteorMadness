@@ -8,12 +8,13 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class MeteorPhysics : IComponent<IGameObject>
+    public class MeteorPhysicsComponent : IComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
         private readonly Random _random;
+        private Vector2 _movementDirection;
 
-        public MeteorPhysics(GameContext gameContext, Random random)
+        public MeteorPhysicsComponent(GameContext gameContext, Random random)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = random ?? throw new ArgumentNullException(nameof(random));
@@ -38,14 +39,14 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             }
 
             //Move the enemy
-            meteor.Position += Vector2.Multiply(meteor.MovementDirection, meteor.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            meteor.Position += Vector2.Multiply(_movementDirection, meteor.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
         }
 
         private void Reset(IGameObject meteor)
         {
             meteor.IsActive = false;
 
-            meteor.MovementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
+            _movementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
             meteor.MovementSpeed = 100;
 
             var meteorPosition = meteor.Position;

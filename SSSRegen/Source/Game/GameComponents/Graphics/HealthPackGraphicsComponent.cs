@@ -8,14 +8,14 @@ using SSSRegen.Source.Core.Interfaces.Graphics;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class HealthPackGraphics : IDrawableComponent<IGameObject>
+    public class HealthPackGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly Sprite _hSprite;
 
         private Sprite _activeSprite;
 
-        public HealthPackGraphics(IGameGraphics gameGraphics, Sprite hSprite)
+        public HealthPackGraphicsComponent(IGameGraphics gameGraphics, Sprite hSprite)
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _hSprite = hSprite ?? throw new ArgumentNullException(nameof(hSprite));

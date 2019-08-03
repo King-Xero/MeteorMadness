@@ -8,14 +8,15 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class EnemyPhysics : IComponent<IEnemy>
+    public class EnemyPhysicsComponent : IComponent<IEnemy>
     {
         private readonly GameContext _gameContext;
         private readonly Random _random;
         private int _horizontalSpeedMultiplier;
         private int _verticalSpeedMultiplier;
+        private Vector2 _movementDirection;
 
-        public EnemyPhysics(GameContext gameContext, Random random)
+        public EnemyPhysicsComponent(GameContext gameContext, Random random)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = random ?? throw new ArgumentNullException(nameof(random));
@@ -55,7 +56,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             else
             {
                 //Move the enemy
-                enemy.Position += Vector2.Multiply(enemy.MovementDirection, enemy.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+                enemy.Position += Vector2.Multiply(_movementDirection, enemy.MovementSpeed * 0.8f * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
             }
         }
 
@@ -66,7 +67,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             _horizontalSpeedMultiplier = _random.Next(1,3);
             _verticalSpeedMultiplier = _random.Next(1, 5);
 
-            enemy.MovementDirection = new Vector2(_horizontalSpeedMultiplier, _verticalSpeedMultiplier);
+            _movementDirection = new Vector2(_horizontalSpeedMultiplier, _verticalSpeedMultiplier);
 
             enemy.MovementSpeed = 100;
 

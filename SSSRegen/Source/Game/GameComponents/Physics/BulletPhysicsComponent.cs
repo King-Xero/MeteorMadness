@@ -11,6 +11,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
     public class BulletPhysicsComponent : IComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
+        private Vector2 _movementDirection;
 
         public BulletPhysicsComponent(GameContext gameContext)
         {
@@ -24,11 +25,11 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         public void Update(IGameObject bullet, IGameTime gameTime)
         {
             //Rotation needs a 90 degree offset for upright sprites
-            bullet.MovementDirection = new Vector2(
+            _movementDirection = new Vector2(
                 Math.Cos(MathHelper.ToRadians(90) - bullet.Rotation).ToFloat(),
                 -Math.Sin(MathHelper.ToRadians(90) - bullet.Rotation).ToFloat());
 
-            bullet.Position += Vector2.Multiply(bullet.MovementDirection, bullet.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
+            bullet.Position += Vector2.Multiply(_movementDirection, bullet.MovementSpeed * gameTime.ElapsedGameTime.TotalSeconds.ToFloat());
 
             if (!_gameContext.GameGraphics.ScreenBounds.Intersects(bullet.Bounds))
             {

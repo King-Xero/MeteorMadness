@@ -9,7 +9,7 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class MainMenuStateGraphics : IDrawableComponent<IGameState>
+    public class MainMenuStateGraphicsComponent : IDrawableComponent<IGameState>
     {
         private readonly GameContext _gameContext;
 
@@ -25,7 +25,7 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
         private Stopwatch _stopwatch;
         private bool _canShowLine3;
 
-        public MainMenuStateGraphics(GameContext gameContext)
+        public MainMenuStateGraphicsComponent(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }

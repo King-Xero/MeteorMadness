@@ -46,17 +46,17 @@ namespace SSSRegen.Source.Game.Player
 
         private IComponent<IPlayer> CreatePlayerInput()
         {
-            return new PlayerInput(new KeyboardInputController());
+            return new PlayerInputComponent(new KeyboardInputController());
         }
 
         private IComponent<IPlayer> CreatePlayerPhysics()
         {
-            return new PlayerPhysics(_gameContext);
+            return new PlayerPhysicsComponent(_gameContext);
         }
 
         private IDrawableComponent<IGameObject> CreatePlayerGraphics()
         {
-            return new PlayerGraphics(
+            return new PlayerGraphicsComponent(
                 _gameContext,
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.RedShipTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.LightDamageTextureName)),

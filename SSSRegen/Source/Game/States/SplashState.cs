@@ -33,7 +33,7 @@ namespace SSSRegen.Source.Game.States
                 var mainMenu = _gameContext.MenuFactory.CreateMainMenu();
                 
                 //Go to main menu scene
-                _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphics(_gameContext), mainMenu), true);
+                _gameContext.StateMachine.AddState(new MainMenuState(_gameContext, new MainMenuStateGraphicsComponent(_gameContext), mainMenu), true);
             }
 
             base.Update(gameTime);

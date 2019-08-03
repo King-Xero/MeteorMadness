@@ -9,11 +9,11 @@ using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Input
 {
-    public class PlayerInput : IComponent<IPlayer>
+    public class PlayerInputComponent : IComponent<IPlayer>
     {
         private readonly IInputController _inputController;
 
-        public PlayerInput(IInputController inputController)
+        public PlayerInputComponent(IInputController inputController)
         {
             _inputController = inputController;
         }

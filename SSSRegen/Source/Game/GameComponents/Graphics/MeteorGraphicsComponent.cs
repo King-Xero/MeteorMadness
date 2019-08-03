@@ -8,14 +8,14 @@ using SSSRegen.Source.Core.Interfaces.Graphics;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class MeteorGraphics : IDrawableComponent<IGameObject>
+    public class MeteorGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
         private readonly Sprite _mSprite;
 
         private Sprite _activeSprite;
 
-        public MeteorGraphics(IGameGraphics gameGraphics, Sprite mSprite)
+        public MeteorGraphicsComponent(IGameGraphics gameGraphics, Sprite mSprite)
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _mSprite = mSprite ?? throw new ArgumentNullException(nameof(mSprite));

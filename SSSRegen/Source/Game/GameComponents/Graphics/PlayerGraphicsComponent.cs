@@ -9,7 +9,7 @@ using SSSRegen.Source.Game.GameData;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class PlayerGraphics : IDrawableComponent<IGameObject>
+    public class PlayerGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly GameContext _gameContext;
         private readonly ISprite _playerShipSprite;
@@ -19,7 +19,7 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
         
         private Sprite _activeDamageSprite;
 
-        public PlayerGraphics(GameContext gameContext, Sprite playerShipSprite, Sprite lightDamageSprite, Sprite mediumDamageSprite, Sprite heavyDamageSprite)
+        public PlayerGraphicsComponent(GameContext gameContext, Sprite playerShipSprite, Sprite lightDamageSprite, Sprite mediumDamageSprite, Sprite heavyDamageSprite)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playerShipSprite = playerShipSprite ?? throw new ArgumentNullException(nameof(playerShipSprite));

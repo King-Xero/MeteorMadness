@@ -20,8 +20,8 @@ namespace SSSRegen.Source.Game.Bonuses
         public HealthPack CreateHealthPack()
         {
             var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.BonusConstants.HealthPackConstants.Textures.RedTextureName));
-            var healthPackGraphics = new HealthPackGraphics(_gameContext.GameGraphics, sprite);
-            return new HealthPack(_gameContext, new HealthPackPhysics(_gameContext, _random), healthPackGraphics);
+            var healthPackGraphics = new HealthPackGraphicsComponent(_gameContext.GameGraphics, sprite);
+            return new HealthPack(_gameContext, new HealthPackPhysicsComponent(_gameContext, _random), healthPackGraphics);
         }
     }
 }

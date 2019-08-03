@@ -40,6 +40,7 @@ namespace SSSRegen.Source.Game.Player
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public bool IsAccelerating { get; set; }
+        public float RotationSpeed { get; set; }
 
         public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }

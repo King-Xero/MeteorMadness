@@ -9,20 +9,22 @@ using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class PlayerPhysics : IComponent<IPlayer>
+    public class PlayerPhysicsComponent : IComponent<IPlayer>
     {
         private readonly GameContext _gameContext;
+        //ToDo Move to game constants
         private float _friction = 0.5f;
         private Vector2 _thrustingVelocity;
+        private Vector2 _movementDirection;
 
-        public PlayerPhysics(GameContext gameContext)
+        public PlayerPhysicsComponent(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }
 
         public void Initialize(IPlayer player)
         {
-            player.MovementDirection = Vector2.Zero;
+            _movementDirection = Vector2.Zero;
             
             ResetPosition(player);
         }
@@ -38,13 +40,13 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             if (player.IsAccelerating)
             {
                 //Rotation needs a 90 degree offset for upright sprites
-                player.MovementDirection = new Vector2(
+                _movementDirection = new Vector2(
                     Math.Cos(MathHelper.ToRadians(90) - player.Rotation).ToFloat(),
                     -Math.Sin(MathHelper.ToRadians(90) - player.Rotation).ToFloat());
             }
             
             //Calculate thrusting velocity. Based off of acceleration friction calculation here: http://community.monogame.net/t/acceleration-and-friction-in-2d-games/9319
-            _thrustingVelocity += player.MovementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            _thrustingVelocity += _movementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
             playerPosition += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
             
