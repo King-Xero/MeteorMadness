@@ -58,7 +58,7 @@ namespace SSSRegen.Source.Game.Projectiles
 
             bulletToShoot.MovementSpeed = obj.MovementSpeed + GameConstants.ProjectileConstants.Bullet3Constants.BulletSpeed;
             bulletToShoot.Rotation = obj.Rotation;
-            bulletToShoot.Position = new Vector2(obj.BulletPosition.X - bulletToShoot.Origin.X, obj.BulletPosition.Y);
+            bulletToShoot.Position = obj.Position;
             bulletToShoot.IsActive = true;
         }
 

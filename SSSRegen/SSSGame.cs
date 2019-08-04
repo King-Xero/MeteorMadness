@@ -186,6 +186,9 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet2Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet2Constants.Audio.ShootSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectFileName);
 
+            //Thruster SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.ThrusterConstants.Thruster1Constants.Audio.ThrustingSoundEffectName, GameConstants.ThrusterConstants.Thruster1Constants.Audio.ThrustingSoundEffectFileName);
+
             //Bonus SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectName, GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectFileName);
 

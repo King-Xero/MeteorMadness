@@ -15,7 +15,7 @@ namespace SSSRegen.Source.Core.Interfaces.Audio
         void StopMusic();
         void SetMusicVolume(float volume);
 
-        //ISoundEffect CreateSoundEffect(SoundEffect soundEffect);
+        ISoundEffect CreateSoundEffect(SoundEffect soundEffect);
         void PlaySoundEffect(SoundEffect soundEffect);
         void SetSoundEffectMasterVolume(float volume);
 

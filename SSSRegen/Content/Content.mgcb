@@ -85,6 +85,12 @@
 /processorParam:Quality=Best
 /build:Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
 
+#begin Audio/Thrusters/SPACECRAFT_Rocket_04_Smooth_Burn_loop_mono.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Thrusters/SPACECRAFT_Rocket_04_Smooth_Burn_loop_mono.wav
+
 #begin Fonts/largefont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

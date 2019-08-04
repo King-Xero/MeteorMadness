@@ -11,6 +11,5 @@ namespace SSSRegen.Source.Game.Player
         //ToDo Create Ship base class?
         bool IsAccelerating { get; set; }
         float RotationSpeed { get; set; }
-        Vector2 ThrusterPosition { get; }
     }
 }

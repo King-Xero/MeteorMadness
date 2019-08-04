@@ -56,8 +56,7 @@ namespace SSSRegen.Source.Game.GameComponents.Input
             
             if (_inputController.IsFireButtonPressed())
             {
-                var playerObject = player as Player.Player;
-                playerObject?.Shoot();
+                player.Shoot();
             }
         }
     }
