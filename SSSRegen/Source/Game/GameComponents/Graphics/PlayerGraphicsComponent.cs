@@ -48,11 +48,18 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
 
         public void Draw(IPlayer player, IGameTime gameTime)
         {
+            
             _gameContext.GameGraphics.Draw(_playerShipSprite, player.Position, Color.White, player.Rotation, player.Origin);
-            _gameContext.GameGraphics.Draw(_thrusterSprite, player.ThrusterPosition, Color.White, player.Rotation, player.Origin);
             if (_activeDamageSprite != null)
             {
                 _gameContext.GameGraphics.Draw(_activeDamageSprite, player.Position, Color.White, player.Rotation, player.Origin);
+            }
+
+            if (player.IsAccelerating)
+            {
+                var thrusterOrigin = new Vector2(_thrusterSprite.Origin.X, -_thrusterSprite.Size.Y - _thrusterSprite.Origin.Y / 2);
+                //Offset thruster draw position by thruster sprite origin so that the sprite is centered
+                _gameContext.GameGraphics.Draw(_thrusterSprite, player.Position, Color.White, player.Rotation, thrusterOrigin);
             }
         }
     }
