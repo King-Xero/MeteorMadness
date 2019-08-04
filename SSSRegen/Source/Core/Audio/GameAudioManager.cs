@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using SSSRegen.Source.Core.Interfaces.Audio;
@@ -81,20 +82,20 @@ namespace SSSRegen.Source.Core.Audio
             MediaPlayer.Volume = volume;
         }
 
-        //public ISoundEffect CreateSoundEffect(SoundEffect soundEffect)
-        //{
-        //    var sfx = new GameSoundEffect(soundEffect.CreateInstance());
-        //    sfx.OnDisposed += SfxOnOnDisposed;
-        //    _soundEffectInstances.Add(sfx);
+        public ISoundEffect CreateSoundEffect(SoundEffect soundEffect)
+        {
+            var sfx = new GameSoundEffect(soundEffect.CreateInstance());
+            sfx.OnDisposed += SfxOnOnDisposed;
+            _soundEffectInstances.Add(sfx);
 
-        //    return sfx;
-        //}
+            return sfx;
+        }
 
         public void PlaySoundEffect(SoundEffect soundEffect)
         {
             var sfx = soundEffect.CreateInstance();
-            _soundEffectOneShots.Add(sfx);
             sfx.Play();
+            _soundEffectOneShots.Add(sfx);
         }
 
         public void SetSoundEffectMasterVolume(float volume)
@@ -149,9 +150,9 @@ namespace SSSRegen.Source.Core.Audio
             }
         }
 
-        //private void SfxOnOnDisposed(object sender, GameSoundEffectDisposedEventArgs e)
-        //{
-        //    _soundEffectInstances.Remove(e.SoundEffect);
-        //}
+        private void SfxOnOnDisposed(object sender, GameSoundEffectDisposedEventArgs e)
+        {
+            _soundEffectInstances.Remove(e.SoundEffect);
+        }
     }
 }

@@ -1,7 +1,7 @@
-using System;
-using Microsoft.Xna.Framework;
+﻿using System;
 using SSSRegen.Source.Core.Collision;
 using SSSRegen.Source.Core.Entities;
+using SSSRegen.Source.Core.Interfaces.Audio;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
@@ -23,7 +23,10 @@ namespace SSSRegen.Source.Game.Player
         private readonly IComponent<IPlayer> _physicsComponent;
         private readonly IDrawableComponent<IPlayer> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
+        private readonly ISoundEffect _acceleratingSoundEffect;
 
+        private bool _isAccelerating;
+        
         public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IComponent<IPlayer> physicsComponent, IDrawableComponent<IPlayer> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
@@ -32,21 +35,37 @@ namespace SSSRegen.Source.Game.Player
             _physicsComponent = physicsComponent ?? throw new ArgumentNullException(nameof(physicsComponent));
             _graphicsComponent = graphicsComponent ?? throw new ArgumentNullException(nameof(graphicsComponent));
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
+
+            _acceleratingSoundEffect = _gameContext.GameAudio.CreateSoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.ThrusterConstants.Thruster1Constants.Audio.ThrustingSoundEffectName));
         }
 
         public event EventHandler<HealEventArgs> Healed = delegate { };
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
-        public bool IsAccelerating { get; set; }
+        public bool IsAccelerating
+        {
+            get => _isAccelerating;
+            set
+            {
+                if (_isAccelerating == value) return;
+                _isAccelerating = value;
+                if (_isAccelerating)
+                {
+                    PlayAcceleratingSoundEffect();
+                }
+                else
+                {
+                    StopAcceleratingSoundEffect();
+                }
+            }
+        }
+
         public float RotationSpeed { get; set; }
         public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
-
-        public Vector2 ThrusterPosition => new Vector2(Position.X, Position.Y);
-        public Vector2 BulletPosition => new Vector2(Position.X, Position.Y);
 
         public override void Initialize()
         {
@@ -134,6 +153,16 @@ namespace SSSRegen.Source.Game.Player
             //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
             //ToDo show game over screen
             _healthComponent.Died -= PlayerOnDied;
+        }
+
+        private void PlayAcceleratingSoundEffect()
+        {
+            _acceleratingSoundEffect.Play(true);
+        }
+
+        private void StopAcceleratingSoundEffect()
+        {
+            _acceleratingSoundEffect.Stop();
         }
     }
 }

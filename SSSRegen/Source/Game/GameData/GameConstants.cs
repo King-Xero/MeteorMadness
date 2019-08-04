@@ -493,6 +493,11 @@ namespace SSSRegen.Source.Game.GameData
                     public const string Frame6TextureName = "thust1Frame6";
                     public const string Frame6TextureFileName = @"Images/Thrusters/Thruster1/fire17";
                 }
+                public static class Audio
+                {
+                    public const string ThrustingSoundEffectName = "thruster1SoundEffect";
+                    public const string ThrustingSoundEffectFileName = @"Audio/Thrusters/SPACECRAFT_Rocket_04_Smooth_Burn_loop_mono";
+                }
             }
         }
     }
