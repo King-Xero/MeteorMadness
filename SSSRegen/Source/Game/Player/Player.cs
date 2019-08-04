@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Collision;
 using SSSRegen.Source.Core.Entities;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Components;
-using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Game.Bonuses;
 using SSSRegen.Source.Game.Enemies;
@@ -22,10 +21,10 @@ namespace SSSRegen.Source.Game.Player
         private readonly IComponent<IPlayer> _inputComponent;
         private readonly IHealthComponent _healthComponent;
         private readonly IComponent<IPlayer> _physicsComponent;
-        private readonly IDrawableComponent<IGameObject> _graphicsComponent;
+        private readonly IDrawableComponent<IPlayer> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
 
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IComponent<IPlayer> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent, IProjectilesManager projectileManager)
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IComponent<IPlayer> physicsComponent, IDrawableComponent<IPlayer> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
@@ -41,13 +40,13 @@ namespace SSSRegen.Source.Game.Player
 
         public bool IsAccelerating { get; set; }
         public float RotationSpeed { get; set; }
-
         public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
-        public Vector2 BulletPosition => new Vector2(Position.X + Origin.X, Position.Y);
+        public Vector2 ThrusterPosition => new Vector2(Position.X, Position.Y);
+        public Vector2 BulletPosition => new Vector2(Position.X, Position.Y);
 
         public override void Initialize()
         {

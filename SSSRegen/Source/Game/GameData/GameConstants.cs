@@ -472,5 +472,28 @@ namespace SSSRegen.Source.Game.GameData
                 }
             }
         }
+
+        public static class ThrusterConstants
+        {
+            public static class Thruster1Constants
+            {
+                public const float FrameDelay = 2;
+                public static class Textures
+                {
+                    public const string Frame1TextureName = "thust1Frame1";
+                    public const string Frame1TextureFileName = @"Images/Thrusters/Thruster1/fire03";
+                    public const string Frame2TextureName = "thust1Frame2";
+                    public const string Frame2TextureFileName = @"Images/Thrusters/Thruster1/fire06";
+                    public const string Frame3TextureName = "thust1Frame3";
+                    public const string Frame3TextureFileName = @"Images/Thrusters/Thruster1/fire07";
+                    public const string Frame4TextureName = "thust1Frame4";
+                    public const string Frame4TextureFileName = @"Images/Thrusters/Thruster1/fire13";
+                    public const string Frame5TextureName = "thust1Frame5";
+                    public const string Frame5TextureFileName = @"Images/Thrusters/Thruster1/fire16";
+                    public const string Frame6TextureName = "thust1Frame6";
+                    public const string Frame6TextureFileName = @"Images/Thrusters/Thruster1/fire17";
+                }
+            }
+        }
     }
 }

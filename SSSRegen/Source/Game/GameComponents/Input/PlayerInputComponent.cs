@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Interfaces.Components;
-using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Interfaces.Input;
 using SSSRegen.Source.Core.Utils;
-using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Input

@@ -46,6 +46,8 @@
     <Compile Include="Source\Core\Collision\CollisionLayer.cs" />
     <Compile Include="Source\Core\Camera\Camera2D.cs" />
     <Compile Include="Source\Core\Audio\GameAudioManager.cs" />
+    <Compile Include="Source\Core\Graphics\AnimatedSprite.cs" />
+    <Compile Include="Source\Core\Interfaces\Graphics\IAnimatedSprite.cs" />
     <Compile Include="Source\Core\Interfaces\Graphics\IScreenResolutionConverter.cs" />
     <Compile Include="Source\Core\Graphics\ScreenResolutionConverter.cs" />
     <Compile Include="Source\Core\Graphics\ScreenSizeManager.cs" />

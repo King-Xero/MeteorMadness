@@ -51,7 +51,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
             var meteorPosition = meteor.Position;
 
-            meteorPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - meteor.Bounds.Width);
+            meteorPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width);
             meteorPosition.Y = 0;
 
             meteor.Position = meteorPosition;
