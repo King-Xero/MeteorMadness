@@ -61,7 +61,7 @@ namespace SSSRegen.Source.Game.Projectiles
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
-            if (gameObject.CollisionLayer == CollisionLayer.Player)
+            if (gameObject.CollisionLayer == CollisionLayer.Player || gameObject.CollisionLayer == CollisionLayer.Bonus)
             {
                 return;
             }
