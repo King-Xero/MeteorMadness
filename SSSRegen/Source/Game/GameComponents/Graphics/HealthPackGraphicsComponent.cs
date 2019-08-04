@@ -41,7 +41,7 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
 
         public void Draw(IGameObject healthPack, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_activeSprite, healthPack.Position, Color.White);
+            _gameGraphics.Draw(_activeSprite, healthPack.Position, Color.White, 0, _activeSprite.Origin);
         }
     }
 }

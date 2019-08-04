@@ -49,7 +49,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
             var healthPackPosition = healthPack.Position;
 
-            healthPackPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - healthPack.Bounds.Width);
+            healthPackPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width);
             healthPackPosition.Y = -15;
 
             healthPack.Position = healthPackPosition;

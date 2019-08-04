@@ -108,10 +108,10 @@ namespace SSSRegen.Source.Core.Menu
                     {
                         ISprite sprite = i == SelectedIndex ? spriteOption.SelectedSprite : spriteOption.RegularSprite;
 
-                        //Draw a shadow for the text
-                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i] + Vector2.One, Color.Black);
-                        //Draw the text item
-                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i], Color.White);
+                        //Draw a shadow for the sprite
+                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i] + Vector2.One, Color.Black, 0, sprite.Origin);
+                        //Draw the sprite item
+                        _gameContext.GameGraphics.Draw(sprite, _menuItemPositions[i], Color.White, 0, sprite.Origin);
                     }
                 }
             }

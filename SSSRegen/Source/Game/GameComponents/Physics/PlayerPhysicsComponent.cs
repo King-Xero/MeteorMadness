@@ -57,24 +57,24 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         //Position is offset by 1 so that the player isn't technically off screen
         private Vector2 KeepPlayerInScreenBounds(IGameObject player, Vector2 playerPosition)
         {
-            if (playerPosition.X + player.Size.X < _gameContext.GameGraphics.ScreenBounds.Left)
+            if (playerPosition.X + player.Origin.X < _gameContext.GameGraphics.ScreenBounds.Left)
             {
                 playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Right - 1;
             }
 
             if (playerPosition.X > _gameContext.GameGraphics.ScreenBounds.Right)
             {
-                playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Left - player.Size.X + 1;
+                playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Left - player.Origin.X + 1;
             }
 
-            if (playerPosition.Y + player.Size.Y < _gameContext.GameGraphics.ScreenBounds.Top)
+            if (playerPosition.Y + player.Origin.Y < _gameContext.GameGraphics.ScreenBounds.Top)
             {
                 playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Bottom - 1;
             }
 
             if (playerPosition.Y > _gameContext.GameGraphics.ScreenBounds.Bottom)
             {
-                playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Top - player.Size.Y + 1;
+                playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Top - player.Origin.Y + 1;
             }
 
             return playerPosition;
@@ -83,12 +83,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         //Reset the player position to the center of the screen
         private void ResetPosition(IGameObject player)
         {
-            var playerPosition = player.Position;
-
-            playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Center.X - player.Origin.X;
-            playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Center.Y - player.Origin.Y;
-
-            player.Position = playerPosition;
+            player.Position = _gameContext.GameGraphics.ScreenBounds.Center.ToVector2();
         }
     }
 }

@@ -45,8 +45,8 @@ namespace SSSRegen.Source.Game.Player
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
-        public Vector2 ThrusterPosition => new Vector2(Position.X + Origin.X, Position.Y - Size.Y);
-        public Vector2 BulletPosition => new Vector2(Position.X + Origin.X, Position.Y);
+        public Vector2 ThrusterPosition => new Vector2(Position.X + Origin.X, Position.Y + Size.Y);
+        public Vector2 BulletPosition => new Vector2(Position.X, Position.Y);
 
         public override void Initialize()
         {
@@ -70,6 +70,8 @@ namespace SSSRegen.Source.Game.Player
             _physicsComponent.Update(this, gameTime);
             _healthComponent.Update(this, gameTime);
             _projectileManager.Update(gameTime);
+
+            Console.WriteLine($"Position: {Position}, Bounds: {Bounds}");
         }
 
         public override void Draw(IGameTime gameTime)

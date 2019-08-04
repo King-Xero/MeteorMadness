@@ -73,7 +73,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
             var enemyPosition = enemy.Position;
 
-            enemyPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width - enemy.Bounds.Width);
+            enemyPosition.X = _random.Next(_gameContext.GameGraphics.ScreenBounds.Width);
             enemyPosition.Y = 0;
 
             enemy.Position = enemyPosition;

@@ -41,7 +41,7 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
 
         public void Draw(IGameObject enemy, IGameTime gameTime)
         {
-            _gameGraphics.Draw(_activeSprite, enemy.Position, Color.White);
+            _gameGraphics.Draw(_activeSprite, enemy.Position, Color.White, 0, _activeSprite.Origin);
         }
     }
 }
