@@ -23,8 +23,9 @@ namespace SSSRegen.Source.Game.Meteors
         private readonly int _initialMaxHealth;
         private readonly int _initialCollisionDamage;
         private readonly int _scoreValue;
-        
-        public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
+        private readonly MeteorType _meteorType;
+
+        public Meteor(GameContext gameContext, int initialMaxHealth, int initialCollisionDamage, int scoreValue, MeteorType meteorType, IHealthComponent healthComponent, IComponent<IGameObject> physicsComponent, IDrawableComponent<IGameObject> graphicsComponent)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _healthComponent = healthComponent ?? throw new ArgumentNullException(nameof(healthComponent));
@@ -34,6 +35,7 @@ namespace SSSRegen.Source.Game.Meteors
             _initialMaxHealth = initialMaxHealth;
             _initialCollisionDamage = initialCollisionDamage;
             _scoreValue = scoreValue;
+            _meteorType = meteorType;
         }
         
         public event EventHandler<HealEventArgs> Healed;
@@ -112,6 +114,7 @@ namespace SSSRegen.Source.Game.Meteors
             //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
             
             _gameContext.NotificationMediator.PublishPlayerScoreChange(new PlayerScoreNotificationArguments(_scoreValue));
+            _gameContext.NotificationMediator.PublishMeteorDestroyed(new MeteorDestroyedNotificationArguments(_meteorType, Position));
             _healthComponent.Died -= MeteorOnDied;
             IsActive = false;
         }

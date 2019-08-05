@@ -28,6 +28,7 @@ namespace SSSRegen.Source.Game.Meteors
                 GameConstants.MeteorConstants.BigMeteor1Constants.InitialMaxHealth,
                 GameConstants.MeteorConstants.BigMeteor1Constants.CollisionDamage,
                 GameConstants.MeteorConstants.BigMeteor1Constants.ScoreValue,
+                MeteorType.Big,
                 new HealthComponent(GameConstants.MeteorConstants.BigMeteor1Constants.InitialMaxHealth, new NullHealthContainer()),
                 new MeteorPhysicsComponent(_gameContext, _random),
                 graphicsComponent);
@@ -43,6 +44,7 @@ namespace SSSRegen.Source.Game.Meteors
                 GameConstants.MeteorConstants.MediumMeteor1Constants.InitialMaxHealth,
                 GameConstants.MeteorConstants.MediumMeteor1Constants.CollisionDamage,
                 GameConstants.MeteorConstants.MediumMeteor1Constants.ScoreValue,
+                MeteorType.Medium,
                 new HealthComponent(GameConstants.MeteorConstants.MediumMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 graphicsComponent);
@@ -58,6 +60,7 @@ namespace SSSRegen.Source.Game.Meteors
                 GameConstants.MeteorConstants.SmallMeteor1Constants.InitialMaxHealth,
                 GameConstants.MeteorConstants.SmallMeteor1Constants.CollisionDamage,
                 GameConstants.MeteorConstants.SmallMeteor1Constants.ScoreValue,
+                MeteorType.Small,
                 new HealthComponent(GameConstants.MeteorConstants.SmallMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 graphicsComponent);
@@ -73,6 +76,7 @@ namespace SSSRegen.Source.Game.Meteors
                 GameConstants.MeteorConstants.TinyMeteor1Constants.InitialMaxHealth,
                 GameConstants.MeteorConstants.TinyMeteor1Constants.CollisionDamage,
                 GameConstants.MeteorConstants.TinyMeteor1Constants.ScoreValue,
+                MeteorType.Tiny,
                 new HealthComponent(GameConstants.MeteorConstants.TinyMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 graphicsComponent);

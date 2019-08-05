@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Notifications;
 
 namespace SSSRegen.Source.Game.Meteors
 {
-    public class MeteorsManager : IGameObjectManager
+    public class MeteorsManager : IGameObjectManager, IReceiveNotifications<MeteorDestroyedNotificationArguments>
     {
         private readonly IMeteorFactory _meteorFactory;
         private readonly ICollisionSystem _collisionSystem;
@@ -126,6 +128,33 @@ namespace SSSRegen.Source.Game.Meteors
             }
         }
 
+        public Task OnNotificationReceived(MeteorDestroyedNotificationArguments args)
+        {
+            switch (args.MeteorType)
+            {
+                case MeteorType.Tiny:
+                    //ToDo Potentially spawn a power-up
+                    break;
+                case MeteorType.Small:
+                    SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteor1Constants.Name);
+                    break;
+                case MeteorType.Medium:
+                    SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteor1Constants.Name);
+                    break;
+                case MeteorType.Big:
+                    SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteor1Constants.Name);
+                    //ToDo set meteor position
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            //ToDo Spawn particles
+            
+            return Task.FromResult<object>(null);
+            //ToDo upgrade net framework
+            //return Task.CompletedTask;
+        }
+
         private void AddSpawnTimer(int interval, Func<Meteor> createMeteor, string enemyName)
         {
             var timer = new PausableTimer(interval);
@@ -144,7 +173,6 @@ namespace SSSRegen.Source.Game.Meteors
                 _meteors[meteorName].Add(meteorToSpawn);
             }
             meteorToSpawn.Initialize();
-
             meteorToSpawn.IsActive = true;
         }
     }
