@@ -243,6 +243,8 @@ namespace SSSRegen.Source.Game.GameData
                     public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_tiny2";
                 }
             }
+
+            public static int NumMeteorsSpawnedWhenDestroyed = 2;
         }
 
         public static class BonusConstants

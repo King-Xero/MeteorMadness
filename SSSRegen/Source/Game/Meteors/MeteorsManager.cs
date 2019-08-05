@@ -11,24 +11,38 @@ using SSSRegen.Source.Game.Notifications;
 
 namespace SSSRegen.Source.Game.Meteors
 {
-    public class MeteorsManager : IGameObjectManager, IReceiveNotifications<MeteorDestroyedNotificationArguments>
+    public class MeteorsManager : IGameObjectManager, IReceiveNotifications<MeteorDestroyedNotificationArguments>, IDisposable
     {
+        private readonly GameContext _gameContext;
         private readonly IMeteorFactory _meteorFactory;
         private readonly ICollisionSystem _collisionSystem;
 
         private Dictionary<string, List<Meteor>> _meteors;
+        private Dictionary<string, List<Meteor>> _meteorsToAdd;
         private List<PausableTimer> _spawnTimers;
         private bool _isPaused;
+        private IDisposable _meteorDestroyedHandler;
 
-        public MeteorsManager(IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
+        public MeteorsManager(GameContext gameContext, IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
         {
+            _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _meteorFactory = meteorFactory ?? throw new ArgumentNullException(nameof(meteorFactory));
             _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
         }
 
         public void Initialize()
         {
+            _meteorDestroyedHandler = _gameContext.NotificationMediator.SubscribeToMeteorDestroyedNotifications(this);
+
             _meteors = new Dictionary<string, List<Meteor>>
+            {
+                {GameConstants.MeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.SmallMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
+            };
+
+            _meteorsToAdd = new Dictionary<string, List<Meteor>>
             {
                 {GameConstants.MeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
                 {GameConstants.MeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
@@ -94,6 +108,12 @@ namespace SSSRegen.Source.Game.Meteors
                     }
                 }
             }
+
+            foreach (var meteorType in _meteorsToAdd)
+            {
+                _meteors[meteorType.Key].AddRange(meteorType.Value);
+                meteorType.Value.Clear();
+            }
         }
 
         public void Draw(IGameTime gameTime)
@@ -136,14 +156,25 @@ namespace SSSRegen.Source.Game.Meteors
                     //ToDo Potentially spawn a power-up
                     break;
                 case MeteorType.Small:
-                    SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteor1Constants.Name);
+                    for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
+                    {
+                        var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteor1Constants.Name);
+                        meteor.Position = args.Position;
+                    }
                     break;
                 case MeteorType.Medium:
-                    SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteor1Constants.Name);
+                    for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
+                    {
+                        var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteor1Constants.Name);
+                        meteor.Position = args.Position;
+                    }
                     break;
                 case MeteorType.Big:
-                    SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteor1Constants.Name);
-                    //ToDo set meteor position
+                    for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
+                    {
+                        var meteor = SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteor1Constants.Name);
+                        meteor.Position = args.Position;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -155,6 +186,12 @@ namespace SSSRegen.Source.Game.Meteors
             //return Task.CompletedTask;
         }
 
+        public void Dispose()
+        {
+            //ToDo dispose handler in unload/clean up method
+            _meteorDestroyedHandler?.Dispose();
+        }
+
         private void AddSpawnTimer(int interval, Func<Meteor> createMeteor, string enemyName)
         {
             var timer = new PausableTimer(interval);
@@ -162,7 +199,7 @@ namespace SSSRegen.Source.Game.Meteors
             _spawnTimers.Add(timer);
         }
 
-        private void SpawnMeteor(Func<Meteor> createMeteor, string meteorName)
+        private Meteor SpawnMeteor(Func<Meteor> createMeteor, string meteorName)
         {
             var meteorToSpawn = _meteors[meteorName].FirstOrDefault(b => !b.IsActive);
             if (meteorToSpawn == null)
@@ -170,10 +207,11 @@ namespace SSSRegen.Source.Game.Meteors
                 meteorToSpawn = createMeteor();
                 _collisionSystem.RegisterEntity(meteorToSpawn);
 
-                _meteors[meteorName].Add(meteorToSpawn);
+                _meteorsToAdd[meteorName].Add(meteorToSpawn);
             }
             meteorToSpawn.Initialize();
             meteorToSpawn.IsActive = true;
+            return meteorToSpawn;
         }
     }
 }

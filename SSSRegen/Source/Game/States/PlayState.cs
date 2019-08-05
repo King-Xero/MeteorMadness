@@ -60,8 +60,8 @@ namespace SSSRegen.Source.Game.States
             _gameObjectManagers = new IGameObjectManager[]
             {
                 playerManager,
-                new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
-                new MeteorsManager(new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
+                //new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
+                new MeteorsManager(_gameContext, new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
                 new BonusManager(new BonusFactory(_gameContext), _gameContext.CollisionSystem),
             };
 

@@ -8,6 +8,7 @@ namespace SSSRegen.Source.Core.Collision
     {
         private bool _isPaused;
         private List<IHandleCollisions> _entities;
+        private List<IHandleCollisions> _entitiesToAdd;
 
         public void Pause()
         {
@@ -21,13 +22,14 @@ namespace SSSRegen.Source.Core.Collision
 
         public void RegisterEntity(IHandleCollisions entity)
         {
-            _entities.Add(entity);
+            _entitiesToAdd.Add(entity);
         }
 
         public void Initialize()
         {
             _isPaused = false;
             _entities = new List<IHandleCollisions>();
+            _entitiesToAdd = new List<IHandleCollisions>();
         }
 
         public void Update(IGameTime gameTime)
@@ -47,9 +49,11 @@ namespace SSSRegen.Source.Core.Collision
                         entity.CollidedWith(otherEntity);
                         otherEntity.CollidedWith(entity);
                     }
-
                 }
             }
+
+            _entities.AddRange(_entitiesToAdd);
+            _entitiesToAdd.Clear();
         }
     }
 }
