@@ -60,6 +60,7 @@ namespace SSSRegen.Source.Game.States
             _gameObjectManagers = new IGameObjectManager[]
             {
                 playerManager,
+                //ToDo Change how enemies are spawned and positioned
                 //new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
                 new MeteorsManager(_gameContext, new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
                 new BonusManager(new BonusFactory(_gameContext), _gameContext.CollisionSystem),

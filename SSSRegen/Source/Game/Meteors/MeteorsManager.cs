@@ -19,9 +19,11 @@ namespace SSSRegen.Source.Game.Meteors
 
         private Dictionary<string, List<Meteor>> _meteors;
         private Dictionary<string, List<Meteor>> _meteorsToAdd;
-        private List<PausableTimer> _spawnTimers;
         private bool _isPaused;
         private IDisposable _meteorDestroyedHandler;
+        private bool _canSpawnWave;
+        private TimeSpan _elapsedWaveTime;
+        private int _numberOfMeteorsToSpawn;
 
         public MeteorsManager(GameContext gameContext, IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
         {
@@ -50,53 +52,26 @@ namespace SSSRegen.Source.Game.Meteors
                 {GameConstants.MeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
             };
 
-            _spawnTimers = new List<PausableTimer>();
-
-            for (var i = 0; i < GameConstants.MeteorConstants.BigMeteor1Constants.InitialCount; i++)
-            {
-                var meteor = _meteorFactory.CreateBigMeteor();
-                _collisionSystem.RegisterEntity(meteor);
-                _meteors[GameConstants.MeteorConstants.BigMeteor1Constants.Name].Add(meteor);
-            }
-
-            AddSpawnTimer(15000, _meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteor1Constants.Name);
-
-            for (var i = 0; i < GameConstants.MeteorConstants.MediumMeteor1Constants.InitialCount; i++)
-            {
-                var meteor = _meteorFactory.CreateMediumMeteor();
-                _collisionSystem.RegisterEntity(meteor);
-                _meteors[GameConstants.MeteorConstants.MediumMeteor1Constants.Name].Add(meteor);
-            }
-
-            AddSpawnTimer(15000, _meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteor1Constants.Name);
-
-            for (var i = 0; i < GameConstants.MeteorConstants.SmallMeteor1Constants.InitialCount; i++)
-            {
-                var meteor = _meteorFactory.CreateSmallMeteor();
-                _collisionSystem.RegisterEntity(meteor);
-                _meteors[GameConstants.MeteorConstants.SmallMeteor1Constants.Name].Add(meteor);
-            }
-
-            AddSpawnTimer(5000, _meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteor1Constants.Name);
-
-            for (var i = 0; i < GameConstants.MeteorConstants.TinyMeteor1Constants.InitialCount; i++)
-            {
-                var meteor = _meteorFactory.CreateTinyMeteor();
-                _collisionSystem.RegisterEntity(meteor);
-                _meteors[GameConstants.MeteorConstants.TinyMeteor1Constants.Name].Add(meteor);
-            }
-
-            AddSpawnTimer(5000, _meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteor1Constants.Name);
-
-            foreach (var spawnTimer in _spawnTimers)
-            {
-                spawnTimer.Start();
-            }
+            _numberOfMeteorsToSpawn = GameConstants.MeteorConstants.InitialWaveCount;
         }
 
         public void Update(IGameTime gameTime)
         {
             if (_isPaused) return;
+
+            if (_canSpawnWave)
+            {
+                _elapsedWaveTime += gameTime.ElapsedGameTime;
+
+                //ToDo Indicate that next wave is about to start (Text/warning alarm)
+                if (_elapsedWaveTime >= GameConstants.MeteorConstants.MeteorSpawnDelay)
+                {
+                    _canSpawnWave = false;
+                    _elapsedWaveTime = TimeSpan.Zero;
+
+                    SpawnNextWave();
+                }
+            }
 
             foreach (var meteorType in _meteors)
             {
@@ -116,6 +91,16 @@ namespace SSSRegen.Source.Game.Meteors
             }
         }
 
+        private void SpawnNextWave()
+        {
+            for (int i = 0; i < _numberOfMeteorsToSpawn; i++)
+            {
+                SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteor1Constants.Name);
+            }
+
+            _numberOfMeteorsToSpawn++;
+        }
+
         public void Draw(IGameTime gameTime)
         {
             foreach (var meteorType in _meteors)
@@ -133,19 +118,11 @@ namespace SSSRegen.Source.Game.Meteors
         public void Pause()
         {
             _isPaused = true;
-            foreach (var spawnTimer in _spawnTimers)
-            {
-                spawnTimer.Pause();
-            }
         }
 
         public void Resume()
         {
             _isPaused = false;
-            foreach (var spawnTimer in _spawnTimers)
-            {
-                spawnTimer.Resume();
-            }
         }
 
         public Task OnNotificationReceived(MeteorDestroyedNotificationArguments args)
@@ -190,13 +167,6 @@ namespace SSSRegen.Source.Game.Meteors
         {
             //ToDo dispose handler in unload/clean up method
             _meteorDestroyedHandler?.Dispose();
-        }
-
-        private void AddSpawnTimer(int interval, Func<Meteor> createMeteor, string enemyName)
-        {
-            var timer = new PausableTimer(interval);
-            timer.Elapsed += (sender, args) => SpawnMeteor(createMeteor, enemyName);
-            _spawnTimers.Add(timer);
         }
 
         private Meteor SpawnMeteor(Func<Meteor> createMeteor, string meteorName)

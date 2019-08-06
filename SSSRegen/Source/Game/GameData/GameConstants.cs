@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace SSSRegen.Source.Game.GameData
 {
@@ -244,7 +245,9 @@ namespace SSSRegen.Source.Game.GameData
                 }
             }
 
-            public static int NumMeteorsSpawnedWhenDestroyed = 2;
+            public const int NumMeteorsSpawnedWhenDestroyed = 2;
+            public const int InitialWaveCount = 5;
+            public static TimeSpan MeteorSpawnDelay = TimeSpan.FromSeconds(5);
         }
 
         public static class BonusConstants
