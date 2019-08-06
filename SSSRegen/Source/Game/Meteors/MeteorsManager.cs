@@ -53,6 +53,7 @@ namespace SSSRegen.Source.Game.Meteors
             };
 
             _numberOfMeteorsToSpawn = GameConstants.MeteorConstants.InitialWaveCount;
+            _elapsedWaveTime = TimeSpan.Zero;
         }
 
         public void Update(IGameTime gameTime)
@@ -79,6 +80,7 @@ namespace SSSRegen.Source.Game.Meteors
                 {
                     if (meteor.IsActive)
                     {
+                        _canSpawnWave = false;
                         meteor.Update(gameTime);
                     }
                 }
@@ -88,6 +90,11 @@ namespace SSSRegen.Source.Game.Meteors
             {
                 _meteors[meteorType.Key].AddRange(meteorType.Value);
                 meteorType.Value.Clear();
+            }
+
+            if (!_meteors.Any(d => d.Value.Any(m => m.IsActive)))
+            {
+                _canSpawnWave = true;
             }
         }
 

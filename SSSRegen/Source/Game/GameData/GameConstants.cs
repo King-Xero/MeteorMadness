@@ -246,7 +246,7 @@ namespace SSSRegen.Source.Game.GameData
             }
 
             public const int NumMeteorsSpawnedWhenDestroyed = 2;
-            public const int InitialWaveCount = 5;
+            public const int InitialWaveCount = 3;
             public static TimeSpan MeteorSpawnDelay = TimeSpan.FromSeconds(5);
         }
 
