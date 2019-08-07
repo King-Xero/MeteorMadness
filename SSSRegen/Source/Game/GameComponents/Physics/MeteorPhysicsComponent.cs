@@ -39,7 +39,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         {
             meteor.IsActive = false;
 
-            _movementDirection = new Vector2(_random.Next(3) - 1, 1 + _random.Next(4));
+            _movementDirection = new Vector2(_random.Next(-10, 11),_random.Next(-10, 11));
             //ToDo Read from constant into a meteor
             meteor.MovementSpeed = 100;
 
