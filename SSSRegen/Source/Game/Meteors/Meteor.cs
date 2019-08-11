@@ -90,7 +90,7 @@ namespace SSSRegen.Source.Game.Meteors
                     break;
                 case Bullet bullet:
                     //ToDo swap for appropriate sfx (meteor collided with bullet)
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectName));
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.Audio.HitSoundEffectName));
                     Damage(bullet.CollisionDamageAmount);
                     break;
                 case HealthPack healthPack:
@@ -110,7 +110,7 @@ namespace SSSRegen.Source.Game.Meteors
         private void MeteorOnDied(object sender, EventArgs e)
         {
             //Meteor destroyed
-            //ToDo play destroyed sound
+            //ToDo play destroyed sound from meteor strategy
             //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
             
             _gameContext.NotificationMediator.PublishPlayerScoreChange(new PlayerScoreNotificationArguments(_scoreValue));

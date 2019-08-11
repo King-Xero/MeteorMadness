@@ -38,18 +38,18 @@ namespace SSSRegen.Source.Game.Meteors
 
             _meteors = new Dictionary<string, List<Meteor>>
             {
-                {GameConstants.MeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.SmallMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
             };
 
             _meteorsToAdd = new Dictionary<string, List<Meteor>>
             {
-                {GameConstants.MeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.SmallMeteor1Constants.Name, new List<Meteor>()},
-                {GameConstants.MeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Name, new List<Meteor>()},
+                {GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Name, new List<Meteor>()},
             };
 
             _numberOfMeteorsToSpawn = GameConstants.MeteorConstants.InitialWaveCount;
@@ -102,7 +102,7 @@ namespace SSSRegen.Source.Game.Meteors
         {
             for (int i = 0; i < _numberOfMeteorsToSpawn; i++)
             {
-                SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteor1Constants.Name);
+                SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name);
             }
 
             _numberOfMeteorsToSpawn++;
@@ -138,25 +138,29 @@ namespace SSSRegen.Source.Game.Meteors
             {
                 case MeteorType.Tiny:
                     //ToDo Potentially spawn a power-up
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.TinyMeteorConstants.Audio.DestroyedSoundEffectName));
                     break;
                 case MeteorType.Small:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteor1Constants.Name);
+                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.SmallMeteorConstants.Audio.DestroyedSoundEffectName));
+                        var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
                     break;
                 case MeteorType.Medium:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteor1Constants.Name);
+                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.MediumMeteorConstants.Audio.DestroyedSoundEffectName));
+                        var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
                     break;
                 case MeteorType.Big:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        var meteor = SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteor1Constants.Name);
+                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.BigMeteorConstants.Audio.DestroyedSoundEffectName));
+                        var meteor = SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
                     break;
