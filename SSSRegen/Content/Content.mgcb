@@ -19,6 +19,42 @@
 /processorParam:Quality=Best
 /build:Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo.wav
 
+#begin Audio/Meteors/BigMeteor/Destroyed/EXPLOSION_Short_Smooth_Clean_Kickback_Smooth_Tail_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meteors/BigMeteor/Destroyed/EXPLOSION_Short_Smooth_Clean_Kickback_Smooth_Tail_stereo.wav
+
+#begin Audio/Meteors/Hit/EXPLOSION_Subtle_Poof_01_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meteors/Hit/EXPLOSION_Subtle_Poof_01_stereo.wav
+
+#begin Audio/Meteors/MediumMeteor/Destroyed/EXPLOSION_Short_Implosion_Bright_with_small_Kickback_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meteors/MediumMeteor/Destroyed/EXPLOSION_Short_Implosion_Bright_with_small_Kickback_stereo.wav
+
+#begin Audio/Meteors/SmallMeteor/Destroyed/EXPLOSION_Subtle_Poof_02_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meteors/SmallMeteor/Destroyed/EXPLOSION_Subtle_Poof_02_stereo.wav
+
+#begin Audio/Meteors/TinyMeteor/Destroyed/EXPLOSION_Subtle_Bright_Swoosh_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meteors/TinyMeteor/Destroyed/EXPLOSION_Subtle_Bright_Swoosh_stereo.wav
+
+#begin Audio/Player/Destroyed/EXPLOSION_Short_Flanged_Muffled_Fade_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Player/Destroyed/EXPLOSION_Short_Flanged_Muffled_Fade_stereo.wav
+
 #begin Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

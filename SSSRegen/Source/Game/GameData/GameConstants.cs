@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace SSSRegen.Source.Game.GameData
 {
@@ -100,149 +101,218 @@ namespace SSSRegen.Source.Game.GameData
 
         public static class MeteorConstants
         {
-            public static class BigMeteor1Constants
+            public static class Audio
             {
-                public const string Name = "bigMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 30;
-                public const int CollisionDamage = 10;
-                public const int ScoreValue = 200;
-                public static class Textures
+                public const string HitSoundEffectName = "meteorHitSoundEffect";
+                public const string HitSoundEffectFileName = @"Audio/Meteors/Hit/EXPLOSION_Subtle_Poof_01_stereo";
+            }
+
+            public static class BigMeteorConstants
+            {
+                public static class Audio
                 {
-                    public const string BrownTextureName = "bigMeteor1Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big1";
+                    public const string DestroyedSoundEffectName = "bigMeteorDestroyedSoundEffect";
+                    public const string DestroyedSoundEffectFileName = @"Audio/Meteors/BigMeteor/Destroyed/EXPLOSION_Short_Smooth_Clean_Kickback_Smooth_Tail_stereo";
+                }
+
+                public static class BigMeteor1Constants
+                {
+                    public const string Name = "bigMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 30;
+                    public const int CollisionDamage = 10;
+                    public const int ScoreValue = 200;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "bigMeteor1Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big1";
+                    }
+                }
+
+                public static class BigMeteor2Constants
+                {
+                    public const string Name = "bigMeteor2";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 30;
+                    public const int CollisionDamage = 10;
+                    public const int ScoreValue = 200;
+
+                    public static class Textures
+                    {
+                        public const string GreyTextureName = "bigMeteor2Grey";
+                        public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big2";
+                    }
+                }
+
+                public static class BigMeteor3Constants
+                {
+                    public const string Name = "bigMeteor3";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 30;
+                    public const int CollisionDamage = 10;
+                    public const int ScoreValue = 200;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "bigMeteor3Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big3";
+                    }
+                }
+
+                public static class BigMeteor4Constants
+                {
+                    public const string Name = "bigMeteor4";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 30;
+                    public const int CollisionDamage = 10;
+                    public const int ScoreValue = 200;
+
+                    public static class Textures
+                    {
+                        public const string GreyTextureName = "bigMeteor4Grey";
+                        public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big4";
+                    }
                 }
             }
-            public static class BigMeteor2Constants
+
+            public static class MediumMeteorConstants
             {
-                public const string Name = "bigMeteor2";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 30;
-                public const int CollisionDamage = 10;
-                public const int ScoreValue = 200;
-                public static class Textures
+                public static class Audio
                 {
-                    public const string GreyTextureName = "bigMeteor2Grey";
-                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big2";
+                    public const string DestroyedSoundEffectName = "mediumMeteorDestroyedSoundEffect";
+                    public const string DestroyedSoundEffectFileName = @"Audio/Meteors/MediumMeteor/Destroyed/EXPLOSION_Short_Implosion_Bright_with_small_Kickback_stereo";
+                }
+
+                public static class MediumMeteor1Constants
+                {
+                    public const string Name = "mediumMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 20;
+                    public const int CollisionDamage = 6;
+                    public const int ScoreValue = 150;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "mediumMeteor1Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med1";
+                    }
+                }
+
+                public static class MediumMeteor2Constants
+                {
+                    public const string Name = "mediumMeteor2";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 20;
+                    public const int CollisionDamage = 6;
+                    public const int ScoreValue = 150;
+
+                    public static class Textures
+                    {
+                        public const string GreyTextureName = "mediumMeteor2Grey";
+                        public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_med2";
+                    }
+                }
+
+                public static class MediumMeteor3Constants
+                {
+                    public const string Name = "mediumMeteor3";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 20;
+                    public const int CollisionDamage = 6;
+                    public const int ScoreValue = 150;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "mediumMeteor3Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med3";
+                    }
                 }
             }
-            public static class BigMeteor3Constants
+
+            public static class SmallMeteorConstants
             {
-                public const string Name = "bigMeteor3";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 30;
-                public const int CollisionDamage = 10;
-                public const int ScoreValue = 200;
-                public static class Textures
+                public static class Audio
                 {
-                    public const string BrownTextureName = "bigMeteor3Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big3";
+                    public const string DestroyedSoundEffectName = "smallMeteorDestroyedSoundEffect";
+                    public const string DestroyedSoundEffectFileName = @"Audio/Meteors/SmallMeteor/Destroyed/EXPLOSION_Subtle_Poof_02_stereo";
+                }
+
+                public static class SmallMeteor1Constants
+                {
+                    public const string Name = "smallMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 10;
+                    public const int CollisionDamage = 4;
+                    public const int ScoreValue = 100;
+
+                    public static class Textures
+                    {
+                        public const string GreyTextureName = "smallMeteor1Grey";
+                        public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_small1";
+                    }
+                }
+
+                public static class SmallMeteor2Constants
+                {
+                    public const string Name = "smallMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 10;
+                    public const int CollisionDamage = 4;
+                    public const int ScoreValue = 100;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "smallMeteor2Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_small2";
+                    }
                 }
             }
-            public static class BigMeteor4Constants
+
+            public static class TinyMeteorConstants
             {
-                public const string Name = "bigMeteor4";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 30;
-                public const int CollisionDamage = 10;
-                public const int ScoreValue = 200;
-                public static class Textures
+                public static class Audio
                 {
-                    public const string GreyTextureName = "bigMeteor4Grey";
-                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_big4";
+                    public const string DestroyedSoundEffectName = "tinyMeteorDestroyedSoundEffect";
+
+                    public const string DestroyedSoundEffectFileName =
+                        @"Audio/Meteors/TinyMeteor/Destroyed/EXPLOSION_Subtle_Bright_Swoosh_stereo";
+                }
+
+                public static class TinyMeteor1Constants
+                {
+                    public const string Name = "tinyMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 5;
+                    public const int CollisionDamage = 2;
+                    public const int ScoreValue = 50;
+
+                    public static class Textures
+                    {
+                        public const string GreyTextureName = "tinyMeteor1Grey";
+                        public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_tiny1";
+                    }
+                }
+
+                public static class TinyMeteor2Constants
+                {
+                    public const string Name = "tinyMeteor1";
+                    public const int InitialCount = 2;
+                    public const int InitialMaxHealth = 5;
+                    public const int CollisionDamage = 2;
+                    public const int ScoreValue = 50;
+
+                    public static class Textures
+                    {
+                        public const string BrownTextureName = "tinyMeteor2Brown";
+                        public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_tiny2";
+                    }
                 }
             }
-            public static class MediumMeteor1Constants
-            {
-                public const string Name = "mediumMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 20;
-                public const int CollisionDamage = 6;
-                public const int ScoreValue = 150;
-                public static class Textures
-                {
-                    public const string BrownTextureName = "mediumMeteor1Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med1";
-                }
-            }
-            public static class MediumMeteor2Constants
-            {
-                public const string Name = "mediumMeteor2";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 20;
-                public const int CollisionDamage = 6;
-                public const int ScoreValue = 150;
-                public static class Textures
-                {
-                    public const string GreyTextureName = "mediumMeteor2Grey";
-                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_med2";
-                }
-            }
-            public static class MediumMeteor3Constants
-            {
-                public const string Name = "mediumMeteor3";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 20;
-                public const int CollisionDamage = 6;
-                public const int ScoreValue = 150;
-                public static class Textures
-                {
-                    public const string BrownTextureName = "mediumMeteor3Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med3";
-                }
-            }
-            public static class SmallMeteor1Constants
-            {
-                public const string Name = "smallMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 10;
-                public const int CollisionDamage = 4;
-                public const int ScoreValue = 100;
-                public static class Textures
-                {
-                    public const string GreyTextureName = "smallMeteor1Grey";
-                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_small1";
-                }
-            }
-            public static class SmallMeteor2Constants
-            {
-                public const string Name = "smallMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 10;
-                public const int CollisionDamage = 4;
-                public const int ScoreValue = 100;
-                public static class Textures
-                {
-                    public const string BrownTextureName = "smallMeteor2Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_small2";
-                }
-            }
-            public static class TinyMeteor1Constants
-            {
-                public const string Name = "tinyMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 5;
-                public const int CollisionDamage = 2;
-                public const int ScoreValue = 50;
-                public static class Textures
-                {
-                    public const string GreyTextureName = "tinyMeteor1Grey";
-                    public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_tiny1";
-                }
-            }
-            public static class TinyMeteor2Constants
-            {
-                public const string Name = "tinyMeteor1";
-                public const int InitialCount = 2;
-                public const int InitialMaxHealth = 5;
-                public const int CollisionDamage = 2;
-                public const int ScoreValue = 50;
-                public static class Textures
-                {
-                    public const string BrownTextureName = "tinyMeteor2Brown";
-                    public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_tiny2";
-                }
-            }
+
+            public const int NumMeteorsSpawnedWhenDestroyed = 2;
+            public const int InitialWaveCount = 3;
+            public static TimeSpan MeteorSpawnDelay = TimeSpan.FromSeconds(5);
         }
 
         public static class BonusConstants
@@ -258,11 +328,14 @@ namespace SSSRegen.Source.Game.GameData
                 public static class Audio
                 {
                     public const string CollectedSoundEffectName = "healthPackCollectedSoundEffect";
-                    public const string CollectedSoundEffectFileName = @"Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo";
+
+                    public const string CollectedSoundEffectFileName =
+                        @"Audio/Bonuses/HealthPack/PUZZLE_Success_Beep_Three_Note_Fast_Climb_Delay_stereo";
                 }
 
                 public const int InitialCount = 2;
                 public const int HealAmount = 2;
+                public const int SpawnPercentageChance = 5;
             }
         }
 
@@ -272,7 +345,14 @@ namespace SSSRegen.Source.Game.GameData
             public const int InitialMaxHealth = 10;
             public const int InitialCollisionDamage = 50;
             public const string ScoreFormat = "000000000000";
-            
+
+
+            public static class Audio
+            {
+                public const string DestroyedSoundEffectName = "playerDestroyedSoundEffect";
+                public const string DestroyedSoundEffectFileName = @"Audio/Player/Destroyed/EXPLOSION_Short_Flanged_Muffled_Fade_stereo";
+            }
+
             public static class PlayerShip1Constants
             {
                 public static class Textures
@@ -290,6 +370,7 @@ namespace SSSRegen.Source.Game.GameData
                     public const string RedLifeIconTextureFileName = @"Images/UI/playerLife1_red";
                 }
             }
+
             public static class PlayerShip2Constants
             {
                 public static class Textures
@@ -307,6 +388,7 @@ namespace SSSRegen.Source.Game.GameData
                     public const string GreenLifeIconTextureFileName = @"Images/UI/playerLife2_Green";
                 }
             }
+
             public static class PlayerShip3Constants
             {
                 public static class Textures
@@ -339,7 +421,9 @@ namespace SSSRegen.Source.Game.GameData
                 public static class Audio
                 {
                     public const string SplashScreenSoundEffectName = "splashStateSoundEffect";
-                    public const string SplashScreenSoundEffectFileName = @"Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo";
+
+                    public const string SplashScreenSoundEffectFileName =
+                        @"Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo";
                 }
 
                 public const float SplashStateDisplayTime = 1.0f;
@@ -382,15 +466,31 @@ namespace SSSRegen.Source.Game.GameData
                 public static class Audio
                 {
                     public const string ModalMenuOpenedSoundEffectName = "modalMenuOpenedSoundEffect";
-                    public const string ModalMenuOpenedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo";
+
+                    public const string ModalMenuOpenedSoundEffectFileName =
+                        @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Appear_stereo";
+
                     public const string ModalMenuClosedSoundEffectName = "modalMenuClosedSoundEffect";
-                    public const string ModalMenuClosedSoundEffectFileName = @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo";
+
+                    public const string ModalMenuClosedSoundEffectFileName =
+                        @"Audio/States/MenuState/UI_Animate_Stutter_Beep_Disappear_stereo";
+
                     public const string MenuNavigateSoundEffectName = "menuSelectionChangedSoundEffect";
-                    public const string MenuNavigateSoundEffectFileName = @"Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo";
+
+                    public const string MenuNavigateSoundEffectFileName =
+                        @"Audio/States/MenuState/UI_Beep_Double_Quick_Bright_Short_stereo";
+
                     public const string MenuSelectionConfirmedSoundEffectName = "menuSelectionConfirmedSoundEffect";
-                    public const string MenuSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
-                    public const string NewStateSelectionConfirmedSoundEffectName = "newStateSelectionConfirmedSoundEffect";
-                    public const string NewStateSelectionConfirmedSoundEffectFileName = @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
+
+                    public const string MenuSelectionConfirmedSoundEffectFileName =
+                        @"Audio/States/MenuState/UI_SCI-FI_Confirm_Dry_stereo";
+
+                    public const string NewStateSelectionConfirmedSoundEffectName =
+                        "newStateSelectionConfirmedSoundEffect";
+
+                    public const string NewStateSelectionConfirmedSoundEffectFileName =
+                        @"Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo";
+
                     public const string BackgroundMusicName = "mainMenuMusic";
                     public const string BackgroundMusicFileName = @"Audio/States/MenuState/Planet_Title_LOOP";
                 }
@@ -399,16 +499,19 @@ namespace SSSRegen.Source.Game.GameData
                 {
                     //ToDo Logo position to go here
                 }
+
                 public static class LogoLine2
                 {
                     //ToDo Logo position to go here
                 }
+
                 public static class LogoLine3
                 {
                     //ToDo Logo position to go here
                 }
 
                 public const string PlayMenuText = "Play";
+
                 //public const string OnePlayerMenuText = "One Player";
                 //public const string TwoPlayerMenuText = "Two Player";
                 public const string HelpMenuText = "Help";
@@ -420,7 +523,7 @@ namespace SSSRegen.Source.Game.GameData
         public static class ProjectileConstants
         {
             public const int MaxBulletsOnScreen = 30;
-            
+
             public static class Bullet1Constants
             {
                 public const int DamageAmount = 10;
@@ -431,10 +534,13 @@ namespace SSSRegen.Source.Game.GameData
                     public const string BlueTextureName = "blueBullet1";
                     public const string BlueTextureFileName = @"Images/Projectiles/laserBlue07";
                 }
+
                 public static class Audio
                 {
                     public const string ShootSoundEffectName = "bullet1ShootSoundEffect";
-                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo";
+
+                    public const string ShootSoundEffectFileName =
+                        @"Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo";
                 }
             }
 
@@ -448,6 +554,7 @@ namespace SSSRegen.Source.Game.GameData
                     public const string GreenTextureName = "greenBullet2";
                     public const string GreenTextureFileName = @"Images/Projectiles/laserGreen05";
                 }
+
                 public static class Audio
                 {
                     public const string ShootSoundEffectName = "bullet2ShootSoundEffect";
@@ -459,16 +566,19 @@ namespace SSSRegen.Source.Game.GameData
             {
                 public const int DamageAmount = 20;
                 public const int BulletSpeed = 800;
-                
+
                 public static class Textures
                 {
                     public const string RedTextureName = "redBullet3";
                     public const string RedTextureFileName = @"Images/Projectiles/laserRed13";
                 }
+
                 public static class Audio
                 {
                     public const string ShootSoundEffectName = "bullet3ShootSoundEffect";
-                    public const string ShootSoundEffectFileName = @"Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo";
+
+                    public const string ShootSoundEffectFileName =
+                        @"Audio/Projectiles/Bullet3/BLASTER_Quick_Deep_stereo";
                 }
             }
         }
@@ -478,6 +588,7 @@ namespace SSSRegen.Source.Game.GameData
             public static class Thruster1Constants
             {
                 public const float FrameDelay = 2;
+
                 public static class Textures
                 {
                     public const string Frame1TextureName = "thust1Frame1";
@@ -493,10 +604,13 @@ namespace SSSRegen.Source.Game.GameData
                     public const string Frame6TextureName = "thust1Frame6";
                     public const string Frame6TextureFileName = @"Images/Thrusters/Thruster1/fire17";
                 }
+
                 public static class Audio
                 {
                     public const string ThrustingSoundEffectName = "thruster1SoundEffect";
-                    public const string ThrustingSoundEffectFileName = @"Audio/Thrusters/SPACECRAFT_Rocket_04_Smooth_Burn_loop_mono";
+
+                    public const string ThrustingSoundEffectFileName =
+                        @"Audio/Thrusters/SPACECRAFT_Rocket_04_Smooth_Burn_loop_mono";
                 }
             }
         }

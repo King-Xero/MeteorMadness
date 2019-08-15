@@ -9,7 +9,7 @@ using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class PlayerPhysicsComponent : IComponent<IPlayer>
+    public class PlayerPhysicsComponent : PhysicsComponentBase, IComponent<IPlayer>
     {
         private readonly GameContext _gameContext;
         //ToDo Move to game constants
@@ -17,7 +17,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         private Vector2 _thrustingVelocity;
         private Vector2 _movementDirection;
 
-        public PlayerPhysicsComponent(GameContext gameContext)
+        public PlayerPhysicsComponent(GameContext gameContext) : base(gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }
@@ -31,8 +31,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
         public void Update(IPlayer player, IGameTime gameTime)
         {
-            var playerPosition = player.Position;
-
             //Calculate rotation using rotation speed set in PlayerInputComponent
             player.Rotation += MathHelper.ToRadians(player.RotationSpeed) * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
@@ -48,36 +46,9 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             //Calculate thrusting velocity. Based off of acceleration friction calculation here: http://community.monogame.net/t/acceleration-and-friction-in-2d-games/9319
             _thrustingVelocity += _movementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            playerPosition += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            player.Position += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
             
-            player.Position = KeepPlayerInScreenBounds(player, playerPosition);
-        }
-
-        //If the player moves off a side of the screen, wrap around to just off the opposite side of the screen
-        //Position is offset by 1 so that the player isn't technically off screen
-        private Vector2 KeepPlayerInScreenBounds(IGameObject player, Vector2 playerPosition)
-        {
-            if (playerPosition.X + player.Origin.X < _gameContext.GameGraphics.ScreenBounds.Left)
-            {
-                playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Right - 1;
-            }
-
-            if (playerPosition.X > _gameContext.GameGraphics.ScreenBounds.Right)
-            {
-                playerPosition.X = _gameContext.GameGraphics.ScreenBounds.Left - player.Origin.X + 1;
-            }
-
-            if (playerPosition.Y + player.Origin.Y < _gameContext.GameGraphics.ScreenBounds.Top)
-            {
-                playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Bottom - 1;
-            }
-
-            if (playerPosition.Y > _gameContext.GameGraphics.ScreenBounds.Bottom)
-            {
-                playerPosition.Y = _gameContext.GameGraphics.ScreenBounds.Top - player.Origin.Y + 1;
-            }
-
-            return playerPosition;
+            player.Position = KeepGameObjectInScreenBounds(player, player.Position);
         }
 
         //Reset the player position to the center of the screen

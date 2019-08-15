@@ -161,17 +161,17 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadTexture(GameConstants.EnemyConstants.Enemy5Constants.Textures.BlackTextureName, GameConstants.EnemyConstants.Enemy5Constants.Textures.BlackTextureFileName);
 
             //Meteor Textures
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteor1Constants.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteor2Constants.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteor3Constants.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteor4Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteor4Constants.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteor1Constants.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.MediumMeteor2Constants.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteor3Constants.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.SmallMeteor1Constants.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.SmallMeteor2Constants.Textures.BrownTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.TinyMeteor1Constants.Textures.GreyTextureFileName);
-            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.TinyMeteor2Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor2Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor3Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor4Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor4Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor2Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor2Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor3Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor3Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor2Constants.Textures.BrownTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Textures.GreyTextureName, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Textures.GreyTextureFileName);
+            _gameContext.AssetManager.LoadTexture(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor2Constants.Textures.BrownTextureName, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor2Constants.Textures.BrownTextureFileName);
 
             //Menu SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.SplashStateConstants.Audio.SplashScreenSoundEffectName, GameConstants.GameStateConstants.SplashStateConstants.Audio.SplashScreenSoundEffectFileName);
@@ -180,6 +180,9 @@ namespace SSSRegen
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.NewStateSelectionConfirmedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.NewStateSelectionConfirmedSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectFileName);
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName, GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectFileName);
+
+            //Player SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.PlayerConstants.Audio.DestroyedSoundEffectName, GameConstants.PlayerConstants.Audio.DestroyedSoundEffectFileName);
 
             //Bullet SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectFileName);
@@ -191,6 +194,13 @@ namespace SSSRegen
 
             //Bonus SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectName, GameConstants.BonusConstants.HealthPackConstants.Audio.CollectedSoundEffectFileName);
+
+            //Meteor SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.MeteorConstants.Audio.HitSoundEffectName, GameConstants.MeteorConstants.Audio.HitSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.MeteorConstants.BigMeteorConstants.Audio.DestroyedSoundEffectName, GameConstants.MeteorConstants.BigMeteorConstants.Audio.DestroyedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.MeteorConstants.MediumMeteorConstants.Audio.DestroyedSoundEffectName, GameConstants.MeteorConstants.MediumMeteorConstants.Audio.DestroyedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.MeteorConstants.SmallMeteorConstants.Audio.DestroyedSoundEffectName, GameConstants.MeteorConstants.SmallMeteorConstants.Audio.DestroyedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.MeteorConstants.TinyMeteorConstants.Audio.DestroyedSoundEffectName, GameConstants.MeteorConstants.TinyMeteorConstants.Audio.DestroyedSoundEffectFileName);
 
             //Main Menu Music
             _gameContext.AssetManager.LoadSong(GameConstants.GameStateConstants.MenuStateConstants.Audio.BackgroundMusicName, GameConstants.GameStateConstants.MenuStateConstants.Audio.BackgroundMusicFileName);
