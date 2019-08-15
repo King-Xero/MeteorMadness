@@ -335,6 +335,7 @@ namespace SSSRegen.Source.Game.GameData
 
                 public const int InitialCount = 2;
                 public const int HealAmount = 2;
+                public const int SpawnPercentageChance = 5;
             }
         }
 

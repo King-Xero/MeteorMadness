@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
-using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Notifications;
 
@@ -98,16 +97,6 @@ namespace SSSRegen.Source.Game.Meteors
             }
         }
 
-        private void SpawnNextWave()
-        {
-            for (int i = 0; i < _numberOfMeteorsToSpawn; i++)
-            {
-                SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name);
-            }
-
-            _numberOfMeteorsToSpawn++;
-        }
-
         public void Draw(IGameTime gameTime)
         {
             foreach (var meteorType in _meteors)
@@ -137,7 +126,6 @@ namespace SSSRegen.Source.Game.Meteors
             switch (args.MeteorType)
             {
                 case MeteorType.Tiny:
-                    //ToDo Potentially spawn a power-up
                     _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.TinyMeteorConstants.Audio.DestroyedSoundEffectName));
                     break;
                 case MeteorType.Small:
@@ -178,6 +166,16 @@ namespace SSSRegen.Source.Game.Meteors
         {
             //ToDo dispose handler in unload/clean up method
             _meteorDestroyedHandler?.Dispose();
+        }
+
+        private void SpawnNextWave()
+        {
+            for (int i = 0; i < _numberOfMeteorsToSpawn; i++)
+            {
+                SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name);
+            }
+
+            _numberOfMeteorsToSpawn++;
         }
 
         private Meteor SpawnMeteor(Func<Meteor> createMeteor, string meteorName)

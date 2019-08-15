@@ -36,6 +36,7 @@ namespace SSSRegen.Source.Game.Meteors
             _initialCollisionDamage = initialCollisionDamage;
             _scoreValue = scoreValue;
             _meteorType = meteorType;
+            //ToDo Set movement speed here too
         }
         
         public event EventHandler<HealEventArgs> Healed;

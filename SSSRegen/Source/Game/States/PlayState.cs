@@ -63,7 +63,7 @@ namespace SSSRegen.Source.Game.States
                 //ToDo Change how enemies are spawned and positioned
                 //new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
                 new MeteorsManager(_gameContext, new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
-                new BonusManager(new BonusFactory(_gameContext), _gameContext.CollisionSystem),
+                new BonusManager(_gameContext, new BonusFactory(_gameContext), _gameContext.CollisionSystem),
             };
 
             _scoreComponent = new PlayerScoreComponent(_gameContext);

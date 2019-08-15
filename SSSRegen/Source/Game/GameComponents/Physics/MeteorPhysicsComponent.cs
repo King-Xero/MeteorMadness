@@ -22,8 +22,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
 
         public void Initialize(IGameObject meteor)
         {
-            //ToDo Execution order of components might cause an error here.
-            //Reset uses Bounds to set position. Bounds is set using Height and Width which are initialized in graphics component.
             Reset(meteor);
         }
 
@@ -39,6 +37,7 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
         {
             meteor.IsActive = false;
 
+            //Set random movement direction
             _movementDirection = new Vector2(_random.Next(-10, 11),_random.Next(-10, 11));
             _movementDirection.Normalize();
 

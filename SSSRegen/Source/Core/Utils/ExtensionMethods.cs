@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace SSSRegen.Source.Core.Utils
 {
@@ -7,7 +8,7 @@ namespace SSSRegen.Source.Core.Utils
     {
         public static int ToInt(this float fl)
         {
-            return (int) fl;
+            return (int) Math.Floor(fl);
         }
 
         public static float ToFloat(this double dbl)
@@ -17,7 +18,7 @@ namespace SSSRegen.Source.Core.Utils
 
         public static int ToInt(this double dbl)
         {
-            return (int) dbl;
+            return (int) Math.Floor(dbl);
         }
 
         /// <summary>
