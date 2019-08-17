@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
@@ -11,11 +10,11 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
     public class MeteorGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
-        private readonly Sprite _mSprite;
+        private readonly ISprite _mSprite;
 
-        private Sprite _activeSprite;
+        private ISprite _activeSprite;
 
-        public MeteorGraphicsComponent(IGameGraphics gameGraphics, Sprite mSprite)
+        public MeteorGraphicsComponent(IGameGraphics gameGraphics, ISprite mSprite)
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _mSprite = mSprite ?? throw new ArgumentNullException(nameof(mSprite));

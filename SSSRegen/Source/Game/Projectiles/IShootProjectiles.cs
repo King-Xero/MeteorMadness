@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Interfaces.Entities;
+﻿using SSSRegen.Source.Core.Interfaces.Entities;
 
 namespace SSSRegen.Source.Game.Projectiles
 {

@@ -34,7 +34,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy1Constants.CollisionDamage,
                 GameConstants.EnemyConstants.Enemy1Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy1Constants.AggroRange,
-                new HealthComponent(GameConstants.EnemyConstants.Enemy1Constants.InitialMaxHealth, new NullHealthContainer()),
+                new HealthComponent(new NullHealthContainer()),
                 new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);
@@ -52,7 +52,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy2Constants.CollisionDamage,
                 GameConstants.EnemyConstants.Enemy2Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy2Constants.AggroRange,
-                new HealthComponent(GameConstants.EnemyConstants.Enemy2Constants.InitialMaxHealth, new NullHealthContainer()),
+                new HealthComponent(new NullHealthContainer()),
                 new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);
@@ -70,7 +70,7 @@ namespace SSSRegen.Source.Game.Enemies
                 GameConstants.EnemyConstants.Enemy3Constants.CollisionDamage,
                 GameConstants.EnemyConstants.Enemy3Constants.ScoreValue,
                 GameConstants.EnemyConstants.Enemy3Constants.AggroRange,
-                new HealthComponent(GameConstants.EnemyConstants.Enemy3Constants.InitialMaxHealth, new NullHealthContainer()),
+                new HealthComponent(new NullHealthContainer()),
                 new EnemyPhysicsComponent(_gameContext, _random),
                 graphicsComponent,
                 _playerManager);

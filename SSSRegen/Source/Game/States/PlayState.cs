@@ -6,7 +6,6 @@ using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Interfaces.Menus;
 using SSSRegen.Source.Game.Bonuses;
-using SSSRegen.Source.Game.Enemies;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Meteors;
 using SSSRegen.Source.Game.Player;
