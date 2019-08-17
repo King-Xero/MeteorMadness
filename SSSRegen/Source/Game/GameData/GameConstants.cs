@@ -128,6 +128,8 @@ namespace SSSRegen.Source.Game.GameData
                         public const string BrownTextureName = "bigMeteor1Brown";
                         public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_big1";
                     }
+
+                    public const int MovementSpeed = 100;
                 }
 
                 public static class BigMeteor2Constants
@@ -197,6 +199,8 @@ namespace SSSRegen.Source.Game.GameData
                         public const string BrownTextureName = "mediumMeteor1Brown";
                         public const string BrownTextureFileName = @"Images/Meteors/meteorBrown_med1";
                     }
+
+                    public const int MovementSpeed = 125;
                 }
 
                 public static class MediumMeteor2Constants
@@ -251,6 +255,8 @@ namespace SSSRegen.Source.Game.GameData
                         public const string GreyTextureName = "smallMeteor1Grey";
                         public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_small1";
                     }
+
+                    public const int MovementSpeed = 150;
                 }
 
                 public static class SmallMeteor2Constants
@@ -292,6 +298,8 @@ namespace SSSRegen.Source.Game.GameData
                         public const string GreyTextureName = "tinyMeteor1Grey";
                         public const string GreyTextureFileName = @"Images/Meteors/meteorGrey_tiny1";
                     }
+
+                    public const int MovementSpeed = 175;
                 }
 
                 public static class TinyMeteor2Constants

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Interfaces.Collision;
+﻿using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Game.Health;
 using SSSRegen.Source.Game.Projectiles;
 using SSSRegen.Source.Game.Score;

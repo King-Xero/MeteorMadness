@@ -49,9 +49,7 @@ namespace SSSRegen.Source.Game.Score
         public Task OnNotificationReceived(PlayerScoreNotificationArguments arg)
         {
             _totalScore += arg.ScoreAmount;
-            return Task.FromResult<object>(null);
-            //ToDo upgrade net framework
-            //return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public void Dispose()

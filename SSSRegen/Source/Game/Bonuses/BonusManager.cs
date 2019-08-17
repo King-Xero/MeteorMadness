@@ -94,9 +94,7 @@ namespace SSSRegen.Source.Game.Bonuses
                 }
             }
 
-            return Task.FromResult<object>(null);
-            //ToDo upgrade net framework
-            //return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public void Dispose()

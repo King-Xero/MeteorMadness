@@ -5,15 +5,13 @@ namespace SSSRegen.Source.Game.Health
 {
     public class HealthComponent : IHealthComponent
     {
-        private readonly int _initialMaxHealth;
         private readonly IHealthContainer _healthContainer;
 
         private int _currentHealth;
         private int _maxHealth;
 
-        public HealthComponent(int initialMaxHealth, IHealthContainer healthContainer)
+        public HealthComponent(IHealthContainer healthContainer)
         {
-            _initialMaxHealth = initialMaxHealth;
             _healthContainer = healthContainer ?? throw new ArgumentNullException(nameof(healthContainer));
         }
 

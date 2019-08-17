@@ -1,9 +1,11 @@
 ﻿using System;
 using SSSRegen.Source.Core.Graphics;
+using SSSRegen.Source.Core.Interfaces.Graphics;
 using SSSRegen.Source.Game.GameComponents.Graphics;
 using SSSRegen.Source.Game.GameComponents.Physics;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Health;
+using SSSRegen.Source.Game.Meteors.Strategies;
 
 namespace SSSRegen.Source.Game.Meteors
 {
@@ -12,74 +14,62 @@ namespace SSSRegen.Source.Game.Meteors
         private readonly GameContext _gameContext;
         private readonly Random _random;
 
+        private readonly IMeteorStrategy _bigMeteorStrategy, _mediumMeteorStrategy, _smallMeteorStrategy, _tinyMeteorStrategy;
+        private readonly ISprite _bigMeteorSprite, _mediumMeteorSprite, _smallMeteorSprite, _tinyMeteorSprite;
+
         public MeteorFactory(GameContext gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _random = gameContext.Random ?? throw new ArgumentNullException(nameof(gameContext.Random));
+            _bigMeteorStrategy = new BigMeteorStrategy();
+            _mediumMeteorStrategy = new MediumMeteorStrategy();
+            _smallMeteorStrategy = new SmallMeteorStrategy();
+            _tinyMeteorStrategy = new TinyMeteorStrategy();
+
+            _bigMeteorSprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Textures.BrownTextureName));
+            _mediumMeteorSprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Textures.BrownTextureName));
+            _smallMeteorSprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Textures.GreyTextureName));
+            _tinyMeteorSprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Textures.GreyTextureName));
         }
 
         public Meteor CreateBigMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Textures.BrownTextureName));
-            var graphicsComponent = new MeteorGraphicsComponent(_gameContext.GameGraphics, sprite);
-
             return new Meteor(
                 _gameContext,
-                GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.InitialMaxHealth,
-                GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.CollisionDamage,
-                GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.ScoreValue,
-                MeteorType.Big,
-                new HealthComponent(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.InitialMaxHealth, new NullHealthContainer()),
+                _bigMeteorStrategy,
+                new HealthComponent(new NullHealthContainer()),
                 new MeteorPhysicsComponent(_gameContext, _random),
-                graphicsComponent);
+                new MeteorGraphicsComponent(_gameContext.GameGraphics, _bigMeteorSprite));
         }
 
         public Meteor CreateMediumMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Textures.BrownTextureName));
-            var graphicsComponent = new MeteorGraphicsComponent(_gameContext.GameGraphics, sprite);
-
             return new Meteor(
                 _gameContext,
-                GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.InitialMaxHealth,
-                GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.CollisionDamage,
-                GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.ScoreValue,
-                MeteorType.Medium,
-                new HealthComponent(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
+                _mediumMeteorStrategy,
+                new HealthComponent(new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
-                graphicsComponent);
+                new MeteorGraphicsComponent(_gameContext.GameGraphics, _mediumMeteorSprite));
         }
 
         public Meteor CreateSmallMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Textures.GreyTextureName));
-            var graphicsComponent = new MeteorGraphicsComponent(_gameContext.GameGraphics, sprite);
-
             return new Meteor(
                 _gameContext,
-                GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.InitialMaxHealth,
-                GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.CollisionDamage,
-                GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.ScoreValue,
-                MeteorType.Small,
-                new HealthComponent(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
+                _smallMeteorStrategy,
+                new HealthComponent(new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
-                graphicsComponent);
+                new MeteorGraphicsComponent(_gameContext.GameGraphics, _smallMeteorSprite));
         }
 
         public Meteor CreateTinyMeteor()
         {
-            var sprite = new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Textures.GreyTextureName));
-            var graphicsComponent = new MeteorGraphicsComponent(_gameContext.GameGraphics, sprite);
-
             return new Meteor(
                 _gameContext,
-                GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.InitialMaxHealth,
-                GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.CollisionDamage,
-                GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.ScoreValue,
-                MeteorType.Tiny,
-                new HealthComponent(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
+                _tinyMeteorStrategy,
+                new HealthComponent(new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
-                graphicsComponent);
+                new MeteorGraphicsComponent(_gameContext.GameGraphics, _tinyMeteorSprite));
         }
     }
 }

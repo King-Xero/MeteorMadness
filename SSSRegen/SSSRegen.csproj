@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,8 @@
     <AssemblyName>SSSRegen</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -142,6 +143,11 @@
     <Compile Include="Source\Game\Meteors\MeteorsManager.cs" />
     <Compile Include="Source\Core\Interfaces\Graphics\IGameGraphics.cs" />
     <Compile Include="Source\Game\Meteors\MeteorType.cs" />
+    <Compile Include="Source\Game\Meteors\Strategies\BigMeteorStrategy.cs" />
+    <Compile Include="Source\Game\Meteors\Strategies\IMeteorStrategy.cs" />
+    <Compile Include="Source\Game\Meteors\Strategies\MediumMeteorStrategy.cs" />
+    <Compile Include="Source\Game\Meteors\Strategies\SmallMeteorStrategy.cs" />
+    <Compile Include="Source\Game\Meteors\Strategies\TinyMeteorStrategy.cs" />
     <Compile Include="Source\Game\Notifications\ActionOnDisposeAdapter.cs" />
     <Compile Include="Source\Game\Notifications\INotificationMediator.cs" />
     <Compile Include="Source\Game\Notifications\INotificationPublisher.cs" />
@@ -233,6 +239,7 @@
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup />

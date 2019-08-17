@@ -126,12 +126,10 @@ namespace SSSRegen.Source.Game.Meteors
             switch (args.MeteorType)
             {
                 case MeteorType.Tiny:
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.TinyMeteorConstants.Audio.DestroyedSoundEffectName));
                     break;
                 case MeteorType.Small:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.SmallMeteorConstants.Audio.DestroyedSoundEffectName));
                         var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
@@ -139,7 +137,6 @@ namespace SSSRegen.Source.Game.Meteors
                 case MeteorType.Medium:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.MediumMeteorConstants.Audio.DestroyedSoundEffectName));
                         var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
@@ -147,7 +144,6 @@ namespace SSSRegen.Source.Game.Meteors
                 case MeteorType.Big:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.BigMeteorConstants.Audio.DestroyedSoundEffectName));
                         var meteor = SpawnMeteor(_meteorFactory.CreateMediumMeteor, GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.Name);
                         meteor.Position = args.Position;
                     }
@@ -157,9 +153,7 @@ namespace SSSRegen.Source.Game.Meteors
             }
             //ToDo Spawn particles
             
-            return Task.FromResult<object>(null);
-            //ToDo upgrade net framework
-            //return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public void Dispose()

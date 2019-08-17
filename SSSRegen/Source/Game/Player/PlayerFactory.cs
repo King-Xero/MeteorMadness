@@ -10,7 +10,6 @@ using SSSRegen.Source.Game.GameComponents.Physics;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Health;
 using SSSRegen.Source.Game.Projectiles;
-using SSSRegen.Source.Game.Score;
 
 namespace SSSRegen.Source.Game.Player
 {
@@ -27,32 +26,12 @@ namespace SSSRegen.Source.Game.Player
         {
             return new Player(
                 _gameContext,
-                CreatePlayerHealth(),
-                CreatePlayerInput(),
-                CreatePlayerPhysics(),
+                new HealthComponent(new PlayerHealthContainer(_gameContext)),
+                new PlayerInputComponent(new KeyboardInputController()),
+                new PlayerPhysicsComponent(_gameContext),
                 CreatePlayerGraphics(),
-                CreatePlayerProjectileManager());
+                new PlayerProjectilesManager(new ProjectileFactory(_gameContext), _gameContext.CollisionSystem));
                 //_gameContext.GameGraphics.PlayableCamera);
-        }
-
-        private IHealthComponent CreatePlayerHealth()
-        {
-            return new HealthComponent(GameConstants.PlayerConstants.InitialMaxHealth, new PlayerHealthContainer(_gameContext));
-        }
-
-        private IScoreComponent CreatePlayerScore()
-        {
-            return new PlayerScoreComponent(_gameContext);
-        }
-
-        private IComponent<IPlayer> CreatePlayerInput()
-        {
-            return new PlayerInputComponent(new KeyboardInputController());
-        }
-
-        private IComponent<IPlayer> CreatePlayerPhysics()
-        {
-            return new PlayerPhysicsComponent(_gameContext);
         }
 
         private IDrawableComponent<IPlayer> CreatePlayerGraphics()
@@ -81,11 +60,6 @@ namespace SSSRegen.Source.Game.Player
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.LightDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.MediumDamageTextureName)),
                 new Sprite(_gameContext.AssetManager.GetTexture(GameConstants.PlayerConstants.PlayerShip1Constants.Textures.HeavyDamageTextureName)));
-        }
-
-        private IProjectilesManager CreatePlayerProjectileManager()
-        {
-            return new PlayerProjectilesManager(new ProjectileFactory(_gameContext), _gameContext.CollisionSystem);
         }
     }
 }

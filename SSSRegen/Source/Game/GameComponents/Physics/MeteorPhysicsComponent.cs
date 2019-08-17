@@ -41,9 +41,6 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             _movementDirection = new Vector2(_random.Next(-10, 11),_random.Next(-10, 11));
             _movementDirection.Normalize();
 
-            //ToDo Read from constant into a meteor
-            meteor.MovementSpeed = 100;
-
             var meteorPosition = meteor.Position;
 
             //Random coordinate in the left or right 25% of the screen

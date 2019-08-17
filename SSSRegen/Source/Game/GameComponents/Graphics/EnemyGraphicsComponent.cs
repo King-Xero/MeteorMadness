@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
@@ -11,11 +10,11 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
     public class EnemyGraphicsComponent : IDrawableComponent<IGameObject>
     {
         private readonly IGameGraphics _gameGraphics;
-        private readonly Sprite _eSprite;
+        private readonly ISprite _eSprite;
 
-        private Sprite _activeSprite;
+        private ISprite _activeSprite;
 
-        public EnemyGraphicsComponent(IGameGraphics gameGraphics, Sprite eSprite)
+        public EnemyGraphicsComponent(IGameGraphics gameGraphics, ISprite eSprite)
         {
             _gameGraphics = gameGraphics ?? throw new ArgumentNullException(nameof(gameGraphics));
             _eSprite = eSprite ?? throw new ArgumentNullException(nameof(eSprite));
