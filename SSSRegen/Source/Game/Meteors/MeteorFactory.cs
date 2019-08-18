@@ -37,7 +37,7 @@ namespace SSSRegen.Source.Game.Meteors
             return new Meteor(
                 _gameContext,
                 _bigMeteorStrategy,
-                new HealthComponent(new NullHealthContainer()),
+                new HealthComponent(GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.InitialMaxHealth, new NullHealthContainer()),
                 new MeteorPhysicsComponent(_gameContext, _random),
                 new MeteorGraphicsComponent(_gameContext.GameGraphics, _bigMeteorSprite));
         }
@@ -47,7 +47,7 @@ namespace SSSRegen.Source.Game.Meteors
             return new Meteor(
                 _gameContext,
                 _mediumMeteorStrategy,
-                new HealthComponent(new NullHealthContainer()), 
+                new HealthComponent(GameConstants.MeteorConstants.MediumMeteorConstants.MediumMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 new MeteorGraphicsComponent(_gameContext.GameGraphics, _mediumMeteorSprite));
         }
@@ -57,7 +57,7 @@ namespace SSSRegen.Source.Game.Meteors
             return new Meteor(
                 _gameContext,
                 _smallMeteorStrategy,
-                new HealthComponent(new NullHealthContainer()), 
+                new HealthComponent(GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 new MeteorGraphicsComponent(_gameContext.GameGraphics, _smallMeteorSprite));
         }
@@ -67,7 +67,7 @@ namespace SSSRegen.Source.Game.Meteors
             return new Meteor(
                 _gameContext,
                 _tinyMeteorStrategy,
-                new HealthComponent(new NullHealthContainer()), 
+                new HealthComponent(GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.InitialMaxHealth, new NullHealthContainer()), 
                 new MeteorPhysicsComponent(_gameContext, _random),
                 new MeteorGraphicsComponent(_gameContext.GameGraphics, _tinyMeteorSprite));
         }

@@ -7,5 +7,7 @@ namespace SSSRegen.Source.Game.Health
     {
         //ToDo use more detailed event args
         event EventHandler<EventArgs> Died;
+        int CurrentHealth { get; }
+        int MaxHealth { get; }
     }
 }

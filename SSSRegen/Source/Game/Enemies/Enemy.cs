@@ -46,7 +46,9 @@ namespace SSSRegen.Source.Game.Enemies
         public event EventHandler<HealEventArgs> Healed;
         public event EventHandler<DamageEventArgs> Damaged;
 
-        public int MaxHealth { get; private set; }
+        public float MaxHealth => _healthComponent.MaxHealth;
+        public float CurrentHealth => _healthComponent.CurrentHealth;
+
         public int CollisionDamageAmount { get; private set; }
 
         public IGameObject Target { get; private set; }
@@ -55,7 +57,6 @@ namespace SSSRegen.Source.Game.Enemies
 
         public override void Initialize()
         {
-            MaxHealth = _initialMaxHealth;
             CollisionDamageAmount = _initialCollisionDamage;
             IsActive = true;
             Target = null;

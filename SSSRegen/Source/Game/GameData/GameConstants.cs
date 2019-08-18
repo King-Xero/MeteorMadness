@@ -414,6 +414,10 @@ namespace SSSRegen.Source.Game.GameData
                     public const string BlueLifeIconTextureFileName = @"Images/UI/playerLife3_Blue";
                 }
             }
+
+            public const int LightDamageThreshold = 75;
+            public const int MediumDamageThreshold = 50;
+            public const int HeavyDamageThreshold = 25;
         }
 
         public static class GameStateConstants

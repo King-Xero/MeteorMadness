@@ -10,16 +10,19 @@ namespace SSSRegen.Source.Game.Health
         private int _currentHealth;
         private int _maxHealth;
 
-        public HealthComponent(IHealthContainer healthContainer)
+        public HealthComponent(int initialMaxHealth, IHealthContainer healthContainer)
         {
+            _maxHealth = initialMaxHealth;
             _healthContainer = healthContainer ?? throw new ArgumentNullException(nameof(healthContainer));
         }
 
         public event EventHandler<EventArgs> Died = delegate { };
+        public int CurrentHealth => _currentHealth;
+        public int MaxHealth => _maxHealth;
 
         public void Initialize(IHandleHealth entity)
         {
-            _maxHealth = entity.MaxHealth;
+            //ToDo pass max health initializer into ctor
             _currentHealth = _maxHealth;
 
             _healthContainer.Initialize(entity);

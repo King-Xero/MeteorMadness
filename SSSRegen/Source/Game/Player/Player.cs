@@ -5,11 +5,13 @@ using SSSRegen.Source.Core.Interfaces.Audio;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
+using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.Bonuses;
 using SSSRegen.Source.Game.Enemies;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Health;
 using SSSRegen.Source.Game.Meteors;
+using SSSRegen.Source.Game.Notifications;
 using SSSRegen.Source.Game.Projectiles;
 using SSSRegen.Source.Game.Score;
 
@@ -41,6 +43,10 @@ namespace SSSRegen.Source.Game.Player
 
         public event EventHandler<HealEventArgs> Healed = delegate { };
         public event EventHandler<DamageEventArgs> Damaged = delegate { };
+
+        public float CurrentHealth => _healthComponent.CurrentHealth;
+        public float MaxHealth => _healthComponent.MaxHealth;
+
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
         public bool IsAccelerating
@@ -62,14 +68,12 @@ namespace SSSRegen.Source.Game.Player
         }
 
         public float RotationSpeed { get; set; }
-        public int MaxHealth { get; private set; }
         public int CollisionDamageAmount { get; private set; }
 
         public CollisionLayer CollisionLayer => CollisionLayer.Player;
 
         public override void Initialize()
         {
-            MaxHealth = GameConstants.PlayerConstants.InitialMaxHealth;
             CollisionDamageAmount = GameConstants.PlayerConstants.InitialCollisionDamage;
             IsActive = true;
 
@@ -101,11 +105,13 @@ namespace SSSRegen.Source.Game.Player
         public void Heal(int healAmount)
         {
             Healed?.Invoke(this, new HealEventArgs(healAmount));
+            UpdatePlayerDamageLevel();
         }
 
         public void Damage(int damageAmount)
         {
             Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+            UpdatePlayerDamageLevel();
         }
 
         public void UpdateScore(int scoreAmount)
@@ -163,6 +169,26 @@ namespace SSSRegen.Source.Game.Player
         private void StopAcceleratingSoundEffect()
         {
             _acceleratingSoundEffect.Stop();
+        }
+
+        private void UpdatePlayerDamageLevel()
+        {
+            if (CurrentHealth <= (MaxHealth / 100) * GameConstants.PlayerConstants.HeavyDamageThreshold)
+            {
+                _gameContext.NotificationMediator.PublishPlayerDamageLevel(PlayerDamageLevel.Heavy);
+            }
+            else if (CurrentHealth <= (MaxHealth / 100) * GameConstants.PlayerConstants.MediumDamageThreshold)
+            {
+                _gameContext.NotificationMediator.PublishPlayerDamageLevel(PlayerDamageLevel.Medium);
+            }
+            else if (CurrentHealth <= (MaxHealth / 100) * GameConstants.PlayerConstants.LightDamageThreshold)
+            {
+                _gameContext.NotificationMediator.PublishPlayerDamageLevel(PlayerDamageLevel.Light);
+            }
+            else if (CurrentHealth.ToInt() == MaxHealth.ToInt())
+            {
+                _gameContext.NotificationMediator.PublishPlayerDamageLevel(PlayerDamageLevel.None);
+            }
         }
     }
 }
