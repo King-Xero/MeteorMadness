@@ -6,5 +6,6 @@ namespace SSSRegen.Source.Game.Notifications
     {
         Task PublishPlayerScoreChange(PlayerScoreNotificationArguments args);
         Task PublishMeteorDestroyed(MeteorDestroyedNotificationArguments args);
+        Task PublishPlayerDamageLevel(PlayerDamageLevel damageLevel);
     }
 }

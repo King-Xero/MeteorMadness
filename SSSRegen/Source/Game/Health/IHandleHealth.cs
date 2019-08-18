@@ -8,8 +8,9 @@ namespace SSSRegen.Source.Game.Health
         event EventHandler<HealEventArgs> Healed;
         event EventHandler<DamageEventArgs> Damaged;
 
-        int MaxHealth { get; }
-        
+        float CurrentHealth { get; }
+        float MaxHealth { get; }
+
         void Heal(int healAmount);
         void Damage(int damageAmount);
     }

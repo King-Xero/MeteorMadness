@@ -156,6 +156,7 @@
     <Compile Include="Source\Game\Notifications\MeteorDestroyedNotificationArguments.cs" />
     <Compile Include="Source\Game\Notifications\NotificationChannel.cs" />
     <Compile Include="Source\Game\Notifications\NotificationMediator.cs" />
+    <Compile Include="Source\Game\Notifications\PlayerDamageLevel.cs" />
     <Compile Include="Source\Game\Notifications\PlayerScoreNotificationArguments.cs" />
     <Compile Include="Source\Game\Player\IPlayer.cs" />
     <Compile Include="Source\Game\Player\IPlayerFactory.cs" />

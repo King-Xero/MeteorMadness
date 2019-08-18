@@ -7,6 +7,7 @@ namespace SSSRegen.Source.Game.Notifications
     {
         private readonly NotificationChannel<PlayerScoreNotificationArguments> _playerScoreUpdateChannel = new NotificationChannel<PlayerScoreNotificationArguments>();
         private readonly NotificationChannel<MeteorDestroyedNotificationArguments> _meteorDestroyedUpdateChannel = new NotificationChannel<MeteorDestroyedNotificationArguments>();
+        private readonly NotificationChannel<PlayerDamageLevel> _playerDamageLevelUpdateChannel = new NotificationChannel<PlayerDamageLevel>();
 
         public IDisposable SubscribeToPlayerScoreChanges(IReceiveNotifications<PlayerScoreNotificationArguments> handler)
         {
@@ -18,6 +19,11 @@ namespace SSSRegen.Source.Game.Notifications
             return _meteorDestroyedUpdateChannel.AddSubscriber(handler);
         }
 
+        public IDisposable SubscribeToPlayerDamageLevelNotifications(IReceiveNotifications<PlayerDamageLevel> handler)
+        {
+            return _playerDamageLevelUpdateChannel.AddSubscriber(handler);
+        }
+
         public async Task PublishPlayerScoreChange(PlayerScoreNotificationArguments args)
         {
             await _playerScoreUpdateChannel.PublishNotification(args).ConfigureAwait(false);
@@ -26,6 +32,11 @@ namespace SSSRegen.Source.Game.Notifications
         public async Task PublishMeteorDestroyed(MeteorDestroyedNotificationArguments args)
         {
             await _meteorDestroyedUpdateChannel.PublishNotification(args).ConfigureAwait(false);
+        }
+
+        public async Task PublishPlayerDamageLevel(PlayerDamageLevel damageLevel)
+        {
+            await _playerDamageLevelUpdateChannel.PublishNotification(damageLevel).ConfigureAwait(false);
         }
 
         public void Dispose()

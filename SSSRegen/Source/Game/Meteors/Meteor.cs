@@ -36,13 +36,14 @@ namespace SSSRegen.Source.Game.Meteors
         public event EventHandler<HealEventArgs> Healed;
         public event EventHandler<DamageEventArgs> Damaged;
 
-        public int MaxHealth { get; private set; }
+        public float CurrentHealth => _healthComponent.CurrentHealth;
+        public float MaxHealth => _healthComponent.MaxHealth;
+
         public int CollisionDamageAmount { get; private set; }
         public CollisionLayer CollisionLayer => CollisionLayer.Meteor;
 
         public override void Initialize()
         {
-            MaxHealth = _meteorStrategy.MaxHealth;
             MovementSpeed = _meteorStrategy.MovementSpeed;
             CollisionDamageAmount = _meteorStrategy.CollisionDamage;
 

@@ -26,7 +26,7 @@ namespace SSSRegen.Source.Game.Player
         {
             return new Player(
                 _gameContext,
-                new HealthComponent(new PlayerHealthContainer(_gameContext)),
+                new HealthComponent(GameConstants.PlayerConstants.InitialMaxHealth, new PlayerHealthContainer(_gameContext)),
                 new PlayerInputComponent(new KeyboardInputController()),
                 new PlayerPhysicsComponent(_gameContext),
                 CreatePlayerGraphics(),

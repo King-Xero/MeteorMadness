@@ -6,5 +6,6 @@ namespace SSSRegen.Source.Game.Notifications
     {
         IDisposable SubscribeToPlayerScoreChanges(IReceiveNotifications<PlayerScoreNotificationArguments> handler);
         IDisposable SubscribeToMeteorDestroyedNotifications(IReceiveNotifications<MeteorDestroyedNotificationArguments> handler);
+        IDisposable SubscribeToPlayerDamageLevelNotifications(IReceiveNotifications<PlayerDamageLevel> handler);
     }
 }

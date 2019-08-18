@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Graphics;
 using SSSRegen.Source.Core.Interfaces.Components;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Interfaces.Graphics;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Notifications;
 using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Graphics
 {
-    public class PlayerGraphicsComponent : IDrawableComponent<IPlayer>
+    public class PlayerGraphicsComponent : IDrawableComponent<IPlayer>, IReceiveNotifications<PlayerDamageLevel>, IDisposable
     {
         private readonly GameContext _gameContext;
         private readonly ISprite _playerShipSprite;
@@ -18,7 +20,8 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
         private readonly ISprite _mediumDamageSprite;
         private readonly ISprite _heavyDamageSprite;
         
-        private Sprite _activeDamageSprite;
+        private ISprite _activeDamageSprite;
+        private IDisposable _damageUpdateHandler;
 
         public PlayerGraphicsComponent(GameContext gameContext, ISprite playerShipSprite, IAnimatedSprite thrusterSprite, ISprite lightDamageSprite, ISprite mediumDamageSprite, ISprite heavyDamageSprite)
         {
@@ -32,6 +35,8 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
 
         public void Initialize(IPlayer player)
         {
+            _damageUpdateHandler = _gameContext.NotificationMediator.SubscribeToPlayerDamageLevelNotifications(this);
+
             _activeDamageSprite = null;
             player.Size = _playerShipSprite.Size;
             player.Origin = _playerShipSprite.Origin;
@@ -48,7 +53,6 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
 
         public void Draw(IPlayer player, IGameTime gameTime)
         {
-            
             _gameContext.GameGraphics.Draw(_playerShipSprite, player.Position, Color.White, player.Rotation, player.Origin);
             if (_activeDamageSprite != null)
             {
@@ -61,6 +65,34 @@ namespace SSSRegen.Source.Game.GameComponents.Graphics
                 //Offset thruster draw position by thruster sprite origin so that the sprite is centered
                 _gameContext.GameGraphics.Draw(_thrusterSprite, player.Position, Color.White, player.Rotation, thrusterOrigin);
             }
+        }
+
+        public Task OnNotificationReceived(PlayerDamageLevel damageLevel)
+        {
+            switch (damageLevel)
+            {
+                case PlayerDamageLevel.None:
+                    _activeDamageSprite = null;
+                    break;
+                case PlayerDamageLevel.Light:
+                    _activeDamageSprite = _lightDamageSprite;
+                    break;
+                case PlayerDamageLevel.Medium:
+                    _activeDamageSprite = _mediumDamageSprite;
+                    break;
+                case PlayerDamageLevel.Heavy:
+                    _activeDamageSprite = _heavyDamageSprite;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(damageLevel), damageLevel, null);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            _damageUpdateHandler?.Dispose();
         }
     }
 }

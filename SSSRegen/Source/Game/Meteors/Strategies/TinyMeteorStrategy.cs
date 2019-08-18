@@ -5,7 +5,6 @@ namespace SSSRegen.Source.Game.Meteors.Strategies
     public class TinyMeteorStrategy : IMeteorStrategy
     {
         public MeteorType MeteorType => MeteorType.Tiny;
-        public int MaxHealth => GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.InitialMaxHealth;
         public int CollisionDamage => GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.CollisionDamage;
         public int ScoreValue => GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.ScoreValue;
         public int MovementSpeed => GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.MovementSpeed;
