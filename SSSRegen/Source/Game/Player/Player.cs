@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Collision;
 using SSSRegen.Source.Core.Entities;
 using SSSRegen.Source.Core.Interfaces.Audio;
@@ -8,6 +9,7 @@ using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Core.Utils;
 using SSSRegen.Source.Game.Bonuses;
 using SSSRegen.Source.Game.Enemies;
+using SSSRegen.Source.Game.GameComponents.Physics;
 using SSSRegen.Source.Game.GameData;
 using SSSRegen.Source.Game.Health;
 using SSSRegen.Source.Game.Meteors;
@@ -22,14 +24,14 @@ namespace SSSRegen.Source.Game.Player
         private readonly GameContext _gameContext;
         private readonly IComponent<IPlayer> _inputComponent;
         private readonly IHealthComponent _healthComponent;
-        private readonly IComponent<IPlayer> _physicsComponent;
+        private readonly IPlayerPhysicsComponent _physicsComponent;
         private readonly IDrawableComponent<IPlayer> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
         private readonly ISoundEffect _acceleratingSoundEffect;
 
         private bool _isAccelerating;
         
-        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IComponent<IPlayer> physicsComponent, IDrawableComponent<IPlayer> graphicsComponent, IProjectilesManager projectileManager)
+        public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IPlayerPhysicsComponent physicsComponent, IDrawableComponent<IPlayer> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _inputComponent = inputComponent ?? throw new ArgumentNullException(nameof(inputComponent));
@@ -46,6 +48,7 @@ namespace SSSRegen.Source.Game.Player
 
         public float CurrentHealth => _healthComponent.CurrentHealth;
         public float MaxHealth => _healthComponent.MaxHealth;
+        public Vector2 ThrustingVelocity => _physicsComponent.ThrustingVelocity;
 
         public event EventHandler<ScoreUpdatedEventArgs> ScoreUpdated = delegate { };
 
@@ -110,7 +113,7 @@ namespace SSSRegen.Source.Game.Player
 
         public void Damage(int damageAmount)
         {
-            Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+            //Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
             UpdatePlayerDamageLevel();
         }
 

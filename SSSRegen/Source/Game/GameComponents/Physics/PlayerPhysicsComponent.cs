@@ -9,18 +9,19 @@ using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.GameComponents.Physics
 {
-    public class PlayerPhysicsComponent : PhysicsComponentBase, IComponent<IPlayer>
+    public class PlayerPhysicsComponent : PhysicsComponentBase, IPlayerPhysicsComponent
     {
         private readonly GameContext _gameContext;
         //ToDo Move to game constants
         private float _friction = 0.5f;
-        private Vector2 _thrustingVelocity;
         private Vector2 _movementDirection;
 
         public PlayerPhysicsComponent(GameContext gameContext) : base(gameContext)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
         }
+
+        public Vector2 ThrustingVelocity { get; private set; }
 
         public void Initialize(IPlayer player)
         {
@@ -44,11 +45,26 @@ namespace SSSRegen.Source.Game.GameComponents.Physics
             }
             
             //Calculate thrusting velocity. Based off of acceleration friction calculation here: http://community.monogame.net/t/acceleration-and-friction-in-2d-games/9319
-            _thrustingVelocity += _movementDirection * player.MovementSpeed - _friction * _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            ThrustingVelocity += _movementDirection * player.MovementSpeed - _friction * ThrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
 
-            player.Position += _thrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
+            //ToDo Add value to game constants
+            ClampThrustingVelocity(GameConstants.PlayerConstants.ThrustingVelocityLimit);
+            
+            player.Position += ThrustingVelocity * gameTime.ElapsedGameTime.TotalSeconds.ToFloat();
             
             player.Position = KeepGameObjectInScreenBounds(player, player.Position);
+        }
+
+        private void ClampThrustingVelocity(int velocityLimit)
+        {
+            var thrustingVelocity = ThrustingVelocity;
+
+            if (thrustingVelocity.X < -velocityLimit) thrustingVelocity.X = -velocityLimit;
+            if (thrustingVelocity.Y < -velocityLimit) thrustingVelocity.Y = -velocityLimit;
+            if (thrustingVelocity.X > velocityLimit) thrustingVelocity.X = velocityLimit;
+            if (thrustingVelocity.Y > velocityLimit) thrustingVelocity.Y = velocityLimit;
+
+            ThrustingVelocity = thrustingVelocity;
         }
 
         //Reset the player position to the center of the screen

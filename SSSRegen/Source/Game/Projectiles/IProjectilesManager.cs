@@ -1,4 +1,5 @@
 ﻿using SSSRegen.Source.Core.Interfaces.GameStateMachine;
+using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.Projectiles
 {
@@ -6,7 +7,7 @@ namespace SSSRegen.Source.Game.Projectiles
     {
         void Initialize();
         void Update(IGameTime gameTime);
-        void Shoot(IShootProjectiles obj);
+        void Shoot(IPlayer obj);
         void Draw(IGameTime gameTime);
     }
 }

@@ -5,6 +5,7 @@ using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
 using SSSRegen.Source.Game.GameData;
+using SSSRegen.Source.Game.Player;
 
 namespace SSSRegen.Source.Game.Projectiles
 {
@@ -44,7 +45,7 @@ namespace SSSRegen.Source.Game.Projectiles
             }
         }
 
-        public void Shoot(IShootProjectiles obj)
+        public void Shoot(IPlayer obj)
         {
             var bulletToShoot = _bullets.FirstOrDefault(b => !b.IsActive);
             if (bulletToShoot == null)
@@ -55,7 +56,7 @@ namespace SSSRegen.Source.Game.Projectiles
                 bulletToShoot.Initialize();
             }
 
-            bulletToShoot.MovementSpeed = obj.MovementSpeed + GameConstants.ProjectileConstants.Bullet3Constants.BulletSpeed;
+            bulletToShoot.MovementSpeed = obj.ThrustingVelocity.Length() + GameConstants.ProjectileConstants.Bullet3Constants.BulletSpeed;
             bulletToShoot.Rotation = obj.Rotation;
             bulletToShoot.Position = obj.Position;
             bulletToShoot.IsActive = true;
