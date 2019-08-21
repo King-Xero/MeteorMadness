@@ -81,6 +81,7 @@
     <Compile Include="Source\Game\GameComponents\Graphics\PlayStateGraphicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Input\PlayStateMenuInputComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Physics\BulletPhysicsComponent.cs" />
+    <Compile Include="Source\Game\GameComponents\Physics\IPlayerPhysicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Physics\PhysicsComponentBase.cs" />
     <Compile Include="Source\Game\Menus\IMenuFactory.cs" />
     <Compile Include="Source\Core\Interfaces\Menus\IGameMenu.cs" />

@@ -418,6 +418,7 @@ namespace SSSRegen.Source.Game.GameData
             public const int LightDamageThreshold = 75;
             public const int MediumDamageThreshold = 50;
             public const int HeavyDamageThreshold = 25;
+            public const int ThrustingVelocityLimit = 1000;
         }
 
         public static class GameStateConstants
