@@ -183,6 +183,8 @@ namespace SSSRegen
 
             //Player SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.PlayerConstants.Audio.DestroyedSoundEffectName, GameConstants.PlayerConstants.Audio.DestroyedSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.PlayerConstants.Audio.HitSoundEffectName, GameConstants.PlayerConstants.Audio.HitSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.PlayerConstants.Audio.InvulnerableSoundEffectName, GameConstants.PlayerConstants.Audio.InvulnerableSoundEffectFileName);
 
             //Bullet SoundEffects
             _gameContext.AssetManager.LoadSoundEffect(GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectName, GameConstants.ProjectileConstants.Bullet1Constants.Audio.ShootSoundEffectFileName);
@@ -207,6 +209,12 @@ namespace SSSRegen
 
             //Play State Music
             _gameContext.AssetManager.LoadSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicName, GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicFileName);
+            _gameContext.AssetManager.LoadSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverMusicName, GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverMusicFileName);
+
+            //Play State SoundEffects
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectName, GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectName, GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectFileName);
+            _gameContext.AssetManager.LoadSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectName, GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectFileName);
 
             base.LoadContent();
         }

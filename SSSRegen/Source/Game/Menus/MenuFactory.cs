@@ -85,7 +85,10 @@ namespace SSSRegen.Source.Game.Menus
                     new PlayStatePausedGraphicsComponent(_gameContext), 
                     new PlayStateGameOverGraphicsComponent(_gameContext), 
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
-                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectName)),
                 true);
         }
 
@@ -101,7 +104,10 @@ namespace SSSRegen.Source.Game.Menus
                     new PlayStatePausedGraphicsComponent(_gameContext),
                     new PlayStateGameOverGraphicsComponent(_gameContext),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
-                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectName)),
                 true);
         }
 

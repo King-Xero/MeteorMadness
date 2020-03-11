@@ -55,6 +55,18 @@
 /processorParam:Quality=Best
 /build:Audio/Player/Destroyed/EXPLOSION_Short_Flanged_Muffled_Fade_stereo.wav
 
+#begin Audio/Player/Hit/IMPACT_Generic_09_Short_mono.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Player/Hit/IMPACT_Generic_09_Short_mono.wav
+
+#begin Audio/Player/Invulnerable/sci-fi_alarm_siren_loop_01.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Player/Invulnerable/sci-fi_alarm_siren_loop_01.wav
+
 #begin Audio/Projectiles/Bullet1/BLASTER_Bright_Short_stereo.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -109,11 +121,35 @@
 /processorParam:Quality=Best
 /build:Audio/States/MenuState/UI_SCI-FI_Confirm_Wet_stereo.wav
 
+#begin Audio/States/PlayState/Deep_Space_Ambience_LOOP.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/Deep_Space_Ambience_LOOP.wav
+
 #begin Audio/States/PlayState/Long_Range_Combat_LOOP.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Audio/States/PlayState/Long_Range_Combat_LOOP.wav
+
+#begin Audio/States/PlayState/VOICE_ROBOTIC_MALE_Game_Over_4_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/VOICE_ROBOTIC_MALE_Game_Over_4_stereo.wav
+
+#begin Audio/States/PlayState/VOICE_ROBOTIC_MALE_Get_Ready_3_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/VOICE_ROBOTIC_MALE_Get_Ready_3_stereo.wav
+
+#begin Audio/States/PlayState/VOICE_ROBOTIC_MALE_Incoming_1_stereo.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/States/PlayState/VOICE_ROBOTIC_MALE_Incoming_1_stereo.wav
 
 #begin Audio/States/SplashState/VOICE_ROBOTIC_MALE_0_stereo.wav
 /importer:WavImporter

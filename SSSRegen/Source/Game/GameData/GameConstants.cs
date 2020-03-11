@@ -359,6 +359,10 @@ namespace SSSRegen.Source.Game.GameData
             {
                 public const string DestroyedSoundEffectName = "playerDestroyedSoundEffect";
                 public const string DestroyedSoundEffectFileName = @"Audio/Player/Destroyed/EXPLOSION_Short_Flanged_Muffled_Fade_stereo";
+                public const string HitSoundEffectName = "playerHitSoundEffect";
+                public const string HitSoundEffectFileName = @"Audio/Player/Hit/IMPACT_Generic_09_Short_mono";
+                public const string InvulnerableSoundEffectName = "playerInvulnerableSoundEffect";
+                public const string InvulnerableSoundEffectFileName = @"Audio/Player/Invulnerable/sci-fi_alarm_siren_loop_01";
             }
 
             public static class PlayerShip1Constants
@@ -454,6 +458,14 @@ namespace SSSRegen.Source.Game.GameData
                 {
                     public const string BackgroundMusicName = "playStateBackgroundMusic";
                     public const string BackgroundMusicFileName = @"Audio/States/PlayState/Long_Range_Combat_LOOP";
+                    public const string GameOverMusicName = "playStateGameOverMusic";
+                    public const string GameOverMusicFileName = @"Audio/States/PlayState/Deep_Space_Ambience_LOOP";
+                    public const string GetReadySoundEffectName = "playStateGetReadySoundEffect";
+                    public const string GetReadySoundEffectFileName = @"Audio/States/PlayState/VOICE_ROBOTIC_MALE_Get_Ready_3_stereo";
+                    public const string IncomingSoundEffectName = "playStateIncomingSoundEffect";
+                    public const string IncomingSoundEffectFileName = @"Audio/States/PlayState/VOICE_ROBOTIC_MALE_Incoming_1_stereo";
+                    public const string GameOverSoundEffectName = "playStateGameOverSoundEffect";
+                    public const string GameOverSoundEffectFileName = @"Audio/States/PlayState/VOICE_ROBOTIC_MALE_Game_Over_4_stereo";
                 }
 
                 public const string GameOverLine1Text = "Game";

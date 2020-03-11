@@ -23,6 +23,8 @@ namespace SSSRegen.Source.Game.States
         private readonly IDrawableComponent<IGameState> _playStateGameOverGraphics;
         private readonly SoundEffect _pauseMenuAppearingSoundEffect;
         private readonly SoundEffect _pauseMenuDisappearingSoundEffect;
+        private readonly SoundEffect _gameOverSoundEffect;
+        private readonly SoundEffect _getReadySoundEffect;
         private readonly IGameObjectManager[] _gameObjectManagers;
         private readonly IScoreComponent _scoreComponent;
 
@@ -53,7 +55,7 @@ namespace SSSRegen.Source.Game.States
             }
         }
         
-        public PlayState(GameContext gameContext, IDrawableComponent<IGameState> playStateGraphics, IDrawableComponent<IGameState> playStatePausedGraphics, IDrawableComponent<IGameState> playStateGameOverGraphics, SoundEffect pauseMenuAppearingSoundEffect, SoundEffect pauseMenuDisappearingSoundEffect)
+        public PlayState(GameContext gameContext, IDrawableComponent<IGameState> playStateGraphics, IDrawableComponent<IGameState> playStatePausedGraphics, IDrawableComponent<IGameState> playStateGameOverGraphics, SoundEffect pauseMenuAppearingSoundEffect, SoundEffect pauseMenuDisappearingSoundEffect, SoundEffect gameOverSoundEffect, SoundEffect getReadySoundEffect, SoundEffect incomingSoundEffect)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _playStateGraphics = playStateGraphics ?? throw new ArgumentNullException(nameof(playStateGraphics));
@@ -61,6 +63,8 @@ namespace SSSRegen.Source.Game.States
             _playStateGameOverGraphics = playStateGameOverGraphics ?? throw new ArgumentNullException(nameof(playStateGameOverGraphics));
             _pauseMenuAppearingSoundEffect = pauseMenuAppearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuAppearingSoundEffect));
             _pauseMenuDisappearingSoundEffect = pauseMenuDisappearingSoundEffect ?? throw new ArgumentException(nameof(pauseMenuDisappearingSoundEffect));
+            _gameOverSoundEffect = gameOverSoundEffect ?? throw new ArgumentException(nameof(gameOverSoundEffect));
+            _getReadySoundEffect = getReadySoundEffect ?? throw new ArgumentException(nameof(getReadySoundEffect));
 
             var playerManager = new PlayerManager(new PlayerFactory(_gameContext), _gameContext.CollisionSystem);
 
@@ -69,7 +73,7 @@ namespace SSSRegen.Source.Game.States
                 playerManager,
                 //ToDo Change how enemies are spawned and positioned
                 //new EnemiesManager(new EnemyFactory(_gameContext, playerManager), _gameContext.CollisionSystem),
-                new MeteorsManager(_gameContext, new MeteorFactory(_gameContext), _gameContext.CollisionSystem),
+                new MeteorsManager(_gameContext, new MeteorFactory(_gameContext), _gameContext.CollisionSystem, incomingSoundEffect),
                 new BonusManager(_gameContext, new BonusFactory(_gameContext), _gameContext.CollisionSystem),
             };
 
@@ -82,6 +86,7 @@ namespace SSSRegen.Source.Game.States
 
             _gameContext.GameAudio.StopMusic();
             _gameContext.GameAudio.PlayMusic(_gameContext.AssetManager.GetSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicName), true);
+            _gameContext.GameAudio.PlaySoundEffect(_getReadySoundEffect);
 
             //ToDo move collision system out of GameContext. Make local to play state.
             _gameContext.CollisionSystem.Initialize();
@@ -200,9 +205,9 @@ namespace SSSRegen.Source.Game.States
 
             _gameContext.GameAudio.StopMusic();
             //ToDo Change to game over sound effect
-            _gameContext.GameAudio.PlaySoundEffect(_pauseMenuDisappearingSoundEffect);
+            _gameContext.GameAudio.PlaySoundEffect(_gameOverSoundEffect);
             //ToDo Change to game over music
-            _gameContext.GameAudio.PlayMusic(_gameContext.AssetManager.GetSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.BackgroundMusicName), true);
+            _gameContext.GameAudio.PlayMusic(_gameContext.AssetManager.GetSong(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverMusicName), true);
 
             //Game over text and menu are shown because _isGameOver is true but the menu still needs to be enabled
             _playStateGameOverMenu.IsEnabled = true;
