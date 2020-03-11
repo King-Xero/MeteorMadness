@@ -456,9 +456,15 @@ namespace SSSRegen.Source.Game.GameData
                     public const string BackgroundMusicFileName = @"Audio/States/PlayState/Long_Range_Combat_LOOP";
                 }
 
+                public const string GameOverLine1Text = "Game";
+                public const string GameOverLine2Text = "Over";
+                public const string PausedText = "Paused";
                 public const string MenuTextResume = "Resume";
+                public const string MenuTextPlayAgain = "Play Again?";
                 public const string MenuTextHelp = "Help";
                 public const string MenuTextQuit = "Quit";
+
+                public const int GameOverFlashDelay = 1;
             }
 
             public static class MenuStateConstants
@@ -523,14 +529,18 @@ namespace SSSRegen.Source.Game.GameData
                     //ToDo Logo position to go here
                 }
 
+                public const string GameTitleLine1Text = "Meteor";
+                public const string GameTitleLine2Text = "Madness";
+                
                 public const string PlayMenuText = "Play";
 
                 //public const string OnePlayerMenuText = "One Player";
                 //public const string TwoPlayerMenuText = "Two Player";
                 public const string HelpMenuText = "Help";
                 public const string QuitMenuText = "Quit";
+                
                 public const int ItemSpacing = 5;
-            }
+        }
         }
 
         public static class ProjectileConstants

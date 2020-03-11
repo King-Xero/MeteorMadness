@@ -91,17 +91,23 @@ namespace SSSRegen.Source.Game.Player
 
         public override void Update(IGameTime gameTime)
         {
-            _inputComponent.Update(this, gameTime);
-            _graphicsComponent.Update(this, gameTime);
-            _physicsComponent.Update(this, gameTime);
+            if (IsActive)
+            {
+                _inputComponent.Update(this, gameTime);
+                _graphicsComponent.Update(this, gameTime);
+                _physicsComponent.Update(this, gameTime);
+                _projectileManager.Update(gameTime);
+            }
             _healthComponent.Update(this, gameTime);
-            _projectileManager.Update(gameTime);
         }
 
         public override void Draw(IGameTime gameTime)
         {
             _projectileManager.Draw(gameTime);
-            _graphicsComponent.Draw(this, gameTime);
+            if (IsActive)
+            {
+                _graphicsComponent.Draw(this, gameTime);
+            }
             _healthComponent.Draw(this, gameTime);
         }
 
@@ -113,7 +119,7 @@ namespace SSSRegen.Source.Game.Player
 
         public void Damage(int damageAmount)
         {
-            //Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+            Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
             UpdatePlayerDamageLevel();
         }
 
@@ -156,12 +162,16 @@ namespace SSSRegen.Source.Game.Player
 
         private void PlayerOnDied(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-            //Player died
-            //ToDo play destroyed sound
-            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-            //ToDo show game over screen
+            //Stop sound effect in case it is currently playing
+            StopAcceleratingSoundEffect();
+
+            _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.PlayerConstants.Audio.DestroyedSoundEffectName));
             _healthComponent.Died -= PlayerOnDied;
+
+            // Hide and disable the player
+            IsActive = false;
+
+            _gameContext.NotificationMediator.PublishPlayerDied(new PlayerDiedNotification());
         }
 
         private void PlayAcceleratingSoundEffect()

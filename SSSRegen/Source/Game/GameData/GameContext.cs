@@ -42,5 +42,6 @@ namespace SSSRegen.Source.Game.GameData
         public IMenuFactory MenuFactory { get; }
         public ICollisionSystem CollisionSystem { get; }
         public INotificationMediator NotificationMediator { get; }
+        public Action QuitGame => () => _game.Exit();
     }
 }

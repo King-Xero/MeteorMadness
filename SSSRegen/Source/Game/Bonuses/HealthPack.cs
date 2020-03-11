@@ -51,7 +51,7 @@ namespace SSSRegen.Source.Game.Bonuses
             Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
 
             //ToDo Assign and use collision layers
-            if (gameObject.CollisionLayer == CollisionLayer.Player)
+            if (gameObject is Player.Player)
             {
                 IsActive = false;
                 PlayCollectedSoundEffect();
