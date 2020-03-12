@@ -78,14 +78,12 @@ namespace SSSRegen.Source.Game.Meteors
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
-            _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.Audio.HitSoundEffectName));
-
             switch (gameObject)
             {
                 case Player.Player player:
-                    Damage(player.CollisionDamageAmount);
                     break;
                 case Bullet bullet:
+                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.MeteorConstants.Audio.HitSoundEffectName));
                     Damage(bullet.CollisionDamageAmount);
                     break;
                 case HealthPack healthPack:
