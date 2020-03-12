@@ -24,6 +24,8 @@ namespace SSSRegen
         {
             _graphics = new GraphicsDeviceManager(this);
 
+            _graphics.IsFullScreen = true;
+
             Content.RootDirectory = "Content";
 
             IsFixedTimeStep = false;
@@ -51,7 +53,7 @@ namespace SSSRegen
                 GameConstants.GameSetupConstants.VirtualResolution);
 
             //ToDo Remove this line once player preference settings are implemented
-            screenSizeManager.SetScreenResolution(ScreenResolutionOption.SRO_1366X768);
+            screenSizeManager.SetScreenResolution(ScreenResolutionOption.SRO_1920X1080);
 
             _gameContext = new GameContext(
                 this,
