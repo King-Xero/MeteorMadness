@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Audio;
 using SSSRegen.Source.Core.Interfaces.Collision;
 using SSSRegen.Source.Core.Interfaces.Entities;
 using SSSRegen.Source.Core.Interfaces.GameStateMachine;
@@ -15,6 +16,7 @@ namespace SSSRegen.Source.Game.Meteors
         private readonly GameContext _gameContext;
         private readonly IMeteorFactory _meteorFactory;
         private readonly ICollisionSystem _collisionSystem;
+        private readonly SoundEffect _incomingSoundEffect;
 
         private Dictionary<string, List<Meteor>> _meteors;
         private Dictionary<string, List<Meteor>> _meteorsToAdd;
@@ -24,11 +26,12 @@ namespace SSSRegen.Source.Game.Meteors
         private TimeSpan _elapsedWaveTime;
         private int _numberOfMeteorsToSpawn;
 
-        public MeteorsManager(GameContext gameContext, IMeteorFactory meteorFactory, ICollisionSystem collisionSystem)
+        public MeteorsManager(GameContext gameContext, IMeteorFactory meteorFactory, ICollisionSystem collisionSystem, SoundEffect incomingSoundEffect)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
             _meteorFactory = meteorFactory ?? throw new ArgumentNullException(nameof(meteorFactory));
             _collisionSystem = collisionSystem ?? throw new ArgumentNullException(nameof(collisionSystem));
+            _incomingSoundEffect = incomingSoundEffect ?? throw new ArgumentNullException(nameof(incomingSoundEffect));
         }
 
         public void Initialize()
@@ -130,14 +133,14 @@ namespace SSSRegen.Source.Game.Meteors
                 case MeteorType.Small:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor1Constants.Name);
+                        var meteor = SpawnMeteor(_meteorFactory.CreateTinyMeteor, GameConstants.MeteorConstants.TinyMeteorConstants.TinyMeteor2Constants.Name);
                         meteor.Position = args.Position;
                     }
                     break;
                 case MeteorType.Medium:
                     for (int i = 0; i < GameConstants.MeteorConstants.NumMeteorsSpawnedWhenDestroyed; i++)
                     {
-                        var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor1Constants.Name);
+                        var meteor = SpawnMeteor(_meteorFactory.CreateSmallMeteor, GameConstants.MeteorConstants.SmallMeteorConstants.SmallMeteor2Constants.Name);
                         meteor.Position = args.Position;
                     }
                     break;
@@ -164,6 +167,8 @@ namespace SSSRegen.Source.Game.Meteors
 
         private void SpawnNextWave()
         {
+            _gameContext.GameAudio.PlaySoundEffect(_incomingSoundEffect);
+
             for (int i = 0; i < _numberOfMeteorsToSpawn; i++)
             {
                 SpawnMeteor(_meteorFactory.CreateBigMeteor, GameConstants.MeteorConstants.BigMeteorConstants.BigMeteor1Constants.Name);

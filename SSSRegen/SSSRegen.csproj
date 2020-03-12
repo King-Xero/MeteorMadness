@@ -78,8 +78,10 @@
     <Compile Include="Source\Core\Camera\TrackingCamera2D.cs" />
     <Compile Include="Source\Game\GameComponents\Graphics\BulletGraphicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Graphics\HelpMainMenuStateGraphicsComponent.cs" />
+    <Compile Include="Source\Game\GameComponents\Graphics\PlayStateGameOverGraphicsComponent.cs" />
+    <Compile Include="Source\Game\GameComponents\Graphics\PlayStatePausedGraphicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Graphics\PlayStateGraphicsComponent.cs" />
-    <Compile Include="Source\Game\GameComponents\Input\PlayStateMenuInputComponent.cs" />
+    <Compile Include="Source\Game\GameComponents\Input\PlayStatePauseMenuInputComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Physics\BulletPhysicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Physics\IPlayerPhysicsComponent.cs" />
     <Compile Include="Source\Game\GameComponents\Physics\PhysicsComponentBase.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Source\Game\Notifications\NotificationChannel.cs" />
     <Compile Include="Source\Game\Notifications\NotificationMediator.cs" />
     <Compile Include="Source\Game\Notifications\PlayerDamageLevel.cs" />
+    <Compile Include="Source\Game\Notifications\PlayerDiedNotification.cs" />
     <Compile Include="Source\Game\Notifications\PlayerScoreNotificationArguments.cs" />
     <Compile Include="Source\Game\Player\IPlayer.cs" />
     <Compile Include="Source\Game\Player\IPlayerFactory.cs" />

@@ -5,6 +5,7 @@ namespace SSSRegen.Source.Game.Menus
     public interface IMenuFactory
     {
         IGameMenu CreateMainMenu();
-        IGameMenu CreatePlayStateMenu();
+        IGameMenu CreatePlayStatePauseMenu();
+        IGameMenu CreatePlayStateGameOverMenu();
     }
 }

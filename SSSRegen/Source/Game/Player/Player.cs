@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using SSSRegen.Source.Core.Collision;
 using SSSRegen.Source.Core.Entities;
@@ -28,9 +29,13 @@ namespace SSSRegen.Source.Game.Player
         private readonly IDrawableComponent<IPlayer> _graphicsComponent;
         private readonly IProjectilesManager _projectileManager;
         private readonly ISoundEffect _acceleratingSoundEffect;
+        private readonly ISoundEffect _invulnerabilitySoundEffect;
+        private readonly Stopwatch _invulnerableStopwatch;
+        private readonly Stopwatch _flashingStopwatch;
 
         private bool _isAccelerating;
-        
+        private bool _isVisible;
+
         public Player(GameContext gameContext, IHealthComponent healthComponent, IComponent<IPlayer> inputComponent, IPlayerPhysicsComponent physicsComponent, IDrawableComponent<IPlayer> graphicsComponent, IProjectilesManager projectileManager)
         {
             _gameContext = gameContext ?? throw new ArgumentNullException(nameof(gameContext));
@@ -41,6 +46,10 @@ namespace SSSRegen.Source.Game.Player
             _projectileManager = projectileManager ?? throw new ArgumentNullException(nameof(projectileManager));
 
             _acceleratingSoundEffect = _gameContext.GameAudio.CreateSoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.ThrusterConstants.Thruster1Constants.Audio.ThrustingSoundEffectName));
+            _invulnerabilitySoundEffect = _gameContext.GameAudio.CreateSoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.PlayerConstants.Audio.InvulnerableSoundEffectName));
+
+            _invulnerableStopwatch = new Stopwatch();
+            _flashingStopwatch = new Stopwatch();
         }
 
         public event EventHandler<HealEventArgs> Healed = delegate { };
@@ -70,6 +79,8 @@ namespace SSSRegen.Source.Game.Player
             }
         }
 
+        public bool CanCollide { get; set; }
+
         public float RotationSpeed { get; set; }
         public int CollisionDamageAmount { get; private set; }
 
@@ -79,6 +90,9 @@ namespace SSSRegen.Source.Game.Player
         {
             CollisionDamageAmount = GameConstants.PlayerConstants.InitialCollisionDamage;
             IsActive = true;
+
+            CanCollide = true;
+            _isVisible = true;
 
             _inputComponent.Initialize(this);
             _graphicsComponent.Initialize(this);
@@ -91,17 +105,39 @@ namespace SSSRegen.Source.Game.Player
 
         public override void Update(IGameTime gameTime)
         {
-            _inputComponent.Update(this, gameTime);
-            _graphicsComponent.Update(this, gameTime);
-            _physicsComponent.Update(this, gameTime);
+            if (!CanCollide)
+            {
+                if (_flashingStopwatch.Elapsed > TimeSpan.FromSeconds(GameConstants.PlayerConstants.InvulnerabilityFlashDelay))
+                {
+                    _flashingStopwatch.Restart();
+                    
+                    //"Flashes" graphics for invulnerability
+                    _isVisible = !_isVisible;
+                }
+
+                if (_invulnerableStopwatch.Elapsed > TimeSpan.FromSeconds(GameConstants.PlayerConstants.InvulnerabilityDuration))
+                {
+                    StopInvulnerability();
+                }
+            }
+
+            if (IsActive)
+            {
+                _inputComponent.Update(this, gameTime);
+                _graphicsComponent.Update(this, gameTime);
+                _physicsComponent.Update(this, gameTime);
+                _projectileManager.Update(gameTime);
+            }
             _healthComponent.Update(this, gameTime);
-            _projectileManager.Update(gameTime);
         }
 
         public override void Draw(IGameTime gameTime)
         {
             _projectileManager.Draw(gameTime);
-            _graphicsComponent.Draw(this, gameTime);
+            if (IsActive && _isVisible)
+            {
+                _graphicsComponent.Draw(this, gameTime);
+            }
             _healthComponent.Draw(this, gameTime);
         }
 
@@ -113,7 +149,7 @@ namespace SSSRegen.Source.Game.Player
 
         public void Damage(int damageAmount)
         {
-            //Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
+            Damaged?.Invoke(this, new DamageEventArgs(damageAmount));
             UpdatePlayerDamageLevel();
         }
 
@@ -124,28 +160,36 @@ namespace SSSRegen.Source.Game.Player
 
         public void CollidedWith(IHandleCollisions gameObject)
         {
-            switch (gameObject)
+            if (CanCollide)
             {
-                case Player player:
-                    break;
-                case Bullet bullet:
-                    //ToDo Add enemy bullet
-                    break;
-                case HealthPack healthPack:
-                    Heal(healthPack.HealAmount);
-                    break;
-                case Enemy enemy:
-                    //ToDo swap for appropriate sfx (player collided with enemyShip)
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectName));
-                    Damage(enemy.CollisionDamageAmount);
-                    break;
-                case Meteor meteor:
-                    //ToDo swap for appropriate sfx
-                    _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.ProjectileConstants.Bullet3Constants.Audio.ShootSoundEffectName));
-                    Damage(meteor.CollisionDamageAmount);
-                    break;
+                switch (gameObject)
+                {
+                    case Player player:
+                        break;
+                    case Bullet bullet:
+                        //ToDo Add enemy bullet
+                        break;
+                    case HealthPack healthPack:
+                        Heal(healthPack.HealAmount);
+                        break;
+                    case Enemy enemy:
+                        StartInvulnerability();
+                        _gameContext.GameAudio.PlaySoundEffect(
+                            _gameContext.AssetManager.GetSoundEffect(GameConstants.PlayerConstants.Audio
+                                .HitSoundEffectName));
+                        Damage(enemy.CollisionDamageAmount);
+                        break;
+                    case Meteor meteor:
+                        StartInvulnerability();
+                        _gameContext.GameAudio.PlaySoundEffect(
+                            _gameContext.AssetManager.GetSoundEffect(GameConstants.PlayerConstants.Audio
+                                .HitSoundEffectName));
+                        Damage(meteor.CollisionDamageAmount);
+                        break;
+                }
+
+                Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
             }
-            Console.WriteLine($"{GetType()} collided with {gameObject.GetType()}");
         }
 
         public void Shoot()
@@ -156,12 +200,17 @@ namespace SSSRegen.Source.Game.Player
 
         private void PlayerOnDied(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-            //Player died
-            //ToDo play destroyed sound
-            //_gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.Projectiles.Bullet3.Audio.ShootSoundEffectName));
-            //ToDo show game over screen
+            //Stop sound effects in case they are currently playing
+            StopAcceleratingSoundEffect();
+            StopInvulnerabilitySoundEffect();
+
+            _gameContext.GameAudio.PlaySoundEffect(_gameContext.AssetManager.GetSoundEffect(GameConstants.PlayerConstants.Audio.DestroyedSoundEffectName));
             _healthComponent.Died -= PlayerOnDied;
+
+            // Hide and disable the player
+            IsActive = false;
+
+            _gameContext.NotificationMediator.PublishPlayerDied(new PlayerDiedNotification());
         }
 
         private void PlayAcceleratingSoundEffect()
@@ -172,6 +221,16 @@ namespace SSSRegen.Source.Game.Player
         private void StopAcceleratingSoundEffect()
         {
             _acceleratingSoundEffect.Stop();
+        }
+
+        private void PlayInvulnerabilitySoundEffect()
+        {
+            _invulnerabilitySoundEffect.Play(true);
+        }
+
+        private void StopInvulnerabilitySoundEffect()
+        {
+            _invulnerabilitySoundEffect.Stop();
         }
 
         private void UpdatePlayerDamageLevel()
@@ -192,6 +251,27 @@ namespace SSSRegen.Source.Game.Player
             {
                 _gameContext.NotificationMediator.PublishPlayerDamageLevel(PlayerDamageLevel.None);
             }
+        }
+        
+        private void StartInvulnerability()
+        {
+            CanCollide = false;
+            
+            _invulnerableStopwatch.Start();
+            _flashingStopwatch.Start();
+
+            PlayInvulnerabilitySoundEffect();
+        }
+
+        private void StopInvulnerability()
+        {
+            CanCollide = true;
+            _isVisible = true;
+
+            _invulnerableStopwatch.Reset();
+            _flashingStopwatch.Reset();
+
+            StopInvulnerabilitySoundEffect();
         }
     }
 }

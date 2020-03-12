@@ -93,7 +93,7 @@ namespace SSSRegen.Source.Core.Audio
         public void PlaySoundEffect(SoundEffect soundEffect)
         {
             var sfx = soundEffect.CreateInstance();
-            sfx.Play();
+             sfx.Play();
             _soundEffectOneShots.Add(sfx);
         }
 

@@ -38,22 +38,39 @@ namespace SSSRegen.Source.Game.Menus
             return mainMenu;
         }
 
-        public IGameMenu CreatePlayStateMenu()
+        public IGameMenu CreatePlayStatePauseMenu()
         {
             var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.RegularFontName);
             var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.SelectedFontName);
 
-            var playMenu = new TextMenu(_gameContext, new PlayStateMenuInputComponent(new KeyboardInputController()),
+            var playPauseMenu = new TextMenu(_gameContext, new PlayStatePauseMenuInputComponent(new KeyboardInputController()),
                 _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectName));
 
-            playMenu.SetMenuItems(new List<IMenuOption>()
+            playPauseMenu.SetMenuItems(new List<IMenuOption>()
             {
-                new TextMenuOption(_gameContext, () => OnPlayStateSelectResume(playMenu), GameConstants.GameStateConstants.PlayStateConstants.MenuTextResume, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, () => OnPlayStateSelectResume(playPauseMenu), GameConstants.GameStateConstants.PlayStateConstants.MenuTextResume, regularFont, selectedFont),
                 //new TextMenuOption(_gameContext, OnPlayStateSelectHelp, GameConstants.GameStates.PlayState.MenuTextHelp, regularFont, selectedFont),
                 new TextMenuOption(_gameContext, OnPlayStateSelectQuit, GameConstants.GameStateConstants.PlayStateConstants.MenuTextQuit, regularFont, selectedFont),
             });
 
-            return playMenu;
+            return playPauseMenu;
+        }
+
+        public IGameMenu CreatePlayStateGameOverMenu()
+        {
+            var regularFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.RegularFontName);
+            var selectedFont = _gameContext.AssetManager.GetFont(GameConstants.GameStateConstants.MenuStateConstants.SelectedFontName);
+
+            var playGameOverMenu = new TextMenu(_gameContext, new GameMenuInputComponent(new KeyboardInputController()), 
+                _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.MenuNavigateSoundEffectName));
+
+            playGameOverMenu.SetMenuItems(new List<IMenuOption>()
+            {
+                new TextMenuOption(_gameContext, OnMainMenuSelectOnePlayer, GameConstants.GameStateConstants.PlayStateConstants.MenuTextPlayAgain, regularFont, selectedFont),
+                new TextMenuOption(_gameContext, OnPlayStateSelectQuit, GameConstants.GameStateConstants.PlayStateConstants.MenuTextQuit, regularFont, selectedFont),
+            });
+
+            return playGameOverMenu;
         }
 
         private void OnMainMenuSelectOnePlayer()
@@ -65,8 +82,13 @@ namespace SSSRegen.Source.Game.Menus
                 new PlayState(
                     _gameContext,
                     new PlayStateGraphicsComponent(_gameContext),
+                    new PlayStatePausedGraphicsComponent(_gameContext), 
+                    new PlayStateGameOverGraphicsComponent(_gameContext), 
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
-                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectName)),
                 true);
         }
 
@@ -79,8 +101,13 @@ namespace SSSRegen.Source.Game.Menus
                 new PlayState(
                     _gameContext,
                     new PlayStateGraphicsComponent(_gameContext),
+                    new PlayStatePausedGraphicsComponent(_gameContext),
+                    new PlayStateGameOverGraphicsComponent(_gameContext),
                     _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuOpenedSoundEffectName),
-                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName)),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.ModalMenuClosedSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GameOverSoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.GetReadySoundEffectName),
+                    _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.PlayStateConstants.Audio.IncomingSoundEffectName)),
                 true);
         }
 
@@ -94,10 +121,7 @@ namespace SSSRegen.Source.Game.Menus
 
         private void OnMainMenuSelectQuit()
         {
-            _gameContext.GameAudio.PlaySoundEffect(
-                _gameContext.AssetManager.GetSoundEffect(GameConstants.GameStateConstants.MenuStateConstants.Audio.NewStateSelectionConfirmedSoundEffectName));
-            //ToDo Close game
-            throw new NotImplementedException();
+            _gameContext.QuitGame();
         }
 
         private void OnPlayStateSelectResume(TextMenu menu)

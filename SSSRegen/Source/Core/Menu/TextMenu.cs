@@ -26,6 +26,7 @@ namespace SSSRegen.Source.Core.Menu
         private int _selectedIndex;
         //Used to stop the menu navigate sound playing when the menu is created, or menu items are set
         private bool _canPlaySoundEffect;
+        private bool _isEnabled = true;
 
         //ToDo Refactor to make text menu reusable. Pass parameters to creation specific text menu.
         public TextMenu(GameContext gameContext, IComponent<IGameMenu> menuInputComponent, SoundEffect menuNavigateSoundEffect)
@@ -35,7 +36,18 @@ namespace SSSRegen.Source.Core.Menu
             _menuNavigateSoundEffect = menuNavigateSoundEffect ?? throw new ArgumentException(nameof(menuInputComponent));
         }
 
-        public bool IsEnabled { get; set; } = true;
+        //ToDo reset selected index when menu is enabled
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                //Reset the menu index when the menu is opened/closed
+                SelectedIndex = 0;
+
+                _isEnabled = value;
+            }
+        }
 
         public int SelectedIndex
         {
